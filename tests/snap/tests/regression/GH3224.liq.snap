@@ -1,0 +1,17 @@
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  test.equals(r/\\/.replace(fun (_) -> "?", "foo\\bar"), "foo?bar")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^ source.liquidsoap string.regexp.liquidsoap
+#                ^ source.liquidsoap string.regexp.liquidsoap
+#                 ^^ source.liquidsoap string.regexp.liquidsoap constant.character.escape.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+>end
+#^^^^ source.liquidsoap string.regexp.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+>

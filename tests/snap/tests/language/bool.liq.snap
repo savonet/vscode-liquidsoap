@@ -1,0 +1,68 @@
+>def t(x, y)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^ source.liquidsoap
+>  if x != y then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^ source.liquidsoap
+#            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    print("Failure: got #{x} instead of #{y}")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  # Test strictness and evaluation order
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  l = ref(false)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  r = ref(false)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if begin l := true; true end or begin r := true; true end then () end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^ source.liquidsoap
+#     ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#          ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^^^ source.liquidsoap keyword.control.liquidsoap
+#                              ^ source.liquidsoap
+#                               ^^ source.liquidsoap keyword.operator.liquidsoap
+#                                 ^ source.liquidsoap
+#                                  ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                       ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                        ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                           ^ source.liquidsoap
+#                                                            ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                ^^^^ source.liquidsoap
+#                                                                    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  t(l() and (not r()), true)
+#^^^^^^^^ source.liquidsoap
+#        ^^^ source.liquidsoap keyword.operator.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  ignore(true == false ? 5 : 6)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^^ source.liquidsoap
+#                             ^ source.liquidsoap constant.numeric.integer
+#                              ^^ source.liquidsoap
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

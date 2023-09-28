@@ -1,0 +1,726 @@
+>#!../../liquidsoap ../test.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+># TODO Throughout this file, parsing locations displayed in error messages
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>#      are often much too inaccurate.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  # Check that some polymorphism is allowed.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # id : (string,'a)->'a
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def id(a,b)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^ source.liquidsoap
+>    log(a)
+#^^^^^^^^^^^ source.liquidsoap
+>    b
+#^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  ignore("bla"==id("bla","bla"))
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^ source.liquidsoap
+>  ignore(0==id("zero",0))
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+#          ^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap
+#                      ^ source.liquidsoap constant.numeric.integer
+#                       ^^^ source.liquidsoap
+>
+>  # Reporting locations for the next error is non-trivial, because it is about
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # an instantiation of the type of id. The deep error doesn't have relevant
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # information about why the int should be a string, the outer one has.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # id(0,0)
+#^^ source.liquidsoap
+#  ^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>  # Polymorphism is limited to outer generalizations, this is not system F.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # apply : ((string)->'a)->'a
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def apply(f)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^ source.liquidsoap
+>    f("bla")
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^ source.liquidsoap
+>    # f is not polymorphic, the following is forbidden:
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>    # f(0)
+#^^^^ source.liquidsoap
+#    ^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>    # f(f)
+#^^^^ source.liquidsoap
+#    ^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  ignore(apply)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  # The level checks forbid abusive generalization.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # id' : ('a)->'a
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def id'(x)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.single.liquidsoap
+#         ^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    # If one isn't careful about levels/scoping, f2 gets the type ('a)->'b and
+#^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                ^ source.liquidsoap string.quoted.single.liquidsoap
+#                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                  ^ source.liquidsoap constant.numeric.integer
+#                                                   ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                    ^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                        ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                         ^^ source.liquidsoap
+#                                                                           ^^^ source.liquidsoap keyword.operator.liquidsoap
+>    # so does twisted_id.
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>    def f2(y)
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+#          ^^^^ source.liquidsoap
+>      x
+#^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    f2(x)
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap constant.numeric.integer
+#      ^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  ignore(id')
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap string.quoted.single.liquidsoap
+#            ^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>  # Generalization and aliasing (see #941).
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  def id (x) = x end
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  _ = id(3)
+#^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  _ = id("a")
+#^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>  id' = id
+#^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#    ^ source.liquidsoap string.quoted.single.liquidsoap
+#     ^^^^^^ source.liquidsoap
+>  _ = id'(3)
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.single.liquidsoap
+#         ^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  _ = id'("a")
+#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#        ^ source.liquidsoap string.quoted.single.liquidsoap
+#         ^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap
+>
+>  # Testing generalization of recursive functions.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def rec recid(x)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^ source.liquidsoap
+>    x
+#^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  ignore(recid(3) == 3)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^ source.liquidsoap
+>  ignore(recid("a") == "a")
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+>
+>  # More errors...
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # 0=="0"
+#^^ source.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # [3,""]
+#^^ source.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>  # Subtyping, functions and lists.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  f1 = fun () -> 3
+#^^^ source.liquidsoap
+#   ^ source.liquidsoap constant.numeric.integer
+#    ^^^ source.liquidsoap
+#       ^^^ source.liquidsoap keyword.control.liquidsoap
+#          ^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+>  f2 = fun (a=1) -> a
+#^^^ source.liquidsoap
+#   ^ source.liquidsoap constant.numeric.integer
+#    ^^^ source.liquidsoap
+#       ^^^ source.liquidsoap keyword.control.liquidsoap
+#          ^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^^^^^^ source.liquidsoap
+>
+>  # This is OK, l1 is a list of elements of type f1.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  l1 = [f1,f2]
+#^^^ source.liquidsoap
+#   ^ source.liquidsoap constant.numeric.integer
+#    ^^^^^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+#          ^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^ source.liquidsoap
+>  list.iter(fun (f) -> log(string(f())), l1)
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^^ source.liquidsoap keyword.control.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                          ^ source.liquidsoap constant.numeric.integer
+#                                           ^^ source.liquidsoap
+>
+>  # Forbidden. Indeed, f1 doesn't accept any argument -- although f2 does.  Here
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # the error message may even be too detailed since it goes back to the
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # definition of l1 and requires that f1 has type (int)->int.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # list.iter(fun (f) -> log(string(f(42))), l1)
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>  # This used to be forbidden, but is allowed now that we have dropped currying:
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # we can now subtype a (?int)->int into an (int)->int (which is the type
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # inferred in the iter).
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  list.iter(fun (f) -> log(string(f(42))), [f2])
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^^ source.liquidsoap keyword.control.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^^ source.liquidsoap constant.numeric.integer
+#                                      ^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap constant.numeric.integer
+#                                              ^^^ source.liquidsoap
+>
+>  # Unlike l1, this is not OK, since we don't leave open subtyping constraints
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # while inferring types. I hope we can make the inference smarter in the
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # future, without obfuscating the error messages too much. The type error here
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # shows the use of all the displayed positions:
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  #  f1 has type t1, f2 has type t2, t1 should be <: t2
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # l2 = [ f2, f1 ]
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>  # An error where contravariance flips the roles of both sides.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # [fun (x) -> x+1, fun (y) -> y^"."]
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>  # An error without much locations.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # TODO An explanation about the missing label would help a lot here.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # def f(f)
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  #   f(output.icecast.vorbis)
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  #   f(output.icecast.mp3)
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # end
+#^^ source.liquidsoap
+#  ^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>  # This causes an occur-check error.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # TODO The printing of the types breaks the sharing of one EVAR
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  #  across two types. Here the sharing is actually the origin of the occur-check
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  #  error. And it's not easy to understand..
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # omega = fun (x) -> x(x)
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>  # The argument f of the function g is inferred as taking a non-optional
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # parameter x, whereas f has an optional parameter x. Subtyping should however
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # accept this now that we have disable partial application.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  g = fun(f) -> f(x=3)
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^ source.liquidsoap
+>  f = fun(~x=3) -> x+5
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+>  ignore(g(f))
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  # Now let's test ad-hoc polymorphism.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>  echo = fun(x) -> process.run(process.quote.command("echo", args=[(x:string)]))
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap keyword.control.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ignore(echo)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  ignore("bla")
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap
+>  ignore((1,3.12))
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^ source.liquidsoap
+#            ^^^^ source.liquidsoap constant.numeric.float
+#                ^^^ source.liquidsoap
+>  ignore(1 + 1)
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+#          ^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^ source.liquidsoap
+>  ignore(1. + 2.14)
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+#          ^^^^ source.liquidsoap
+#              ^^^^ source.liquidsoap constant.numeric.float
+#                  ^^ source.liquidsoap
+>
+>  # string is not a Num
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # echo("bl"+"a")
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>  ignore(1 <= 2)
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+#          ^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>  ignore((1,2) == (1,3))
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^^ source.liquidsoap
+>
+>  # float <> int
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # echo(1 == 2.)
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>  # source is not an Ord
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # echo(blank()==blank())
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>  # Test record subtyping.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def f(x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>    "" ^ x
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  ignore(f("a".{n = 3}))
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^^^ source.liquidsoap
+>  # Ensure that we have correct subtyping for arguments, which should be
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # contravariant, see #1465.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # We have string.{l : int} < string
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # Thus    (string) -> int  < (string.{l : int}) -> int
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def g(f) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>    f("a".{l = 3})
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  def f(x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>    0
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  ignore(g(f))
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  def sum_eq(a,b)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^ source.liquidsoap
+>    a+b == a
+#^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  ignore(sum_eq)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  (noise():source(audio=pcm,video=canvas))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  (noise():source(audio=pcm(mono)))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  (noise():source(audio=pcm("5.1")))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^ source.liquidsoap
+>  (noise():source)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  (single("annotate:foo=\"bla\":/nonexistent"):source(audio=ffmpeg.copy,video=ffmpeg.copy,midi=midi))
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                               ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  (single("annotate:foo=\"bla\":/nonexistent"):source(audio=ffmpeg.audio.raw,video=ffmpeg.video.raw,midi=midi))
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                               ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  (single("annotate:foo=\"bla\":/nonexistent"):source(audio=ffmpeg.audio.raw(sample_rate=44100, channel_layout="5.1"),video=ffmpeg.video.raw(pixel_format=yuva420p),midi=midi))
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                               ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                         ^^^^^ source.liquidsoap constant.numeric.integer
+#                                                                                              ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                                                                              ^^^ source.liquidsoap constant.numeric.integer
+#                                                                                                                                                                 ^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  let ([x]:[int]) = [123]
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^ source.liquidsoap constant.numeric.integer
+#                        ^^ source.liquidsoap
+>
+>  ([]:[(string * int)] as json.object)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ([("bla", 3.14)]:[(string * float)] as json.object)
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^ source.liquidsoap
+#            ^^^^ source.liquidsoap constant.numeric.float
+#                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  ({foo = 123}:{foo:int})
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^ source.liquidsoap constant.numeric.integer
+#             ^^^^^^^^^^^^^ source.liquidsoap
+>  ({foo = 123}:{"✨ name ✨" as foo: int})
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^ source.liquidsoap constant.numeric.integer
+#             ^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^^^^^ source.liquidsoap
+>  (123.{foo=3.14,gni="aabbcc"}:int.{foo:float,gni:string})
+#^^^ source.liquidsoap
+#   ^^^ source.liquidsoap constant.numeric.integer
+#      ^^^^^^ source.liquidsoap
+#            ^^^^ source.liquidsoap constant.numeric.float
+#                ^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  (123.{foo=3.14,gni="aabbcc"}:int.{foo:float}.{gni:string})
+#^^^ source.liquidsoap
+#   ^^^ source.liquidsoap constant.numeric.integer
+#      ^^^^^^ source.liquidsoap
+#            ^^^^ source.liquidsoap constant.numeric.float
+#                ^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  (123.{foo=3.14,gni="aabbcc"}:int.{foo:float}.{gni:int}.{gni:string})
+#^^^ source.liquidsoap
+#   ^^^ source.liquidsoap constant.numeric.integer
+#      ^^^^^^ source.liquidsoap
+#            ^^^^ source.liquidsoap constant.numeric.float
+#                ^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  (source.tracks(single("")).audio.{foo=3.14,gni="aabbcc"}:ffmpeg.copy.{foo:float}.{gni:int}.{gni:string})
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^^^^ source.liquidsoap
+#                                        ^^^^ source.liquidsoap constant.numeric.float
+#                                            ^^^^^ source.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  (blank().{foo=3.14,gni="aabbcc"}:source(audio=pcm).{foo:float}.{gni:int}.{gni:string})
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^^^ source.liquidsoap constant.numeric.float
+#                    ^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  (blank().{foo=3.14,gni="aabbcc"}:source.{foo:float}.{gni:int}.{gni:string})
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^^^ source.liquidsoap constant.numeric.float
+#                    ^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  (123:{foo:int}.foo)
+#^^^ source.liquidsoap
+#   ^^^ source.liquidsoap constant.numeric.integer
+#      ^^^^^^^^^^^^^^^^ source.liquidsoap
+>  (123.{foo=3.14,gni="aabbcc"}:int.{"✨ name ✨" as foo:float,gni:string})
+#^^^ source.liquidsoap
+#   ^^^ source.liquidsoap constant.numeric.integer
+#      ^^^^^^ source.liquidsoap
+#            ^^^^ source.liquidsoap constant.numeric.float
+#                ^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^ source.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  (():{})
+#^^^^^^^^^^ source.liquidsoap
+>  (():unit.{})
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  ({foo = 123}:{foo?:int})
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^ source.liquidsoap constant.numeric.integer
+#             ^^^^^^^^^^^^^^ source.liquidsoap
+>  ({}:{foo?:int})
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ({foo = null()}:{foo?:int})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ({foo = 123}:{foo?:int})
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^ source.liquidsoap constant.numeric.integer
+#             ^^^^^^^^^^^^^^ source.liquidsoap
+>  ({foo = null(null())}:{foo?:int?})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  ([({}:{foo?:int}), (), {foo = 123}]:[{foo?:int}])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.integer
+#                                   ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ([(), {foo = 123}]:[{foo?:int}])
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^^^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  # This one is more subtle than it seems because we have no field video on the
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # left and a video:never field on the right when testing for the subtyping,
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # see #3210.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  s = (sine():source(video=none))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s = (sine():source(video=none,...))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

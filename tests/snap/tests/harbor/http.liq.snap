@@ -1,0 +1,1339 @@
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  # Default response
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def handler(req, _) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>   test.equals(req.http_version, "1.1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>   test.equals(req.method, "GET")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^ source.liquidsoap
+>   test.equals(req.body(timeout=5.0), "")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.float
+#                                   ^^^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^ source.liquidsoap
+>   test.equals(req.query, [])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>   test.equals(req.path, "/default")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  harbor.http.register("/default", port=3456, handler)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^^^^ source.liquidsoap
+#                                        ^^^^ source.liquidsoap constant.numeric.integer
+#                                            ^^^^^^^^^^^ source.liquidsoap
+>  resp = http.get("http://localhost:3456/default")
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^ source.liquidsoap
+>  test.equals(resp.status_message, "OK")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap
+>  test.equals(resp.status_code, 200)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.integer
+#                                   ^^ source.liquidsoap
+>  test.equals(resp.http_version, "1.1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>  test.equals(resp.headers, [])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals("#{resp}", "")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>
+>  # Endpoint are executed in the order they are declared
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def handler(_, _) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  harbor.http.register.regexp(r/default/g, port=3456, handler)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^^ source.liquidsoap string.regexp.liquidsoap
+#                                ^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                                       ^^ source.liquidsoap string.regexp.liquidsoap
+#                                         ^^^^^^^ source.liquidsoap
+#                                                ^^^^ source.liquidsoap constant.numeric.integer
+#                                                    ^^^^^^^^^^^ source.liquidsoap
+>  harbor.http.register("/default", port=3456, handler)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^^^^ source.liquidsoap
+#                                        ^^^^ source.liquidsoap constant.numeric.integer
+#                                            ^^^^^^^^^^^ source.liquidsoap
+>  resp = http.get("http://localhost:3456/default")
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^ source.liquidsoap
+>  test.equals(resp.status_message, "OK")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap
+>  test.equals(resp.status_code, 200)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.integer
+#                                   ^^ source.liquidsoap
+>  test.equals(resp.http_version, "1.1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>  test.equals(resp.headers, [])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals("#{resp}", "")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>
+>  # String response with matches
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def handler(req, _) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>   test.equals(req.http_version, "1.1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>   test.equals(req.method, "GET")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^ source.liquidsoap
+>   test.equals(req.body(timeout=5.0), "")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.float
+#                                   ^^^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^ source.liquidsoap
+>   test.equals(req.query, [("gni", "gno"), ("bla", "blo")])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^ source.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^^^ source.liquidsoap
+>   test.equals(req.path, "/path/gno/blo")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  harbor.http.register("/path/:gni/:bla", port=3456, handler)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^^^^ source.liquidsoap
+#                                               ^^^^ source.liquidsoap constant.numeric.integer
+#                                                   ^^^^^^^^^^^ source.liquidsoap
+>  resp = http.get("http://localhost:3456/path/gno/blo")
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^ source.liquidsoap
+>  test.equals(resp.status_message, "OK")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap
+>  test.equals(resp.status_code, 200)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.integer
+#                                   ^^ source.liquidsoap
+>  test.equals(resp.http_version, "1.1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>  test.equals(resp.headers, [])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals("#{resp}", "")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>
+>  # Full query
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def handler(req, res) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>   test.equals(req.http_version, "1.0")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>   test.equals(req.method, "POST")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^ source.liquidsoap
+>   test.equals(req.query, [("foo", "with"), ("bla", "in"), ("gnu", "gno"), ("gni", "gno")])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^ source.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^^^ source.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                 ^^ source.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^^^ source.liquidsoap
+#                                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                             ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^^ source.liquidsoap
+#                                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                        ^^^^ source.liquidsoap
+>   test.equals(req.headers, [
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      ("host", "localhost:3456"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^ source.liquidsoap
+>      ("user-agent", http.user_agent),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      ("accept", "*/*"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^ source.liquidsoap
+>      ("req", "header"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^ source.liquidsoap
+>      ("content-length", "9"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^ source.liquidsoap
+>      ("content-type", "application/x-www-form-urlencoded")
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^ source.liquidsoap
+>    ])
+#^^^^^^^ source.liquidsoap
+>   test.equals(req.path, "/some/path/with/full/in/it")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap
+>   test.equals(req.body(timeout=5.0), "foobarlol")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.float
+#                                   ^^^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^ source.liquidsoap
+>
+>    res.status_code(201)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^^^ source.liquidsoap constant.numeric.integer
+#                       ^^ source.liquidsoap
+>    res.status_message("YYR")
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+>    res.http_version("1.0")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+>
+>    data_count = ref(3)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^ source.liquidsoap
+>    def data() =
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^ source.liquidsoap
+>      if data_count() >= 0 then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^ source.liquidsoap
+#                           ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        data_count := data_count() - 1
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap constant.numeric.integer
+>        "gnigno"
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+>      else
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        ""
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>    res.data(data)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    res.headers([("some","value")])
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^ source.liquidsoap
+>    res.content_type("liquidsoap/test")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  harbor.http.register.regexp(r/(?<foo>[^\/]+)\/full\/(?<bla>[^\/]+)/g, method="POST", port=3456, handler)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^^ source.liquidsoap string.regexp.liquidsoap
+#                                ^^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                                         ^^ source.liquidsoap string.regexp.liquidsoap constant.character.escape.liquidsoap
+#                                           ^^^ source.liquidsoap string.regexp.liquidsoap
+#                                              ^^ source.liquidsoap string.regexp.liquidsoap constant.character.escape.liquidsoap
+#                                                ^^^^ source.liquidsoap string.regexp.liquidsoap
+#                                                    ^^ source.liquidsoap string.regexp.liquidsoap constant.character.escape.liquidsoap
+#                                                      ^^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                                                               ^^ source.liquidsoap string.regexp.liquidsoap constant.character.escape.liquidsoap
+#                                                                 ^^^ source.liquidsoap string.regexp.liquidsoap
+#                                                                    ^^ source.liquidsoap string.regexp.liquidsoap
+#                                                                      ^^^^^^^^^ source.liquidsoap
+#                                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^^^^^^^ source.liquidsoap
+#                                                                                            ^^^^ source.liquidsoap constant.numeric.integer
+#                                                                                                ^^^^^^^^^^^ source.liquidsoap
+>  resp = http.post(http_version="1.0", data="foobarlol", headers=[("req","header")], "http://localhost:3456/some/path/with/full/in/it?gni=gno&gnu=gno")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^^^^^^^^^^^ source.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^ source.liquidsoap
+#                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^^^^ source.liquidsoap
+#                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                      ^^ source.liquidsoap
+>
+>  test.equals(resp.status_message, "YYR")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^ source.liquidsoap
+>  test.equals(resp.status_code, 201)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.integer
+#                                   ^^ source.liquidsoap
+>  test.equals(resp.http_version, "1.0")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>  test.equals(resp.headers, [
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    ("some", "value"),
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^ source.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^ source.liquidsoap
+>    ("transfer-encoding", "chunked"),
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^ source.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^ source.liquidsoap
+>    ("content-type", "liquidsoap/test"),
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^^ source.liquidsoap
+>  ])
+#^^^^^ source.liquidsoap
+>  test.equals("#{resp}", "gnignognignognignognigno")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^ source.liquidsoap
+>
+>  # Large non-chunked query
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def handler(req, _) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>   test.equals(req.http_version, "1.1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>   test.equals(req.method, "POST")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^ source.liquidsoap
+>   test.equals(req.query, [])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>   test.equals(req.headers, [
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      ("host", "localhost:3456"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^ source.liquidsoap
+>      ("user-agent", http.user_agent),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      ("accept", "*/*"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^ source.liquidsoap
+>      ("content-length", "10000"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^ source.liquidsoap
+>      ("content-type", "application/x-www-form-urlencoded"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^ source.liquidsoap
+>    ])
+#^^^^^^^ source.liquidsoap
+>   test.equals(req.path, "/large_non_chunked")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>   test.equals(string.length(req.body(timeout=5.0)), 10_000)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                              ^^^ source.liquidsoap constant.numeric.float
+#                                                 ^^^^ source.liquidsoap
+#                                                     ^^^^^^ source.liquidsoap constant.numeric.integer
+#                                                           ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  harbor.http.register("/large_non_chunked", method="POST", port=3456, handler)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^^^^^^ source.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^^^^ source.liquidsoap
+#                                                                 ^^^^ source.liquidsoap constant.numeric.integer
+#                                                                     ^^^^^^^^^^^ source.liquidsoap
+>
+>  resp = http.post(data=string.make(10_000), "http://localhost:3456/large_non_chunked")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^^^^^^ source.liquidsoap constant.numeric.integer
+#                                          ^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                      ^^ source.liquidsoap
+>  test.equals(resp.status_message, "OK")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap
+>  test.equals(resp.status_code, 200)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.integer
+#                                   ^^ source.liquidsoap
+>  test.equals(resp.http_version, "1.1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>  test.equals(resp.headers, [])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals("#{resp}", "")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>
+>  # Chunked query
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def handler(req, res) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>   test.equals(req.http_version, "1.1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>   test.equals(req.method, "POST")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^ source.liquidsoap
+>   test.equals(req.query, [])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>   test.equals(req.headers, [
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      ("host", "localhost:3456"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^ source.liquidsoap
+>      ("user-agent", http.user_agent),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      ("accept", "*/*"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^ source.liquidsoap
+>      ("transfer-encoding", "chunked"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^ source.liquidsoap
+>      ("content-type", "application/x-www-form-urlencoded"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^ source.liquidsoap
+>      ("expect", "100-continue")
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap
+>    ])
+#^^^^^^^ source.liquidsoap
+>   test.equals(req.path, "/chunked")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^ source.liquidsoap
+>   test.equals(req.body(timeout=5.0), "foobarlol")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.float
+#                                   ^^^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  harbor.http.register("/chunked", method="POST", port=3456, handler)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^^^^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^^^^^^ source.liquidsoap
+#                                                       ^^^^ source.liquidsoap constant.numeric.integer
+#                                                           ^^^^^^^^^^^ source.liquidsoap
+>
+>  data = begin
+#^^^^^^^^^ source.liquidsoap
+#         ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    is_done = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    fun () ->
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^ source.liquidsoap
+>      if is_done() then "" else
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^ source.liquidsoap
+#                   ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap
+#                           ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        is_done := true
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        "foobarlol"
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  resp = http.post(data=data, "http://localhost:3456/chunked")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^^ source.liquidsoap
+>  test.equals(resp.status_message, "OK")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap
+>  test.equals(resp.status_code, 200)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.integer
+#                                   ^^ source.liquidsoap
+>  test.equals(resp.http_version, "1.1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>  test.equals(resp.headers, [])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals("#{resp}", "")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>
+>  # Large chunked query
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def handler(req, res) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    test.equals(req.http_version, "1.1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap
+>    test.equals(req.method, "POST")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^ source.liquidsoap
+>    test.equals(req.query, [])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    test.equals(req.headers, [
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      ("host", "localhost:3456"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^ source.liquidsoap
+>      ("user-agent", http.user_agent),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      ("accept", "*/*"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^ source.liquidsoap
+>      ("transfer-encoding", "chunked"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^ source.liquidsoap
+>      ("content-type", "application/x-www-form-urlencoded"),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^ source.liquidsoap
+>      ("expect", "100-continue")
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap
+>    ])
+#^^^^^^^ source.liquidsoap
+>    test.equals(req.path, "/large_chunked")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^ source.liquidsoap
+>
+>    def rec f(count) =
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^ source.liquidsoap
+>      ret = req.data()
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>      if ret != "" then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap
+#                   ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        f(count + string.length(ret))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      else
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        count
+#^^^^^^^^^^^^^^ source.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>   test.equals(f(0), 10_000_000)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^ source.liquidsoap
+#                     ^^^^^^^^^^ source.liquidsoap constant.numeric.integer
+#                               ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  harbor.http.register("/large_chunked", method="POST", port=3456, handler)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^^^^^^^ source.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^^^^^ source.liquidsoap
+#                                                             ^^^^ source.liquidsoap constant.numeric.integer
+#                                                                 ^^^^^^^^^^^ source.liquidsoap
+>
+>  data = begin
+#^^^^^^^^^ source.liquidsoap
+#         ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    tmp = string.make(10_000)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^^^^ source.liquidsoap constant.numeric.integer
+#                            ^^ source.liquidsoap
+>    count = ref(10_000_000 / 10_000)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^^^^^^^^^ source.liquidsoap constant.numeric.integer
+#                          ^^^ source.liquidsoap
+#                             ^^^^^^ source.liquidsoap constant.numeric.integer
+#                                   ^^ source.liquidsoap
+>    fun () ->
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^ source.liquidsoap
+>      if 0 < count() then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+#          ^^^^^^^^^^^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        count := count() - 1
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap constant.numeric.integer
+>        tmp
+#^^^^^^^^^^^^ source.liquidsoap
+>      else
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        ""
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  # Custom response
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def handler(req) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^ source.liquidsoap
+>   test.equals(req.http_version, "1.1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>   test.equals(req.method, "GET")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^ source.liquidsoap
+>   test.equals(req.data(), "")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+>   test.equals(req.query, [])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>   test.equals(req.path, "/custom")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^ source.liquidsoap
+>    req.socket.write("HTTP/1.0 201 YYR\r\nFoo: bar\r\n\r\n")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                          ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^ source.liquidsoap
+>    req.socket.close()
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    null()
+#^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  harbor.http.register.simple("/custom", port=3456, handler)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^^^^^ source.liquidsoap
+#                                              ^^^^ source.liquidsoap constant.numeric.integer
+#                                                  ^^^^^^^^^^^ source.liquidsoap
+>  resp = http.get("http://localhost:3456/custom")
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^ source.liquidsoap
+>
+>  test.equals(resp.status_message, "YYR")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^ source.liquidsoap
+>  test.equals(resp.status_code, 201)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.integer
+#                                   ^^ source.liquidsoap
+>  test.equals(resp.http_version, "1.0")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>  test.equals(resp.headers, [("foo","bar")])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^^ source.liquidsoap
+>  test.equals("#{resp}", "")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>
+>  # Cors headers
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  harbor.http.middleware.register(harbor.http.middleware.cors(origin="foo.com"))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                              ^^^ source.liquidsoap
+>  resp = http.get("http://localhost:3456/default")
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^ source.liquidsoap
+>  test.equals(resp.status_message, "OK")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap
+>  test.equals(resp.http_version, "1.1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>  test.equals(resp.status_code, 200)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.integer
+#                                   ^^ source.liquidsoap
+>  test.equals(resp.headers, [
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    ("access-control-allow-origin", "foo.com"),
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^ source.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^ source.liquidsoap
+>    ("vary", "Origin")
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^ source.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+>  ])
+#^^^^^ source.liquidsoap
+>  test.equals("#{resp}", "")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>
+>  # transport conflict
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  transport = http.transport.ssl(certificate="foo", key="bla")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^^^^ source.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^^ source.liquidsoap
+>  try
+#^^^^^^ source.liquidsoap
+>    harbor.http.register("/default", transport=transport, port=3456, fun (_, _) -> ())
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                               ^^^^ source.liquidsoap constant.numeric.integer
+#                                                                   ^^ source.liquidsoap
+#                                                                     ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                        ^^^^^^^^^^^^^^^ source.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  catch err : [error.http] do
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^^ source.liquidsoap keyword.control.liquidsoap
+>   test.equals(err.message, "Port is already opened with a different transport")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                               ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  # Response ended
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  read = ref(fun (~timeout=_) -> error.raise(error.assertion))
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  def handler(req, _) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    read := req.data
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  harbor.http.register("/response_ended", port=3456, handler)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^^^^ source.liquidsoap
+#                                               ^^^^ source.liquidsoap constant.numeric.integer
+#                                                   ^^^^^^^^^^^ source.liquidsoap
+>  resp = http.get("http://localhost:3456/response_ended")
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^ source.liquidsoap
+>  test.equals(resp.status_message, "OK")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap
+>  test.equals(resp.status_code, 200)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.integer
+#                                   ^^ source.liquidsoap
+>
+>  try
+#^^^^^^ source.liquidsoap
+>    fn = read()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>    fn(timeout=10.)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^^ source.liquidsoap constant.numeric.integer
+#                 ^^^ source.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  catch err: [error.http] do
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^^ source.liquidsoap keyword.control.liquidsoap
+>   test.equals(err.message, "Response ended!")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  # Register output on the same port
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  output.harbor(port=3456, mount="bla.wav", on_start=test.pass, %wav, sine())
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^^ source.liquidsoap constant.numeric.integer
+#                         ^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

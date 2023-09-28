@@ -1,0 +1,23 @@
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  r = request.create("../media/@wav[stereo].wav")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^ source.liquidsoap
+>  s = request.queue(queue=[r])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s.on_track(fun (_) -> test.pass())
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  output.dummy(fallible=true, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

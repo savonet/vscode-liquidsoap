@@ -1,0 +1,62 @@
+>settings.log.level.set(4)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap constant.numeric.integer
+#                        ^^ source.liquidsoap
+>
+>output.dummy(fallible = true, sine())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>count = ref(0)
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^ source.liquidsoap
+>
+>thread.run.recurrent({
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if count() == 5 then begin
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^ source.liquidsoap
+#                  ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                      ^ source.liquidsoap
+#                       ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    print("sending kill -s INT #{process.pid()}")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^ source.liquidsoap
+>    process.run("kill -s INT #{process.pid()}")
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^ source.liquidsoap
+>    (-1.)
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+#       ^^^ source.liquidsoap
+>  end else begin
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+#          ^ source.liquidsoap
+#           ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    count := count()+1
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+>    1.
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap constant.numeric.integer
+#     ^^ source.liquidsoap
+>  end end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>})
+#^^^ source.liquidsoap
+>

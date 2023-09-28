@@ -1,0 +1,83 @@
+>set("log.level",4)
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^ source.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  m = file.metadata.taglib("@mp3[mono].mp3")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^ source.liquidsoap
+>
+>  if m["track"] != "" then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap
+#                      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if m["tracknumber"] == "0" then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap
+#                             ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if m["year"] == "0" then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap
+#                      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

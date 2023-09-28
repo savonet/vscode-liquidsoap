@@ -1,0 +1,46 @@
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  s = metronome()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s = bpm(s)
+#^^^^^^^^^^^^^ source.liquidsoap
+>  output.dummy(fallible=true, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  thread.run.recurrent({
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    if s.bpm() != 0. then begin
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^ source.liquidsoap
+#                          ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>      test.pass()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      (-1.)
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^^ source.liquidsoap
+>    end else
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^ source.liquidsoap
+#        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      1.
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+#       ^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  })
+#^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

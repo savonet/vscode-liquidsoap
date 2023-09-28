@@ -1,0 +1,51 @@
+># Enable telnet server.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~port Port on which we should listen.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.param.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def server.telnet(~port=1234) =
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                 ^ source.liquidsoap
+#                  ^ source.liquidsoap
+#                   ^^^^ source.liquidsoap variable.parameter.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^^^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
+#                            ^ source.liquidsoap
+#                             ^^ source.liquidsoap
+>  settings.server.telnet.port := port
+#^^ source.liquidsoap
+#  ^^^^^^^^ source.liquidsoap variable.liquidsoap
+#          ^ source.liquidsoap keyword.other.liquidsoap
+#           ^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                 ^ source.liquidsoap keyword.other.liquidsoap
+#                  ^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                        ^ source.liquidsoap keyword.other.liquidsoap
+#                         ^^^^ source.liquidsoap variable.method.liquidsoap
+#                             ^ source.liquidsoap
+#                              ^^ source.liquidsoap keyword.operator.set.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^^^^ source.liquidsoap variable.liquidsoap
+>  settings.server.telnet := true
+#^^ source.liquidsoap
+#  ^^^^^^^^ source.liquidsoap variable.liquidsoap
+#          ^ source.liquidsoap keyword.other.liquidsoap
+#           ^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                 ^ source.liquidsoap keyword.other.liquidsoap
+#                  ^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                        ^ source.liquidsoap
+#                         ^^ source.liquidsoap keyword.operator.set.liquidsoap
+#                           ^ source.liquidsoap
+#                            ^^^^ source.liquidsoap constant.language.boolean.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>

@@ -1,0 +1,56 @@
+>tmp = file.temp("foo", "mp3")
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+>on_cleanup({file.remove(tmp)})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>a = sine(duration=2.)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>b = sine(duration=2.)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>
+># This function will be type-checked as a generic
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># fun (source('a), source('a)) -> source('a). We
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># need to make sure that it returns a mono source
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># when used as transition for a mono crossfade.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def fn(a, b) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^ source.liquidsoap
+>  add([fade.out(a.source), fade.in(b.source)])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = sequence([a, b])
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s = cross(fn, s)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>clock.assign_new(sync='none',[s])
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.single.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                           ^ source.liquidsoap string.quoted.single.liquidsoap
+#                            ^^^^^^ source.liquidsoap
+>
+>output.file(fallible=true, on_stop=test.pass, %mp3(mono), tmp, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                 ^ source.liquidsoap constant.numeric.integer
+#                                                  ^^^^^^^^^^^^^^^^ source.liquidsoap
+>

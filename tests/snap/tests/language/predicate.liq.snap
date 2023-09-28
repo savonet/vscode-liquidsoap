@@ -1,0 +1,139 @@
+>success = ref(true)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def predicate.to_list(n, p)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  list.init(n, fun(_) -> p())
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^^^ source.liquidsoap keyword.control.liquidsoap
+#                  ^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def predicate.nth(n)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  i = ref(-1)
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap constant.numeric.integer
+#            ^^ source.liquidsoap
+>  fun () -> begin
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^ source.liquidsoap
+#            ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    ref.incr(i)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>    i() == n
+#^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def predicate.from(n)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  i = ref(-1)
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap constant.numeric.integer
+#            ^^ source.liquidsoap
+>  fun () -> begin
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^ source.liquidsoap
+#            ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    ref.incr(i)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>    i() >= n
+#^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def t(x, y)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^ source.liquidsoap
+>  if x != y then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^ source.liquidsoap
+#            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    print("Failure: got #{x} instead of #{y}")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>    success := false
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def tl(p, l)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^ source.liquidsoap
+>  t(predicate.to_list(4, p), l)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap constant.numeric.integer
+#                       ^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  tl(predicate.nth(2), [false,false,true,false])
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  tl(predicate.from(2), [false,false,true,true])
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  tl(predicate.activates(predicate.from(2)), [false,false,true,false])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                        ^ source.liquidsoap constant.numeric.integer
+#                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  tl(predicate.changes(predicate.nth(2)), [false,true,true,false])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap constant.numeric.integer
+#                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  tl(predicate.once(predicate.from(2)), [false,false,true,false])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap constant.numeric.integer
+#                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  p = predicate.signal()
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  t(p(), false)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  p.signal()
+#^^^^^^^^^^^^^ source.liquidsoap
+>  t(p(), true)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>  t(p(), false)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  if success() then test.pass() else test.fail() end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                   ^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                    ^^^^^^^^^^^^^ source.liquidsoap
+#                                                 ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

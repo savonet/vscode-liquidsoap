@@ -1,0 +1,14 @@
+>#!../../src/liquidsoap ../../libs/stdlib.liq ../../libs/deprecations.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+># Make sure infallible output can shutdown properly.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>output.dummy(blank())
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>thread.run(delay=1., test.pass)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^^^ source.liquidsoap
+>

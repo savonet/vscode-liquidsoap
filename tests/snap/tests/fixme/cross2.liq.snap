@@ -1,0 +1,56 @@
+>#!../../liquidsoap ../test.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+># See #2080.
+#^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>s = amplify(0.5, sequence([sine(duration=5.), sine(500.)]))
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^^ source.liquidsoap constant.numeric.float
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^ source.liquidsoap constant.numeric.integer
+#                                          ^^^^^^^^^ source.liquidsoap
+#                                                   ^^^ source.liquidsoap constant.numeric.integer
+#                                                      ^^^^^^ source.liquidsoap
+>jingle = playlist("files/jingles")
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^ source.liquidsoap
+>
+># The subtlety here is that once(jingle) returns a source with methods (such as
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># id). The inference thus thinks that a.source has methods. And the function f
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># thus cannot be passed to cross because it is not general enough.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def f(a, b)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^ source.liquidsoap
+>  sequence([a.source, once(jingle), b.source])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = cross(f, s)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output.dummy(s)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def on_done () =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^ source.liquidsoap
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>  shutdown()
+#^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>thread.run(delay=8., on_done)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^ source.liquidsoap
+>

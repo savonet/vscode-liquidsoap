@@ -1,0 +1,144 @@
+>success = ref(true)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def t(x, y)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^ source.liquidsoap
+>  if x != y then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^ source.liquidsoap
+#            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    print("Failure: got #{x} instead of #{y}")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>    success := false
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>file = "interactive.json"
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  x = interactive.float("x", 2.)
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+#                             ^ source.liquidsoap constant.numeric.integer
+#                              ^^^ source.liquidsoap
+>  interactive.save(file)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  x.set(15.)
+#^^^^^^^^ source.liquidsoap
+#        ^^ source.liquidsoap constant.numeric.integer
+#          ^^^ source.liquidsoap
+>  t(x(), 15.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^ source.liquidsoap constant.numeric.integer
+#           ^^^ source.liquidsoap
+>  interactive.load(file)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  t(x(), 2.)
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+#          ^^^ source.liquidsoap
+>
+>  try
+#^^^^^^ source.liquidsoap
+>    interactive.float("bla", 0.)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+#                             ^ source.liquidsoap constant.numeric.integer
+#                              ^^^ source.liquidsoap
+>    interactive.float("bla", 0.)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+#                             ^ source.liquidsoap constant.numeric.integer
+#                              ^^^ source.liquidsoap
+>    log.critical("Did not detect double registration.")
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^ source.liquidsoap
+>    success := false
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  catch e do
+#^^^^^^^^^^ source.liquidsoap
+#          ^^ source.liquidsoap keyword.control.liquidsoap
+>    log.important("Double registration detected: #{e}")
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  try
+#^^^^^^ source.liquidsoap
+>    x = interactive.float("xxx", 3.)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+#                                  ^^^ source.liquidsoap
+>    x.remove()
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>    x.set(2.)
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^^^ source.liquidsoap
+>    success := false
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  catch e do
+#^^^^^^^^^^ source.liquidsoap
+#          ^^ source.liquidsoap keyword.control.liquidsoap
+>    log.important("Inexistent variable use detected: #{e}")
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if success() then test.pass() else test.fail() end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                   ^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                    ^^^^^^^^^^^^^ source.liquidsoap
+#                                                 ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

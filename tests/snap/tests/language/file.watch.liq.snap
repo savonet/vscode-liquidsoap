@@ -1,0 +1,65 @@
+>uname_s = string.trim(process.run("uname -s").stdout)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^^^^^^^^ source.liquidsoap
+>
+>if uname_s == "Darwin" then
+#^^ source.liquidsoap keyword.control.liquidsoap
+#  ^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap
+#                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+>  test.skip()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>success = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  fname = "/tmp/fw"
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+>  file.write(data="abc", fname)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^^ source.liquidsoap
+>  file.watch(fname, {success := true})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  file.write(data="xxx", fname)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^^ source.liquidsoap
+>  sleep(1.)
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^^ source.liquidsoap
+>
+>  if success() then test.pass() else test.fail() end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                   ^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                    ^^^^^^^^^^^^^ source.liquidsoap
+#                                                 ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

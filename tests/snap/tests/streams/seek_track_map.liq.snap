@@ -1,0 +1,86 @@
+># This is a regression test for GH3252
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>s = single("./file1.mp3")
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^ source.liquidsoap
+>
+>def set_cues(s)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^ source.liquidsoap
+>  def f(_)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^ source.liquidsoap
+>    in = random.int(min=5, max=10)
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^^^^^ source.liquidsoap
+#                               ^^ source.liquidsoap constant.numeric.integer
+#                                 ^^ source.liquidsoap
+>    out = in + random.int(min=10, max=15)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^^ source.liquidsoap constant.numeric.integer
+#                                ^^^^^^ source.liquidsoap
+#                                      ^^ source.liquidsoap constant.numeric.integer
+#                                        ^^ source.liquidsoap
+>    [("liq_cue_in", "#{in}"), ("liq_cue_out", "#{out}")]
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^ source.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  metadata.map(f, s)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = set_cues(s)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>thread.run(delay=1., {
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^ source.liquidsoap
+>  let seeked = s.seek(2.)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap constant.numeric.integer
+#                       ^^^ source.liquidsoap
+>  if seeked >= 1. then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^ source.liquidsoap
+#                  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>})
+#^^^ source.liquidsoap
+>
+>output.dummy(s)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>

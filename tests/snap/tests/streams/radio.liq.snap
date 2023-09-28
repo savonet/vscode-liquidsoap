@@ -1,0 +1,33 @@
+># Basic radio test
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>mic = sine()
+#^^^^^^^^^^^^^ source.liquidsoap
+>bed = mksafe(playlist("playlist"))
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^ source.liquidsoap
+>
+>radio = add([mic, bed])
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output.dummy(fallible=true, radio)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def on_done () =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^ source.liquidsoap
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>  shutdown()
+#^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>thread.run(delay=10., on_done)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^^ source.liquidsoap constant.numeric.integer
+#                   ^^^^^^^^^^^^ source.liquidsoap
+>

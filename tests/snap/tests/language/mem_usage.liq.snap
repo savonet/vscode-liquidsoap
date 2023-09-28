@@ -1,0 +1,34 @@
+>#!../../liquidsoap ../test.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>success = ref(true)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  mu = runtime.mem_usage()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  print("Memory usage:\n#{mu}")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+>
+>  # See #2427
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  thread.run({ignore(runtime.mem_usage())})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

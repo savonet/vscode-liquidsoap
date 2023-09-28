@@ -1,0 +1,61 @@
+>port = random.int(min=8000, max=10000)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^^ source.liquidsoap constant.numeric.integer
+#                          ^^^^^^ source.liquidsoap
+#                                ^^^^^ source.liquidsoap constant.numeric.integer
+#                                     ^^ source.liquidsoap
+>
+>def fn() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^ source.liquidsoap
+>  connected = ref(0)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+>  def on_connect() =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^ source.liquidsoap
+>    connected := !connected + 1
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap constant.numeric.integer
+>    if !connected == 2 then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^ source.liquidsoap
+#                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      test.pass()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+> end
+#^ source.liquidsoap
+# ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+> output.srt(%wav,blank(), port=port, mode="listener", on_connect=on_connect)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+> output.dummy(fallible=true,input.srt(mode="caller", port=port))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^^^^^^^^^^^^^ source.liquidsoap
+> output.dummy(fallible=true,input.srt(mode="caller", port=port))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(fn)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>

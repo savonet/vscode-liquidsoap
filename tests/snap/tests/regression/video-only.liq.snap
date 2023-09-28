@@ -1,0 +1,53 @@
+>a = sine()
+#^^^^^^^^^^^ source.liquidsoap
+>v = blank()
+#^^^^^^^^^^^^ source.liquidsoap
+>
+>s = source(
+#^^^^^^^^^^^^ source.liquidsoap
+>  source.tracks(a).{
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    video = source.tracks(v).video
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  }
+#^^^^ source.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+>s = source.on_track(s, fun (_) -> test.pass())
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^^^ source.liquidsoap keyword.control.liquidsoap
+#                          ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>tmp = file.temp("foo", "flv")
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+>on_cleanup({file.remove(tmp)})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output.file(
+#^^^^^^^^^^^^^ source.liquidsoap
+>  %ffmpeg(format="flv",%video(codec="libx264")),
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^ source.liquidsoap
+>  tmp,
+#^^^^^^^ source.liquidsoap
+>  s
+#^^^^ source.liquidsoap
+>)
+#^^ source.liquidsoap
+>

@@ -1,0 +1,41 @@
+>tmp = file.temp("foo", "flv")
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+>on_cleanup({file.remove(tmp)})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>encoder = %external(process="cat")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^ source.liquidsoap
+>
+>output.file(
+#^^^^^^^^^^^^^ source.liquidsoap
+>  fallible=true,
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  encoder,
+#^^^^^^^^^^^ source.liquidsoap
+>  "/tmp/cat",
+#^^ source.liquidsoap
+#  ^ source.liquidsoap string.quoted.double.liquidsoap
+#   ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^ source.liquidsoap
+>  on_start=test.pass,
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  sine(duration=1.)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^^ source.liquidsoap
+>)
+#^^ source.liquidsoap
+>

@@ -1,0 +1,1012 @@
+>#!../../liquidsoap ../test.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def section(name) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  print("\n*** #{name} ***\n\n")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#           ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                            ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def incorrect(expr)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  print("Incorrect expression #{expr}...\n")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^ source.liquidsoap
+>
+>  try
+#^^^^^^ source.liquidsoap
+>    let eval _ = expr
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^ source.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  catch err do
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
+>    print("Got err: #{err}")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  print("\n")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def correct(expr) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  print("Correct expression #{expr}...\n")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap
+>  let eval _ = expr
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^ source.liquidsoap
+>  print("\n")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  section("LISTS")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^ source.liquidsoap
+>  incorrect('ignore([4,"x"])')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                            ^ source.liquidsoap string.quoted.single.liquidsoap
+#                             ^^ source.liquidsoap
+>  correct('ignore([input.harbor("foo"), sine()])')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                 ^^ source.liquidsoap
+>  correct('ignore([sine(), input.harbor("foo")])')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                 ^^ source.liquidsoap
+>  correct('ignore([1, ...[2,3,4], ...[5,6], 7])')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                ^^ source.liquidsoap
+>  correct('let [x,y,...z] = [1,2]')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                  ^^ source.liquidsoap
+>  correct('let [] = [1,2]')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                         ^ source.liquidsoap string.quoted.single.liquidsoap
+#                          ^^ source.liquidsoap
+>  incorrect('let [...z, x, ...t] = [1,2]')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                         ^^ source.liquidsoap
+>
+>  section("BASIC")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^ source.liquidsoap
+>  incorrect('[1]==["1"]')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                       ^ source.liquidsoap string.quoted.single.liquidsoap
+#                        ^^ source.liquidsoap
+>  incorrect('1==["1"]')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                     ^ source.liquidsoap string.quoted.single.liquidsoap
+#                      ^^ source.liquidsoap
+>  incorrect('1==(1,"1")')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                       ^ source.liquidsoap string.quoted.single.liquidsoap
+#                        ^^ source.liquidsoap
+>  # In some of those examples the type error could be reported for a
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # sub-expression since we have location information.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # With the concise error, it's still pretty good currently.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  incorrect('(1,1)==(1,"1")')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                           ^ source.liquidsoap string.quoted.single.liquidsoap
+#                            ^^ source.liquidsoap
+>  incorrect('(1,1)==("1",1)')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                           ^ source.liquidsoap string.quoted.single.liquidsoap
+#                            ^^ source.liquidsoap
+>  incorrect('1==request.create("")')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                   ^^ source.liquidsoap
+>  incorrect('fun(x)->x(snd(x))')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                              ^ source.liquidsoap string.quoted.single.liquidsoap
+#                               ^^ source.liquidsoap
+>  correct('{a = 5, b = 3} == {a = 6}')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                     ^^ source.liquidsoap
+>
+>  correct('true ? "foo" : "bar"')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                               ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                ^^ source.liquidsoap
+>  incorrect('false ? true : "bar"')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                  ^^ source.liquidsoap
+>
+>  section("SUBTYPING")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+>  incorrect('(1:unit)')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                     ^ source.liquidsoap string.quoted.single.liquidsoap
+#                      ^^ source.liquidsoap
+>  # Next one requires the inference of a subtype (fixed vs. variable arity)
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  correct('ignore(stereo(add([])))')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                   ^^ source.liquidsoap
+>  correct('ignore((blank():source(audio=pcm,video=canvas)))')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                            ^^ source.liquidsoap
+>
+>  section("CONSTRAINTS")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+>  incorrect('"bl"+"a"')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                     ^ source.liquidsoap string.quoted.single.liquidsoap
+#                      ^^ source.liquidsoap
+>  incorrect('(fun(a,b)->a+b)==(fun(a,b)->a+b)')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                              ^^ source.liquidsoap
+>  incorrect('fun(x)->x(x)') # TODO is it an accident that we get same varname
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                         ^ source.liquidsoap string.quoted.single.liquidsoap
+#                          ^^ source.liquidsoap
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  incorrect('def f(x) y=snd(x) y(x) end')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                        ^^ source.liquidsoap
+>
+>  section("LET GENERALIZATION")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+>  correct('def f(x) = y=x ; y end ignore(f(3)+snd(f((1,2))))')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                             ^^ source.liquidsoap
+>  incorrect('def f(x) = y=x ; y end ignore(f(3)+"3")')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                     ^^ source.liquidsoap
+>
+>  section("ARGUMENTS")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+>  # The errors should be about the type of the param, not of the function.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  incorrect('1+"1"')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                  ^ source.liquidsoap string.quoted.single.liquidsoap
+#                   ^^ source.liquidsoap
+>  # Also, a special simple error is expected for obvious labelling mistakes.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  incorrect('fallback(transitions=[],xxxxxxxxxxx=[])')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                     ^^ source.liquidsoap
+>  incorrect('fallback(transitions=[],transitions=[])')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                     ^^ source.liquidsoap
+>
+>  section("FUNCTIONS")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+>  # Partial application is not supported anymore
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  incorrect('def f(x,y) = y end ignore(f(2))')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                             ^^ source.liquidsoap
+>  incorrect('fallback(transitions=[fun(~l)->1],[blank()])')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                          ^^ source.liquidsoap
+>  incorrect('fallback(transitions=[fun(~l=1)->1],[blank()])')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                            ^^ source.liquidsoap
+>  incorrect('fallback(transitions=[fun(x,y=blank())->y],[blank()])')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                   ^^ source.liquidsoap
+>  incorrect('fallback(transitions=[fun(x,y)->0],[blank()])')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                           ^^ source.liquidsoap
+>  correct('fallback(transitions=[fun(x,y,a=2)->x],[blank()])')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                             ^^ source.liquidsoap
+>  incorrect('fallback(transitions=[fun(x,y)->y+1],[blank()])')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                             ^^ source.liquidsoap
+>  correct('x=fun(f)->f(3) y=x(fun(f,u="1")->u) ignore(y)')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                         ^^ source.liquidsoap
+>  incorrect('f=fun(~l,~l) -> l')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                              ^ source.liquidsoap string.quoted.single.liquidsoap
+#                               ^^ source.liquidsoap
+>
+>  section("CONTENT KIND")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^ source.liquidsoap
+>  incorrect('output.file(%vorbis(stereo),"foo",mean(blank()))')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                              ^^ source.liquidsoap
+>  incorrect('output.file(%vorbis(stereo),"foo",video.add_image(blank()))')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                        ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                         ^^ source.liquidsoap
+>  incorrect('def f(x) = output.file(%vorbis(stereo),"",x) output.file(%vorbis(mono),"",x) end')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                             ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                              ^^ source.liquidsoap
+>  incorrect('add([output.file(%vorbis(stereo),"",blank()),output.file(%vorbis(mono),"",blank())])')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                                 ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                                  ^^ source.liquidsoap
+>  incorrect('add([mean(blank()),audio_to_stereo(add([]))])')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                           ^^ source.liquidsoap
+>
+>  section("TRACK TYPES")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+>  correct('(source.tracks(blank()).audio:pcm)')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                              ^^ source.liquidsoap
+>  correct('(source.tracks(blank()).audio:canvas)')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                 ^^ source.liquidsoap
+>  correct('(source.tracks(single("")).midi:midi)')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                 ^^ source.liquidsoap
+>  correct('(source.tracks(single("")).audio:ffmpeg.copy)')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                         ^^ source.liquidsoap
+>
+>  section("PATTERNS")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap
+>  incorrect("let [x = {foo}, y = (foo), z] = l")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^ source.liquidsoap
+>  incorrect("let _.{foo=123} = {foo=123}")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap
+>  incorrect("let v.{foo=123} = {foo=123}")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap
+>
+>  section("ENCODERS")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap
+>  correct('%ffmpeg(%video(codec="h264_nvenc"))')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                               ^^ source.liquidsoap
+>  correct('%ffmpeg(%video(codec="h264_nvenc",hwaccel="none"))')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                              ^^ source.liquidsoap
+>  correct('%ffmpeg(%video(codec="h264_nvenc",hwaccel="auto",hwaccel_device="none"))')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                   ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                    ^^ source.liquidsoap
+>  correct('%ffmpeg(%video(codec="h264_nvenc",hwaccel_device="foo"))')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                    ^^ source.liquidsoap
+>  correct('%ffmpeg(format="mpegts",
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>                %audio(
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>                  codec="aac",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>                  channels=2,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>                  ar=44100
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>                ))')
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                  ^ source.liquidsoap string.quoted.single.liquidsoap
+#                   ^^ source.liquidsoap
+>  correct('%ffmpeg(format="mpegts",
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>               %audio(
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>                 codec="aac",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>                 channels=2,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>                 ar=44100,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>                 b="96k"
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>               ))')
+#^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                 ^ source.liquidsoap string.quoted.single.liquidsoap
+#                  ^^ source.liquidsoap
+>  correct('%ffmpeg(format="mpegts",
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>               %audio(
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>                codec="aac",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>                channels=2,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>                ar=44100,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>                b="192k"
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>              ))')
+#^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                ^ source.liquidsoap string.quoted.single.liquidsoap
+#                 ^^ source.liquidsoap
+>  correct('%ffmpeg(
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         format="mpegts",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         %audio(
+#^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>            codec="aac",
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>            b="128k",
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>            channels=2,
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>            ar=44100
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         ),
+#^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         %video(
+#^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>           codec="libx264",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>           b="5M"
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         )
+#^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>       )')
+#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#        ^ source.liquidsoap string.quoted.single.liquidsoap
+#         ^^ source.liquidsoap
+>  correct('%ffmpeg(
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        format="mp4",
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        movflags="+dash+skip_sidx+skip_trailer+frag_custom",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        frag_duration=10,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        %audio(
+#^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>          codec="aac",
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>          b="128k",
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>          channels=2,
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>          ar=44100),
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        %video(
+#^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>          codec="libx264",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>          b="5M"
+#^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        )
+#^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      )')
+#^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#       ^ source.liquidsoap string.quoted.single.liquidsoap
+#        ^^ source.liquidsoap
+>  correct('%ffmpeg(
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         format="mpegts",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         %audio.raw(
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>            codec="aac",
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>            b="128k",
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>            channels=2,
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>            ar=44100
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         ),
+#^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         %video.raw(
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>           codec="libx264",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>           b="5M"
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         )
+#^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>       )')
+#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#        ^ source.liquidsoap string.quoted.single.liquidsoap
+#         ^^ source.liquidsoap
+>  correct('%ffmpeg(
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        format="mp4",
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        movflags="+dash+skip_sidx+skip_trailer+frag_custom",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        frag_duration=10,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        %audio.raw(
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>          codec="aac",
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>          b="128k",
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>          channels=2,
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>          ar=44100),
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        %video.raw(
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>          codec="libx264",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>          b="5M"
+#^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        )
+#^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      )')
+#^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#       ^ source.liquidsoap string.quoted.single.liquidsoap
+#        ^^ source.liquidsoap
+>  correct('%ffmpeg(
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         format="mpegts",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         %audio.copy,
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         %video.copy)')
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                     ^ source.liquidsoap string.quoted.single.liquidsoap
+#                      ^^ source.liquidsoap
+>  correct('%ffmpeg(
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        format="mp4",
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        movflags="+dash+skip_sidx+skip_trailer+frag_custom",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        frag_duration=10,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        %audio.copy,
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        %video.copy)')
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                    ^ source.liquidsoap string.quoted.single.liquidsoap
+#                     ^^ source.liquidsoap
+>  correct('%ffmpeg(%audio.copy(ignore_keyframe), %video.copy(ignore_keyframe))')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                              ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                               ^^ source.liquidsoap
+>  correct('%ffmpeg(%audio.copy(wait_for_keyframe), %video.copy(wait_for_keyframe))')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                  ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                   ^^ source.liquidsoap
+>
+>  # Conventions for content type in %ffmpeg encoder:
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  correct('%ffmpeg(%foo_audio, %bla_video_gni)')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                               ^^ source.liquidsoap
+>  correct('%ffmpeg(%foo(audio_content), %bla(video_content))')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                             ^^ source.liquidsoap
+>  incorrect('%ffmpeg(%foo, %bla_gni)')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                     ^^ source.liquidsoap
+>
+>  correct('%ffmpeg(%foo_audio.raw, %bla_video_gni.raw)')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                       ^^ source.liquidsoap
+>  correct('%ffmpeg(%foo.raw(audio_content), %bla.raw(video_content))')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                    ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                     ^^ source.liquidsoap
+>  incorrect('%ffmpeg(%foo.raw, %bla_gni.raw)')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                             ^^ source.liquidsoap
+>
+>  correct('%ffmpeg(%foo_audio.copy, %bla_video_gni.copy)')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                         ^^ source.liquidsoap
+>  incorrect('%ffmpeg(%foo.copy(audio_content), %bla.copy(video_content))')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                        ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                         ^^ source.liquidsoap
+>  correct('%ffmpeg(%foo.copy, %bla_gni.copy)')
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.single.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                             ^^ source.liquidsoap
+>
+>  # The following is not technically checking on type errors but runtime invalid values.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  section("INVALID VALUES")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+>  incorrect('crossfade(input.http(self_sync=true,"http://foo.bar"))')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                    ^^ source.liquidsoap
+>  incorrect('crossfade(fallback([input.http("http://foo.bar"), input.http(self_sync=true,"http://foo.bar")]))')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                                             ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                                              ^^ source.liquidsoap
+>  incorrect('crossfade(sequence([input.http("http://foo.bar"), input.http(self_sync=true,"http://foo.bar")]))')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                                             ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                                              ^^ source.liquidsoap
+>  incorrect('crossfade(add([input.http("http://foo.bar"), input.http(self_sync=true,"http://foo.bar")]))')
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                                        ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                                         ^^ source.liquidsoap
+>
+>  section("OPTIONAL METHODS")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+>  incorrect("(({}:{foo?:int}):{foo:int?})")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^ source.liquidsoap
+>  incorrect("fun (x) -> x?.foo.gni.gna + 1")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^ source.liquidsoap
+>  correct("(({}:{foo?:int}):{foo?:int?})")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap
+>  correct("fun (x) -> x?.foo.gni.gna ?? 1")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^ source.liquidsoap
+>  correct("fun (x) -> x.foo.gni?.bla(1,2,3).blo")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^ source.liquidsoap
+>  correct("fun (x) -> x?.foo(123).gni ?? null()")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^ source.liquidsoap
+>
+>  section("EVAL")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^ source.liquidsoap
+>  incorrect("let eval x = '123'
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>ignore(x+1)
+#^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>ignore(x / 2.)")
+#^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+>
+>  section("PATTERNS")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap
+>  incorrect("
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+>  def f(x) =
+#^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    let y.{foo} = x
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    y.foo + 1
+#^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    end
+#^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>  ")
+#^^ source.liquidsoap string.quoted.double.liquidsoap
+#  ^ source.liquidsoap string.quoted.double.liquidsoap
+#   ^^ source.liquidsoap
+>
+>  incorrect('
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+>  def g() =
+#^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    s = single("foo")
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>    s = s
+#^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>    enc = %ffmpeg(
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      format="mkv",
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      %audio(codec="aac"),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      %video(codec="aac")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    )
+#^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>    output.file(fallible=true, enc, "/tmp/bla.mkv", s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>    ignore(ffmpeg.decode.audio(s))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  end')
+#^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#     ^ source.liquidsoap string.quoted.single.liquidsoap
+#      ^^ source.liquidsoap
+>
+>  section("FORMATS")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^ source.liquidsoap
+>
+>  audio_formats_with_stereo = ["external(process=\"gni\",", "flac(", "opus(", "shine(", "vorbis(", "mp3("]
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^ source.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^^ source.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                            ^^ source.liquidsoap
+#                                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                      ^^ source.liquidsoap
+#                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                         ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                 ^^ source.liquidsoap
+#                                                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                    ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                         ^^ source.liquidsoap
+>  def check_stereo_syntax(format) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    correct("%#{format}mono)")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+>    correct("%#{format}stereo)")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap
+>    correct("%#{format}mono=false)")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^ source.liquidsoap
+>    correct("%#{format}stereo=false)")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  list.iter(check_stereo_syntax, audio_formats_with_stereo)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

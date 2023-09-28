@@ -1,0 +1,15 @@
+>s = source({
+#^^^^^^^^^^^^^ source.liquidsoap
+>  audio = source.tracks(blank()).audio
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>})
+#^^^ source.liquidsoap
+>
+>output.dummy(blank())
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>thread.run(delay=0.1, test.pass)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^^^ source.liquidsoap constant.numeric.float
+#                    ^^^^^^^^^^^^^ source.liquidsoap
+>

@@ -1,0 +1,79 @@
+>def rlog(_) = () end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  if file_protocol(rlog=rlog, maxtime=1., "file:///path/to/file") != ["/path/to/file"] then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                      ^ source.liquidsoap constant.numeric.integer
+#                                       ^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^^^^^ source.liquidsoap
+#                                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                       ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^^ source.liquidsoap
+#                                                                                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if file_protocol(rlog=rlog, maxtime=1., "file:/path/to/file") != ["/path/to/file"] then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                      ^ source.liquidsoap constant.numeric.integer
+#                                       ^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^^^^^^ source.liquidsoap
+#                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                   ^^ source.liquidsoap
+#                                                                                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if file_protocol(rlog=rlog, maxtime=1., "file:/path/to/my%20file") != ["/path/to/my file"] then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                      ^ source.liquidsoap constant.numeric.integer
+#                                       ^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^^^^^^ source.liquidsoap
+#                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                           ^^ source.liquidsoap
+#                                                                                             ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

@@ -1,0 +1,238 @@
+>#!../../liquidsoap ../test.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+># Test getters, see #1181
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def f(~x)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  ignore(getter.get(x) + 2)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def g(~x=getter(2))
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^^ source.liquidsoap
+>  x = getter.function(x)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ignore(x() + 2)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def tests() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^ source.liquidsoap
+>  f(x=3)
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+#       ^^ source.liquidsoap
+>  f(x={4})
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^^ source.liquidsoap
+>
+>  g()
+#^^^^^^ source.liquidsoap
+>  g(x=3)
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+#       ^^ source.liquidsoap
+>  g(x={4})
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^^ source.liquidsoap
+>
+>  r = ref(5)
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^^ source.liquidsoap
+>  f(x=r)
+#^^^^^^^^^ source.liquidsoap
+>  g(x=r)
+#^^^^^^^^^ source.liquidsoap
+>  r.set(r()+2)
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^ source.liquidsoap
+>
+>  test.equals(getter.get(getter(3)), 3)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap constant.numeric.integer
+#                                 ^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap constant.numeric.integer
+#                                      ^^ source.liquidsoap
+>  test.equals(getter.get(getter({3})), 3)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+#                                  ^^^^^ source.liquidsoap
+#                                       ^ source.liquidsoap constant.numeric.integer
+#                                        ^^ source.liquidsoap
+>  test.equals(getter.get(getter.map(fun (x) -> 2*x, getter(3))), 6)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                       ^^^^^^^^ source.liquidsoap
+#                                               ^ source.liquidsoap constant.numeric.integer
+#                                                ^^^^^^^^^^^ source.liquidsoap
+#                                                           ^ source.liquidsoap constant.numeric.integer
+#                                                            ^^^^^ source.liquidsoap
+#                                                                 ^ source.liquidsoap constant.numeric.integer
+#                                                                  ^^ source.liquidsoap
+>  test.equals(getter.get(getter.map(fun (x) -> 2*x, getter({3}))), 6)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                       ^^^^^^^^ source.liquidsoap
+#                                               ^ source.liquidsoap constant.numeric.integer
+#                                                ^^^^^^^^^^^^ source.liquidsoap
+#                                                            ^ source.liquidsoap constant.numeric.integer
+#                                                             ^^^^^^ source.liquidsoap
+#                                                                   ^ source.liquidsoap constant.numeric.integer
+#                                                                    ^^ source.liquidsoap
+>  test.equals(getter.is_constant(getter(3)), true)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                        ^ source.liquidsoap constant.numeric.integer
+#                                         ^^^^^^^^^^ source.liquidsoap
+>  test.equals(getter.is_constant(getter({3})), false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^ source.liquidsoap constant.numeric.integer
+#                                          ^^^^^^^^^^^^ source.liquidsoap
+>
+>  def gen =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^ source.liquidsoap
+>    pos = ref(0)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>    fun () -> begin
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^ source.liquidsoap
+#              ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>      if pos() == 3 then "" else
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^ source.liquidsoap
+#                    ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                        ^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap
+#                            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        ref.incr(pos)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        "foobar"
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test.equals(string.getter.flush(separator=",", getter(gen)), "foobar,foobar,foobar")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^^ source.liquidsoap
+>  test.equals(string.getter.flush(getter("foobar")), "foobar")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^^^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^^ source.liquidsoap
+>
+>  def gen =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^ source.liquidsoap
+>    pos = ref(0)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>    fun () -> begin
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^ source.liquidsoap
+#              ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>      if pos() == 3 then "" else
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^ source.liquidsoap
+#                    ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                        ^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap
+#                            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        ref.incr(pos)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        "foobar"
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test.equals(string.getter.flush(separator="|", string.getter.concat([getter(""), getter(gen), getter("gno")])), "foobar|foobar|foobar|gno")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                            ^^^^^^ source.liquidsoap
+#                                                                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                            ^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(tests)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

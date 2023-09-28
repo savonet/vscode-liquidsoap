@@ -1,0 +1,70 @@
+># In https://github.com/savonet/liquidsoap/runs/919422659,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># GH1159.liq started failing. Further investigation revealed
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># that GH1159.liq was originally intended to use with the FLAC
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># decoder so it was set back to only use it. This test is a
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># copy of it with decoder forced to FFMPEG, the one originally
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># failing in the github action run & serves as regresstion test
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># for this case.
+#^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>settings.decoder.decoders.set(["ffmpeg"])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^ source.liquidsoap
+>
+>s = single("../media/@flac[stereo].flac")
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^ source.liquidsoap
+>
+>def f(rem, _) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^ source.liquidsoap
+>  if rem > 0. then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap constant.numeric.integer
+#            ^^ source.liquidsoap
+#              ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  shutdown()
+#^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = source.on_end(s,delay=0.1,f)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^^^ source.liquidsoap constant.numeric.float
+#                             ^^^^ source.liquidsoap
+>
+>clock.assign_new(sync="none",[s])
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^ source.liquidsoap
+>
+>output.dummy(s)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>

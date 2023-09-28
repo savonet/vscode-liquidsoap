@@ -1,0 +1,45 @@
+>try
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>  foo
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap variable.liquidsoap
+>catch err do
+#^^^^^ source.liquidsoap keyword.other.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#         ^ source.liquidsoap
+#          ^^ source.liquidsoap keyword.other.liquidsoap
+>  gni
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap variable.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>try
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>  foo
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap variable.liquidsoap
+>catch err : [err.bla, err.gni] do
+#^^^^^ source.liquidsoap keyword.other.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#         ^ source.liquidsoap
+#          ^ source.liquidsoap keyword.other.liquidsoap
+#           ^^ source.liquidsoap
+#             ^^^ source.liquidsoap variable.liquidsoap
+#                ^ source.liquidsoap keyword.other.liquidsoap
+#                 ^^^ source.liquidsoap variable.method.liquidsoap
+#                    ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                     ^ source.liquidsoap
+#                      ^^^ source.liquidsoap variable.liquidsoap
+#                         ^ source.liquidsoap keyword.other.liquidsoap
+#                          ^^^ source.liquidsoap variable.method.liquidsoap
+#                             ^^ source.liquidsoap
+#                               ^^ source.liquidsoap keyword.other.liquidsoap
+>  gni
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap variable.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>

@@ -1,0 +1,440 @@
+># Native reimplementation of track functions.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>let native = ()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^ source.liquidsoap
+>
+># Create a source that plays only one track of the input source.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Track processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def native.once(s)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^ source.liquidsoap
+>  # source.available(track_sensitive=true, s, predicate.first({true}))
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  a = ref(true)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s = source.on_track(s, fun(_) -> a := false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^ source.liquidsoap keyword.control.liquidsoap
+#                            ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  source.available(s, a)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># At the beginning of each track, select the first ready child.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Track processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~id Force the value of the source ID.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~track_sensitive Re-select only on end of tracks.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def native.fallback(~id=null(), ~track_sensitive=true, sources)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  fail = (source.fail() : source)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  def s()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^ source.liquidsoap
+>    list.find(default=fail, source.is_ready, sources)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  infallible = not(list.for_all(source.fallible, sources))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  source.dynamic(id=id, infallible=infallible, track_sensitive=track_sensitive, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Play only one track of every successive source, except for the last one which
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># is played as much as available.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Track processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~id Force the value of the source ID.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param sources List of sources to play tracks from.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def native.sequence(~id=null(), sources)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  len  = list.length(sources)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  n    = ref(0)
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^ source.liquidsoap
+>  fail = source.fail()
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  def rec s()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^ source.liquidsoap
+>    sn = list.nth(default=list.last(default=fail, sources), sources, n())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    if source.is_ready(sn) or n() >= len - 1 then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^^ source.liquidsoap keyword.operator.liquidsoap
+#                             ^^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^ source.liquidsoap constant.numeric.integer
+#                                            ^ source.liquidsoap
+#                                             ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      sn
+#^^^^^^^^^ source.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      ref.incr(n)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      s()
+#^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  infallible = not source.fallible(list.last(default=fail, sources))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s = source.dynamic(id=id, infallible=infallible, track_sensitive=true, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  first = ref(true)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  def ot(_)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^ source.liquidsoap
+>    # Drop the first track
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>    if first() then first := false else
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                   ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      ref.incr(n)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  s = source.on_track(s, ot)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Select the first source whose predicate is true in a list. If the second
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># argument is a getter, the source will be dynamically created.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Track processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~id Force the value of the source ID.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~track_sensitive Re-select only on end of tracks.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param sources Sources with the predicate telling when they can be played.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def native.switch(~id=null(), ~track_sensitive=true, sources)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  sources = list.map(fun(ps) -> source.available(snd(ps), fst(ps)), sources)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^ source.liquidsoap keyword.control.liquidsoap
+#                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  native.fallback(id=id, track_sensitive=track_sensitive, sources)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># This allows doing `open native`
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>let native.request = request
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+># @docof request.dynamic
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def native.request.dynamic(%argsof(request.dynamic), f)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ignore(available)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ignore(timeout)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  def f() =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^ source.liquidsoap
+>    try
+#^^^^^^^^ source.liquidsoap
+>      f()
+#^^^^^^^^^^ source.liquidsoap
+>    catch _ do
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
+>      null()
+#^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  # Prepared requests
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  queue = ref([])
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  def get_queue() =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^ source.liquidsoap
+>    def get_request(s) =
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      s.request
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    list.map(get_request, queue())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  def add(r) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^ source.liquidsoap
+>    s = request.once(r)
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    if s.resolve() then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      queue := [...queue(), s]
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      true
+#^^^^^^^^^^^ source.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      false
+#^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  def set_queue(l) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^ source.liquidsoap
+>    queue := []
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>    list.iter(fun (r) -> ignore(add(r)), l)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^^ source.liquidsoap keyword.control.liquidsoap
+#                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  current = ref(null())
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  def get_current() =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    if null.defined(current()) then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      s = null.get(current())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      s.request
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      null()
+#^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  # Prefetch thread
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def fetch()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^ source.liquidsoap
+>    r = f()
+#^^^^^^^^^^^^ source.liquidsoap
+>    if null.defined(r) then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      r = null.get(r)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      s = request.once(r)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      if s.resolve() then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        log.info("Added request on queue: #{request.uri(r)}.")
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^^ source.liquidsoap
+>        queue := [...queue(), s]
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        true
+#^^^^^^^^^^^^^ source.liquidsoap
+>      else
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        log.important("Failed to resolve request #{request.uri(r)}.")
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^^ source.liquidsoap
+>        false
+#^^^^^^^^^^^^^^ source.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      false
+#^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  def fill() =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^ source.liquidsoap
+>    if list.length(queue()) < prefetch then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      ignore(fetch())
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  thread.run(every=retry_delay, fill)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  # Source
+#^^ source.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def s()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^ source.liquidsoap
+>    if not list.is_empty(queue()) then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      let [s, ...rest] = queue()
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      queue := rest
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      current := s
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      s
+#^^^^^^^^ source.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      source.fail()
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  source.dynamic(id=id, track_sensitive=true, s).{
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    fetch=fetch,
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    queue=get_queue,
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    add=add,
+#^^^^^^^^^^^^^ source.liquidsoap
+>    set_queue=set_queue,
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    current=get_current
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  }
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>

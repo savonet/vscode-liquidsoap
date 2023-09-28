@@ -1,0 +1,998 @@
+>#!../../liquidsoap ../test.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  test.equals(string.length(""), 0)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+#                                  ^^ source.liquidsoap
+>  test.equals(string.length("abc"), 3)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^ source.liquidsoap
+#                                    ^ source.liquidsoap constant.numeric.integer
+#                                     ^^ source.liquidsoap
+>  test.equals(string.capitalize("aBc"), "ABc")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^ source.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>  test.equals(string.case("aBc"), "abc")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^ source.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap
+>  test.equals(string.case(lower=false, "aBc"), "ABC")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^ source.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^^ source.liquidsoap
+>  test.equals(string.concat(["ab","c","d"]), "abcd")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^ source.liquidsoap
+>  test.equals(r/.*ab.*/.test("cccabc"), true)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^ source.liquidsoap string.regexp.liquidsoap
+#                ^^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                      ^ source.liquidsoap string.regexp.liquidsoap
+#                       ^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^^^^^^^ source.liquidsoap
+>  test.equals(r/.*ab.*/.test("cccbac"), false)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^ source.liquidsoap string.regexp.liquidsoap
+#                ^^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                      ^ source.liquidsoap string.regexp.liquidsoap
+#                       ^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^^^^^^^^ source.liquidsoap
+>  test.equals(string.trim("    abc  "), "abc")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^ source.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>  test.equals(string.sub("abcd",start=1,length=2), "bc")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^^ source.liquidsoap
+#                                      ^ source.liquidsoap constant.numeric.integer
+#                                       ^^^^^^^^ source.liquidsoap
+#                                               ^ source.liquidsoap constant.numeric.integer
+#                                                ^^^ source.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^ source.liquidsoap
+>  test.equals(string.sub("ab",start=0,length=10), "")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^ source.liquidsoap
+#                                    ^ source.liquidsoap constant.numeric.integer
+#                                     ^^^^^^^^ source.liquidsoap
+#                                             ^^ source.liquidsoap constant.numeric.integer
+#                                               ^^^ source.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^^ source.liquidsoap
+>  test.equals(string.sub("ab",start=10,length=5), "")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^ source.liquidsoap
+#                                    ^^ source.liquidsoap constant.numeric.integer
+#                                      ^^^^^^^^ source.liquidsoap
+#                                              ^ source.liquidsoap constant.numeric.integer
+#                                               ^^^ source.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^^ source.liquidsoap
+>  test.equals(string.contains(prefix="ab","abcd"), true)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^^^^^^^^ source.liquidsoap
+>  test.equals(string.contains(prefix="ba","abcd"), false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^^^^^^^^^ source.liquidsoap
+>  test.equals(string.contains(prefix="abcd","ab"), false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^^^^^^^^^ source.liquidsoap
+>  test.equals(string.contains(suffix="cd","abcd"), true)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^^^^^^^^ source.liquidsoap
+>  test.equals(string.contains(suffix="dc","abcd"), false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^^^^^^^^^ source.liquidsoap
+>  test.equals(string.contains(substring="bc","abcd"), true)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^^^^^^^^ source.liquidsoap
+>  test.equals(string.contains(substring="bc","acbd"), false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^^^^^^^^^ source.liquidsoap
+>  test.equals(string.binary.to_int(little_endian=true,"abcd"),0x64636261)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^ source.liquidsoap
+#                                                              ^^^^^^^^^^ source.liquidsoap constant.numeric.hex
+#                                                                        ^^ source.liquidsoap
+>  test.equals(string.binary.to_int(little_endian=false,"abcd"),0x61626364)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^^ source.liquidsoap
+#                                                               ^^^^^^^^^^ source.liquidsoap constant.numeric.hex
+#                                                                         ^^ source.liquidsoap
+>  test.equals(string.binary.of_int(little_endian=true,0x64636261),"abcd")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                      ^^^^^^^^^^ source.liquidsoap constant.numeric.hex
+#                                                                ^^ source.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^ source.liquidsoap
+>  test.equals(string.binary.of_int(little_endian=false,0x61626364), "abcd")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                       ^^^^^^^^^^ source.liquidsoap constant.numeric.hex
+#                                                                 ^^^ source.liquidsoap
+#                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^ source.liquidsoap
+>  s = r/([^=]*)=(.*)/.exec("ab=cde")
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap string.regexp.liquidsoap
+#        ^^^^^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                    ^ source.liquidsoap string.regexp.liquidsoap
+#                     ^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^ source.liquidsoap
+>  test.equals(s[1], "ab")
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^ source.liquidsoap
+>  test.equals(s[2], "cde")
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^ source.liquidsoap
+>  test.equals(string.unescape("\\/\\a\\b\\e\\f\\n\\r\\t\\v\\'\\?\\x61\\141\\u0061"), "/\a\b\e\f\n\r\t\v\'\?aaa")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                       ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                            ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                  ^^^ source.liquidsoap
+#                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                           ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                 ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                   ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                           ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                               ^^ source.liquidsoap
+>  test.equals(string.escape("/\\\a\b\e\f\n\r\t\v\'\?"), "/\\\\\\u0007\\b\\u001B\\u000C\\n\\r\\t\\u000B\\'?")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                          ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                            ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                              ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^^ source.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                            ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                              ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                          ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                 ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                            ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                 ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                        ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                           ^^ source.liquidsoap
+>  test.equals(string.escape(encoding="ascii", "\\foo \"😅 o"), "\\\\foo \\\"\\xF0\\x9F\\x98\\x85 o")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^ source.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                 ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^^ source.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                    ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                          ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                            ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                              ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                           ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                             ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                   ^^ source.liquidsoap
+>  test.equals("\xF0\x9F\x98\x85", "😅")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                 ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                     ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                         ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                             ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^ source.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>  test.equals("\342\234\250", "✨")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                 ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                     ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                         ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^ source.liquidsoap
+>  test.equals("\u2728", "✨")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                 ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>  test.equals("\/", "/")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+>  test.equals(string.escape.all("✨"), "\\u2728")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                         ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^ source.liquidsoap
+>  test.equals(string.escape.all(format="hex", "✨"), "\\xE2\\x9C\\xA8")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^ source.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^^ source.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                       ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                            ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^ source.liquidsoap
+>  test.equals(string.escape.all(format="octal","✨"), "\\342\\234\\250")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^ source.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                             ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^ source.liquidsoap
+>  test.equals(string.unescape("\\u2728"), "✨")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                 ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>  test.equals(string.unescape("\\xE2\\x9C\\xA8"), "✨")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                      ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                           ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^^ source.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap
+>  test.equals(string.unescape("\\342\\234\\250"), "✨")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                      ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                           ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^^ source.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap
+>  test.equals(string.quote(encoding="ascii", "foo \"😅 o"), "\"foo \\\"\\xF0\\x9F\\x98\\x85 o\"")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                    ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^ source.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                               ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                            ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                              ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                ^^ source.liquidsoap
+>  test.equals(string.quote("foo \"😅 o"), "\"foo \\\"😅 o\"")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                  ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                             ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                   ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                     ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^ source.liquidsoap
+>  test.equals(string.quote("aa'bb"), "\"aa'bb\"")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^ source.liquidsoap
+>  test.equals(string.residual(prefix="ab", "abcd"), "cd")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^^ source.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^ source.liquidsoap
+>  test.equals(string.residual(prefix="xx", "abcd"), null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^^^^^^^^^^ source.liquidsoap
+>  test.equals(string.nth("abcde", 2), 99)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^ source.liquidsoap
+#                                  ^ source.liquidsoap constant.numeric.integer
+#                                   ^^^ source.liquidsoap
+#                                      ^^ source.liquidsoap constant.numeric.integer
+#                                        ^^ source.liquidsoap
+>  test.equals(string.index(substring="cd", "abcde"), 2)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^ source.liquidsoap
+#                                                     ^ source.liquidsoap constant.numeric.integer
+#                                                      ^^ source.liquidsoap
+>  test.equals(string.index(substring="e", "abcde"), 4)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^^ source.liquidsoap
+#                                                    ^ source.liquidsoap constant.numeric.integer
+#                                                     ^^ source.liquidsoap
+>  test.equals(string.index(substring="xx", "abcde"), -1)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^^ source.liquidsoap
+#                                                      ^ source.liquidsoap constant.numeric.integer
+#                                                       ^^ source.liquidsoap
+>  test.equals(string.split.first(separator="xx", "abcxxdef"), ("abc","def"))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^ source.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^ source.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^ source.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^^ source.liquidsoap
+>
+>  # Test that we revert to ascii on invalid utf8 strings when encoding is not specified:
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  invalid_utf8_string = "\xfc\xa1\xa1\xa1\xa1\xa1"
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^ source.liquidsoap constant.numeric.integer
+#               ^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                           ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                               ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                   ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                       ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                           ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                               ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+>  test.equals(string.quote(invalid_utf8_string), string.quote(encoding="ascii", invalid_utf8_string))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                      ^^ source.liquidsoap constant.numeric.integer
+#                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                              ^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                           ^^ source.liquidsoap constant.numeric.integer
+#                                                                                             ^^^^^^^^^ source.liquidsoap
+>
+>  # But raise an exception when encoding is specified:
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  try
+#^^^^^^ source.liquidsoap
+>    ignore(string.quote(encoding="utf8", invalid_utf8_string))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^^^^^^^^^^^ source.liquidsoap
+#                                                    ^^ source.liquidsoap constant.numeric.integer
+#                                                      ^^^^^^^^^ source.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  catch _ : [error.string] do
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^^ source.liquidsoap keyword.control.liquidsoap
+>    ()
+#^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test.equals(string.annotate.parse("foo=bla,\"foo\"=\"✨✅\",\"gni:gno\"=\"bla\\\"blu:\":😈uri"),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                       ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                              ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                 ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                              ^^^ source.liquidsoap
+>    ([("foo", "bla"), ("foo", "✨✅"), ("gni:gno", "bla\"blu:")], "😈uri"))
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^ source.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^^^ source.liquidsoap
+#                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                 ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                       ^^^ source.liquidsoap
+>
+>  test.equals(string.data_uri.encode(mime="foo/bar", "✨"), "data:foo/bar;base64,4pyo")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^^ source.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^^ source.liquidsoap
+>  test.equals(string.data_uri.encode(base64=false, mime="foo/bar", "✨"), "data:foo/bar,✨")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^^ source.liquidsoap constant.numeric.integer
+#                                           ^^^^^^^^^^^^^ source.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                 ^^ source.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^^ source.liquidsoap
+#                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                         ^^ source.liquidsoap
+>
+>  test.equals(string.data_uri.decode("data:foo/bar;base64,4pyo"), null("✨".{mime = "foo/bar"}))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^^^^^^^ source.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^^^^^^^^ source.liquidsoap
+#                                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                    ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                            ^^^^ source.liquidsoap
+>  test.equals(string.data_uri.decode("data:foo/bar,✨"), null("✨".{mime = "foo/bar"}))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^^^^^^^ source.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^^^^^^^^ source.liquidsoap
+#                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                  ^^^^ source.liquidsoap
+>
+>  test.equals(url.encode("foo bla blo"), "foo+bla+blo")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^^ source.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^ source.liquidsoap
+>  test.equals(url.decode("foo%20bla%20blo"), "foo bla blo")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def test_escape_html() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(string.escape.html("&"), "&amp;")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^ source.liquidsoap
+>  test.equals(string.escape.html("<"), "&lt;")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>  test.equals(string.escape.html(">"), "&gt;")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>  test.equals(string.escape.html('"'), "&quot;")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                    ^^^ source.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^ source.liquidsoap
+>  test.equals(string.escape.html("'"), "&#39;")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^ source.liquidsoap
+>  test.equals(string.escape.html("&<>\"'"), "&amp;&lt;&gt;&quot;&#39;")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^ source.liquidsoap
+>  test.equals(string.escape.html("not escaped"), "not escaped")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^ source.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^^ source.liquidsoap
+>  test.equals(string.escape.html("&quot;double escape&quot;"), "&amp;quot;double escape&amp;quot;")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^^ source.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                  ^^ source.liquidsoap
+>  test.equals(string.escape.html("\\"), "\\")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^ source.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^ source.liquidsoap
+>  test.equals(string.escape.html("/"), "/")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^ source.liquidsoap
+>  test.equals(string.escape.html("`"), "`")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(test_escape_html)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

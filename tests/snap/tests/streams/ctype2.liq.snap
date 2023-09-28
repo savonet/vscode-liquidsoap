@@ -1,0 +1,60 @@
+># Testing tricky situation wrt channels. Because we have a function, the sineF
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># source only knows that it is of type ('a,0,0). The fact that it has to be mono
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># (because of the add) has to be determined by unification at execution time.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>log.level.set(4)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>
+>first = ref(true)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def f()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^ source.liquidsoap
+>  if first() then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^ source.liquidsoap
+#             ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    first := false
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    sine(id="sineF",880.)
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap
+#                    ^^^ source.liquidsoap constant.numeric.integer
+#                       ^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    null()
+#^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = mean(sine(id="sine"))
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^ source.liquidsoap
+>s = add([s , source.dynamic(f)])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output.dummy(s)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>thread.run(delay=1., {test.pass(); shutdown()})
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

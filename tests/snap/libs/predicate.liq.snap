@@ -1,0 +1,487 @@
+>predicate = ()
+#^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#         ^^ source.liquidsoap
+#           ^^^^ source.liquidsoap
+>
+># Detect when a predicate becomes true.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Programming
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~init Detect at beginning.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.param.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param p Predicate.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.param.liquidsoap
+#        ^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def predicate.activates(~init=false, p)
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^ source.liquidsoap
+#                         ^^^^ source.liquidsoap variable.parameter.liquidsoap
+#                             ^ source.liquidsoap
+#                              ^^^^^ source.liquidsoap constant.language.boolean.liquidsoap
+#                                   ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                    ^ source.liquidsoap
+#                                     ^ source.liquidsoap variable.liquidsoap
+#                                      ^ source.liquidsoap
+>  last = ref(not init)
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^ source.liquidsoap
+#        ^ source.liquidsoap
+#         ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+#             ^^^ source.liquidsoap meta.function-call.liquidsoap keyword.operator.boolean.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap
+#                 ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                     ^ source.liquidsoap meta.function-call.liquidsoap
+>  fun () -> begin
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.other.function.definition.params.liquidsoap
+#     ^^ source.liquidsoap
+#       ^ source.liquidsoap
+#        ^ source.liquidsoap
+#         ^^ source.liquidsoap keyword.control.function.declaration.liquidsoap
+#           ^ source.liquidsoap
+#            ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    cur = p()
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#       ^^ source.liquidsoap
+#         ^ source.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+>    ans = (not last()) and cur
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#       ^^ source.liquidsoap
+#         ^^ source.liquidsoap
+#           ^^^ source.liquidsoap keyword.operator.boolean.liquidsoap
+#              ^ source.liquidsoap
+#               ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                   ^ source.liquidsoap meta.function-call.liquidsoap
+#                    ^ source.liquidsoap meta.function-call.liquidsoap
+#                     ^^ source.liquidsoap
+#                       ^^^ source.liquidsoap keyword.operator.boolean.liquidsoap
+#                          ^ source.liquidsoap
+#                           ^^^ source.liquidsoap variable.liquidsoap
+>    last := cur
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap variable.liquidsoap
+#        ^ source.liquidsoap
+#         ^^ source.liquidsoap keyword.operator.set.liquidsoap
+#           ^ source.liquidsoap
+#            ^^^ source.liquidsoap variable.liquidsoap
+>    ans
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap variable.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>
+># Become true once every time a predicate is true.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Programming
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param p Predicate.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.param.liquidsoap
+#        ^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def predicate.once(p)
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                  ^ source.liquidsoap
+#                   ^ source.liquidsoap variable.liquidsoap
+#                    ^ source.liquidsoap
+>  predicate.activates(init=true, p)
+#^^ source.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap variable.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap
+#            ^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                     ^ source.liquidsoap meta.function-call.liquidsoap
+#                      ^^^^^ source.liquidsoap meta.function-call.liquidsoap
+#                           ^^^^ source.liquidsoap meta.function-call.liquidsoap constant.language.boolean.liquidsoap
+#                               ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                ^ source.liquidsoap meta.function-call.liquidsoap
+#                                 ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                                  ^ source.liquidsoap meta.function-call.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>
+># Limit the number of times a predicate is true is a row.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Programming
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param n Number of times the predicate is allowed to be true.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.param.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param p Predicate.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.param.liquidsoap
+#        ^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def predicate.at_most(n, p)
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                     ^ source.liquidsoap
+#                      ^ source.liquidsoap variable.liquidsoap
+#                       ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                        ^ source.liquidsoap
+#                         ^ source.liquidsoap variable.liquidsoap
+#                          ^ source.liquidsoap
+>  k = ref(0)
+#^^ source.liquidsoap
+#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#         ^ source.liquidsoap meta.function-call.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap
+>  fun () -> begin
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.other.function.definition.params.liquidsoap
+#     ^^ source.liquidsoap
+#       ^ source.liquidsoap
+#        ^ source.liquidsoap
+#         ^^ source.liquidsoap keyword.control.function.declaration.liquidsoap
+#           ^ source.liquidsoap
+#            ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    if p() then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^ source.liquidsoap
+#       ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#        ^ source.liquidsoap meta.function-call.liquidsoap
+#         ^ source.liquidsoap meta.function-call.liquidsoap
+#          ^ source.liquidsoap
+#           ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      ref.incr(k)
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap variable.liquidsoap
+#         ^ source.liquidsoap meta.function-call.liquidsoap
+#          ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#              ^ source.liquidsoap meta.function-call.liquidsoap
+#               ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap
+>      k() <= n
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#       ^ source.liquidsoap meta.function-call.liquidsoap
+#        ^ source.liquidsoap meta.function-call.liquidsoap
+#         ^ source.liquidsoap
+#          ^^ source.liquidsoap keyword.operator.compare.liquidsoap
+#            ^ source.liquidsoap
+#             ^ source.liquidsoap variable.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      k := 0
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap variable.liquidsoap
+#       ^ source.liquidsoap
+#        ^^ source.liquidsoap keyword.operator.set.liquidsoap
+#          ^ source.liquidsoap
+#           ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
+>      false
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap constant.language.boolean.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>
+># Detect when a predicate changes.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Programming
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param p Predicate.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.param.liquidsoap
+#        ^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def predicate.changes(p)
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                     ^ source.liquidsoap
+#                      ^ source.liquidsoap variable.liquidsoap
+#                       ^ source.liquidsoap
+>  last = ref(p())
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^ source.liquidsoap
+#        ^ source.liquidsoap
+#         ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#              ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#               ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap
+>  fun () -> begin
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.other.function.definition.params.liquidsoap
+#     ^^ source.liquidsoap
+#       ^ source.liquidsoap
+#        ^ source.liquidsoap
+#         ^^ source.liquidsoap keyword.control.function.declaration.liquidsoap
+#           ^ source.liquidsoap
+#            ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    cur = p()
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#       ^^ source.liquidsoap
+#         ^ source.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+>    ans = (cur != last())
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#       ^^ source.liquidsoap
+#         ^^ source.liquidsoap
+#           ^^^ source.liquidsoap variable.liquidsoap
+#              ^ source.liquidsoap
+#               ^^ source.liquidsoap keyword.operator.compare.liquidsoap
+#                 ^ source.liquidsoap
+#                  ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                      ^ source.liquidsoap meta.function-call.liquidsoap
+#                       ^ source.liquidsoap meta.function-call.liquidsoap
+#                        ^^ source.liquidsoap
+>    last := cur
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap variable.liquidsoap
+#        ^ source.liquidsoap
+#         ^^ source.liquidsoap keyword.operator.set.liquidsoap
+#           ^ source.liquidsoap
+#            ^^^ source.liquidsoap variable.liquidsoap
+>    ans
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap variable.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>
+># First occurrence of a predicate.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Programming
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param p Predicate.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.param.liquidsoap
+#        ^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def predicate.first(p)
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                   ^ source.liquidsoap
+#                    ^ source.liquidsoap variable.liquidsoap
+#                     ^ source.liquidsoap
+>  done = ref(false)
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^ source.liquidsoap
+#        ^ source.liquidsoap
+#         ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+#             ^^^^^ source.liquidsoap meta.function-call.liquidsoap constant.language.boolean.liquidsoap
+#                  ^ source.liquidsoap meta.function-call.liquidsoap
+>  fun () -> begin
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.other.function.definition.params.liquidsoap
+#     ^^ source.liquidsoap
+#       ^ source.liquidsoap
+#        ^ source.liquidsoap
+#         ^^ source.liquidsoap keyword.control.function.declaration.liquidsoap
+#           ^ source.liquidsoap
+#            ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    if done() then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^ source.liquidsoap
+#       ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+#             ^ source.liquidsoap
+#              ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      false
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap constant.language.boolean.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      if p() then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^ source.liquidsoap
+#         ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap
+#            ^ source.liquidsoap
+#             ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        done := true
+#^^^^^^^^ source.liquidsoap
+#        ^^^^ source.liquidsoap variable.liquidsoap
+#            ^ source.liquidsoap
+#             ^^ source.liquidsoap keyword.operator.set.liquidsoap
+#               ^ source.liquidsoap
+#                ^^^^ source.liquidsoap constant.language.boolean.liquidsoap
+>        true
+#^^^^^^^^ source.liquidsoap
+#        ^^^^ source.liquidsoap constant.language.boolean.liquidsoap
+>      else
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        false
+#^^^^^^^^ source.liquidsoap
+#        ^^^^^ source.liquidsoap constant.language.boolean.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>
+># Predicate which is true when a signal is sent. The returned predicate has a
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># method `signal` to send the signal.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Programming
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @method signal Send a signal.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def predicate.signal()
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^ source.liquidsoap
+>  state = ref(false)
+#^^ source.liquidsoap
+#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#       ^^ source.liquidsoap
+#         ^ source.liquidsoap
+#          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap
+#              ^^^^^ source.liquidsoap meta.function-call.liquidsoap constant.language.boolean.liquidsoap
+#                   ^ source.liquidsoap meta.function-call.liquidsoap
+>  def signal()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#            ^ source.liquidsoap
+#             ^ source.liquidsoap
+>    state := true
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap variable.liquidsoap
+#         ^ source.liquidsoap
+#          ^^ source.liquidsoap keyword.operator.set.liquidsoap
+#            ^ source.liquidsoap
+#             ^^^^ source.liquidsoap constant.language.boolean.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>  def p ()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#     ^ source.liquidsoap
+#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#       ^^ source.liquidsoap
+#         ^ source.liquidsoap
+>    if state() then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^ source.liquidsoap
+#       ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap
+#              ^ source.liquidsoap
+#               ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      state := false
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap variable.liquidsoap
+#           ^ source.liquidsoap
+#            ^^ source.liquidsoap keyword.operator.set.liquidsoap
+#              ^ source.liquidsoap
+#               ^^^^^ source.liquidsoap constant.language.boolean.liquidsoap
+>      true
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap constant.language.boolean.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      false
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap constant.language.boolean.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>  p.{ signal=signal }
+#^^ source.liquidsoap
+#  ^ source.liquidsoap variable.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#            ^ source.liquidsoap
+#             ^^^^^^ source.liquidsoap variable.liquidsoap
+#                   ^ source.liquidsoap
+#                    ^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>

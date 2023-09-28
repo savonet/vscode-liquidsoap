@@ -1,0 +1,44 @@
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  track_count = ref(0)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^ source.liquidsoap
+>  s = input.external.rawaudio("ffmpeg -re -f lavfi -i sine=frequency=1000 -t 1 -ac 2 -f s16le -", restart=true, buffer=1.)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                                       ^ source.liquidsoap constant.numeric.integer
+#                                                                                                                        ^^^ source.liquidsoap
+>  s.on_track(fun (_) -> begin
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                ^^^^^^^^ source.liquidsoap
+#                        ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    track_count := !track_count + 1
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap constant.numeric.integer
+>    if !track_count > 3 then test.pass() end
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap constant.numeric.integer
+#                       ^ source.liquidsoap
+#                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                            ^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^ source.liquidsoap
+>  output.dummy(fallible=true,s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

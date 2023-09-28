@@ -1,0 +1,72 @@
+>#!../../liquidsoap ../test.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+># Test large number of playlists, see #2586
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>log.level.set(4)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  n = 1000
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap constant.numeric.integer
+>  print(newline=false, "Loading #{n} playlists... ")
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^ source.liquidsoap
+>  l = list.init(100, fun(i) -> playlist(id="playlist#{i}", mode="normal", "playlist"))
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+#                     ^^^ source.liquidsoap keyword.control.liquidsoap
+#                        ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^^^^ source.liquidsoap
+#                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                 ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^ source.liquidsoap
+#                                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                           ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                    ^^^ source.liquidsoap
+>  print("done")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap
+>  s = random(l)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  output.dummy(mksafe(s))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def on_done () =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^ source.liquidsoap
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>  shutdown()
+#^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>thread.run(delay=5., on_done)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^ source.liquidsoap
+>

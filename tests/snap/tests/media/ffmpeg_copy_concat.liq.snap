@@ -1,0 +1,112 @@
+>out = "concat.mp4"
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+>
+>s1 = single("first-concat.mp4")
+#^ source.liquidsoap
+# ^ source.liquidsoap constant.numeric.integer
+#  ^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+>s2 = single("second-concat.mp4")
+#^ source.liquidsoap
+# ^ source.liquidsoap constant.numeric.integer
+#  ^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap
+>s3 = single("third-concat.mp4")
+#^ source.liquidsoap
+# ^ source.liquidsoap constant.numeric.integer
+#  ^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+>
+>s = sequence([s1,s2,s3,switch([])])
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^^^^^^^^^^^^^ source.liquidsoap
+>
+>#clock.assign_new(sync='none',[s])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def on_close (filename) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if not test.done() then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    ojson = process.read("ffprobe -v quiet -print_format json -show_streams #{process.quote(filename)}")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                       ^^ source.liquidsoap
+>
+>    let json.parse {
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^ source.liquidsoap
+>      streams = [
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        {duration}
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      ]
+#^^^^^^^^ source.liquidsoap
+>    } = ojson
+#^^^^^^^^^^^^^^ source.liquidsoap
+>
+>    # Actual time is 59.93..
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>    if int(float_of_string(duration)) == 59 then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^^ source.liquidsoap constant.numeric.integer
+#                                           ^ source.liquidsoap
+#                                            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      test.pass()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      test.fail()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>output.file(
+#^^^^^^^^^^^^^ source.liquidsoap
+>  fallible=true,
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  on_close=on_close,
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  %ffmpeg(%video.copy),
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  out,
+#^^^^^^^ source.liquidsoap
+>  s
+#^^^^ source.liquidsoap
+>)
+#^^ source.liquidsoap
+>

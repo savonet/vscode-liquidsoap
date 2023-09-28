@@ -1,0 +1,384 @@
+>#!../../liquidsoap ../test.liq performance.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def r2()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap constant.numeric.integer
+#      ^^^ source.liquidsoap
+>  r = {a0 = 0, a1 = 1}
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^ source.liquidsoap
+>  x = ref(0)
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^^ source.liquidsoap
+>  for _ = 1 to 200000 do
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^ source.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
+#              ^ source.liquidsoap
+#               ^^^^^^ source.liquidsoap constant.numeric.integer
+#                     ^ source.liquidsoap
+#                      ^^ source.liquidsoap keyword.control.liquidsoap
+>    x := x() + r.a0 + r.a1
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def r5()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap constant.numeric.integer
+#      ^^^ source.liquidsoap
+>  r = {a0 = 0, a1 = 1, a2 = 2, a3 = 3, a4 = 4}
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^^ source.liquidsoap
+#                            ^ source.liquidsoap constant.numeric.integer
+#                             ^^^ source.liquidsoap
+#                                ^ source.liquidsoap constant.numeric.integer
+#                                 ^^^ source.liquidsoap
+#                                    ^ source.liquidsoap constant.numeric.integer
+#                                     ^^^ source.liquidsoap
+#                                        ^ source.liquidsoap constant.numeric.integer
+#                                         ^^^ source.liquidsoap
+#                                            ^ source.liquidsoap constant.numeric.integer
+#                                             ^^ source.liquidsoap
+>  x = ref(0)
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^^ source.liquidsoap
+>  for _ = 1 to 200000 do
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^ source.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
+#              ^ source.liquidsoap
+#               ^^^^^^ source.liquidsoap constant.numeric.integer
+#                     ^ source.liquidsoap
+#                      ^^ source.liquidsoap keyword.control.liquidsoap
+>    x := x() + r.a0 + r.a1 + r.a2 + r.a3 + r.a4
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap constant.numeric.integer
+#                                 ^^^^^^ source.liquidsoap
+#                                       ^ source.liquidsoap constant.numeric.integer
+#                                        ^^^^^^ source.liquidsoap
+#                                              ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def r10()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^ source.liquidsoap
+#     ^^ source.liquidsoap constant.numeric.integer
+#       ^^^ source.liquidsoap
+>  r = {a0 = 0, a1 = 1, a2 = 2, a3 = 3, a4 = 4, a5 = 5, a6 = 6, a7 = 7, a8 = 8, a9 = 9}
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^^ source.liquidsoap
+#                            ^ source.liquidsoap constant.numeric.integer
+#                             ^^^ source.liquidsoap
+#                                ^ source.liquidsoap constant.numeric.integer
+#                                 ^^^ source.liquidsoap
+#                                    ^ source.liquidsoap constant.numeric.integer
+#                                     ^^^ source.liquidsoap
+#                                        ^ source.liquidsoap constant.numeric.integer
+#                                         ^^^ source.liquidsoap
+#                                            ^ source.liquidsoap constant.numeric.integer
+#                                             ^^^ source.liquidsoap
+#                                                ^ source.liquidsoap constant.numeric.integer
+#                                                 ^^^ source.liquidsoap
+#                                                    ^ source.liquidsoap constant.numeric.integer
+#                                                     ^^^ source.liquidsoap
+#                                                        ^ source.liquidsoap constant.numeric.integer
+#                                                         ^^^ source.liquidsoap
+#                                                            ^ source.liquidsoap constant.numeric.integer
+#                                                             ^^^ source.liquidsoap
+#                                                                ^ source.liquidsoap constant.numeric.integer
+#                                                                 ^^^ source.liquidsoap
+#                                                                    ^ source.liquidsoap constant.numeric.integer
+#                                                                     ^^^ source.liquidsoap
+#                                                                        ^ source.liquidsoap constant.numeric.integer
+#                                                                         ^^^ source.liquidsoap
+#                                                                            ^ source.liquidsoap constant.numeric.integer
+#                                                                             ^^^ source.liquidsoap
+#                                                                                ^ source.liquidsoap constant.numeric.integer
+#                                                                                 ^^^ source.liquidsoap
+#                                                                                    ^ source.liquidsoap constant.numeric.integer
+#                                                                                     ^^ source.liquidsoap
+>  x = ref(0)
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^^ source.liquidsoap
+>  for _ = 1 to 200000 do
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^ source.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
+#              ^ source.liquidsoap
+#               ^^^^^^ source.liquidsoap constant.numeric.integer
+#                     ^ source.liquidsoap
+#                      ^^ source.liquidsoap keyword.control.liquidsoap
+>    x := x() + r.a0 + r.a1 + r.a2 + r.a3 + r.a4 + r.a5 + r.a6 + r.a7 + r.a8 + r.a9
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap constant.numeric.integer
+#                                 ^^^^^^ source.liquidsoap
+#                                       ^ source.liquidsoap constant.numeric.integer
+#                                        ^^^^^^ source.liquidsoap
+#                                              ^ source.liquidsoap constant.numeric.integer
+#                                               ^^^^^^ source.liquidsoap
+#                                                     ^ source.liquidsoap constant.numeric.integer
+#                                                      ^^^^^^ source.liquidsoap
+#                                                            ^ source.liquidsoap constant.numeric.integer
+#                                                             ^^^^^^ source.liquidsoap
+#                                                                   ^ source.liquidsoap constant.numeric.integer
+#                                                                    ^^^^^^ source.liquidsoap
+#                                                                          ^ source.liquidsoap constant.numeric.integer
+#                                                                           ^^^^^^ source.liquidsoap
+#                                                                                 ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def r20()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^ source.liquidsoap
+#     ^^ source.liquidsoap constant.numeric.integer
+#       ^^^ source.liquidsoap
+>  r = {a00 = 0, a01 = 1, a02 = 2, a03 = 3, a04 = 4, a05 = 5, a06 = 6, a07 = 7, a08 = 8, a09 = 9,
+#^^^^^^^^ source.liquidsoap
+#        ^^ source.liquidsoap constant.numeric.integer
+#          ^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^^ source.liquidsoap
+#                 ^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+#                      ^ source.liquidsoap constant.numeric.integer
+#                       ^^^ source.liquidsoap
+#                          ^^ source.liquidsoap constant.numeric.integer
+#                            ^^^ source.liquidsoap
+#                               ^ source.liquidsoap constant.numeric.integer
+#                                ^^^ source.liquidsoap
+#                                   ^^ source.liquidsoap constant.numeric.integer
+#                                     ^^^ source.liquidsoap
+#                                        ^ source.liquidsoap constant.numeric.integer
+#                                         ^^^ source.liquidsoap
+#                                            ^^ source.liquidsoap constant.numeric.integer
+#                                              ^^^ source.liquidsoap
+#                                                 ^ source.liquidsoap constant.numeric.integer
+#                                                  ^^^ source.liquidsoap
+#                                                     ^^ source.liquidsoap constant.numeric.integer
+#                                                       ^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap constant.numeric.integer
+#                                                           ^^^ source.liquidsoap
+#                                                              ^^ source.liquidsoap constant.numeric.integer
+#                                                                ^^^ source.liquidsoap
+#                                                                   ^ source.liquidsoap constant.numeric.integer
+#                                                                    ^^^ source.liquidsoap
+#                                                                       ^^ source.liquidsoap constant.numeric.integer
+#                                                                         ^^^ source.liquidsoap
+#                                                                            ^ source.liquidsoap constant.numeric.integer
+#                                                                             ^^^ source.liquidsoap
+#                                                                                ^^ source.liquidsoap constant.numeric.integer
+#                                                                                  ^^^ source.liquidsoap
+#                                                                                     ^ source.liquidsoap constant.numeric.integer
+#                                                                                      ^^^ source.liquidsoap
+#                                                                                         ^^ source.liquidsoap constant.numeric.integer
+#                                                                                           ^^^ source.liquidsoap
+#                                                                                              ^ source.liquidsoap constant.numeric.integer
+#                                                                                               ^^ source.liquidsoap
+>       a10 = 0, a11 = 1, a12 = 2, a13 = 3, a14 = 4, a15 = 5, a16 = 6, a17 = 7, a18 = 8, a19 = 9}
+#^^^^^^^^ source.liquidsoap
+#        ^^ source.liquidsoap constant.numeric.integer
+#          ^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^^ source.liquidsoap
+#                 ^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+#                      ^ source.liquidsoap constant.numeric.integer
+#                       ^^^ source.liquidsoap
+#                          ^^ source.liquidsoap constant.numeric.integer
+#                            ^^^ source.liquidsoap
+#                               ^ source.liquidsoap constant.numeric.integer
+#                                ^^^ source.liquidsoap
+#                                   ^^ source.liquidsoap constant.numeric.integer
+#                                     ^^^ source.liquidsoap
+#                                        ^ source.liquidsoap constant.numeric.integer
+#                                         ^^^ source.liquidsoap
+#                                            ^^ source.liquidsoap constant.numeric.integer
+#                                              ^^^ source.liquidsoap
+#                                                 ^ source.liquidsoap constant.numeric.integer
+#                                                  ^^^ source.liquidsoap
+#                                                     ^^ source.liquidsoap constant.numeric.integer
+#                                                       ^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap constant.numeric.integer
+#                                                           ^^^ source.liquidsoap
+#                                                              ^^ source.liquidsoap constant.numeric.integer
+#                                                                ^^^ source.liquidsoap
+#                                                                   ^ source.liquidsoap constant.numeric.integer
+#                                                                    ^^^ source.liquidsoap
+#                                                                       ^^ source.liquidsoap constant.numeric.integer
+#                                                                         ^^^ source.liquidsoap
+#                                                                            ^ source.liquidsoap constant.numeric.integer
+#                                                                             ^^^ source.liquidsoap
+#                                                                                ^^ source.liquidsoap constant.numeric.integer
+#                                                                                  ^^^ source.liquidsoap
+#                                                                                     ^ source.liquidsoap constant.numeric.integer
+#                                                                                      ^^^ source.liquidsoap
+#                                                                                         ^^ source.liquidsoap constant.numeric.integer
+#                                                                                           ^^^ source.liquidsoap
+#                                                                                              ^ source.liquidsoap constant.numeric.integer
+#                                                                                               ^^ source.liquidsoap
+>  x = ref(0)
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^^ source.liquidsoap
+>  for _ = 1 to 200000 do
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^ source.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
+#              ^ source.liquidsoap
+#               ^^^^^^ source.liquidsoap constant.numeric.integer
+#                     ^ source.liquidsoap
+#                      ^^ source.liquidsoap keyword.control.liquidsoap
+>    x := x()
+#^^^^^^^^^^^^^ source.liquidsoap
+>         + r.a00 + r.a01 + r.a02 + r.a03 + r.a04 + r.a05 + r.a06 + r.a07 + r.a08 + r.a09
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^ source.liquidsoap constant.numeric.integer
+#                ^^^^^^ source.liquidsoap
+#                      ^^ source.liquidsoap constant.numeric.integer
+#                        ^^^^^^ source.liquidsoap
+#                              ^^ source.liquidsoap constant.numeric.integer
+#                                ^^^^^^ source.liquidsoap
+#                                      ^^ source.liquidsoap constant.numeric.integer
+#                                        ^^^^^^ source.liquidsoap
+#                                              ^^ source.liquidsoap constant.numeric.integer
+#                                                ^^^^^^ source.liquidsoap
+#                                                      ^^ source.liquidsoap constant.numeric.integer
+#                                                        ^^^^^^ source.liquidsoap
+#                                                              ^^ source.liquidsoap constant.numeric.integer
+#                                                                ^^^^^^ source.liquidsoap
+#                                                                      ^^ source.liquidsoap constant.numeric.integer
+#                                                                        ^^^^^^ source.liquidsoap
+#                                                                              ^^ source.liquidsoap constant.numeric.integer
+#                                                                                ^^^^^^ source.liquidsoap
+#                                                                                      ^^ source.liquidsoap constant.numeric.integer
+>         + r.a10 + r.a11 + r.a12 + r.a13 + r.a14 + r.a15 + r.a16 + r.a17 + r.a18 + r.a19
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^ source.liquidsoap constant.numeric.integer
+#                ^^^^^^ source.liquidsoap
+#                      ^^ source.liquidsoap constant.numeric.integer
+#                        ^^^^^^ source.liquidsoap
+#                              ^^ source.liquidsoap constant.numeric.integer
+#                                ^^^^^^ source.liquidsoap
+#                                      ^^ source.liquidsoap constant.numeric.integer
+#                                        ^^^^^^ source.liquidsoap
+#                                              ^^ source.liquidsoap constant.numeric.integer
+#                                                ^^^^^^ source.liquidsoap
+#                                                      ^^ source.liquidsoap constant.numeric.integer
+#                                                        ^^^^^^ source.liquidsoap
+#                                                              ^^ source.liquidsoap constant.numeric.integer
+#                                                                ^^^^^^ source.liquidsoap
+#                                                                      ^^ source.liquidsoap constant.numeric.integer
+#                                                                        ^^^^^^ source.liquidsoap
+#                                                                              ^^ source.liquidsoap constant.numeric.integer
+#                                                                                ^^^^^^ source.liquidsoap
+#                                                                                      ^^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>time("record with  2 fields", r2)
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^ source.liquidsoap
+#                               ^ source.liquidsoap constant.numeric.integer
+#                                ^^ source.liquidsoap
+>time("record with  5 fields", r5)
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^ source.liquidsoap
+#                               ^ source.liquidsoap constant.numeric.integer
+#                                ^^ source.liquidsoap
+>time("record with 10 fields", r10)
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^ source.liquidsoap
+#                               ^^ source.liquidsoap constant.numeric.integer
+#                                 ^^ source.liquidsoap
+>time("record with 20 fields", r20)
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^ source.liquidsoap
+#                               ^^ source.liquidsoap constant.numeric.integer
+#                                 ^^ source.liquidsoap
+>
+>exit(0)
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap constant.numeric.integer
+#      ^^ source.liquidsoap
+>

@@ -1,0 +1,46 @@
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  s = http.get('http://ifconfig.me/all.json', http_version="1.1")
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.single.liquidsoap
+#                ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                            ^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^ source.liquidsoap
+>  test.equals(s.status_message, "OK")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap
+>  test.equals(s.status_code, 200)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^^^ source.liquidsoap constant.numeric.integer
+#                                ^^ source.liquidsoap
+>  test.equals(s.http_version, "1.1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^ source.liquidsoap
+>
+>  let json.parse ({ user_agent } : { user_agent: string}) = s
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  test.equals(user_agent, http.user_agent)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

@@ -1,0 +1,47 @@
+>log.level.set(4)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>
+>n = ref(0)
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^ source.liquidsoap
+>
+>def f()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^ source.liquidsoap
+>  n := !n+1
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+>  print("Frame #{!n}")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+>  if !n > 10 then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^ source.liquidsoap
+#          ^^ source.liquidsoap constant.numeric.integer
+#            ^ source.liquidsoap
+#             ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>    shutdown()
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = sine()
+#^^^^^^^^^^^ source.liquidsoap
+>s = source.on_frame(s,f)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output.dummy(s)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>

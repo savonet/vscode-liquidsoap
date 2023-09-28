@@ -1,0 +1,97 @@
+>#!../../liquidsoap ../test.liq performance.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def erathostenes(n)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  l = list.init(n-2, fun (i) -> i+2)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+#                     ^^^ source.liquidsoap keyword.control.liquidsoap
+#                        ^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap constant.numeric.integer
+#                                   ^^ source.liquidsoap
+>  l = ref(l)
+#^^^^^^^^^^^^^ source.liquidsoap
+>  p = ref([])
+#^^^^^^^^^^^^^^ source.liquidsoap
+>  while not list.is_empty(l()) do
+#^^ source.liquidsoap
+#  ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^^ source.liquidsoap keyword.control.liquidsoap
+>    i = list.hd(default=0, l())
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^^^^^^ source.liquidsoap
+>    p := list.add(i, p())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    l := list.filter(fun (j) -> j mod i != 0, l())
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^ source.liquidsoap keyword.control.liquidsoap
+#                        ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^ source.liquidsoap constant.numeric.integer
+#                                            ^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  list.rev(p())
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>time("Erathostenes (imperative)", {erathostenes(10000)})
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                ^^^^^ source.liquidsoap constant.numeric.integer
+#                                                     ^^^^ source.liquidsoap
+>
+>def erathostenes(n)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  def rec aux(p, l)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^ source.liquidsoap
+>    list.case(l, p, fun (i, l) -> aux(list.add(i, p), list.filter(fun (j) -> j mod i != 0, l)))
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                  ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                        ^ source.liquidsoap constant.numeric.integer
+#                                                                                         ^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  l = list.init(n-2, fun (i) -> i+2)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+#                     ^^^ source.liquidsoap keyword.control.liquidsoap
+#                        ^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap constant.numeric.integer
+#                                   ^^ source.liquidsoap
+>  list.rev(aux([], l))
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>time("Erathostenes (recursive)", {erathostenes(10000)})
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                               ^^^^^ source.liquidsoap constant.numeric.integer
+#                                                    ^^^^ source.liquidsoap
+>
+>exit(0)
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap constant.numeric.integer
+#      ^^ source.liquidsoap
+>

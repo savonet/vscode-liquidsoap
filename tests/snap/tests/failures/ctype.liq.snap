@@ -1,0 +1,21 @@
+># Testing dynamic kind unification errors.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>s = mean(sine())
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>def mkfilter(graph)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  x = ffmpeg.filter.audio.input(channels=2, graph, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^ source.liquidsoap constant.numeric.integer
+#                                          ^^^^^^^^^^^^ source.liquidsoap
+>  ffmpeg.filter.audio.output(graph, x)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>s = ffmpeg.filter.create(mkfilter)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>out(s)
+#^^^^^^^ source.liquidsoap
+>

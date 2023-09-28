@@ -1,0 +1,1707 @@
+># Decoders, enabled when the binary is detected and the os is not Win32.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>let settings.decoder.external = settings.make.void(
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  "External decoders settings"
+#^^ source.liquidsoap
+#  ^ source.liquidsoap string.quoted.double.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def settings.make.external(name) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  settings.make.void("Settings for the #{name} external decoder")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>let settings.decoder.external.ffmpeg = settings.make.external("FFmpeg")
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^ source.liquidsoap
+>
+>let settings.decoder.external.ffmpeg.path = settings.make(
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  description="Path to ffmpeg binary",
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap
+>  "ffmpeg#{exe_ext}"
+#^^ source.liquidsoap
+#  ^ source.liquidsoap string.quoted.double.liquidsoap
+#   ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+>let settings.decoder.external.ffprobe = settings.make.external("FFprobe")
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^ source.liquidsoap
+>
+>let settings.decoder.external.ffprobe.path = settings.make(
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  description="Path to ffprobe binary",
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>  "ffprobe#{exe_ext}"
+#^^ source.liquidsoap
+#  ^ source.liquidsoap string.quoted.double.liquidsoap
+#   ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+>let settings.decoder.external.ffmpeg.mime_types = settings.make(
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  description="Mime types supported by the external ffmpeg stream decoder",
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^ source.liquidsoap
+>  []
+#^^^^^ source.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+># Enable ffmpeg decoder.
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def enable_external_ffmpeg_decoder() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ffmpeg     = settings.decoder.external.ffmpeg.path()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ffprobe    = settings.decoder.external.ffprobe.path()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  mime_types = settings.decoder.external.ffmpeg.mime_types()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  def ffprobe_test(fname) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    j = process.read("#{ffprobe} -print_format json -show_streams #{process.quote(fname)}")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                          ^^ source.liquidsoap
+>
+>    let json.parse ( parsed : {
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      streams : [{
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        channels? : int
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      }]
+#^^^^^^^^^ source.liquidsoap
+>    }?) = j
+#^^^^^^^^^^^^ source.liquidsoap
+>
+>    if null.defined(parsed) then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      parsed = null.get(parsed)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>      streams = parsed.streams
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      stream = list.find(
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        default={},
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        (fun (x) -> null.defined(x?.channels)),
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap keyword.control.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        streams
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>      )
+#^^^^^^^^ source.liquidsoap
+>
+>      stream.channels ?? 0
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      0
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if file.which(ffmpeg) != null() and file.which (ffprobe) != null() then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>   log(label="external.decoder","Enabling FFMPEG decoder")
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^ source.liquidsoap
+>    decoder.add(
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      name="FFMPEG",
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^ source.liquidsoap
+>      description="Decode files using the ffmpeg decoder binary",
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^ source.liquidsoap
+>      mimes=mime_types,
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      test=ffprobe_test,
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      "#{ffmpeg} -i - -f wav - ")
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    log(label="external.decoder","Could not find ffmpeg or ffprobe binary. Please adjust using the \"decoder.external.ffmpeg.path\" setting.")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                   ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                 ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                                   ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                             ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>let settings.decoder.external.mpcdec = settings.make.external("mpcdec")
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^ source.liquidsoap
+>
+>let settings.decoder.external.mpcdec.path = settings.make(
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  description="Path to mpcdec binary",
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap
+>  "mpcdec#{exe_ext}"
+#^^ source.liquidsoap
+#  ^ source.liquidsoap string.quoted.double.liquidsoap
+#   ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+># Enable external Musepack decoder.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def enable_external_mpc_decoder() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  # A list of know extensions and content-type for Musepack.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # Values from http://en.wikipedia.org/wiki/Musepack
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  mpc_mimes = [ "audio/x-musepack", "audio/musepack" ]
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^ source.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^^^ source.liquidsoap
+>  mpc_filexts = [ "mpc", "mp+", "mpp" ]
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^ source.liquidsoap
+>
+>  mpcdec = settings.decoder.external.mpcdec.path()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  def test_mpc(f) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^ source.liquidsoap
+>    def get_channels(f) =
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      int_of_string(
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        list.hd(default="",
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+>          process.read.lines("#{mpcdec} -i #{process.quote(f)} 2>&1 \
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                             | grep channels | cut -d' ' -f 2")))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    # Get the file's mime
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>    mime = file.mime(f)
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    # Test mime
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>    if list.mem(mime,mpc_mimes) then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      get_channels(f)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      # Otherwise test file extension
+#^^^^^^ source.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>      ret = r/\.(?<ext>.+)$/.exec(f)
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^ source.liquidsoap string.regexp.liquidsoap
+#              ^^^^^^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                           ^ source.liquidsoap string.regexp.liquidsoap
+#                            ^^^^^^^^^ source.liquidsoap
+>      if list.length(ret) != 0 then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap constant.numeric.integer
+#                              ^ source.liquidsoap
+#                               ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        ext = ret.groups["ext"]
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+>        if list.mem(ext,mpc_filexts) then
+#^^^^^^^^ source.liquidsoap
+#        ^^ source.liquidsoap keyword.control.liquidsoap
+#          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>          get_channels(f)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        else
+#^^^^^^^^ source.liquidsoap
+#        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>          0
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+>        end
+#^^^^^^^^ source.liquidsoap
+#        ^^^ source.liquidsoap keyword.control.liquidsoap
+>      else
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        get_channels(f)
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if file.which(mpcdec) != null() then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    log(label="external.decoder","Enabling MPCDEC external decoder.")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^^ source.liquidsoap
+>    mpcdec_p = fun(f) -> "#{mpcdec} #{process.quote(f)} -"
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^^^ source.liquidsoap keyword.control.liquidsoap
+#                  ^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+>    decoder.oblivious.add(name="MPCDEC",description="Decode files using the mpcdec \
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^^^^^^^^^^^ source.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                musepack decoder binary",test=test_mpc,mpcdec_p)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    log(label="external.decoder","Could not find mpcdec binary, please adjust using the \"decoder.external.mpcdec.path\" setting.")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                        ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                  ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>let settings.decoder.external.flac = settings.make.external("flac")
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^^ source.liquidsoap
+>
+>let settings.decoder.external.flac.path = settings.make(
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  description="Path to flac binary",
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^ source.liquidsoap
+>  "flac#{exe_ext}"
+#^^ source.liquidsoap
+#  ^ source.liquidsoap string.quoted.double.liquidsoap
+#   ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+>let settings.decoder.external.metaflac = settings.make.external("metaflac")
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                 ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^ source.liquidsoap
+>
+>let settings.decoder.external.metaflac.path = settings.make(
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  description="Path to metaflac binary",
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap
+>  "metaflac#{exe_ext}"
+#^^ source.liquidsoap
+#  ^ source.liquidsoap string.quoted.double.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+># Enable external FLAC decoders. Please note that built-in support for
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># FLAC is available in liquidsoap if compiled and should be preferred
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># over the external decoder.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def enable_external_flac_decoder() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  flac = settings.decoder.external.flac.path()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  metaflac = settings.decoder.external.metaflac.path()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  if file.which(flac) != null() then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    log(label="external.decoder","Enabling EXTERNAL_FLAC external decoder.")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                           ^^ source.liquidsoap
+>    flac_p = "#{flac} -d -c -"
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+>    def test_flac(fname) =
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      if file.which(metaflac) != null() then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        channels = list.hd(default="",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap
+>                           process.read.lines("#{metaflac} \
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                                              --show-channels #{process.quote(fname)}"))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                      ^^^ source.liquidsoap
+>        # If the value is not an int, this returns 0 and we are ok :)
+#^^^^^^^^ source.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>        int_of_string(channels)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      else
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        if r/flac/.test(fname) then
+#^^^^^^^^ source.liquidsoap
+#        ^^ source.liquidsoap keyword.control.liquidsoap
+#          ^ source.liquidsoap
+#           ^^ source.liquidsoap string.regexp.liquidsoap
+#             ^^^^ source.liquidsoap string.regexp.liquidsoap
+#                 ^ source.liquidsoap string.regexp.liquidsoap
+#                  ^^^^^^^^^^^^^ source.liquidsoap
+#                               ^^^^ source.liquidsoap keyword.control.liquidsoap
+>          # We do not know the number of audio channels
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>          # so setting to -1
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>          (-1)
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^ source.liquidsoap
+>        else
+#^^^^^^^^ source.liquidsoap
+#        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>          # All tests failed: no audio decodable using flac..
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>          0
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+>        end
+#^^^^^^^^ source.liquidsoap
+#        ^^^ source.liquidsoap keyword.control.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    decoder.add(name="EXTERNAL_FLAC",description="Decode files using the flac \
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^^^^^^^^^^^ source.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                decoder binary.", mimes=["audio/flac", "audio/x-flac"], test=test_flac,flac_p)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^^^ source.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    log(label="decoder.external","Did not find flac binary, please adjust using the \"decoder.external.flac.path\" setting.")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                  ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                            ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if file.which(metaflac) != null() then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    log(label="decoder.external","Enabling EXTERNAL_FLAC metadata \
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                resolver.")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+>    def flac_meta(~metadata=_, fname)
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      ret = process.read.lines("#{metaflac} --export-tags-to=- \
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                   #{process.quote(fname)}")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^ source.liquidsoap
+>      ret = list.map(r/=/.split, ret)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^ source.liquidsoap string.regexp.liquidsoap
+#                       ^ source.liquidsoap string.regexp.liquidsoap
+#                        ^ source.liquidsoap string.regexp.liquidsoap
+#                         ^^^^^^^^^^^^^ source.liquidsoap
+>      # Could be made better..
+#^^^^^^ source.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>      def f(l',l)=
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^ source.liquidsoap
+#             ^ source.liquidsoap string.quoted.single.liquidsoap
+#              ^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        if list.length(l) >= 2 then
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>          list.append([(list.hd(default="",l),list.nth(default="",l,1))],l')
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                          ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                           ^^ source.liquidsoap
+>        else
+#^^^^^^^^ source.liquidsoap
+#        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>          if list.length(l) >= 1 then
+#^^^^^^^^^^ source.liquidsoap
+#          ^^ source.liquidsoap keyword.control.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap constant.numeric.integer
+#                                ^ source.liquidsoap
+#                                 ^^^^ source.liquidsoap keyword.control.liquidsoap
+>            list.append([(list.hd(default="",l),"")],l')
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^^ source.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^^ source.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                       ^^ source.liquidsoap string.quoted.single.liquidsoap
+>          else
+#^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>            l'
+#^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#             ^ source.liquidsoap string.quoted.single.liquidsoap
+>          end
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^ source.liquidsoap keyword.control.liquidsoap
+>        end
+#^^^^^^^^ source.liquidsoap
+#        ^^^ source.liquidsoap keyword.control.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>      list.fold(f,[],ret)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    decoder.metadata.add("EXTERNAL_FLAC",flac_meta)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^^^^^^^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    log(label="decoder.external","Did not find metaflac binary. Please adjust using the \"decoder.external.metaflac.path\" setting.")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                          ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                    ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>let settings.decoder.external.faad = settings.make.external("faad")
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^^ source.liquidsoap
+>
+>let settings.decoder.external.faad.path = settings.make(
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  description="Path to faad binary",
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^ source.liquidsoap
+>  "faad#{exe_ext}"
+#^^ source.liquidsoap
+#  ^ source.liquidsoap string.quoted.double.liquidsoap
+#   ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+># Enable or disable external FAAD (AAC/AAC+/M4A) decoders. Does not work
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># on Win32.
+#^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># Please note that built-in support for faad is available in liquidsoap if
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># compiled and should be preferred over the external decoder.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def enable_external_faad_decoder() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  faad = settings.decoder.external.faad.path()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  # A list of know extensions and content-type for AAC.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # Values from http://en.wikipedia.org/wiki/Advanced_Audio_Coding
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # TODO: can we register a setting for that ??
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  aac_mimes =
+#^^^^^^^^^^^^^^ source.liquidsoap
+>    ["audio/aac", "audio/aacp", "audio/3gpp", "audio/3gpp2", "audio/mp4",
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^ source.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^ source.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^ source.liquidsoap
+>     "audio/MP4A-LATM", "audio/mpeg4-generic", "audio/x-hx-aac-adts"]
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap string.quoted.double.liquidsoap
+#      ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^^ source.liquidsoap
+>  aac_filexts = ["m4a", "m4b", "m4p", "m4v",
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^ source.liquidsoap
+>                 "m4r", "3gp", "mp4", "aac"]
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^ source.liquidsoap
+>
+>  # Faad is not very selective so we are checking only file that end with a
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # known extension or mime type
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def faad_test(f) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^ source.liquidsoap
+>    # Get the file's mime
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>    mime = file.mime(f)
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    # Test mime
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>    if list.mem(mime,aac_mimes) then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      true
+#^^^^^^^^^^^ source.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      # Otherwise test file extension
+#^^^^^^ source.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>      ret = r/\.(?<ext>.+)$/.exec(f)
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^ source.liquidsoap string.regexp.liquidsoap
+#              ^^^^^^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                           ^ source.liquidsoap string.regexp.liquidsoap
+#                            ^^^^^^^^^ source.liquidsoap
+>      if list.length(ret) != 0 then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap constant.numeric.integer
+#                              ^ source.liquidsoap
+#                               ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        ext = ret.groups["ext"]
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+>        list.mem(ext,aac_filexts)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      else
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        false
+#^^^^^^^^^^^^^^ source.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if file.which(faad) != null() then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    log(label="decoder.external","Enabling EXTERNAL_FAAD decoder and \
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                 metadata resolver.")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap
+>    faad_p = (fun (f) -> "#{faad} -w #{process.quote(f)}")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^^ source.liquidsoap keyword.control.liquidsoap
+#                 ^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^ source.liquidsoap
+>    def test_faad(file) =
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      if faad_test(file) then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        channels = list.hd(default="",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap
+>                           process.read.lines("#{faad} -i #{process.quote(file)} 2>&1 | \
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                                              grep 'ch,'"))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^ source.liquidsoap
+>        ret = r/, (\d) ch,/.exec(channels)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^ source.liquidsoap string.regexp.liquidsoap
+#                ^^^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                          ^ source.liquidsoap string.regexp.liquidsoap
+#                           ^^^^^^^^^^^^^^^^ source.liquidsoap
+>        ret =
+#^^^^^^^^^^^^^^ source.liquidsoap
+>          if list.length(ret) == 0 then
+#^^^^^^^^^^ source.liquidsoap
+#          ^^ source.liquidsoap keyword.control.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+#                                  ^ source.liquidsoap
+#                                   ^^^^ source.liquidsoap keyword.control.liquidsoap
+>            # If we pass the faad_test, chances are high that the file will
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>            # contain aac audio data..
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>            "-1"
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+>          else
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^^ source.liquidsoap keyword.control.liquidsoap
+>            ret[1]
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^ source.liquidsoap
+>          end
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^ source.liquidsoap keyword.control.liquidsoap
+>        int_of_string(default=(-1),ret)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap constant.numeric.integer
+#                                 ^^^^^^^ source.liquidsoap
+>      else
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        0
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    decoder.oblivious.add(name="EXTERNAL_FAAD",description="Decode files using \
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^^^^^^^^^ source.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                          the faad binary.", test=test_faad, faad_p)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    def faad_meta(~metadata=_, file) =
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      if faad_test(file) then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        ret = process.read.lines("#{faad} -i #{process.quote(file)} 2>&1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^^ source.liquidsoap
+>        # Yea, this is ugly programming (again)!
+#^^^^^^^^ source.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>        def get_meta(l,s)=
+#^^^^^^^^ source.liquidsoap
+#        ^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^^^^^^^^^^^ source.liquidsoap
+>          ret = r/^(\w+):\s(.+)$/.exec(s)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^ source.liquidsoap string.regexp.liquidsoap
+#                  ^^^^^^^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                                ^ source.liquidsoap string.regexp.liquidsoap
+#                                 ^^^^^^^^^ source.liquidsoap
+>          if list.length(ret) > 0 then
+#^^^^^^^^^^ source.liquidsoap
+#          ^^ source.liquidsoap keyword.control.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap constant.numeric.integer
+#                                 ^ source.liquidsoap
+#                                  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>            list.append([(ret[1],ret[2])],l)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap constant.numeric.integer
+#                               ^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap constant.numeric.integer
+#                                      ^^^^^^^ source.liquidsoap
+>          else
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^^ source.liquidsoap keyword.control.liquidsoap
+>            l
+#^^^^^^^^^^^^^^ source.liquidsoap
+>          end
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^ source.liquidsoap keyword.control.liquidsoap
+>        end
+#^^^^^^^^ source.liquidsoap
+#        ^^^ source.liquidsoap keyword.control.liquidsoap
+>        list.fold(get_meta,[],ret)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      else
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        []
+#^^^^^^^^^^^ source.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    decoder.metadata.add("EXTERNAL_FAAD",faad_meta)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^^^^^^^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    log(label="external.decoder","Did not find faad binary. Please adjust using the \"decoder.external.faad.path\" setting.")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                  ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                            ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Standard function for displaying metadata.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># Shows artist and title, using "Unknown" when a field is empty.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param m Metadata packet to be displayed.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category String
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def string_of_metadata(m)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  artist = m["artist"]
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+>  title  = m["title"]
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap
+>  artist = if ""==artist then "Unknown" else artist end
+#^^^^^^^^^^^ source.liquidsoap
+#           ^^ source.liquidsoap keyword.control.liquidsoap
+#             ^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^^^^ source.liquidsoap
+#                         ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                             ^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap
+#                                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                            ^^^^^^^^ source.liquidsoap
+#                                                    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  title  = if ""==title  then "Unknown" else title  end
+#^^^^^^^^^^^ source.liquidsoap
+#           ^^ source.liquidsoap keyword.control.liquidsoap
+#             ^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^^^^ source.liquidsoap
+#                         ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                             ^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap
+#                                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                            ^^^^^^^^ source.liquidsoap
+#                                                    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  "#{artist} -- #{title}"
+#^^ source.liquidsoap
+#  ^ source.liquidsoap string.quoted.double.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Use X On Screen Display to display metadata info.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~color    Color of the text.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~position Position of the text (top|middle|bottom).
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~font     Font used (xfontsel is your friend...)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~display  Function used to display a metadata packet.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Track processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def osd_metadata(~color="green",~position="top",
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^^^^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^ source.liquidsoap
+>        ~font="-*-courier-*-r-*-*-*-240-*-*-*-*-*-*",
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^^ source.liquidsoap
+>        ~display=string_of_metadata,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        s)
+#^^^^^^^^^^^ source.liquidsoap
+>  osd = 'osd_cat -p #{position} --font #{process.quote(font)}'
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.single.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.single.liquidsoap
+>      ^ ' --color #{color}'
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.single.liquidsoap
+#         ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                          ^ source.liquidsoap string.quoted.single.liquidsoap
+>  def feedback(m)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^ source.liquidsoap
+>    ignore(process.run("echo #{process.quote(display(m))} | #{osd} &"))
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  s.on_metadata(feedback)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Use notify to display metadata info.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~urgency Urgency (low|normal|critical).
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~icon    Icon filename or stock icon to display.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~timeout Timeout in seconds.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~display Function used to display a metadata packet.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~title   Title of the notification message.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Track processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def notify_metadata(~urgency="low",~icon="stock_smiley-22",~timeout=3.,
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^ source.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^^^^^^^ source.liquidsoap
+#                                                                    ^ source.liquidsoap constant.numeric.integer
+#                                                                     ^^^ source.liquidsoap
+>           ~display=string_of_metadata,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>           ~title="Liquidsoap: new track",s)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^^ source.liquidsoap
+>  time = int_of_float(timeout * 1000.)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^^ source.liquidsoap constant.numeric.integer
+#                                    ^^^ source.liquidsoap
+>  send = 'notify-send -i #{icon} -u #{urgency}'
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.single.liquidsoap
+#          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.single.liquidsoap
+>       ^ ' -t #{time} #{process.quote(title)} '
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.single.liquidsoap
+#          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.single.liquidsoap
+>  s.on_metadata(fun (m) -> ignore(process.run(send^process.quote(display(m)))))
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>%ifdef input.external.wav
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+># Stream data from mplayer.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Input
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param s data URI.
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~restart restart on exit.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~restart_on_error restart on exit with error.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~buffer Duration of the pre-buffered data.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~max Maximum duration of the buffered data.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Input
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def input.mplayer(~id="input.mplayer",
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap
+>         ~restart=true,~restart_on_error=false,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>         ~buffer=0.2,~max=10.,s) =
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^^^ source.liquidsoap constant.numeric.float
+#                    ^^^^^^ source.liquidsoap
+#                          ^^ source.liquidsoap constant.numeric.integer
+#                            ^^^^^^^ source.liquidsoap
+>  input.external.wav(id=id,restart=restart,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                     restart_on_error=restart_on_error,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                     buffer=buffer,max=max,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                     "mplayer -really-quiet \
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                       -af resample=#{audio.samplerate()},channels=#{audio.channels()} \
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                       -ao pcm:file=/dev/stdout \
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                       -vc null -vo null #{process.quote(s)} 2>/dev/null")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>%endif
+#^^^^^^^ source.liquidsoap
+>
+># Input from ffmpeg.
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Video processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~restart restart on exit.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~restart_on_error restart on exit with error.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~buffer Duration of the pre-buffered data.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~max Maximum duration of the buffered data.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param inputopts ffmpeg options specifying the input
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def input.external.ffmpeg(~id="input.external.ffmpeg", ~show_command=false,
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                          ~restart=true,~restart_on_error=false,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                          ~buffer=0.2,~max=10.,inputopts)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^^^ source.liquidsoap constant.numeric.float
+#                                     ^^^^^^ source.liquidsoap
+#                                           ^^ source.liquidsoap constant.numeric.integer
+#                                             ^^^^^^^^^^^^^ source.liquidsoap
+>  inputopts = (inputopts : string)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ffmpeg = null.get(settings.decoder.external.ffmpeg.path())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  cmd = "#{ffmpeg} #{inputopts} -f avi \
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>         -vf \"scale=#{video.frame.width()}:#{video.frame.height()}:\
+#^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>               force_original_aspect_ratio=decrease,pad=#{video.frame.width()}:\
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>               #{video.frame.height()}:(ow-iw)/2:(oh-ih)/2\",\
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                            ^^^ source.liquidsoap string.quoted.double.liquidsoap
+>               format=yuv420p,fps=fps=#{video.frame.rate()} \
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>         -c:v rawvideo -r #{video.frame.rate()} -c:a pcm_s16le -ac 2 \
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>         -ar #{audio.samplerate()} pipe:1"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+>
+>  if show_command then log.important(label=id, "command: #{cmd}") end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                      ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^ source.liquidsoap
+#                                                                  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  (input.external.avi(id=id,restart=restart,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                      restart_on_error=restart_on_error,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                      buffer=buffer,max=max,cmd):source(audio=pcm(stereo),video=canvas))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># ffmpeg's test source video (useful for testing and debugging).
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~restart restart on exit.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~restart_on_error restart on exit with error.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~buffer Duration of the pre-buffered data.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~max Maximum duration of the buffered data.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Video processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def video.external.testsrc(~id="video.external.testsrc",~restart=true,~restart_on_error=false,~buffer=0.2,~max=10.,~framerate=0)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                      ^^^ source.liquidsoap constant.numeric.float
+#                                                                                                         ^^^^^^ source.liquidsoap
+#                                                                                                               ^^ source.liquidsoap constant.numeric.integer
+#                                                                                                                 ^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                                              ^ source.liquidsoap constant.numeric.integer
+#                                                                                                                               ^^ source.liquidsoap
+>  framerate = if framerate <= 0 then video.frame.rate() else framerate end
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^ source.liquidsoap keyword.control.liquidsoap
+#                ^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap constant.numeric.integer
+#                               ^ source.liquidsoap
+#                                ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                    ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                            ^^^^^^^^^^^ source.liquidsoap
+#                                                                       ^^^ source.liquidsoap keyword.control.liquidsoap
+>  cmd = "-f lavfi -i testsrc=size=#{video.frame.width()}x#{video.frame.height()}:rate=#{framerate} \
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>         -f lavfi -i sine=frequency=440:beep_factor=2:sample_rate=#{audio.samplerate()}"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+>
+>  input.external.ffmpeg(id=id,restart=restart,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                        restart_on_error=restart_on_error,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                        buffer=buffer,max=max,show_command=true,cmd)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Output to ffmpeg.
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Output
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~id Force the value of the source ID.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~fallible Allow the child source to fail, in which case the output will be (temporarily) stopped.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~flush Perform a flush after each write.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~on_start Callback executed when outputting starts.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~on_stop Callback executed when outputting stops.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~start Automatically start outputting whenever possible. If true, an infallible (normal) output will start outputting as soon as it is created, and a fallible output will (re)start as soon as its source becomes available for streaming.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @argsof output.external[reopen_on_metadata,reopen_on_error,reopen_when,reopen_delay,on_reopen]
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def output.external.ffmpeg(~id=null(), ~show_command=false, ~flush=false, ~fallible=false,
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                           ~on_start={()}, ~on_stop={()}, %argsof(output.external[reopen_on_metadata,reopen_on_error,reopen_when,reopen_delay,on_reopen]),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                           ~start=true, outputopts, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  outputopts = (outputopts : string)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  cmd = "ffmpeg -f avi -vcodec rawvideo -r #{video.frame.rate()} -acodec pcm_s16le -i pipe:0 #{outputopts}"
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+>  if show_command then log.important(label="output.external.ffmpeg", "command: #{cmd}") end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                      ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^^ source.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                      ^^ source.liquidsoap
+#                                                                                        ^^^ source.liquidsoap keyword.control.liquidsoap
+>  output.external(id=id, flush=flush, fallible=fallible, on_start=on_start, on_stop=on_stop, %argsof(output.external[reopen_on_metadata,reopen_on_error,reopen_when,reopen_delay,on_reopen]),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                  start=start, %avi, cmd, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Output a HLS playlist using ffmpeg
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Output
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~id Force the value of the source ID.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~fallible Allow the child source to fail, in which case the output will be (temporarily) stopped.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~flush Perform a flush after each write.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~on_start Callback executed when outputting starts.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~on_stop Callback executed when outputting stops.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~start Automatically start outputting whenever possible. If true, an infallible (normal) output will start outputting as soon as it is created, and a fallible output will (re)start as soon as its source becomes available for streaming.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~playlist Playlist name
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~directory Directory to write to
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @argsof output.external[reopen_on_metadata,reopen_on_error,reopen_when,reopen_delay,on_reopen]
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def output.file.hls.ffmpeg(~id=null(), ~flush=false, ~fallible=false,
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                           ~on_start={()}, ~on_stop={()}, %argsof(output.external[reopen_on_metadata,reopen_on_error,reopen_when,reopen_delay,on_reopen]),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                           ~start=true, ~playlist="stream.m3u8", ~directory, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  width = video.frame.width()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  height = video.frame.height()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  directory = (directory : string)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  cmd = "-profile:v baseline -pix_fmt yuv420p -level 3.0 -s #{width}x#{height} -start_number 0 -hls_time 10 -hls_list_size 0 -f hls #{directory}/#{playlist}"
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+>  output.external.ffmpeg(id=id, flush=flush, fallible=fallible, on_start=on_start, on_stop=on_stop, %argsof(output.external[reopen_on_metadata,reopen_on_error,reopen_when,reopen_delay,on_reopen]),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                         start=start, cmd, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>let output.file.dash = ()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+># Output an MPEG-DASH playlist using ffmpeg
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Output
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~id Force the value of the source ID.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~fallible Allow the child source to fail, in which case the output will be (temporarily) stopped.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~flush Perform a flush after each write.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~on_start Callback executed when outputting starts.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~on_stop Callback executed when outputting stops.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~start Automatically start outputting whenever possible. If true, an infallible (normal) output will start outputting as soon as it is created, and a fallible output will (re)start as soon as its source becomes available for streaming.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~playlist Playlist name
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~directory Directory to write to
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @argsof output.external[reopen_on_metadata,reopen_on_error,reopen_when,reopen_delay,on_reopen]
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def output.file.dash.ffmpeg(~id=null(), ~flush=false, ~fallible=false,
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                           ~on_start={()}, ~on_stop={()},  %argsof(output.external[reopen_on_metadata,reopen_on_error,reopen_when,reopen_delay,on_reopen]),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                           ~start=true, ~playlist="stream.mpd", ~directory, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  width = video.frame.width()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  height = video.frame.height()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  samplerate = audio.samplerate()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  cmd = "-map 0 -map 0 -c:a libfdk_aac -c:v libx264 -b:v:0 800k -b:v:1 300k -s:v:1 #{width}x#{height} -profile:v:1 baseline -profile:v:0 main -bf 1 -keyint_min 120 -g 120 -sc_threshold 0 -b_strategy 0 -ar:a:1 #{samplerate} -use_timeline 1 -use_template 1 -window_size 5 -adaptation_sets \"id=0,streams=v id=1,streams=a\" -f dash #{(directory:string)}/#{playlist}"
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                                                                                                                                                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                                                                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                                                                                                                                                                                              ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                                                                                                                                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                                                                                                                                                                                                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+>  output.external.ffmpeg(id=id, flush=flush, fallible=fallible, on_start=on_start, on_stop=on_stop,  %argsof(output.external[reopen_on_metadata,reopen_on_error,reopen_when,reopen_delay,on_reopen]),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                         start=start, show_command=true, cmd, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>

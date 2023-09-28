@@ -1,0 +1,628 @@
+># @docof request.dynamic
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def replaces request.dynamic(%argsof(request.dynamic), fn) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s = request.dynamic(%argsof(request.dynamic), fn)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  s.on_wake_up(memoize({
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    server.register(namespace=source.id(s), description="Flush the queue and skip the current track",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                    ^^ source.liquidsoap
+>                    "flush_and_skip", fun (_) -> try
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap
+#                                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                         ^^^^^^^^^^^^ source.liquidsoap
+>                      s.set_queue([])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                      s.skip()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                      "Done."
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+>                    catch err do
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^^ source.liquidsoap keyword.control.liquidsoap
+>                      "Error while flushing and skipping source: #{err}"
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+>                    end)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^ source.liquidsoap
+>  }))
+#^^^^^^ source.liquidsoap
+>
+>  s
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>%ifdef input.gstreamer.audio_video
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+># @docof input.gstreamer.audio_video
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def replaces input.gstreamer.audio_video(%argsof(input.gstreamer.audio_video)) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s = input.gstreamer.audio_video(%argsof(input.gstreamer.audio_video))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  s.on_wake_up(memoize({
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    begin
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>      server.register(namespace=source.id(s), description="Set gstreamer pipeline state to play",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                ^^ source.liquidsoap
+>                      "play", fun (_) -> try
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+#                              ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                 ^^^^^^^^^^^^ source.liquidsoap
+>                        s.play()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                        "Done."
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+>                      catch err do
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^ source.liquidsoap keyword.control.liquidsoap
+>                        "Error while setting state to play: #{err}"
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>
+>      server.register(namespace=source.id(s), description="Set gstreamer pipeline state to paused",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                  ^^ source.liquidsoap
+>                      "pause", fun (_) -> try
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+#                               ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                  ^^^^^^^^^^^^ source.liquidsoap
+>                      s.pause()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                      "Done."
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+>                    catch err do
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^^ source.liquidsoap keyword.control.liquidsoap
+>                      "Error while setting state to paused: #{err}"
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+>                    end)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^ source.liquidsoap
+>
+>      server.register(namespace=source.id(s), description="Restart gstreamer pipeline",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                      ^^ source.liquidsoap
+>                      "restart", fun (_) -> try
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap
+#                                 ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                    ^^^^^^^^^^^^ source.liquidsoap
+>                        s.restart()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                        "Done."
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+>                      catch err do
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^ source.liquidsoap keyword.control.liquidsoap
+>                        "Error while restarting pipeline: #{err}"
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  }))
+#^^^^^^ source.liquidsoap
+>
+>  s
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>%endif
+#^^^^^^^ source.liquidsoap
+>
+># @docof blank.strip
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def replaces blank.strip(%argsof(blank.strip), s) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s = blank.strip(%argsof(blank.strip), s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  s.on_wake_up(memoize({
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    server.register(namespace=source.id(s), description="Check if the source is stripping.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                           ^^ source.liquidsoap
+>                    "is_stripping", fun (_) -> begin
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^ source.liquidsoap
+#                                    ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                       ^^^^^^^^ source.liquidsoap
+#                                               ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                      "#{s.is_blank()}"
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+>                    end)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^ source.liquidsoap
+>  }))
+#^^^^^^ source.liquidsoap
+>
+>  s
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># @docof output.external
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def replaces output.external(%argsof(output.external), f, p, s) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s = output.external(%argsof(output.external), f, p, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  s.on_wake_up(memoize({
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    server.register(namespace=s.id(), description="Re-open the output.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                       ^^ source.liquidsoap
+>                    "reopen", fun (_) -> begin
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+#                              ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                 ^^^^^^^^ source.liquidsoap
+#                                         ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                      s.reopen()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                      "Done."
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+>                    end)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^ source.liquidsoap
+>  }))
+#^^^^^^ source.liquidsoap
+>
+>  s
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># @docof input.external.avi
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def replaces input.external.avi(%argsof(input.external.avi), s) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s = input.external.avi(%argsof(input.external.avi), s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  s.on_wake_up(memoize({
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    server.register(namespace=source.id(s), description="Show internal buffer length (in seconds).",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                   ^^ source.liquidsoap
+>                    "buffer_length", fun (_) -> begin
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^ source.liquidsoap
+#                                     ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                        ^^^^^^^^ source.liquidsoap
+#                                                ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                      buffered = s.buffered()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                      audio = list.assoc(default=0., "audio", buffered)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                 ^ source.liquidsoap constant.numeric.integer
+#                                                  ^^^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^^^^^^^^^^^ source.liquidsoap
+>                      video = list.assoc(default=0., "video", buffered)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                 ^ source.liquidsoap constant.numeric.integer
+#                                                  ^^^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^^^^^^^^^^^ source.liquidsoap
+>                      total = min(audio, video)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                      "audio buffer length: #{audio}\nvideo buffer length: #{video}\ntotal buffer length: #{total}"
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                   ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+>                    end)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^ source.liquidsoap
+>  }))
+#^^^^^^ source.liquidsoap
+>
+>  s
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># @docof input.harbor
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def replaces input.harbor(%argsof(input.harbor), s) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s = input.harbor(%argsof(input.harbor), s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  s.on_wake_up(memoize({
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    begin
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>      server.register(namespace=source.id(s), description="Stop current source client, if connected.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                     ^^ source.liquidsoap
+>                     "stop", fun (_) -> begin
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+#                             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                ^^^^^^^^ source.liquidsoap
+#                                        ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                        s.stop()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                        "Done"
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>
+>      server.register(namespace=source.id(s), description="Display current status.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                   ^^ source.liquidsoap
+>                      "status", fun (_) -> begin
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^ source.liquidsoap
+#                                           ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                        s.status()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>
+>      server.register(namespace=source.id(s), description="Get the buffer's length, in seconds.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                ^^ source.liquidsoap
+>                      "buffer_length", fun (_) -> begin
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap
+#                                       ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                          ^^^^^^^^ source.liquidsoap
+#                                                  ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                        "#{s.buffer_length()}"
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  }))
+#^^^^^^ source.liquidsoap
+>
+>  s
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>%ifdef input.http
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+># @docof input.http
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def replaces input.http(%argsof(input.http), s) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s = input.http(%argsof(input.http), s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  s.on_wake_up(memoize({
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    begin
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>      server.register(namespace=source.id(s), description="Start the source, if needed.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                        ^^ source.liquidsoap
+>                      "start", fun (_) -> begin
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+#                               ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                  ^^^^^^^^ source.liquidsoap
+#                                          ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                        s.start()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                        "Done!"
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>
+>      server.register(namespace=source.id(s), description="Stop the source if connected.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                         ^^ source.liquidsoap
+>                      "stop", fun (_) -> begin
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+#                              ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                 ^^^^^^^^ source.liquidsoap
+#                                         ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                        s.stop()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                        "Done!"
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>
+>      server.register(namespace=source.id(s), description="Get or set the stream's HTTP URL. Setting a new URL will not affect an ongoing connection.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                      ^^ source.liquidsoap
+>                      usage="url [url]", "url", fun (url) -> begin
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^ source.liquidsoap
+#                                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                   ^^^^^^^^^^ source.liquidsoap
+#                                                             ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                        if url == "" then
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^^ source.liquidsoap keyword.control.liquidsoap
+#                          ^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap
+#                                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>                          s.url()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                        else begin
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                            ^ source.liquidsoap
+#                             ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                          s.set_url({url})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                          "Done!"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+>                        end end
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^^^ source.liquidsoap keyword.control.liquidsoap
+#                           ^ source.liquidsoap
+#                            ^^^ source.liquidsoap keyword.control.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>
+>      server.register(namespace=source.id(s), description="Return the current status of the source, either \"stopped\" \
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                           ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                             ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                      ^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                                                     (the source isn't trying to relay the HTTP stream), \"polling\" \
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                           ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                                                     (attempting to connect to the HTTP stream) or \"connected <url>\" \
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                   ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                     ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                      ^^^ source.liquidsoap string.quoted.double.liquidsoap
+>                                                     (connected to <url>, buffering or playing back the stream).",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                 ^^ source.liquidsoap
+>                      "status", fun (_) -> begin
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^ source.liquidsoap
+#                                           ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                        s.status()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>
+>      server.register(namespace=source.id(s), description="Get the buffer's length, in seconds.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                ^^ source.liquidsoap
+>                      "buffer_length", fun (_) -> begin
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap
+#                                       ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                          ^^^^^^^^ source.liquidsoap
+#                                                  ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                        "#{s.buffer_length()}"
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  }))
+#^^^^^^ source.liquidsoap
+>
+>  s
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>%endif
+#^^^^^^^ source.liquidsoap
+>

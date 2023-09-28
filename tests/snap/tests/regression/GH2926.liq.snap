@@ -1,0 +1,61 @@
+>tmp_dir = file.temp_dir("tmp")
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+>on_cleanup({file.rmdir(tmp_dir)})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  enc     = %ffmpeg(format="mpegts",%audio(codec="aac"))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^^^^^^^^^^^^ source.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^ source.liquidsoap
+>  streams = [("enc", enc)]
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^ source.liquidsoap
+>
+>  output.file.hls(
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    fallible=true,
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    on_stop=test.pass,
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    persist_at="./config",
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^ source.liquidsoap
+>    path.concat(tmp_dir, "hls"),
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^ source.liquidsoap
+>    streams,
+#^^^^^^^^^^^^^ source.liquidsoap
+>    once(sine(duration=1.))
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap constant.numeric.integer
+#                        ^^^^ source.liquidsoap
+>  )
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

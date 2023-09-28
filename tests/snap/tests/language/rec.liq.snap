@@ -1,0 +1,81 @@
+># Some tests related to recursion and polymorphism.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  def id (x) = x end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^ source.liquidsoap
+#                 ^^^ source.liquidsoap keyword.control.liquidsoap
+>  _ = id(3)
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+#          ^^ source.liquidsoap
+>  _ = id("a")
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^ source.liquidsoap
+>
+>  def rec recid (x) = x end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^^^ source.liquidsoap keyword.control.liquidsoap
+>  _ = recid(3)
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^ source.liquidsoap
+>  _ = recid("a")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+>
+>  def rec nid (n, x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    if n == 0 then x else nid(n-1, x) end
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^ source.liquidsoap
+#              ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                  ^^^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap constant.numeric.integer
+#                                 ^^^^^ source.liquidsoap
+#                                      ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  _ = nid(2,3)
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^ source.liquidsoap
+>  _ = nid(2,"a")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

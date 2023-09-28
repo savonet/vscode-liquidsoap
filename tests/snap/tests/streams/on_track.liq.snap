@@ -1,0 +1,31 @@
+>log.level.set(4)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>
+>def f(_)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^ source.liquidsoap
+>  print("Got track!")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>  shutdown()
+#^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = sequence([sine(duration=1.), sine()])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap constant.numeric.integer
+#                             ^^^^^^^^^^^^^ source.liquidsoap
+>s = source.on_track(s,f)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output.dummy(s)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>

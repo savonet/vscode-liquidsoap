@@ -1,0 +1,88 @@
+>
+>
+>def fn() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^ source.liquidsoap
+>  test.equals(int_of_string("0xff"), 255)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap
+#                                     ^^^ source.liquidsoap constant.numeric.integer
+#                                        ^^ source.liquidsoap
+>  test.raise(fun () -> int_of_string("ff"))
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^ source.liquidsoap
+>  test.equals(int_of_string(default=1, "ff"), 1)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^ source.liquidsoap constant.numeric.integer
+#                                     ^^ source.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^ source.liquidsoap
+#                                              ^ source.liquidsoap constant.numeric.integer
+#                                               ^^ source.liquidsoap
+>
+>  test.equals(float_of_string("0xff"), 255.)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap
+#                                       ^^^ source.liquidsoap constant.numeric.integer
+#                                          ^^^ source.liquidsoap
+>  test.raise(fun () -> float_of_string("ff"))
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^ source.liquidsoap
+>  test.equals(float_of_string(default=1., "ff"), 1.)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                      ^ source.liquidsoap constant.numeric.integer
+#                                       ^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^ source.liquidsoap
+#                                                 ^ source.liquidsoap constant.numeric.integer
+#                                                  ^^^ source.liquidsoap
+>
+>  test.equals(bool_of_string("false"), false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^^^^^^^^ source.liquidsoap
+>  test.raise(fun () -> bool_of_string("ff"))
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^^ source.liquidsoap
+>  test.equals(bool_of_string(default=false, "ff"), false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^^^^^^^^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(fn)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>

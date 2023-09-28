@@ -1,0 +1,67 @@
+>s = sine()
+#^^^^^^^^^^^ source.liquidsoap
+>
+>close_count = ref(0)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+>
+>tmp_dir = file.temp_dir("tmp")
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+>on_cleanup({file.rmdir(tmp_dir)})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output_file =  {"#{tmp_dir}/bla-#{close_count()}.mp3"}
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap
+>
+>def on_close(fname) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(fname, output_file())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  close_count := close_count() + 1
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+>  if close_count() > 3 then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^ source.liquidsoap
+#                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>o = output.file(
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  on_close=on_close,
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  %mp3,
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap constant.numeric.integer
+#      ^^ source.liquidsoap
+>  output_file,
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>  s
+#^^^^ source.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+>thread.run(every=2., o.reopen)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^^ source.liquidsoap
+>

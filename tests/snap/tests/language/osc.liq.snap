@@ -1,0 +1,170 @@
+>#!../../liquidsoap ../test.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>success = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>settings.oscnative.port.set(7778)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^^^^ source.liquidsoap constant.numeric.integer
+#                                ^^ source.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  # Test lo
+#^^ source.liquidsoap
+#  ^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  success := false
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  osc.on_float("/bla", fun(x) -> if x == 42. then print("got float"); success := true end)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+#                       ^^^ source.liquidsoap keyword.control.liquidsoap
+#                          ^^^^^^^ source.liquidsoap
+#                                 ^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^ source.liquidsoap
+#                                         ^^ source.liquidsoap constant.numeric.integer
+#                                           ^^ source.liquidsoap
+#                                             ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                 ^^^^^^^ source.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                         ^^ source.liquidsoap
+>  osc.send_float(host="localhost", port=settings.osc.port(), "/bla", 42.)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^^ source.liquidsoap
+#                                                                     ^^ source.liquidsoap constant.numeric.integer
+#                                                                       ^^^ source.liquidsoap
+>  sleep(1.)
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^^ source.liquidsoap
+>  if not success() then test.fail() end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  # Test native OSC
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  success := false
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  osc.native.on_float("/bla", fun(x) -> if x == 42. then print("got float"); success := true end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+#                              ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                 ^^^^^^^ source.liquidsoap
+#                                        ^^ source.liquidsoap keyword.control.liquidsoap
+#                                          ^^^^^^ source.liquidsoap
+#                                                ^^ source.liquidsoap constant.numeric.integer
+#                                                  ^^ source.liquidsoap
+#                                                    ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                        ^^^^^^^ source.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                                ^^ source.liquidsoap
+>  osc.native.send_float(host="localhost", port=settings.oscnative.port(), "/bla", 42.)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                           ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                ^^ source.liquidsoap
+#                                                                                  ^^ source.liquidsoap constant.numeric.integer
+#                                                                                    ^^^ source.liquidsoap
+>  sleep(1.)
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^^ source.liquidsoap
+>  if not success() then test.fail() end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  success := false
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  osc.native.on_string("/bla", fun(x) -> if x == "xxx" then print("got string"); success := true end)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+#                               ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                  ^^^^^^^ source.liquidsoap
+#                                         ^^ source.liquidsoap keyword.control.liquidsoap
+#                                           ^^^^^^ source.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^ source.liquidsoap
+#                                                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                           ^^^^^^^ source.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                              ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                 ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                                    ^^ source.liquidsoap
+>  osc.native.send_string(host="localhost", port=settings.oscnative.port(), "/bla", "xxx")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                            ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^^ source.liquidsoap
+#                                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                        ^^ source.liquidsoap
+>  sleep(1.)
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^^ source.liquidsoap
+>  if not success() then test.fail() end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

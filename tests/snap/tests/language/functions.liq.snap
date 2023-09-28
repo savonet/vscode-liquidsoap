@@ -1,0 +1,131 @@
+>def t(x, y)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^ source.liquidsoap
+>  if x != y then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^ source.liquidsoap
+#            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    print("Failure: got #{x} instead of #{y}")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  def f(~(foo:int), ~(bar:string)="123", (x:source), (y:int)=123) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                             ^^^ source.liquidsoap constant.numeric.integer
+#                                                                ^^^^ source.liquidsoap
+>    ()
+#^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  # Arguments with same name
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def f(x, x)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^ source.liquidsoap
+>    x
+#^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  t(f(2, 3), 3)
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+#       ^^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+#          ^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^ source.liquidsoap
+>
+>  # Free variables with same name
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  x = 4
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+>  x = 5
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+>  def f()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^ source.liquidsoap
+>    x
+#^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  t(f(), 5)
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+#          ^^ source.liquidsoap
+>
+>  def recf() =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^ source.liquidsoap
+>    ()
+#^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  recf()
+#^^^^^^^^^ source.liquidsoap
+>
+>  def replacesf() =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^ source.liquidsoap
+>    ()
+#^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  replacesf()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  let replacesg = ()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^ source.liquidsoap
+>  x = replacesg
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  let evalf = ()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^ source.liquidsoap
+>  x = evalf
+#^^^^^^^^^^^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

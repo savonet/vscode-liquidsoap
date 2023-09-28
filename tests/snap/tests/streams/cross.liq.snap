@@ -1,0 +1,176 @@
+>video.frame.rate.set(24)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^ source.liquidsoap constant.numeric.integer
+#                       ^^ source.liquidsoap
+>
+>a = sine(duration=5.,440.)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+#                     ^^^ source.liquidsoap constant.numeric.integer
+#                        ^^^ source.liquidsoap
+>a = metadata.map(update=false, (fun (_) -> [("title","a")]), a)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^^^^^^^ source.liquidsoap
+>
+>b = sine(duration=5.,880.)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+#                     ^^^ source.liquidsoap constant.numeric.integer
+#                        ^^^ source.liquidsoap
+>b = metadata.map(update=false, (fun (_) -> [("title","b")]), b)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^^^^^^^ source.liquidsoap
+>
+>s = sequence([a,b])
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def t(a, b)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^ source.liquidsoap
+>  log.important("Crossing!")
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>  log.important("Levels: #{a.db_level} / #{b.db_level}")
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^ source.liquidsoap
+>  log.important("Metadata: #{a.metadata} / #{b.metadata}")
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^ source.liquidsoap
+>  sequence([a.source, b.source])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = cross(duration=3., width=1., t, s)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap constant.numeric.integer
+#                              ^^^^^^^^^ source.liquidsoap
+>
+>seen_a = ref(false)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>seen_b = ref(false)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def check_duplicate(m) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if m["title"] == "a" then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap
+#                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    if seen_a() then test.fail() else seen_a := true end
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^ source.liquidsoap
+#                ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                    ^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                     ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                     ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  if m["title"] == "b" then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap
+#                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    if seen_b() then test.fail() else seen_b := true end
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^ source.liquidsoap
+#                ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                    ^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                     ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                     ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s.on_metadata(check_duplicate)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>clock.assign_new(sync="none",[s])
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^ source.liquidsoap
+>
+>def on_stop () =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^ source.liquidsoap
+>  if seen_a() and seen_b() then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^ source.liquidsoap
+#              ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                 ^^^^^^^^^^ source.liquidsoap
+#                           ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>output.dummy(fallible=true, on_stop=on_stop,s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

@@ -1,0 +1,413 @@
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  # Works as expected with no errors
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  ret = try
+#^^^^^^^^^^^^ source.liquidsoap
+>    4
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap constant.numeric.integer
+>  catch _ do
+#^^^^^^^^^^ source.liquidsoap
+#          ^^ source.liquidsoap keyword.control.liquidsoap
+>    5
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test.equals(ret, 4)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^ source.liquidsoap
+>
+>  e = error.register("foo")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+>
+>  # Works as expected with no errors
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  ret = try
+#^^^^^^^^^^^^ source.liquidsoap
+>    4
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap constant.numeric.integer
+>  catch _ : [e] do
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^ source.liquidsoap keyword.control.liquidsoap
+>    5
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test.equals(ret, 4)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^ source.liquidsoap
+>
+>  # Can report kind
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  ret = try
+#^^^^^^^^^^^^ source.liquidsoap
+>    error.raise(e);
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    "bla"
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+>  catch err do
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
+>    err.kind
+#^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  test.equals(ret, "foo")
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^ source.liquidsoap
+>
+>  # Can report empty message
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  ret = try
+#^^^^^^^^^^^^ source.liquidsoap
+>    error.raise(e)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    "bla"
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+>  catch err do
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
+>    err.message
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  test.equals(ret, "")
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+>
+>  # Can report set message
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  ret = try
+#^^^^^^^^^^^^ source.liquidsoap
+>    error.raise(e, "msg");
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^ source.liquidsoap
+>    "bla"
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+>  catch err do
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
+>    err.message ?? "blo"
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  test.equals(ret, "msg")
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^ source.liquidsoap
+>
+>  # Can report stack trace
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  trace = try
+#^^^^^^^^^^^^^^ source.liquidsoap
+>    error.raise(e, "msg");
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^ source.liquidsoap
+>    []
+#^^^^^^^ source.liquidsoap
+>  catch err do
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
+>    err.trace
+#^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  pos = string.concat(separator=", ", list.map(fun (pos) -> pos.to_string(), trace))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^^^^^^^^^ source.liquidsoap
+#                                               ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(pos, "At error.liq, line 50 char 10 - line 55 char 5")
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^^ source.liquidsoap
+>
+>  e' = error.register("bla")
+#^^^ source.liquidsoap
+#   ^ source.liquidsoap string.quoted.single.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  test.equals(false, (e == e'))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                            ^ source.liquidsoap string.quoted.single.liquidsoap
+#                             ^^^ source.liquidsoap
+>
+>  # Ignores errors when not in list
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  ret =
+#^^^^^^^^ source.liquidsoap
+>    try
+#^^^^^^^^ source.liquidsoap
+>      try
+#^^^^^^^^^^ source.liquidsoap
+>        error.raise(e, "msg");
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^ source.liquidsoap
+>        "bla"
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+>      catch _ : [e'] do
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.single.liquidsoap
+#                   ^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        "blo"
+#^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      end
+#^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    catch _ : [e] do
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      "gni"
+#^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    end
+#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  test.equals(ret, "gni")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>  # Ignore errors when list is empty
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  ret =
+#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    try
+#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      try
+#^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        error.raise(e, "msg");
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        "bla"
+#^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      catch _ : [] do
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        "blo"
+#^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      end
+#^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    catch _ : [e] do
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      "gni"
+#^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    end
+#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  test.equals(ret, "gni")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>  # Catches error when in list
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  ret =
+#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    try
+#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      try
+#^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        error.raise(e, "msg");
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        "bla"
+#^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      catch _ : [e, e'] do
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                     ^ source.liquidsoap string.quoted.single.liquidsoap
+#                      ^^ source.liquidsoap
+#                        ^^ source.liquidsoap keyword.control.liquidsoap
+>        "blo"
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    catch _ : [e] do
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^^ source.liquidsoap keyword.control.liquidsoap
+>      "gni"
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  test.equals(ret, "blo")
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^ source.liquidsoap
+>
+>  on_error = ref(error.register("dummy"))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^ source.liquidsoap
+>  error.on_error(fun (e) -> on_error := e)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^^^ source.liquidsoap keyword.control.liquidsoap
+#                    ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  try
+#^^^^^^ source.liquidsoap
+>    error.raise(e, "On done callback")
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap
+>  catch _ : [e] do
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^ source.liquidsoap keyword.control.liquidsoap
+>    ()
+#^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if (on_error()).kind != e.kind then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if (on_error()).message != "On done callback" then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap
+#                                                ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  def on_done() =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^ source.liquidsoap
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  # Catches error
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def on_error(~backtrace, e) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    print("caught error #{e} from thread and backtrace:\n#{backtrace}")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                         ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^ source.liquidsoap
+>    if e.kind == "foo" then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap
+#                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      on_done()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      test.fail()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  thread.on_error(e, on_error)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  thread.run(fun () -> error.raise(e, "Asynchronous error"))
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

@@ -1,0 +1,261 @@
+># Open a named UNIX socket and connect as a client.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~non_blocking Open in non-blocking mode.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.param.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category File
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def socket.unix.client(~non_blocking=false,path) =
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                      ^ source.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^^^^^^^^^^^ source.liquidsoap variable.parameter.liquidsoap
+#                                    ^ source.liquidsoap
+#                                     ^^^^^ source.liquidsoap constant.language.boolean.liquidsoap
+#                                          ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                           ^^^^ source.liquidsoap variable.liquidsoap
+#                                               ^ source.liquidsoap
+#                                                ^^ source.liquidsoap
+>  s = socket.unix(domain=socket.domain.unix)
+#^^ source.liquidsoap
+#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^^^^ source.liquidsoap variable.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+#             ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                 ^ source.liquidsoap meta.function-call.liquidsoap
+#                  ^^^^^^^ source.liquidsoap meta.function-call.liquidsoap
+#                         ^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                               ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap
+#                                ^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.method.liquidsoap
+#                                      ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap
+#                                       ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.method.liquidsoap
+#                                           ^ source.liquidsoap meta.function-call.liquidsoap
+>  s.non_blocking(non_blocking)
+#^^ source.liquidsoap
+#  ^ source.liquidsoap variable.liquidsoap
+#   ^ source.liquidsoap meta.function-call.liquidsoap
+#    ^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap
+#                 ^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                             ^ source.liquidsoap meta.function-call.liquidsoap
+>  s.connect(socket.address.unix(path))
+#^^ source.liquidsoap
+#  ^ source.liquidsoap variable.liquidsoap
+#   ^ source.liquidsoap meta.function-call.liquidsoap
+#    ^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap
+#            ^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                  ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap
+#                   ^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.method.liquidsoap
+#                          ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                           ^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                               ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                                ^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                                    ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                                     ^ source.liquidsoap meta.function-call.liquidsoap
+>  (s:socket).{read = s.read, write=s.write, type = s.type, close = s.close}
+#^^^ source.liquidsoap
+#   ^ source.liquidsoap variable.liquidsoap
+#    ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.cast.liquidsoap
+#     ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^^ source.liquidsoap
+#              ^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                  ^^ source.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^ source.liquidsoap variable.liquidsoap
+#                      ^ source.liquidsoap keyword.other.liquidsoap
+#                       ^^^^ source.liquidsoap variable.method.liquidsoap
+#                           ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                            ^ source.liquidsoap
+#                             ^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                                  ^ source.liquidsoap
+#                                   ^ source.liquidsoap variable.liquidsoap
+#                                    ^ source.liquidsoap keyword.other.liquidsoap
+#                                     ^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                          ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                           ^ source.liquidsoap
+#                                            ^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                                                ^^ source.liquidsoap
+#                                                  ^ source.liquidsoap
+#                                                   ^ source.liquidsoap variable.liquidsoap
+#                                                    ^ source.liquidsoap keyword.other.liquidsoap
+#                                                     ^^^^ source.liquidsoap variable.method.liquidsoap
+#                                                         ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                          ^ source.liquidsoap
+#                                                           ^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                                                                ^^ source.liquidsoap
+#                                                                  ^ source.liquidsoap
+#                                                                   ^ source.liquidsoap variable.liquidsoap
+#                                                                    ^ source.liquidsoap keyword.other.liquidsoap
+#                                                                     ^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                                                          ^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>
+># Open a named socket and wait for a client to connect
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~non_blocking Open in non-blocking mode.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.param.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category File
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def socket.unix.listen(~non_blocking=false,path) =
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                      ^ source.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^^^^^^^^^^^ source.liquidsoap variable.parameter.liquidsoap
+#                                    ^ source.liquidsoap
+#                                     ^^^^^ source.liquidsoap constant.language.boolean.liquidsoap
+#                                          ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                           ^^^^ source.liquidsoap variable.liquidsoap
+#                                               ^ source.liquidsoap
+#                                                ^^ source.liquidsoap
+>  s = socket.unix(domain=socket.domain.unix)
+#^^ source.liquidsoap
+#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^^^^ source.liquidsoap variable.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+#             ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                 ^ source.liquidsoap meta.function-call.liquidsoap
+#                  ^^^^^^^ source.liquidsoap meta.function-call.liquidsoap
+#                         ^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                               ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap
+#                                ^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.method.liquidsoap
+#                                      ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap
+#                                       ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.method.liquidsoap
+#                                           ^ source.liquidsoap meta.function-call.liquidsoap
+>  s.non_blocking(non_blocking)
+#^^ source.liquidsoap
+#  ^ source.liquidsoap variable.liquidsoap
+#   ^ source.liquidsoap meta.function-call.liquidsoap
+#    ^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap
+#                 ^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                             ^ source.liquidsoap meta.function-call.liquidsoap
+>  s.bind(socket.address.unix(path))
+#^^ source.liquidsoap
+#  ^ source.liquidsoap variable.liquidsoap
+#   ^ source.liquidsoap meta.function-call.liquidsoap
+#    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#        ^ source.liquidsoap meta.function-call.liquidsoap
+#         ^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#               ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap
+#                ^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.method.liquidsoap
+#                       ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                        ^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                            ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                             ^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                                 ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                                  ^ source.liquidsoap meta.function-call.liquidsoap
+>  s.listen(1)
+#^^ source.liquidsoap
+#  ^ source.liquidsoap variable.liquidsoap
+#   ^ source.liquidsoap meta.function-call.liquidsoap
+#    ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+>  let (s', _) = s.accept()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
+#     ^^ source.liquidsoap
+#       ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#         ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#          ^ source.liquidsoap
+#           ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#            ^ source.liquidsoap
+#             ^^^ source.liquidsoap
+#                ^ source.liquidsoap variable.liquidsoap
+#                 ^ source.liquidsoap meta.function-call.liquidsoap
+#                  ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                        ^ source.liquidsoap meta.function-call.liquidsoap
+#                         ^ source.liquidsoap meta.function-call.liquidsoap
+>  close = fun () ->
+#^^ source.liquidsoap
+#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#       ^^ source.liquidsoap
+#         ^ source.liquidsoap
+#          ^^^ source.liquidsoap keyword.other.function.definition.params.liquidsoap
+#             ^^ source.liquidsoap
+#               ^ source.liquidsoap
+#                ^ source.liquidsoap
+#                 ^^ source.liquidsoap keyword.control.function.declaration.liquidsoap
+>   begin
+#^^^ source.liquidsoap
+#   ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    s'.close()
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap variable.liquidsoap
+#      ^ source.liquidsoap meta.function-call.liquidsoap
+#       ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap
+>    s.close()
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap variable.liquidsoap
+#     ^ source.liquidsoap meta.function-call.liquidsoap
+#      ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+>   end
+#^^^ source.liquidsoap
+#   ^^^ source.liquidsoap keyword.control.liquidsoap
+>  (s':socket).{read = s'.read, write=s'.write, type = s'.type, close = close}
+#^^^ source.liquidsoap
+#   ^^ source.liquidsoap variable.liquidsoap
+#     ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.cast.liquidsoap
+#      ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^^ source.liquidsoap
+#               ^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                   ^^ source.liquidsoap
+#                     ^ source.liquidsoap
+#                      ^^ source.liquidsoap variable.liquidsoap
+#                        ^ source.liquidsoap keyword.other.liquidsoap
+#                         ^^^^ source.liquidsoap variable.method.liquidsoap
+#                             ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                              ^ source.liquidsoap
+#                               ^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                                    ^ source.liquidsoap
+#                                     ^^ source.liquidsoap variable.liquidsoap
+#                                       ^ source.liquidsoap keyword.other.liquidsoap
+#                                        ^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                             ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                              ^ source.liquidsoap
+#                                               ^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                                                   ^^ source.liquidsoap
+#                                                     ^ source.liquidsoap
+#                                                      ^^ source.liquidsoap variable.liquidsoap
+#                                                        ^ source.liquidsoap keyword.other.liquidsoap
+#                                                         ^^^^ source.liquidsoap variable.method.liquidsoap
+#                                                             ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                              ^ source.liquidsoap
+#                                                               ^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                                                                    ^^ source.liquidsoap
+#                                                                      ^ source.liquidsoap
+#                                                                       ^^^^^ source.liquidsoap variable.liquidsoap
+#                                                                            ^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>

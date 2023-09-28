@@ -1,0 +1,108 @@
+># Make sure tracks are saved in the same order.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  s = once(single("../media/@ffmpeg[format='mp4',@audio[codec='aac',channels=2],@audio_2[codec='aac',channels=1],@video[codec='libx264'],@video_2[codec='libx264']].mp4"))
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                                        ^^^ source.liquidsoap
+>
+>  def on_stop() =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^ source.liquidsoap
+>    j = process.read("ffprobe -v quiet -print_format json -show_streams ffmpeg-copy-encode.mkv")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                               ^^ source.liquidsoap
+>
+>    let json.parse ( {streams = [s1, s2]}: {
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap constant.numeric.integer
+#                                   ^^^ source.liquidsoap
+#                                      ^ source.liquidsoap constant.numeric.integer
+#                                       ^^^^^^ source.liquidsoap
+>      streams: [{channels?: int}]
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    }) = j
+#^^^^^^^^^^^ source.liquidsoap
+>
+>    if s1.channels != 2 or s2.channels != 1 then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap constant.numeric.integer
+#                       ^ source.liquidsoap
+#                        ^^ source.liquidsoap keyword.operator.liquidsoap
+#                          ^^ source.liquidsoap
+#                            ^ source.liquidsoap constant.numeric.integer
+#                             ^^^^^^^^^^^^^ source.liquidsoap
+#                                          ^ source.liquidsoap constant.numeric.integer
+#                                           ^ source.liquidsoap
+#                                            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      test.fail()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  output.file(
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>    fallible=true,
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    on_stop=on_stop,
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    %ffmpeg(
+#^^^^^^^^^^^^^ source.liquidsoap
+>      %audio.copy,
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      %audio_2(
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^ source.liquidsoap
+>        channels=1,
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^ source.liquidsoap
+>        codec="aac"
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+>      ),
+#^^^^^^^^^ source.liquidsoap
+>      %video.copy
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    ),
+#^^^^^^^ source.liquidsoap
+>    "ffmpeg-copy-encode.mkv",
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+>    s
+#^^^^^^ source.liquidsoap
+>  )
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

@@ -1,0 +1,45 @@
+>profile = (environment.get("LIQ_PROFILE") != "")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^ source.liquidsoap
+>
+>def time(name, f)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^ source.liquidsoap
+>  if profile then profiler.enable() end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^ source.liquidsoap
+#             ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                 ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  print("Computing #{name}...")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+>  t = time()
+#^^^^^^^^^^^^^ source.liquidsoap
+>  f()
+#^^^^^^ source.liquidsoap
+>  t' = time()
+#^^^ source.liquidsoap
+#   ^ source.liquidsoap string.quoted.single.liquidsoap
+#    ^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  print("Computing #{name} took #{t'-t} seconds.")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                    ^^^^^^^^^^^^ source.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^ source.liquidsoap string.quoted.double.liquidsoap
+>  if profile then print(profiler.stats.string()) end
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>end
+#^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>

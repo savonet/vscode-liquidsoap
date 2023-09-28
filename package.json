@@ -1,0 +1,44 @@
+{
+  "name": "vscode-liquidsoap",
+  "displayName": "vscode-liquidsoap",
+  "description": "VSCode support for the liquidsoap language",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "icon": "assets/logo.png",
+  "categories": [
+    "Programming Languages"
+  ],
+  "scripts": {
+    "update:snapshots": "vscode-tmgrammar-snap --updateSnapshot tests/snap/**/*.liq"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "liquidsoap",
+        "extensions": [
+          ".liq"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "assets/logo.png",
+          "dark": "assets/logo.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "liquidsoap",
+        "scopeName": "source.liquidsoap",
+        "path": "./syntaxes/liquidsoap.json"
+      }
+    ]
+  },
+  "extensionDependencies": [
+    "esbenp.prettier-vscode"
+  ],
+  "devDependencies": {
+    "vscode-tmgrammar-test": "^0.1.2"
+  }
+}

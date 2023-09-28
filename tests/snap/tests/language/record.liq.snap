@@ -1,0 +1,925 @@
+>#!../../liquidsoap ../test.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  # Basic checks
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  n = 2
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+>  r = n.{ a = 8 , b = 12 , f = fun(x) -> 2 * x }
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^^^^^^ source.liquidsoap
+#                      ^^ source.liquidsoap constant.numeric.integer
+#                        ^^^^^^^ source.liquidsoap
+#                               ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                  ^^^^^^^ source.liquidsoap
+#                                         ^ source.liquidsoap constant.numeric.integer
+#                                          ^^^^^^^ source.liquidsoap
+>  test.equals(1+r, 3)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^ source.liquidsoap
+>  test.equals(r.b, 12)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^ source.liquidsoap constant.numeric.integer
+#                     ^^ source.liquidsoap
+>  test.equals(r.a, 8)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^ source.liquidsoap
+>  test.equals(r.f(5), 10)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+#                      ^^ source.liquidsoap constant.numeric.integer
+#                        ^^ source.liquidsoap
+>  r = 2.{a = 5}
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^ source.liquidsoap
+>  ignore(r)
+#^^^^^^^^^^^^ source.liquidsoap
+>
+>  # Test overriding with subfields
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  r = ()
+#^^^^^^^^^ source.liquidsoap
+>  let r.f = ()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^ source.liquidsoap
+>  let r.f.variant = 7
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+>  let r.f = r.f.variant
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ignore(r)
+#^^^^^^^^^^^^ source.liquidsoap
+>
+>  # Test replacing subfields
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  r = ()
+#^^^^^^^^^ source.liquidsoap
+>  let r.a = ()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^ source.liquidsoap
+>  let r.a.b = 5
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+>  let replaces r.a = 2
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+>  ignore(r.a.b)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  def replaces r.a (x) = 2*x end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^^ source.liquidsoap
+#                             ^^^ source.liquidsoap keyword.control.liquidsoap
+>  ignore(r.a.b)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  # A resettable counter
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  n = ref(0)
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^^ source.liquidsoap
+>  def counter()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^ source.liquidsoap
+>    n := !n + 1
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+>    !n
+#^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  def counter.reset()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    n := 0
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  ignore(counter())
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ignore(counter())
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(counter(), 3)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^ source.liquidsoap
+>  counter.reset()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(counter(), 1)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^ source.liquidsoap
+>
+>  # Float / field disambiguation
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  r = 3.{s = "a"}
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^ source.liquidsoap
+>  _ = r.s
+#^^^^^^^^^^ source.liquidsoap
+>
+>  # Open
+#^^ source.liquidsoap
+#  ^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  r = ()
+#^^^^^^^^^ source.liquidsoap
+>  def r.f(n) = 2*n end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap keyword.control.liquidsoap
+>  open r
+#^^^^^^^^^ source.liquidsoap
+>  test.equals(f(3), 6)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^ source.liquidsoap
+>
+>  # Test subtyping in lists
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  a = "a"
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+>  b = "b"
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+>  let a.x = 5
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+>  let b.x = 3
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+>  let b.y = 1.
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^ source.liquidsoap
+>  l = [a,b]
+#^^^^^^^^^^^^ source.liquidsoap
+>  ignore(list.hd(l).x)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  l = [b,a]
+#^^^^^^^^^^^^ source.liquidsoap
+>  ignore(list.hd(l).x)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  def f(c) = [a,c] end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap keyword.control.liquidsoap
+>  ignore(f)
+#^^^^^^^^^^^^ source.liquidsoap
+>
+>  # Subsequent increase of the type
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  _ = if true then {a = 4, b = 5} else {a = 4} end
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^ source.liquidsoap
+#              ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                  ^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap constant.numeric.integer
+#                                ^^ source.liquidsoap
+#                                  ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                      ^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap constant.numeric.integer
+#                                             ^^ source.liquidsoap
+#                                               ^^^ source.liquidsoap keyword.control.liquidsoap
+>  _ = if true then {a = 4} else {a = 4, b = 5} end
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^ source.liquidsoap
+#              ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                  ^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^ source.liquidsoap
+#                           ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                               ^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap constant.numeric.integer
+#                                      ^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap constant.numeric.integer
+#                                             ^^ source.liquidsoap
+#                                               ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  # Fields with incompatible types
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  _ = [{a = 4, b = 5, c = 6}, {a = "a", b = 2, d = "d"}]
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap constant.numeric.integer
+#                           ^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap constant.numeric.integer
+#                                             ^^^^^^ source.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^ source.liquidsoap
+>
+>  # Equality
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  test.equals({a = 5} == {a = 5}, true)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap constant.numeric.integer
+#                               ^^^^^^^^^ source.liquidsoap
+>  test.equals({a = 5} == {a = 6}, false)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap constant.numeric.integer
+#                               ^^^^^^^^^^ source.liquidsoap
+>  test.equals({a = 5} == {a = 6, b = 4}, false)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap constant.numeric.integer
+#                               ^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap constant.numeric.integer
+#                                      ^^^^^^^^^^ source.liquidsoap
+>  test.equals([{a = 5}] == [{a = 5}], true)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+#                                  ^^^^^^^^^^ source.liquidsoap
+>  test.equals(({a = 5}) == ({a = 5}), true)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+#                                  ^^^^^^^^^^ source.liquidsoap
+>  # The following is weird but expected
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  test.equals({a = 5} == {a = 5, b = 6}, true)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap constant.numeric.integer
+#                               ^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap constant.numeric.integer
+#                                      ^^^^^^^^^ source.liquidsoap
+>  test.equals("bla".{x = 2} == "bla", true)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^^^^^^ source.liquidsoap
+>  test.equals("bla" == "bla".{x = 2}, true)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap constant.numeric.integer
+#                                   ^^^^^^^^^ source.liquidsoap
+>
+>  # Test optional fields
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def f(x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>    (x?.foo ?? 2) + 1
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  test.equals(f(()), 3)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^ source.liquidsoap
+>  test.equals(f({}), 3)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^ source.liquidsoap
+>  test.equals(f({foo=1}), 2)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^^^ source.liquidsoap
+#                          ^ source.liquidsoap constant.numeric.integer
+#                           ^^ source.liquidsoap
+>  test.equals(f({foo=null()}), 3)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap constant.numeric.integer
+#                                ^^ source.liquidsoap
+>
+>  def f(x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>   ret = x?.foo(123)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+>   ret ?? 1
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  test.equals(f(()), 1)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^ source.liquidsoap
+>  test.equals(f({}), 1)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^ source.liquidsoap
+>  test.equals(f({foo=(fun (x) -> x)}), 123)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^^^^^^^^^^^^^ source.liquidsoap
+#                                       ^^^ source.liquidsoap constant.numeric.integer
+#                                          ^^ source.liquidsoap
+>  test.equals(f({foo=null()}), 1)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap constant.numeric.integer
+#                                ^^ source.liquidsoap
+>
+>  def f(x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>    [x, {foo = 123}]
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^^^ source.liquidsoap constant.numeric.integer
+#                  ^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  ignore(list.hd(f(()))?.foo)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ignore((f({foo = 345}):[{foo?:int}]))
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap constant.numeric.integer
+#                      ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  x = { }
+#^^^^^^^^^^ source.liquidsoap
+>  ignore(x.foo ?? 123)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^^^ source.liquidsoap constant.numeric.integer
+#                     ^^ source.liquidsoap
+>
+>  def f(x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>    ignore((x.add ?? 1))
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^^ source.liquidsoap
+>    if false then x else () end
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^ source.liquidsoap
+#             ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                 ^^^ source.liquidsoap
+#                    ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                        ^^^^ source.liquidsoap
+#                            ^^^ source.liquidsoap keyword.control.liquidsoap
+>    x
+#^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  x = f(())
+#^^^^^^^^^^^^ source.liquidsoap
+>  (x:{add?:int})
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  x = (():{foo?:int?})
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ignore(f(()))
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  def f(x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>    x.foo.gni.bla(1,2,3).blo
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^ source.liquidsoap
+#                      ^ source.liquidsoap constant.numeric.integer
+#                       ^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test.equals(f({ foo = { gni = { bla = (fun (_,_,_,~foo="gni") -> { blo = 123 })}}}), 123)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                            ^^^^^^^^^^^^^ source.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^^^^^^^^^^^^^ source.liquidsoap
+#                                                                           ^^^ source.liquidsoap constant.numeric.integer
+#                                                                              ^^^^^^^^^ source.liquidsoap
+#                                                                                       ^^^ source.liquidsoap constant.numeric.integer
+#                                                                                          ^^ source.liquidsoap
+>
+>  def f(x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>    x.foo?.gni.bla(1,2,3)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^ source.liquidsoap
+#                       ^ source.liquidsoap constant.numeric.integer
+#                        ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  test.equals(f({ foo = null() }), null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  # We want to make sure that:
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def f(x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>    x?.foo
+#^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  # is properly typed as: ('B.{foo? : 'A}) -> 'A?
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  test.equals(f({}), null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  x = ({foo = null()}:{foo: int?})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(f(x), null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  x = ({foo = null()}:{foo?:int?})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(f(x), null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  test.equals(f(true), null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(f({foo = 1}), null(1))
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap constant.numeric.integer
+#                        ^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+#                                  ^^^ source.liquidsoap
+>
+>  # We want to make sure that:
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def f(x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>    x?.foo(1)?.gni
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap constant.numeric.integer
+#            ^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  # is properly typed as: ('A.{foo? : (int) -> 'B.{gni? : 'C}}) -> 'C?
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # i.e. that { foo = (fun (_) -> { } ) } is a valid argument
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  test.equals(f({ foo = (fun (_) -> { } ) }), null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^ source.liquidsoap keyword.control.liquidsoap
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(f(112.{ foo = (fun (_) -> false ) }), null())
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^^^^^^^^ source.liquidsoap
+#                             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(f({ foo = (fun (_) -> { gni = 2 } ) }), null(2))
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^ source.liquidsoap keyword.control.liquidsoap
+#                            ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap constant.numeric.integer
+#                                             ^^^^^^^^^^^^^^ source.liquidsoap
+#                                                           ^ source.liquidsoap constant.numeric.integer
+#                                                            ^^^ source.liquidsoap
+>  test.equals(f(345.{ foo = (fun (_) -> "aabb".{ gni = 2 } ) }), null(2))
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^^^^^^^^ source.liquidsoap
+#                             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                ^^^^^^^^ source.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^^^^^ source.liquidsoap
+#                                                       ^ source.liquidsoap constant.numeric.integer
+#                                                        ^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                      ^ source.liquidsoap constant.numeric.integer
+#                                                                       ^^^ source.liquidsoap
+>
+>  # We want to make sure that:
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def f(x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>    x?.foo(1).gni ?? 1
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap constant.numeric.integer
+#            ^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  # is properly typed as: ('A.{foo? : (int) -> 'B.{gni? : int}}) -> int
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # i.e. that { foo = (fun (_) -> { } ) } is a valid argument
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  test.equals(f({}), 1)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^ source.liquidsoap
+>  test.equals(f(2), 1)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^ source.liquidsoap
+>  test.equals(f({ foo = (fun (_) -> { } ) }), 1)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^ source.liquidsoap keyword.control.liquidsoap
+#                            ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                              ^ source.liquidsoap constant.numeric.integer
+#                                               ^^ source.liquidsoap
+>  test.equals(f("aabb".{ foo = (fun (_) -> 123 ) }), 1)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^ source.liquidsoap
+#                                           ^^^ source.liquidsoap constant.numeric.integer
+#                                              ^^^^^^^ source.liquidsoap
+#                                                     ^ source.liquidsoap constant.numeric.integer
+#                                                      ^^ source.liquidsoap
+>  test.equals(f({ foo = (fun (_) -> { gni = 2 } ) }), 2)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^ source.liquidsoap keyword.control.liquidsoap
+#                            ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap constant.numeric.integer
+#                                             ^^^^^^^^^ source.liquidsoap
+#                                                      ^ source.liquidsoap constant.numeric.integer
+#                                                       ^^ source.liquidsoap
+>  test.equals(f(456.{ foo = (fun (_) -> true.{ gni = 2 } ) }), 2)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^^^^^^^^ source.liquidsoap
+#                             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                     ^ source.liquidsoap constant.numeric.integer
+#                                                      ^^^^^^^^^ source.liquidsoap
+#                                                               ^ source.liquidsoap constant.numeric.integer
+#                                                                ^^ source.liquidsoap
+>
+>  # Spread patterns:
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  x = { foo = 123, gni = "aabb" }
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^^ source.liquidsoap constant.numeric.integer
+#                 ^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^ source.liquidsoap
+>  let { foo, ...y } = x
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(foo, 123)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap constant.numeric.integer
+#                      ^^ source.liquidsoap
+>  test.equals(y.gni, "aabb")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>  test.equals(y, ())
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(y?.foo, null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  x = 1.{ foo = 123, gni = "aabb" }
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^^^^ source.liquidsoap
+#                ^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^ source.liquidsoap
+>  let { foo, ...y } = x
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(foo, 123)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap constant.numeric.integer
+#                      ^^ source.liquidsoap
+>  test.equals(y.gni, "aabb")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>  test.equals(y, 1)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^ source.liquidsoap
+>  test.equals(y?.foo, null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  x = 1.{ foo = 123, gni = "aabb" }
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^^^^ source.liquidsoap
+#                ^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^ source.liquidsoap
+>  let y.{ foo } = x
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(foo, 123)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap constant.numeric.integer
+#                      ^^ source.liquidsoap
+>  test.equals(y.gni, "aabb")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>  test.equals(y, 1)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^ source.liquidsoap
+>  test.equals(y?.foo, null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  x = {foo = 3.14}.{ foo = 123, gni = "aabb" }
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^^ source.liquidsoap constant.numeric.float
+#                 ^^^^^^^^^^ source.liquidsoap
+#                           ^^^ source.liquidsoap constant.numeric.integer
+#                              ^^^^^^^^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^ source.liquidsoap
+>  let { foo, ...y } = x
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(foo, 123)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap constant.numeric.integer
+#                      ^^ source.liquidsoap
+>  test.equals(y.gni, "aabb")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>  test.equals(y, ())
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(y?.foo, null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  x = { foo = 123, gni = "aabb" }
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^^ source.liquidsoap constant.numeric.integer
+#                 ^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^ source.liquidsoap
+>  y = { bla = 3.14, ...x }
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^^^ source.liquidsoap constant.numeric.float
+#                  ^^^^^^^^^ source.liquidsoap
+>  test.equals(y, { foo = 123, gni = "aabb", bla = 3.14 })
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^ source.liquidsoap constant.numeric.integer
+#                            ^^^^^^^^ source.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^^^^^^^ source.liquidsoap
+#                                                  ^^^^ source.liquidsoap constant.numeric.float
+#                                                      ^^^^ source.liquidsoap
+>
+>  x = 1.{ foo = 123, gni = "aabb" }
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^^^^ source.liquidsoap
+#                ^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^ source.liquidsoap
+>  y = { bla = 3.14, ...x }
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^^^ source.liquidsoap constant.numeric.float
+#                  ^^^^^^^^^ source.liquidsoap
+>  test.equals(y, 1.{ foo = 123, gni = "aabb", bla = 3.14 })
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^ source.liquidsoap
+#                           ^^^ source.liquidsoap constant.numeric.integer
+#                              ^^^^^^^^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^^^^^^ source.liquidsoap
+#                                                    ^^^^ source.liquidsoap constant.numeric.float
+#                                                        ^^^^ source.liquidsoap
+>
+>  # Make sure that a function that takes a record of the
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # type { foo?: int} can take a record of the type: {foo?: never}
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def f(x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>    (x?.foo ?? 1) + 2
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  x = {foo = 123}
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^ source.liquidsoap constant.numeric.integer
+#                ^^ source.liquidsoap
+>  let {foo = _, ...y} = x
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(f(y), 3)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^ source.liquidsoap
+>
+>  # Make sure that we infer optional methods correctly
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def f(x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>    ignore(x?.foo)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  def g(x) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^ source.liquidsoap
+>    f(x.{gni=123})
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^ source.liquidsoap constant.numeric.integer
+#                ^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  g({blo="bla"})
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

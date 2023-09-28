@@ -1,0 +1,38 @@
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  output.shoutcast(
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    %mp3,
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>    host="shoutcast.example.org",
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^ source.liquidsoap
+>    port=8000,
+#^^^^^^^^^ source.liquidsoap
+#         ^^^^ source.liquidsoap constant.numeric.integer
+#             ^^ source.liquidsoap
+>    password="changeme",
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+>    sine()
+#^^^^^^^^^^^ source.liquidsoap
+>  )
+#^^^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

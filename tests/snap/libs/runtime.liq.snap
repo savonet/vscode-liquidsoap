@@ -1,0 +1,516 @@
+># Returns information about the system and process' memory
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># usage. Requires `mem_usage` for a full report.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Liquidsoap
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def runtime.memory() =
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                  ^ source.liquidsoap
+#                   ^ source.liquidsoap
+#                    ^^ source.liquidsoap
+>  x = {
+#^^ source.liquidsoap
+#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap
+#      ^ source.liquidsoap
+>    process_managed_memory = runtime.gc.quick_stat().heap_words * runtime.sys.word_size / 8
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                          ^^ source.liquidsoap
+#                            ^ source.liquidsoap
+#                             ^^^^^^^ source.liquidsoap variable.liquidsoap
+#                                    ^ source.liquidsoap keyword.other.liquidsoap
+#                                     ^^ source.liquidsoap variable.method.liquidsoap
+#                                       ^ source.liquidsoap meta.function-call.liquidsoap
+#                                        ^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                                                  ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                   ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                    ^ source.liquidsoap keyword.other.liquidsoap
+#                                                     ^^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                                               ^ source.liquidsoap
+#                                                                ^ source.liquidsoap keyword.operator.arithmetic.liquidsoap
+#                                                                 ^ source.liquidsoap
+#                                                                  ^^^^^^^ source.liquidsoap variable.liquidsoap
+#                                                                         ^ source.liquidsoap keyword.other.liquidsoap
+#                                                                          ^^^ source.liquidsoap variable.method.liquidsoap
+#                                                                             ^ source.liquidsoap keyword.other.liquidsoap
+#                                                                              ^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                                                                       ^ source.liquidsoap
+#                                                                                        ^ source.liquidsoap keyword.operator.arithmetic.liquidsoap
+#                                                                                         ^ source.liquidsoap
+#                                                                                          ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
+>  }
+#^^ source.liquidsoap
+#  ^ source.liquidsoap
+>
+>%ifdef runtime.mem_usage
+#^^^^^^ source.liquidsoap keyword.other.liquidsoap
+#      ^ source.liquidsoap
+#       ^^^^^^^ source.liquidsoap variable.liquidsoap
+#              ^ source.liquidsoap keyword.other.liquidsoap
+#               ^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+>  info = runtime.mem_usage()
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^ source.liquidsoap
+#        ^ source.liquidsoap
+#         ^^^^^^^ source.liquidsoap variable.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap
+#                 ^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                          ^ source.liquidsoap meta.function-call.liquidsoap
+#                           ^ source.liquidsoap meta.function-call.liquidsoap
+>  x = x.{
+#^^ source.liquidsoap
+#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap
+#      ^ source.liquidsoap variable.liquidsoap
+#       ^^ source.liquidsoap
+>    total_virtual_memory = info.total_virtual_memory,
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                        ^^ source.liquidsoap
+#                          ^ source.liquidsoap
+#                           ^^^^ source.liquidsoap variable.liquidsoap
+#                               ^ source.liquidsoap keyword.other.liquidsoap
+#                                ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                                    ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+>    total_physical_memory = info.total_physical_memory,
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                         ^^ source.liquidsoap
+#                           ^ source.liquidsoap
+#                            ^^^^ source.liquidsoap variable.liquidsoap
+#                                ^ source.liquidsoap keyword.other.liquidsoap
+#                                 ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                                      ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+>    total_used_virtual_memory = info.total_used_virtual_memory,
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                             ^^ source.liquidsoap
+#                               ^ source.liquidsoap
+#                                ^^^^ source.liquidsoap variable.liquidsoap
+#                                    ^ source.liquidsoap keyword.other.liquidsoap
+#                                     ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                                              ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+>    total_used_physical_memory = info.total_used_physical_memory,
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                              ^^ source.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^^^^ source.liquidsoap variable.liquidsoap
+#                                     ^ source.liquidsoap keyword.other.liquidsoap
+#                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                                                ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+>    process_virtual_memory = info.process_virtual_memory,
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                          ^^ source.liquidsoap
+#                            ^ source.liquidsoap
+#                             ^^^^ source.liquidsoap variable.liquidsoap
+#                                 ^ source.liquidsoap keyword.other.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                                        ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+>    process_physical_memory = info.process_physical_memory
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                           ^^ source.liquidsoap
+#                             ^ source.liquidsoap
+#                              ^^^^ source.liquidsoap variable.liquidsoap
+#                                  ^ source.liquidsoap keyword.other.liquidsoap
+#                                   ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+>  }
+#^^ source.liquidsoap
+#  ^ source.liquidsoap
+>
+>  let x.pretty = {
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#              ^ source.liquidsoap
+#               ^^ source.liquidsoap
+#                 ^ source.liquidsoap
+>    process_managed_memory = runtime.mem_usage.prettify_bytes(x.process_managed_memory),
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                          ^^ source.liquidsoap
+#                            ^ source.liquidsoap
+#                             ^^^^^^^ source.liquidsoap variable.liquidsoap
+#                                    ^ source.liquidsoap keyword.other.liquidsoap
+#                                     ^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                              ^ source.liquidsoap meta.function-call.liquidsoap
+#                                               ^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                                                             ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                              ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                                                               ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap
+#                                                                ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.method.liquidsoap
+#                                                                                      ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                                       ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+>    total_virtual_memory = runtime.mem_usage.prettify_bytes(info.total_virtual_memory),
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                        ^^ source.liquidsoap
+#                          ^ source.liquidsoap
+#                           ^^^^^^^ source.liquidsoap variable.liquidsoap
+#                                  ^ source.liquidsoap keyword.other.liquidsoap
+#                                   ^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                            ^ source.liquidsoap meta.function-call.liquidsoap
+#                                             ^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                                                           ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                            ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                                                                ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap
+#                                                                 ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.method.liquidsoap
+#                                                                                     ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                                      ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+>    total_physical_memory = runtime.mem_usage.prettify_bytes(info.total_physical_memory),
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                         ^^ source.liquidsoap
+#                           ^ source.liquidsoap
+#                            ^^^^^^^ source.liquidsoap variable.liquidsoap
+#                                   ^ source.liquidsoap keyword.other.liquidsoap
+#                                    ^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                             ^ source.liquidsoap meta.function-call.liquidsoap
+#                                              ^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                                                            ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                             ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                                                                 ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap
+#                                                                  ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.method.liquidsoap
+#                                                                                       ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                                        ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+>    total_used_virtual_memory = runtime.mem_usage.prettify_bytes(info.total_used_virtual_memory),
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                             ^^ source.liquidsoap
+#                               ^ source.liquidsoap
+#                                ^^^^^^^ source.liquidsoap variable.liquidsoap
+#                                       ^ source.liquidsoap keyword.other.liquidsoap
+#                                        ^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                                 ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                  ^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                                                                ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                 ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                                                                     ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap
+#                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.method.liquidsoap
+#                                                                                               ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                                                ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+>    total_used_physical_memory = runtime.mem_usage.prettify_bytes(info.total_used_physical_memory),
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                              ^^ source.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^^^^^^^ source.liquidsoap variable.liquidsoap
+#                                        ^ source.liquidsoap keyword.other.liquidsoap
+#                                         ^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                                  ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                   ^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                                                                 ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                  ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                                                                      ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap
+#                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.method.liquidsoap
+#                                                                                                 ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                                                  ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+>    process_virtual_memory = runtime.mem_usage.prettify_bytes(info.process_virtual_memory),
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                          ^^ source.liquidsoap
+#                            ^ source.liquidsoap
+#                             ^^^^^^^ source.liquidsoap variable.liquidsoap
+#                                    ^ source.liquidsoap keyword.other.liquidsoap
+#                                     ^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                              ^ source.liquidsoap meta.function-call.liquidsoap
+#                                               ^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                                                             ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                              ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                                                                  ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap
+#                                                                   ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.method.liquidsoap
+#                                                                                         ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                                          ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+>    process_physical_memory = runtime.mem_usage.prettify_bytes(info.process_physical_memory)
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                           ^^ source.liquidsoap
+#                             ^ source.liquidsoap
+#                              ^^^^^^^ source.liquidsoap variable.liquidsoap
+#                                     ^ source.liquidsoap keyword.other.liquidsoap
+#                                      ^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                                               ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                ^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                                                              ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                               ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                                                                   ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap
+#                                                                    ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.method.liquidsoap
+#                                                                                           ^ source.liquidsoap meta.function-call.liquidsoap
+>  }
+#^^ source.liquidsoap
+#  ^ source.liquidsoap
+>%endif
+#^^^^^^ source.liquidsoap keyword.other.liquidsoap
+>
+>  x
+#^^ source.liquidsoap
+#  ^ source.liquidsoap variable.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>
+>let runtime.cpu = ()
+#^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#               ^ source.liquidsoap
+#                ^^^^^ source.liquidsoap
+>%ifdef process.time
+#^^^^^^ source.liquidsoap keyword.other.liquidsoap
+#      ^ source.liquidsoap
+#       ^^^^^^^ source.liquidsoap variable.liquidsoap
+#              ^ source.liquidsoap keyword.other.liquidsoap
+#               ^^^^ source.liquidsoap variable.method.liquidsoap
+># Create a function returning CPU usage (in `float` percent so
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># `0.2` means `20%`) since the last time it was called.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Liquidsoap
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def runtime.cpu.usage_getter() =
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                            ^ source.liquidsoap
+#                             ^ source.liquidsoap
+#                              ^^ source.liquidsoap
+>  t = ref(time())
+#^^ source.liquidsoap
+#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#         ^ source.liquidsoap meta.function-call.liquidsoap
+#          ^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#              ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#               ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap
+>  let {user, system} = process.time()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
+#     ^^ source.liquidsoap
+#       ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#           ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#            ^ source.liquidsoap
+#             ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                   ^ source.liquidsoap
+#                    ^^^ source.liquidsoap
+#                       ^^^^^^^ source.liquidsoap variable.liquidsoap
+#                              ^ source.liquidsoap meta.function-call.liquidsoap
+#                               ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                                   ^ source.liquidsoap meta.function-call.liquidsoap
+#                                    ^ source.liquidsoap meta.function-call.liquidsoap
+>  u = ref(user)
+#^^ source.liquidsoap
+#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#         ^ source.liquidsoap meta.function-call.liquidsoap
+#          ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#              ^ source.liquidsoap meta.function-call.liquidsoap
+>  s = ref(system)
+#^^ source.liquidsoap
+#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#         ^ source.liquidsoap meta.function-call.liquidsoap
+#          ^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap
+>  def f() =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#     ^ source.liquidsoap
+#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#       ^ source.liquidsoap
+#        ^ source.liquidsoap
+#         ^^ source.liquidsoap
+>    t' = time()
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^ source.liquidsoap
+#        ^ source.liquidsoap
+#         ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap
+#              ^ source.liquidsoap meta.function-call.liquidsoap
+>    delta = t' - t()
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#         ^^ source.liquidsoap
+#           ^ source.liquidsoap
+#            ^^ source.liquidsoap variable.liquidsoap
+#              ^ source.liquidsoap
+#               ^ source.liquidsoap keyword.operator.arithmetic.liquidsoap
+#                ^ source.liquidsoap
+#                 ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                  ^ source.liquidsoap meta.function-call.liquidsoap
+#                   ^ source.liquidsoap meta.function-call.liquidsoap
+>
+>    let {user, system} = process.time()
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
+#       ^^ source.liquidsoap
+#         ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#             ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#              ^ source.liquidsoap
+#               ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                     ^ source.liquidsoap
+#                      ^^^ source.liquidsoap
+#                         ^^^^^^^ source.liquidsoap variable.liquidsoap
+#                                ^ source.liquidsoap meta.function-call.liquidsoap
+#                                 ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                                     ^ source.liquidsoap meta.function-call.liquidsoap
+#                                      ^ source.liquidsoap meta.function-call.liquidsoap
+>    u' = user - u()
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^ source.liquidsoap
+#        ^ source.liquidsoap
+#         ^^^^ source.liquidsoap variable.liquidsoap
+#             ^ source.liquidsoap
+#              ^ source.liquidsoap keyword.operator.arithmetic.liquidsoap
+#               ^ source.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                 ^ source.liquidsoap meta.function-call.liquidsoap
+#                  ^ source.liquidsoap meta.function-call.liquidsoap
+>    s' = system - s()
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^ source.liquidsoap
+#        ^ source.liquidsoap
+#         ^^^^^^ source.liquidsoap variable.liquidsoap
+#               ^ source.liquidsoap
+#                ^ source.liquidsoap keyword.operator.arithmetic.liquidsoap
+#                 ^ source.liquidsoap
+#                  ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                   ^ source.liquidsoap meta.function-call.liquidsoap
+#                    ^ source.liquidsoap meta.function-call.liquidsoap
+>
+>    t := t'
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap variable.liquidsoap
+#     ^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.operator.set.liquidsoap
+#        ^ source.liquidsoap
+#         ^^ source.liquidsoap variable.liquidsoap
+>    u := user
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap variable.liquidsoap
+#     ^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.operator.set.liquidsoap
+#        ^ source.liquidsoap
+#         ^^^^ source.liquidsoap variable.liquidsoap
+>    s := system
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap variable.liquidsoap
+#     ^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.operator.set.liquidsoap
+#        ^ source.liquidsoap
+#         ^^^^^^ source.liquidsoap variable.liquidsoap
+>
+>    { user = u' / delta, system = s' / delta, total = (u'+s') / delta }
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^^ source.liquidsoap entity.name.method.liquidsoap
+#          ^^ source.liquidsoap
+#            ^ source.liquidsoap
+#             ^^ source.liquidsoap variable.liquidsoap
+#               ^ source.liquidsoap
+#                ^ source.liquidsoap keyword.operator.arithmetic.liquidsoap
+#                 ^ source.liquidsoap
+#                  ^^^^^ source.liquidsoap variable.liquidsoap
+#                       ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                        ^ source.liquidsoap
+#                         ^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                               ^^ source.liquidsoap
+#                                 ^ source.liquidsoap
+#                                  ^^ source.liquidsoap variable.liquidsoap
+#                                    ^ source.liquidsoap
+#                                     ^ source.liquidsoap keyword.operator.arithmetic.liquidsoap
+#                                      ^ source.liquidsoap
+#                                       ^^^^^ source.liquidsoap variable.liquidsoap
+#                                            ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                             ^ source.liquidsoap
+#                                              ^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                                                   ^^ source.liquidsoap
+#                                                     ^^ source.liquidsoap
+#                                                       ^^ source.liquidsoap variable.liquidsoap
+#                                                         ^ source.liquidsoap keyword.operator.arithmetic.liquidsoap
+#                                                          ^^ source.liquidsoap variable.liquidsoap
+#                                                            ^^ source.liquidsoap
+#                                                              ^ source.liquidsoap keyword.operator.arithmetic.liquidsoap
+#                                                               ^ source.liquidsoap
+#                                                                ^^^^^ source.liquidsoap variable.liquidsoap
+#                                                                     ^ source.liquidsoap
+#                                                                      ^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>
+>  f
+#^^ source.liquidsoap
+#  ^ source.liquidsoap variable.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>%endif
+#^^^^^^ source.liquidsoap keyword.other.liquidsoap
+>
+># Set the current time zone. This is
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># equivalent to setting the `TZ` environment
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># variable.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Time
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def time.zone.set(tz) =
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                 ^ source.liquidsoap
+#                  ^^ source.liquidsoap variable.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^ source.liquidsoap
+>  environment.set("TZ", tz)
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^ source.liquidsoap variable.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap
+#              ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                 ^ source.liquidsoap meta.function-call.liquidsoap
+#                  ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                   ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                       ^ source.liquidsoap meta.function-call.liquidsoap
+#                        ^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                          ^ source.liquidsoap meta.function-call.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>

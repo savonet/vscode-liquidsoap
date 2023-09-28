@@ -1,0 +1,130 @@
+>#!../../liquidsoap ../test.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def t(x,y) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^ source.liquidsoap
+>  if x != y then test.fail() end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^ source.liquidsoap
+#            ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                ^^^^^^^^^^^^^ source.liquidsoap
+#                             ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>first = ref(true)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>thread.run.recurrent({
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if first() then begin
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^ source.liquidsoap
+#             ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                 ^ source.liquidsoap
+#                  ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    first := false
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    1.
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap constant.numeric.integer
+#     ^^ source.liquidsoap
+>  end else begin
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+#          ^ source.liquidsoap
+#           ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    t(process.read("printf toto"), "toto")
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap
+>    p = process.run("exit 2")
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+>    t(p.status, "exit")
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^ source.liquidsoap
+>    t(p.status.code, 2)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^ source.liquidsoap
+>    p = process.run(timeout=0.5, "sleep 1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^^^ source.liquidsoap constant.numeric.float
+#                               ^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^ source.liquidsoap
+>    t(p.status, "timeout")
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^ source.liquidsoap
+>    t(process.quote.command(stdin="bla", stdout="blo", stderr="blo", "foo", args=["gni", 'gno"gna']), "'foo' 'gni' 'gno\"gna' <'bla' >'blo' 2>&1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^^^^^^^ source.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^^^^^^^^ source.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^^ source.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^^^^^^^ source.liquidsoap
+#                                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                       ^^ source.liquidsoap
+#                                                                                         ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                          ^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                                 ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                                  ^^^^ source.liquidsoap
+#                                                                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                       ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                 ^^ source.liquidsoap
+>
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>    (-1.)
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+#       ^^^ source.liquidsoap
+>  end end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>})
+#^^^ source.liquidsoap
+>
+>output.dummy(blank())
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

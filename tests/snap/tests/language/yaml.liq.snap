@@ -1,0 +1,137 @@
+>def f () =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^ source.liquidsoap
+>  j = json()
+#^^^^^^^^^^^^^ source.liquidsoap
+>  j.add("foo", 1)
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^ source.liquidsoap
+>  j.add("bla", "bar")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap
+>  j.add("baz", 3.14)
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.float
+#                   ^^ source.liquidsoap
+>  j.add("key_with_methods", "value".{method = 123})
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^^^^^^^^^ source.liquidsoap
+#                                              ^^^ source.liquidsoap constant.numeric.integer
+#                                                 ^^^ source.liquidsoap
+>  j.add("record", { a = 1, b = "ert"})
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap
+>  j.remove("foo")
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^ source.liquidsoap
+>  j = yaml.stringify(j)
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(j, 'record:
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.single.liquidsoap
+#                  ^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  a: 1
+#^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  b: ert
+#^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>key_with_methods: value
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>bla: bar
+#^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>baz: 3.14
+#^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>')
+#^ source.liquidsoap string.quoted.single.liquidsoap
+# ^^ source.liquidsoap
+>
+>  let yaml.parse (x : {
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    bla: string,
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    baz: float,
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>    key_with_methods: string,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    record: { a: float, b: string},
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  }) = j
+#^^^^^^^^^ source.liquidsoap
+>
+>  test.equals(x, {
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    record = {
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>      b = "ert",
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+>      a = 1.0
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^ source.liquidsoap constant.numeric.float
+>    },
+#^^^^^^^ source.liquidsoap
+>    key_with_methods = "value",
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+>    bla = "bar",
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+>    baz = 3.14
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^^ source.liquidsoap constant.numeric.float
+>  });
+#^^^^^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

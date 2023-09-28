@@ -1,0 +1,57 @@
+>last_source = sine()
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>last_source = metadata.map(insert_missing=true, fun (_) -> [("last","true")], last_source)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                   ^^^^^^^^^^ source.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^ source.liquidsoap
+#                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s = sequence([sine(duration=5.), blank(duration=5.), last_source])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap constant.numeric.integer
+#                             ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                ^ source.liquidsoap constant.numeric.integer
+#                                                 ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s = blank.eat(max_blank=1., s)
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^^^^^ source.liquidsoap
+>
+>s = source.on_metadata(s, fun (m) -> if m["last"] == "true" then test.pass() end)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^^^ source.liquidsoap keyword.control.liquidsoap
+#                             ^^^^^^^^ source.liquidsoap
+#                                     ^^ source.liquidsoap keyword.control.liquidsoap
+#                                       ^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^^^^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^ source.liquidsoap
+#                                                            ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                ^^^^^^^^^^^^^ source.liquidsoap
+#                                                                             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                ^^ source.liquidsoap
+>
+>clock.assign_new(sync="none",[s])
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^ source.liquidsoap
+>
+>output.dummy(fallible=true, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

@@ -1,0 +1,75 @@
+>log.level.set(3)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>
+>first = ref("")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap
+>def filter(r)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^ source.liquidsoap
+>  m = request.metadata(r)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if first() == "" then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap
+#                   ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    first := m["filename"]
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^ source.liquidsoap
+>    false
+#^^^^^^^^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    m["filename"] != first()
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = playlist(check_next=filter, mode="randomize", reload_mode="rounds", "playlist")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^^^^^^^^^^^^^ source.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^ source.liquidsoap
+#                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                  ^^ source.liquidsoap
+>s = test.check_non_repeating(nb_files=2, nb_rounds=10, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                      ^ source.liquidsoap constant.numeric.integer
+#                                       ^^^^^^^^^^^^ source.liquidsoap
+#                                                   ^^ source.liquidsoap constant.numeric.integer
+#                                                     ^^^^^ source.liquidsoap
+>clock.assign_new(sync="none",[s])
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^ source.liquidsoap
+>output.dummy(fallible=true,s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

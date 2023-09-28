@@ -1,0 +1,1016 @@
+># We test some ground values for json import/export.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def test_parse_error(name, f, msg) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  error_caught = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  try
+#^^^^^^ source.liquidsoap
+>    print(f ())
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  catch err: [error.json] do
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^^ source.liquidsoap keyword.control.liquidsoap
+>    if err.kind != "json" then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap
+#                          ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      print("parse error test #{name} failed: wrong error kind, got: #{err.kind}, expected: json")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                 ^^ source.liquidsoap
+>      test.fail()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    if err.message != msg then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      print("parse error test #{name} failed: wrong error message, got: #{err.message}, expected: #{msg}")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                         ^^ source.liquidsoap
+>      test.fail()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    error_caught := true
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if not !error_caught then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    print("parse error test #{name} failed: no error caught")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^ source.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  test.equals(json.stringify(()), '[]')
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                   ^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                      ^^ source.liquidsoap
+>  test.equals(json.stringify("aa'bb"), "\"aa'bb\"")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                          ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^ source.liquidsoap
+>  test.equals(json.stringify("a"), '"a"')
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                    ^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                        ^^ source.liquidsoap
+>  test.equals(json.stringify("©"), '"©"')
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                    ^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                        ^^ source.liquidsoap
+>  test.equals(json.stringify('"'), '"\\""')
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.single.liquidsoap
+#                              ^ source.liquidsoap string.quoted.single.liquidsoap
+#                               ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                ^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                     ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
+#                                       ^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                          ^^ source.liquidsoap
+>  test.equals(json.stringify('\\'), '"\\\\"')
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.single.liquidsoap
+#                              ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
+#                                ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                 ^^^ source.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
+#                                        ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                            ^^ source.liquidsoap
+>
+>  test.equals(json.stringify(json5=true, infinity), 'Infinity')
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+#                                  ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                     ^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                              ^^ source.liquidsoap
+>  test.equals(json.stringify(json5=true, (0.-infinity)), '-Infinity')
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+#                                  ^^^^^^^^ source.liquidsoap
+#                                          ^ source.liquidsoap constant.numeric.integer
+#                                           ^^^^^^^^^^^^^^ source.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                          ^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                    ^^ source.liquidsoap
+>  test.equals(json.stringify(json5=true,nan), 'NaN')
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+#                                  ^^^^^^^^^^^^ source.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                               ^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                   ^^ source.liquidsoap
+>
+>  let b = json()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^ source.liquidsoap
+>  b.add("b", 1)
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^ source.liquidsoap
+>  s = json.stringify({
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>     a = null({a=1}),
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^ source.liquidsoap
+>     b = null(b)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  })
+#^^^^^ source.liquidsoap
+>  test.equals(s, "{ \"a\": { \"a\": 1 }, \"b\": { \"b\": 1 } }")
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                         ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                  ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                              ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                       ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^ source.liquidsoap
+>
+>  data = "123"
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+>  let json.parse ( x : int ) = data
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(x, 123)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^^^ source.liquidsoap constant.numeric.integer
+#                    ^^ source.liquidsoap
+>
+>  data = '{
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.single.liquidsoap
+#          ^^ source.liquidsoap string.quoted.single.liquidsoap
+>    "foo": 34.24,
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    "gni gno": true,
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    "nested": {
+#^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>       "tuple": [123, 3.14, false],
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>       "list":  [44.0, 55, 66.12],
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>       "nullable_list": [12.33, 23, "aabb"],
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>       "object_as_list": {
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         "foo": 123,
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         "gni": 456.0,
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>         "gno": 3.14
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>       },
+#^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>       "arbitrary object key ✨": true
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>     },
+#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>     "extra": "ignored"
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  }'
+#^^^ source.liquidsoap string.quoted.single.liquidsoap
+#   ^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>  let json.parse ( x : {
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    foo : float,
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    "gni gno" as gni_gno : bool,
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    nested : {
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>      tuple : (_ * float),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      list : [float],
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      nullable_list : [int?],
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      object_as_list : [(string * float)] as json.object,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      "arbitrary object key ✨" as arbitrary_object_key : bool,
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      not_present : bool?
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    }
+#^^^^^^ source.liquidsoap
+>  }) = data
+#^^^^^^^^^^^^ source.liquidsoap
+>
+>  test.equals(x, {
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    foo = 34.24,
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^^^ source.liquidsoap constant.numeric.float
+#               ^^ source.liquidsoap
+>    gni_gno = true,
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    nested = {
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>      tuple = (null(), 3.14),
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^^^^ source.liquidsoap constant.numeric.float
+#                           ^^^ source.liquidsoap
+>      list = [44., 55., 66.12],
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^ source.liquidsoap constant.numeric.integer
+#                ^^^ source.liquidsoap
+#                   ^^ source.liquidsoap constant.numeric.integer
+#                     ^^^ source.liquidsoap
+#                        ^^^^^ source.liquidsoap constant.numeric.float
+#                             ^^^ source.liquidsoap
+>      nullable_list = [null(), 23, null()],
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^^ source.liquidsoap constant.numeric.integer
+#                                 ^^^^^^^^^^^ source.liquidsoap
+>      object_as_list = [("foo", 123.), ("gni", 456.0), ("gno", 3.14)],
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+#                                ^^^ source.liquidsoap constant.numeric.integer
+#                                   ^^^^^ source.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+#                                               ^^^^^ source.liquidsoap constant.numeric.float
+#                                                    ^^^^ source.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^^ source.liquidsoap
+#                                                               ^^^^ source.liquidsoap constant.numeric.float
+#                                                                   ^^^^ source.liquidsoap
+>      arbitrary_object_key = true,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      not_present = null()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    }
+#^^^^^^ source.liquidsoap
+>  })
+#^^^^^ source.liquidsoap
+>
+>  # Pattern extraction with json parsing
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  let json.parse {
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^ source.liquidsoap
+>    foo,
+#^^^^^^^^^ source.liquidsoap
+>    nested = {
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>      tuple = (t1, t2, t3),
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^^ source.liquidsoap
+>      nullable_list = [l1, ...tl]
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^^^^^^^^ source.liquidsoap
+>    }
+#^^^^^^ source.liquidsoap
+>  } = data
+#^^^^^^^^^^^ source.liquidsoap
+>  test.equals(foo, 34.24)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^^^ source.liquidsoap constant.numeric.float
+#                        ^^ source.liquidsoap
+>  test.equals(t1, 123)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^ source.liquidsoap
+#                  ^^^ source.liquidsoap constant.numeric.integer
+#                     ^^ source.liquidsoap
+>  test.equals(t2, 3.14)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^ source.liquidsoap
+#                  ^^^^ source.liquidsoap constant.numeric.float
+#                      ^^ source.liquidsoap
+>  test.equals(t3, false)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^^^^^^^^ source.liquidsoap
+>  test.equals(l1, null())
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^^^^^^^^^ source.liquidsoap
+>  test.equals(tl, [23, null()])
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^ source.liquidsoap constant.numeric.integer
+#                     ^^^^^^^^^^^ source.liquidsoap
+>
+>  let json.parse x = data
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ignore(x.foo + 1.0)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^^^ source.liquidsoap constant.numeric.float
+#                    ^^ source.liquidsoap
+>  let (x, y, _) = x.nested.tuple
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ignore(x + 1)
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^ source.liquidsoap
+>  ignore(y + 3.14)
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^^ source.liquidsoap constant.numeric.float
+#                 ^^ source.liquidsoap
+>
+>  def failed_array () =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    data = "[]"
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+>    let json.parse (val : { x : int }) = data
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    print(val.x)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test_parse_error(
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    "failed array parsing",
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+>    failed_array,
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    "Parsing error: json value cannot be parsed as type {x : int}"
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+>  )
+#^^^^ source.liquidsoap
+>
+>  def failed_runtime () =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    let json.parse x = data
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    ignore(x.foo + 1.0)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap constant.numeric.float
+#                      ^^ source.liquidsoap
+>    let (x, _, _) = x.nested.tuple
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    ignore(x ^ "foo")
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test_parse_error(
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    "failed runtime",
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap
+>    failed_runtime,
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    "Parsing error: json value cannot be parsed as type {nested: {tuple: (string,_,_), _}, _}"
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+>  )
+#^^^^ source.liquidsoap
+>
+>
+>  def nested_tuple () =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    let json.parse ( x : {
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      nested : {
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        tuple : (int * float * int * bool),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        list : [float],
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        nullable_list : [int?],
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        object_as_list : [(string * float)] as json.object,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        "arbitrary object key ✨" as arbitrary_object_key : bool,
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        not_present : bool?
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      }
+#^^^^^^^^ source.liquidsoap
+>    }) = data
+#^^^^^^^^^^^^^^ source.liquidsoap
+>    ignore(data)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test_parse_error(
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    "nested tuple",
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^ source.liquidsoap
+>    nested_tuple,
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    "Parsing error: json value cannot be parsed as type {nested: {tuple: (_,_,int,_), _}, _}"
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+>  )
+#^^^^ source.liquidsoap
+>
+>  def nested_list() =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    let json.parse ( x : {
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      nested : {
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        tuple : (int * float * bool),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        list : [int],
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        nullable_list : [int?],
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        object_as_list : [(string * float)] as json.object,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        "arbitrary object key ✨" as arbitrary_object_key : bool,
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        not_present : bool?
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      }
+#^^^^^^^^ source.liquidsoap
+>    }) = data
+#^^^^^^^^^^^^^^ source.liquidsoap
+>    ignore(data)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test_parse_error(
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    "nested list",
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^ source.liquidsoap
+>    nested_list,
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    "Parsing error: json value cannot be parsed as type {nested: {list: [int], _}, _}"
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+>  )
+#^^^^ source.liquidsoap
+>
+>  def nested_object() =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    let json.parse ( x : {
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      nested : {
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        tuple : (int * float * bool),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        list : [float],
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        nullable_list : [int],
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        object_as_list : [(string * float)] as json.object,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        "arbitrary object key ✨" as arbitrary_object_key : bool,
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        not_present : bool?
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      }
+#^^^^^^^^ source.liquidsoap
+>    }) = data
+#^^^^^^^^^^^^^^ source.liquidsoap
+>    ignore(data)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test_parse_error(
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    "nested object",
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^ source.liquidsoap
+>    nested_object,
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    'Parsing error: json value cannot be parsed as type {nested: {nullable_list: [int], _}, _}'
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.single.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                                              ^ source.liquidsoap string.quoted.single.liquidsoap
+>  )
+#^^^^ source.liquidsoap
+>
+>  data = '{"aabbcc": 34, "ddeerr": 54 }'
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.single.liquidsoap
+#          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.single.liquidsoap
+>  let json.parse (x : [(string * int)] as json.object) = data
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(list.assoc("aabbcc", x), 34)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^^^ source.liquidsoap
+#                                       ^^ source.liquidsoap constant.numeric.integer
+#                                         ^^ source.liquidsoap
+>  test.equals(list.assoc("ddeerr", x), 54)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^^^ source.liquidsoap
+#                                       ^^ source.liquidsoap constant.numeric.integer
+#                                         ^^ source.liquidsoap
+>
+>  data = '{ "foo": 123 }'
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.single.liquidsoap
+#          ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                        ^ source.liquidsoap string.quoted.single.liquidsoap
+>  let json.parse ( x : {
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    foo : string
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  }?) = data
+#^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(x, null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  data = '[ "gni", 123 ]'
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.single.liquidsoap
+#          ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                        ^ source.liquidsoap string.quoted.single.liquidsoap
+>  let json.parse ( x : [int]? ) = data
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(x, null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  let json.parse ( x : (string * int * bool)? ) = data
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(x, null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  data = '[ "gni", 123, "gno" ]'
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.single.liquidsoap
+#          ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                               ^ source.liquidsoap string.quoted.single.liquidsoap
+>  let json.parse ( x : (string * int) ) = data
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(x, ("gni",123))
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^^ source.liquidsoap constant.numeric.integer
+#                           ^^^ source.liquidsoap
+>
+>  data = '{
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.single.liquidsoap
+#          ^^ source.liquidsoap string.quoted.single.liquidsoap
+>    "foo": {
+#^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      "gni": {
+#^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        "bla": 123
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      }
+#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    }
+#^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  }'
+#^^^ source.liquidsoap string.quoted.single.liquidsoap
+#   ^ source.liquidsoap string.quoted.single.liquidsoap
+>  let json.parse x = data
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(x?.foo.gni?.bla, null(123))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^^^ source.liquidsoap constant.numeric.integer
+#                                       ^^^ source.liquidsoap
+>
+>  data = '{
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.single.liquidsoap
+#          ^^ source.liquidsoap string.quoted.single.liquidsoap
+>    "foo": {}
+#^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  }'
+#^^^ source.liquidsoap string.quoted.single.liquidsoap
+#   ^ source.liquidsoap string.quoted.single.liquidsoap
+>  let json.parse x = data
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(x?.foo.gni?.bla, null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  data = '{}'
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.single.liquidsoap
+#          ^^ source.liquidsoap string.quoted.single.liquidsoap
+#            ^ source.liquidsoap string.quoted.single.liquidsoap
+>  let json.parse x = data
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(x?.foo?.gni?.bla, null())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  # Test escaping of invalid utf8 strings.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  s = "S\x00e\x00k\x00e\x00r\x00n\x00u\x00p\x00 \x00K\x00i\x00n\x00g\x00e\x00r\x00p\x00\xE2\x00"
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                              ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                             ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                       ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                            ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                      ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                           ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                              ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                   ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                         ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                           ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+>  test.equals(json.stringify(s), "\"S\\u0000e\\u0000k\\u0000e\\u0000r\\u0000n\\u0000u\\u0000p\\u0000 \\u0000K\\u0000i\\u0000n\\u0000g\\u0000e\\u0000r\\u0000p\\u0000\\uFFFD\"")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                                                               ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                                                                      ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                                           ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                                              ^^ source.liquidsoap
+>
+>  j = json()
+#^^^^^^^^^^^^^ source.liquidsoap
+>  j.add("foo", 1)
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^ source.liquidsoap
+>  j.add("bla", "bar")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap
+>  j.add("baz", 3.14)
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.float
+#                   ^^ source.liquidsoap
+>  j.add("key_with_methods", "value".{method = 123})
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^^^^^^^^^ source.liquidsoap
+#                                              ^^^ source.liquidsoap constant.numeric.integer
+#                                                 ^^^ source.liquidsoap
+>  j.add("record", { a = 1, b = "ert"})
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap
+>  j.remove("foo")
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^ source.liquidsoap
+>  j = json.stringify(j)
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(j, '{
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.single.liquidsoap
+#                  ^^ source.liquidsoap string.quoted.single.liquidsoap
+>  "record": { "a": 1, "b": "ert" },
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  "key_with_methods": "value",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  "bla": "bar",
+#^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  "baz": 3.14
+#^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>}')
+#^ source.liquidsoap string.quoted.single.liquidsoap
+# ^ source.liquidsoap string.quoted.single.liquidsoap
+#  ^^ source.liquidsoap
+>
+>  e = ref(null())
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  def f(data)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^ source.liquidsoap
+>    try
+#^^^^^^^^ source.liquidsoap
+>      d = json.stringify(data)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      ignore(d)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>    catch err do
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^ source.liquidsoap keyword.control.liquidsoap
+>      e := err
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  f(infinity)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>  if not null.defined(!e) then test.fail() end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                              ^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

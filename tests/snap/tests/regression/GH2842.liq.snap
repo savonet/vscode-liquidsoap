@@ -1,0 +1,89 @@
+>log.level := 5
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  was_called = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  filename = file.temp("bla", "blo")
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^ source.liquidsoap
+>  on_cleanup({file.remove(filename)})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  def filename()
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^ source.liquidsoap
+>    if was_called() then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      test.fail()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    was_called := true
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    "bla"
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  output.file(
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>    fallible=true,
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    on_stop=test.pass,
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    %ffmpeg(format="mp3",
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^ source.liquidsoap
+>      %audio(codec="libmp3lame", samplerate=48000, b="320k")
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^^^^^^^^ source.liquidsoap
+#                                            ^^^^^ source.liquidsoap constant.numeric.integer
+#                                                 ^^^^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^ source.liquidsoap
+>    ),
+#^^^^^^^ source.liquidsoap
+>    filename,
+#^^^^^^^^^^^^^^ source.liquidsoap
+>    once(sine(duration=1.,480.))
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap constant.numeric.integer
+#                        ^^ source.liquidsoap
+#                          ^^^ source.liquidsoap constant.numeric.integer
+#                             ^^^^ source.liquidsoap
+>  )
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

@@ -1,0 +1,21 @@
+>enable_replaygain_metadata()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s = single("../media/@wav[stereo].wav")
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>
+>s = replaygain(s)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s = source.on_track(s, fun (_) -> test.pass())
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^^^ source.liquidsoap keyword.control.liquidsoap
+#                          ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output.dummy(fallible=true, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

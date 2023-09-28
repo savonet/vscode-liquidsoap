@@ -1,0 +1,74 @@
+>s1 = source.fail()
+#^ source.liquidsoap
+# ^ source.liquidsoap constant.numeric.integer
+#  ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>s2 = blank(duration=1.)
+#^ source.liquidsoap
+# ^ source.liquidsoap constant.numeric.integer
+#  ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^^ source.liquidsoap
+>
+>s2.on_track(
+#^ source.liquidsoap
+# ^ source.liquidsoap constant.numeric.integer
+#  ^^^^^^^^^^^ source.liquidsoap
+>       fun(_)-> begin test.pass(); shutdown() end
+#^^^^^^^ source.liquidsoap
+#       ^^^ source.liquidsoap keyword.control.liquidsoap
+#          ^^^^^^ source.liquidsoap
+#                ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#                     ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                              ^^^ source.liquidsoap keyword.control.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+>r = ref(0)
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^ source.liquidsoap
+>d = source.dynamic({ if !r==1 then s1
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap constant.numeric.integer
+#                             ^ source.liquidsoap
+#                              ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                  ^^ source.liquidsoap
+#                                    ^ source.liquidsoap constant.numeric.integer
+>                     elsif !r==2 then s2
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#                          ^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap constant.numeric.integer
+#                                ^ source.liquidsoap
+#                                 ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                     ^^ source.liquidsoap
+#                                       ^ source.liquidsoap constant.numeric.integer
+>                     else null() end })
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^^^^^^^ source.liquidsoap
+#                                 ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                    ^^^^ source.liquidsoap
+>
+>output.dummy(mksafe(d))
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>thread.run(delay=2., {r:=1})
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^^ source.liquidsoap
+>thread.run(delay=3., {r:=2})
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^^ source.liquidsoap
+>thread.run(delay=5., {test.fail(); shutdown()})
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

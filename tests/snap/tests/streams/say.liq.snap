@@ -1,0 +1,64 @@
+>s =
+#^^^^ source.liquidsoap
+>if file.which(null.get(settings.protocol.gtts.path())) == null() and file.which(null.get(settings.protocol.text2wave.path())) == null() then
+#^^ source.liquidsoap keyword.control.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                 ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                               ^ source.liquidsoap constant.numeric.integer
+#                                                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                                                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>  print("Could not test gtts")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+>  chop(every=1.,sine())
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^^^^^^^^^ source.liquidsoap
+>else
+#^^^^ source.liquidsoap keyword.control.liquidsoap
+>  single("say:Hello, world!")
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>n = ref(0)
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^ source.liquidsoap
+>def f(_)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^ source.liquidsoap
+>  if n() < 1 then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap constant.numeric.integer
+#            ^ source.liquidsoap
+#             ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    n := n() + 1
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.pass(); shutdown()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>s.on_track(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output.dummy(s)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>

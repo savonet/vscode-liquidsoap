@@ -1,0 +1,257 @@
+>s = sine()
+#^^^^^^^^^^^ source.liquidsoap
+>
+>s = mksafe(s)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>
+>tmp_dir = file.temp_dir("tmp")
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+>on_cleanup({file.rmdir(tmp_dir)})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>main_tags = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>aac_flags = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>mp4_flags = ref(false)
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap constant.numeric.integer
+#    ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>aac_insert_flags = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def on_file_change(~state, p) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  fname = path.basename(p)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if state == "created" or state == "updated" then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^ source.liquidsoap keyword.operator.liquidsoap
+#                          ^^^^^^^^^^ source.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap
+#                                              ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    if fname == "main.m3u8" and
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap
+#                            ^^^ source.liquidsoap keyword.operator.liquidsoap
+>       string.contains(substring="X-CUSTOM", file.contents(p)) then
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                               ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      main_tags := true
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>    if fname == "aac.m3u8" then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap
+#                           ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      contents = file.contents(p)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>      if string.contains(substring="X-CUSTOM", contents) then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^^^^^^ source.liquidsoap
+#                                                         ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        aac_flags := true
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>      if string.contains(substring="X-CUSTOM-AAC-INSERT", contents) then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^^^^^^^^^^^ source.liquidsoap
+#                                                                    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        aac_insert_flags := true
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>    if fname == "mp4.m3u8" then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap
+#                           ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      contents = file.contents(p)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>      if string.contains(substring="X-CUSTOM", contents) then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^^^^^^ source.liquidsoap
+#                                                         ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        mp4_flags := true
+#^^^^^^^^^^ source.liquidsoap
+#          ^^ source.liquidsoap constant.numeric.integer
+#            ^^^^^^^^^^^^^^ source.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if main_tags() and aac_flags() and
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^ source.liquidsoap
+#                 ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                    ^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^^^ source.liquidsoap keyword.operator.liquidsoap
+>     mp4_flags() and aac_insert_flags() then
+#^^^^^^^ source.liquidsoap
+#       ^^ source.liquidsoap constant.numeric.integer
+#         ^^^^^^^^ source.liquidsoap
+#                 ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                    ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>o = output.file.hls(
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  playlist="main.m3u8",
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^ source.liquidsoap
+>  extra_tags=["X-CUSTOM \n"],
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^ source.liquidsoap
+>  on_file_change=on_file_change,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  tmp_dir,
+#^^^^^^^^^^^ source.liquidsoap
+>  [
+#^^^^ source.liquidsoap
+>   ("aac", %ffmpeg(format="adts",%audio(codec="aac")).{extra_tags=["X-CUSTOM"]}),
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^^^^^^^^ source.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                             ^^^^^ source.liquidsoap
+>   ("mp4", %ffmpeg(format="mp4",frag_duration=10,movflags="+dash+skip_sidx+skip_trailer+frag_custom",%audio(codec="aac")).{extra_tags=["X-CUSTOM"]})
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^^^^^^^^^^ source.liquidsoap
+#                                              ^^ source.liquidsoap constant.numeric.integer
+#                                                ^^^^^^^^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                    ^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                       ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                        ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                 ^^^^ source.liquidsoap
+>  ],
+#^^^^^ source.liquidsoap
+>  s
+#^^^^ source.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+>thread.run(delay=2., {list.hd(o.streams()).insert_tag("X-CUSTOM-AAC-INSERT")})
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                           ^^^^ source.liquidsoap
+>
+>
+>clock.assign_new(sync="none",[s])
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^ source.liquidsoap
+>

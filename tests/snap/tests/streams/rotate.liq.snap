@@ -1,0 +1,228 @@
+>jingles = mksafe(playlist(id="jingles", mode="normal", "jingles"))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^^ source.liquidsoap
+>music   = mksafe(playlist(id="music", mode="normal", "playlist"))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^^^^^ source.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^^ source.liquidsoap
+>music2  = mksafe(playlist(id="music2", mode="normal", "playlist"))
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap constant.numeric.integer
+#      ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^^ source.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^^ source.liquidsoap
+>
+>rounds = 10
+#^^^^^^^^^ source.liquidsoap
+#         ^^ source.liquidsoap constant.numeric.integer
+>round_len = 8
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+>played = ref([])
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>njingles = ref(0)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^ source.liquidsoap
+>nmusic = ref(0)
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^ source.liquidsoap
+>nmusic2 = ref(0)
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>
+>def ot(label)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^ source.liquidsoap
+>  played := [label, ...!played]
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  if label == "music" then ref.incr(nmusic) end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap
+#                      ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                          ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                            ^^^ source.liquidsoap keyword.control.liquidsoap
+>  if label == "music2" then ref.incr(nmusic2) end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap
+#                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                           ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^ source.liquidsoap constant.numeric.integer
+#                                            ^^ source.liquidsoap
+#                                              ^^^ source.liquidsoap keyword.control.liquidsoap
+>  if label == "jingles" then ref.incr(njingles) end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                            ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  print("\n**** track: #{label}\n")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^ source.liquidsoap
+>
+>  if list.length(!played) == round_len * rounds then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    print("PLAYED: #{list.rev(!played)}\n")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^ source.liquidsoap
+>    if !njingles == rounds and !nmusic == 3 * rounds and !nmusic2 == 4 * rounds then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                              ^^^^^^^^^^^^ source.liquidsoap
+#                                          ^ source.liquidsoap constant.numeric.integer
+#                                           ^^^^^^^^^^ source.liquidsoap
+#                                                     ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                                                        ^^^^^^^^ source.liquidsoap
+#                                                                ^ source.liquidsoap constant.numeric.integer
+#                                                                 ^^^^ source.liquidsoap
+#                                                                     ^ source.liquidsoap constant.numeric.integer
+#                                                                      ^^^^^^^^^^ source.liquidsoap
+#                                                                                ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      test.pass()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      print("jingles: #{!njingles} / music : #{!nmusic} / music2: #{!nmusic2}")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                              ^^ source.liquidsoap
+>      test.fail()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    shutdown()
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>jingles.on_track(fun (_) -> ot("jingles"))
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^^^ source.liquidsoap keyword.control.liquidsoap
+#                    ^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^ source.liquidsoap
+>music.on_track(fun (_) -> ot("music"))
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^^^ source.liquidsoap keyword.control.liquidsoap
+#                  ^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap
+>music2.on_track(fun (_) -> ot("music2"))
+#^^^^^ source.liquidsoap
+#     ^ source.liquidsoap constant.numeric.integer
+#      ^^^^^^^^^^ source.liquidsoap
+#                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                   ^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^^ source.liquidsoap
+>
+>radio = rotate(id="rotate", weights=[3,1], [music,jingles])
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap constant.numeric.integer
+#                                      ^ source.liquidsoap
+#                                       ^ source.liquidsoap constant.numeric.integer
+#                                        ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>radio = rotate(id="rotate2", weights=[1,1], [radio, music2])
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^^^^^^^^^ source.liquidsoap
+#                                      ^ source.liquidsoap constant.numeric.integer
+#                                       ^ source.liquidsoap
+#                                        ^ source.liquidsoap constant.numeric.integer
+#                                         ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                         ^ source.liquidsoap constant.numeric.integer
+#                                                          ^^^ source.liquidsoap
+>clock.assign_new(sync="none",[radio])
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^^ source.liquidsoap
+>output.dummy(fallible=true, radio)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

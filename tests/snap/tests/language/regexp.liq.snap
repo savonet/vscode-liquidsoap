@@ -1,0 +1,231 @@
+>def t(x,y) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^ source.liquidsoap
+>  if x != y then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^ source.liquidsoap
+#            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    print("#{x} != #{y}!")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^ source.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  # Test basic syntax
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  ignore(r/bla/igsm)
+#^^^^^^^^^ source.liquidsoap
+#         ^^ source.liquidsoap string.regexp.liquidsoap
+#           ^^^ source.liquidsoap string.regexp.liquidsoap
+#              ^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                   ^^ source.liquidsoap
+>  ignore(r/gni/)
+#^^^^^^^^^ source.liquidsoap
+#         ^^ source.liquidsoap string.regexp.liquidsoap
+#           ^^^ source.liquidsoap string.regexp.liquidsoap
+#              ^ source.liquidsoap string.regexp.liquidsoap
+#               ^^ source.liquidsoap
+>  ignore(r/bla\foo\/gni/)
+#^^^^^^^^^ source.liquidsoap
+#         ^^ source.liquidsoap string.regexp.liquidsoap
+#           ^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                  ^^ source.liquidsoap string.regexp.liquidsoap constant.character.escape.liquidsoap
+#                    ^^^ source.liquidsoap string.regexp.liquidsoap
+#                       ^ source.liquidsoap string.regexp.liquidsoap
+#                        ^^ source.liquidsoap
+>
+>  # Test equality
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  t(r/bla/igsm, r/bla/mgis)
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap string.regexp.liquidsoap
+#      ^^^ source.liquidsoap string.regexp.liquidsoap
+#         ^^^^^ source.liquidsoap string.regexp.liquidsoap
+#              ^^ source.liquidsoap
+#                ^^ source.liquidsoap string.regexp.liquidsoap
+#                  ^^^ source.liquidsoap string.regexp.liquidsoap
+#                     ^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                          ^^ source.liquidsoap
+>
+>  # Test test
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  t(r/^foo[\d]+bar$/.test("foo1234bar"), true)
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap string.regexp.liquidsoap
+#      ^^^^^^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                   ^ source.liquidsoap string.regexp.liquidsoap
+#                    ^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^^^^^^^^ source.liquidsoap
+>  t(r/^foo[\d]+BaR$/i.test("foo1234bar"), true)
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap string.regexp.liquidsoap
+#      ^^^^^^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                   ^^ source.liquidsoap string.regexp.liquidsoap
+#                     ^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^^^^^^^ source.liquidsoap
+>  t(r/^gni/.test("bla\ngni"), false)
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap string.regexp.liquidsoap
+#      ^^^^ source.liquidsoap string.regexp.liquidsoap
+#          ^ source.liquidsoap string.regexp.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                       ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^^^^^^^^ source.liquidsoap
+>  t(r/bla$/.test("bla\ngni"), false)
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap string.regexp.liquidsoap
+#      ^^^^ source.liquidsoap string.regexp.liquidsoap
+#          ^ source.liquidsoap string.regexp.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                       ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^^^^^^^^ source.liquidsoap
+>  t(r/^gni/m.test("bla\ngni"), true)
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap string.regexp.liquidsoap
+#      ^^^^ source.liquidsoap string.regexp.liquidsoap
+#          ^^ source.liquidsoap string.regexp.liquidsoap
+#            ^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^ source.liquidsoap
+>  t(r/bla$/m.test("bla\ngni"), true)
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap string.regexp.liquidsoap
+#      ^^^^ source.liquidsoap string.regexp.liquidsoap
+#          ^^ source.liquidsoap string.regexp.liquidsoap
+#            ^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^ source.liquidsoap
+>  t(r/./.test("\n"), false)
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap string.regexp.liquidsoap
+#      ^ source.liquidsoap string.regexp.liquidsoap
+#       ^ source.liquidsoap string.regexp.liquidsoap
+#        ^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^^^^^^^^ source.liquidsoap
+>  t(r/./s.test("\n"), true)
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap string.regexp.liquidsoap
+#      ^ source.liquidsoap string.regexp.liquidsoap
+#       ^^ source.liquidsoap string.regexp.liquidsoap
+#         ^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^ source.liquidsoap
+>
+>  # Test replace
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  t(r/gni/.replace(fun (_) -> "gno", "blagniblagnibla"), "blagnoblagnibla")
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap string.regexp.liquidsoap
+#      ^^^ source.liquidsoap string.regexp.liquidsoap
+#         ^ source.liquidsoap string.regexp.liquidsoap
+#          ^^^^^^^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap keyword.control.liquidsoap
+#                      ^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^ source.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^ source.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^ source.liquidsoap
+>  t(r/gni/g.replace(fun (_) -> "gno", "blagniblagnibla"), "blagnoblagnobla")
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap string.regexp.liquidsoap
+#      ^^^ source.liquidsoap string.regexp.liquidsoap
+#         ^^ source.liquidsoap string.regexp.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap
+#                    ^^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                           ^^ source.liquidsoap
+>
+>
+>  # Test string escape.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  x = r/^\/foo$/g
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap string.regexp.liquidsoap
+#        ^ source.liquidsoap string.regexp.liquidsoap
+#         ^^ source.liquidsoap string.regexp.liquidsoap constant.character.escape.liquidsoap
+#           ^^^^ source.liquidsoap string.regexp.liquidsoap
+#               ^^ source.liquidsoap string.regexp.liquidsoap
+>  t("#{x}", "r/^\\/foo$/g")
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                  ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

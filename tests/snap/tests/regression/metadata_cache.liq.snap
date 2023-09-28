@@ -1,0 +1,76 @@
+>s = sine()
+#^^^^^^^^^^^ source.liquidsoap
+>
+>s = insert_metadata(s)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>thread.run(every=1.,{
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^ source.liquidsoap
+>  begin
+#^^ source.liquidsoap
+#  ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    print("Inserting metadata")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+>    s.insert_metadata(new_track=true, [("foo","bla")])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>})
+#^^^ source.liquidsoap
+>
+>s = compress.multiband(s, [
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  {frequency=200., attack=10., release=30., ratio=2., threshold=-4., gain=0.},
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^ source.liquidsoap constant.numeric.integer
+#                ^^^^^^^^^^ source.liquidsoap
+#                          ^^ source.liquidsoap constant.numeric.integer
+#                            ^^^^^^^^^^^ source.liquidsoap
+#                                       ^^ source.liquidsoap constant.numeric.integer
+#                                         ^^^^^^^^^ source.liquidsoap
+#                                                  ^ source.liquidsoap constant.numeric.integer
+#                                                   ^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                 ^ source.liquidsoap constant.numeric.integer
+#                                                                  ^^^^^^^^ source.liquidsoap
+#                                                                          ^ source.liquidsoap constant.numeric.integer
+#                                                                           ^^^^ source.liquidsoap
+>  {frequency=20000., attack=10., release=40., ratio=2., threshold=-2., gain=-2.}
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^^^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^ source.liquidsoap
+#                            ^^ source.liquidsoap constant.numeric.integer
+#                              ^^^^^^^^^^^ source.liquidsoap
+#                                         ^^ source.liquidsoap constant.numeric.integer
+#                                           ^^^^^^^^^ source.liquidsoap
+#                                                    ^ source.liquidsoap constant.numeric.integer
+#                                                     ^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                   ^ source.liquidsoap constant.numeric.integer
+#                                                                    ^^^^^^^^^ source.liquidsoap
+#                                                                             ^ source.liquidsoap constant.numeric.integer
+#                                                                              ^^^ source.liquidsoap
+>])
+#^^^ source.liquidsoap
+>
+>s.on_metadata(fun (_) -> test.pass())
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^^ source.liquidsoap keyword.control.liquidsoap
+#                 ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output.dummy(fallible=true, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

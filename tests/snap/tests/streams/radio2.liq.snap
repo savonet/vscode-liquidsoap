@@ -1,0 +1,69 @@
+># Basic radio test
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>day     = playlist("playlist")
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+>night   = playlist("playlist")
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+>jingles = playlist("playlist")
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+>
+># Day / night switch
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>radio = switch([({8h-20h}, day), ({20h-8h}, night)])
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+#                     ^^ source.liquidsoap constant.numeric.integer
+#                       ^^^^^^^^^^^^ source.liquidsoap
+#                                   ^^ source.liquidsoap constant.numeric.integer
+#                                     ^^ source.liquidsoap
+#                                       ^ source.liquidsoap constant.numeric.integer
+#                                        ^^^^^^^^^^^^^ source.liquidsoap
+># Crossfade
+#^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>radio = crossfade(fade_out=3., fade_in=3., duration=5., radio)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap constant.numeric.integer
+#                            ^^^^^^^^^^^ source.liquidsoap
+#                                       ^ source.liquidsoap constant.numeric.integer
+#                                        ^^^^^^^^^^^^ source.liquidsoap
+#                                                    ^ source.liquidsoap constant.numeric.integer
+#                                                     ^^^^^^^^^^ source.liquidsoap
+># Add jingles
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>radio = random(weights=[1, 4], [jingles, radio])
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^ source.liquidsoap
+#                           ^ source.liquidsoap constant.numeric.integer
+#                            ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output.dummy(fallible=true, radio)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def on_done () =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^ source.liquidsoap
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>thread.run(delay=10., on_done)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^^ source.liquidsoap constant.numeric.integer
+#                   ^^^^^^^^^^^^ source.liquidsoap
+>

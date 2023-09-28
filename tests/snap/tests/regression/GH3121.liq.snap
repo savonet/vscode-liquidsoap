@@ -1,0 +1,69 @@
+>s = single("annotate:liq_cue_in=3.,liq_cue_out=15.:../media/@wav[stereo].wav")
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                             ^^ source.liquidsoap
+>
+>track_count = ref(0)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+>
+>def on_track(_) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^ source.liquidsoap
+>  track_count := track_count() + 1
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+>  if track_count() > 3 then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^ source.liquidsoap
+#                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    shutdown()
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = source.on_track(s, on_track)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s = amplify(id="amp", 1.0, s)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap
+#                      ^^^ source.liquidsoap constant.numeric.float
+#                         ^^^^^ source.liquidsoap
+>
+>s = bpm(s)
+#^^^^^^^^^^^ source.liquidsoap
+>
+>s = cue_cut(s)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s = accelerate(ratio=0.8, s)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^ source.liquidsoap constant.numeric.float
+#                        ^^^^^ source.liquidsoap
+>
+>s = crossfade(smart=true,s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>clock.assign_new(sync="none",[s])
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^ source.liquidsoap
+>
+>output.dummy(fallible=true,s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

@@ -1,0 +1,48 @@
+># Type parameters below are shared between pcm_s16 source and the decoded
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># source. We want to make sure that this works at runtime.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  s = blank()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  s = source.on_track(s, fun (_) -> test.pass())
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^ source.liquidsoap keyword.control.liquidsoap
+#                            ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  s = audio.decode.pcm_s16(s)
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^^ source.liquidsoap constant.numeric.integer
+#                          ^^^^ source.liquidsoap
+>
+>  output.file(
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>    %ffmpeg(
+#^^^^^^^^^^^^^ source.liquidsoap
+>      %audio(codec="aac")
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^ source.liquidsoap
+>    ),
+#^^^^^^^ source.liquidsoap
+>    "unified-pcm-types.aac",
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>    s
+#^^^^^^ source.liquidsoap
+>  )
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

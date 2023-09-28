@@ -1,0 +1,42 @@
+>s = blank(duration=1.)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^^ source.liquidsoap
+>
+>s.on_track(
+#^^^^^^^^^^^^ source.liquidsoap
+>     fun(_)-> begin test.pass(); shutdown() end
+#^^^^^ source.liquidsoap
+#     ^^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^ source.liquidsoap
+#              ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#                   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                            ^^^ source.liquidsoap keyword.control.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+>r = ref(false)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>d = source.dynamic({ if !r then s else null() end })
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^^^ source.liquidsoap
+#                           ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                               ^^^ source.liquidsoap
+#                                  ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                      ^^^^^^^^ source.liquidsoap
+#                                              ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                 ^^^^ source.liquidsoap
+>
+>output.dummy(mksafe(d))
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>thread.run(delay=2., {r:=true})
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^^^ source.liquidsoap
+>thread.run(delay=4., {test.fail(); shutdown()})
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

@@ -1,0 +1,66 @@
+>success = ref(true)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def t(x, y)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^ source.liquidsoap
+>  if x != y then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^ source.liquidsoap
+#            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    print("Failure: got #{x} instead of #{y}")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>    success := false
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>epsilon = 0.000000001
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^^^^^^^^^ source.liquidsoap constant.numeric.float
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  x = 5.
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+#       ^^ source.liquidsoap
+>  if abs(dB_of_lin(lin_of_dB(x))-x) >= epsilon then success := false end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                               ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                   ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                     ^^^ source.liquidsoap keyword.control.liquidsoap
+>  if abs(lin_of_dB(dB_of_lin(x))-x) >= epsilon then success := false end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                               ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                   ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                     ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if !success then test.pass() else test.fail() end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^ source.liquidsoap
+#              ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                  ^^^^^^^^^^^^^ source.liquidsoap
+#                               ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^^^^^^ source.liquidsoap
+#                                                ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

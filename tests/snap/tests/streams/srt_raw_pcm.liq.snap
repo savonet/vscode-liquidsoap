@@ -1,0 +1,72 @@
+>log.level := 4
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+>
+>port = random.int(min=8000, max=10000)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^^ source.liquidsoap constant.numeric.integer
+#                          ^^^^^^ source.liquidsoap
+#                                ^^^^^ source.liquidsoap constant.numeric.integer
+#                                     ^^ source.liquidsoap
+>
+>s = input.srt(
+#^^^^^^^^^^^^^^^ source.liquidsoap
+> port=port,
+#^^^^^^^^^^^^ source.liquidsoap
+> content_type = "application/ffmpeg;format=s16le,ch_layout=mono,sample_rate=48000"
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+>s = source.on_track(s, fun (_) -> test.pass())
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^^^ source.liquidsoap keyword.control.liquidsoap
+#                          ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output.dummy(fallible=true, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>enc = %ffmpeg(
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>  format="s16le",
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^ source.liquidsoap
+>  %audio(
+#^^^^^^^^^^ source.liquidsoap
+>    codec="pcm_s16le",
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+>    ac=1,
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>    ar=48000
+#^^^^^^^ source.liquidsoap
+#       ^^^^^ source.liquidsoap constant.numeric.integer
+>  )
+#^^^^ source.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+>output.srt(
+#^^^^^^^^^^^^ source.liquidsoap
+>  fallible=true,
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  port=port,
+#^^^^^^^^^^^^^ source.liquidsoap
+>  enc,
+#^^^^^^^ source.liquidsoap
+>  sine()
+#^^^^^^^^^ source.liquidsoap
+>)
+#^^ source.liquidsoap
+>

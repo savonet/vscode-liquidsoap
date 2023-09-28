@@ -1,0 +1,294 @@
+># We want:
+#^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># Track selection 1 -> s1 ready, s2 not ready -> switch to s1
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># Track selection 2 -> s1 not ready, s2 ready -> switch to s2
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># Track selection 3 -> s1 ready, s2 with weight 0 -> switch to s1
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>selected = ref([])
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s1 = blank(duration=0.04)
+#^ source.liquidsoap
+# ^ source.liquidsoap constant.numeric.integer
+#  ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^^^^ source.liquidsoap constant.numeric.float
+#                        ^^ source.liquidsoap
+>
+>def m1(_) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap constant.numeric.integer
+#      ^^^^^^ source.liquidsoap
+>  [("id","s1")]
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s1 = metadata.map(m1,s1)
+#^ source.liquidsoap
+# ^ source.liquidsoap constant.numeric.integer
+#  ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^ source.liquidsoap
+#                      ^ source.liquidsoap constant.numeric.integer
+#                       ^^ source.liquidsoap
+>
+>s1_ready = ref(true)
+#^ source.liquidsoap
+# ^^ source.liquidsoap constant.numeric.integer
+#   ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s1 = switch(id="s1",[(s1_ready,s1)])
+#^ source.liquidsoap
+# ^ source.liquidsoap constant.numeric.integer
+#  ^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^ source.liquidsoap
+#                       ^^ source.liquidsoap constant.numeric.integer
+#                         ^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap constant.numeric.integer
+#                                 ^^^^ source.liquidsoap
+>
+>s1_weight = ref(1)
+#^ source.liquidsoap
+# ^^ source.liquidsoap constant.numeric.integer
+#   ^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^ source.liquidsoap
+>
+>s2 = blank(duration=0.04)
+#^ source.liquidsoap
+# ^ source.liquidsoap constant.numeric.integer
+#  ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^^^^ source.liquidsoap constant.numeric.float
+#                        ^^ source.liquidsoap
+>
+>def m2(_) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap constant.numeric.integer
+#      ^^^^^^ source.liquidsoap
+>  [("id","s2")]
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s2 = metadata.map(id="s2",m2,s2)
+#^ source.liquidsoap
+# ^ source.liquidsoap constant.numeric.integer
+#  ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^ source.liquidsoap
+#                           ^ source.liquidsoap constant.numeric.integer
+#                            ^^ source.liquidsoap
+#                              ^ source.liquidsoap constant.numeric.integer
+#                               ^^ source.liquidsoap
+>
+>s2_ready = ref(false)
+#^ source.liquidsoap
+# ^^ source.liquidsoap constant.numeric.integer
+#   ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s2 = switch(id="s2",[(s2_ready,s2)])
+#^ source.liquidsoap
+# ^ source.liquidsoap constant.numeric.integer
+#  ^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^ source.liquidsoap
+#                       ^^ source.liquidsoap constant.numeric.integer
+#                         ^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap constant.numeric.integer
+#                                 ^^^^ source.liquidsoap
+>
+>s2_weight = ref(1)
+#^ source.liquidsoap
+# ^^ source.liquidsoap constant.numeric.integer
+#   ^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^ source.liquidsoap
+>
+>round = ref(1)
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^ source.liquidsoap
+>
+>def f(m) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^ source.liquidsoap
+>  if round() == 1 then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^ source.liquidsoap
+#                  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    s1_ready := false
+#^^^^^ source.liquidsoap
+#     ^^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^^^^^^^^^^ source.liquidsoap
+>    s2_ready := true
+#^^^^^ source.liquidsoap
+#     ^^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^^^^^^^^^ source.liquidsoap
+>  elsif round() == 2 then
+#^^ source.liquidsoap
+#  ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    s1_ready := true
+#^^^^^ source.liquidsoap
+#     ^^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^^^^^^^^^ source.liquidsoap
+>    s2_ready := true
+#^^^^^ source.liquidsoap
+#     ^^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^^^^^^^^^ source.liquidsoap
+>    s2_weight := 0
+#^^^^^ source.liquidsoap
+#     ^^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    s1_ready := true
+#^^^^^ source.liquidsoap
+#     ^^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^^^^^^^^^ source.liquidsoap
+>    s1_weight := 2
+#^^^^^ source.liquidsoap
+#     ^^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+>    s2_ready := true
+#^^^^^ source.liquidsoap
+#     ^^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^^^^^^^^^ source.liquidsoap
+>    s2_weight := 1
+#^^^^^ source.liquidsoap
+#     ^^ source.liquidsoap constant.numeric.integer
+#       ^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  round := round() + 1
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+>  selected := list.cons(m["id"],selected())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = random(weights=[s1_weight, s2_weight], [s1,s2])
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^ source.liquidsoap constant.numeric.integer
+#                       ^^^^^^^^^ source.liquidsoap
+#                                ^^ source.liquidsoap constant.numeric.integer
+#                                  ^^^^^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap constant.numeric.integer
+#                                              ^^ source.liquidsoap
+#                                                ^ source.liquidsoap constant.numeric.integer
+#                                                 ^^^ source.liquidsoap
+>
+>s.on_track(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output.dummy(fallible=true, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def on_done () =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^ source.liquidsoap
+>  s = list.rev(selected())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if list.nth(default="",s,0) == "s1" and
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^ source.liquidsoap
+#                           ^ source.liquidsoap constant.numeric.integer
+#                            ^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap
+#                                      ^^^ source.liquidsoap keyword.operator.liquidsoap
+>     list.nth(default="",s,1) == "s2" and
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^ source.liquidsoap
+#                           ^ source.liquidsoap constant.numeric.integer
+#                            ^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap
+#                                      ^^^ source.liquidsoap keyword.operator.liquidsoap
+>     list.nth(default="",s,2) == "s1" then
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^ source.liquidsoap
+#                           ^ source.liquidsoap constant.numeric.integer
+#                            ^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap
+#                                      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  shutdown()
+#^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>thread.run(delay=1., on_done)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^ source.liquidsoap
+>

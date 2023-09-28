@@ -1,0 +1,201 @@
+>#<------#
+#^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>This is
+#^^^^^^^^ source.liquidsoap
+>a multiline comment
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>with > some # of
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>these characters in it.
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>#------>#
+#^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>#<---------------
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># Yet another
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># form of multiline comment
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+> ---------------->#
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>   #<
+#^^^ source.liquidsoap
+#   ^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>multiline comment can start and end
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                               ^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+>in the middle of a line
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      >#
+#^^^^^^^ source.liquidsoap
+#       ^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>#<-----#
+#^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>Anything following them
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>is executed
+#^^^^^^^^^^^^ source.liquidsoap
+>#---->#x = 1
+#^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>#<-----#y = x + 2.
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>Anything after the mark
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>is comment
+#^^^^^^^^^^^ source.liquidsoap
+>#---->#
+#^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>#<---------------
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># Nested comments
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>   #<
+#^^^ source.liquidsoap
+#   ^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>     Are accepted
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>   >#
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>#---------------->#
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>s = "foo
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>#<-----
+#^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>this is a comment inside a string,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>it is not a code comment!
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>#---->
+#^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>bar
+#^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>"
+#^ source.liquidsoap string.quoted.double.liquidsoap
+>ignore(s)
+#^^^^^^^^^^ source.liquidsoap
+>
+>r = r/foo
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap string.regexp.liquidsoap
+#      ^^^^ source.liquidsoap string.regexp.liquidsoap
+>#<-----
+#^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+>this is a comment inside a regexp,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+>it is not a code comment!
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+>#---->
+#^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+>bar/
+#^^^ source.liquidsoap string.regexp.liquidsoap
+#   ^ source.liquidsoap string.regexp.liquidsoap
+>ignore(r)
+#^^^^^^^^^^ source.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  test.equals(x, 1)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^ source.liquidsoap
+>
+>  try
+#^^^^^^ source.liquidsoap
+>    let eval _ = "#<----#
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>This comment is not terminated"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  catch _ do
+#^^^^^^^^^^ source.liquidsoap
+#          ^^ source.liquidsoap keyword.control.liquidsoap
+>    ()
+#^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  let eval _ = "# single line comment can be followed by EOF"
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+>
+>  test.equals("a#b", string.base64.decode("YSNi"))
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^ source.liquidsoap constant.numeric.integer
+#                                  ^^^^^^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^^ source.liquidsoap
+>  test.equals(string(r/a#b/), "r/a#b/")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^ source.liquidsoap string.regexp.liquidsoap
+#                       ^^^ source.liquidsoap string.regexp.liquidsoap
+#                          ^ source.liquidsoap string.regexp.liquidsoap
+#                           ^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>  test.equals("a#<b>#c", string.base64.decode("YSM8Yj4jYw=="))
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^^ source.liquidsoap constant.numeric.integer
+#                                      ^^^^^^^^ source.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^^ source.liquidsoap
+>  test.equals(string(r/a#<b>#c/), "r/a#<b>#c/")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^ source.liquidsoap string.regexp.liquidsoap
+#                       ^^^^^^^ source.liquidsoap string.regexp.liquidsoap
+#                              ^ source.liquidsoap string.regexp.liquidsoap
+#                               ^^^ source.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

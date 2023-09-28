@@ -1,0 +1,247 @@
+>video.frame.rate.set(24)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^ source.liquidsoap constant.numeric.integer
+#                       ^^ source.liquidsoap
+>
+>a = sine(duration=20.,440.)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^^ source.liquidsoap constant.numeric.integer
+#                    ^^ source.liquidsoap
+#                      ^^^ source.liquidsoap constant.numeric.integer
+#                         ^^^ source.liquidsoap
+>a = metadata.map(update=false, (fun (_) -> [("title","a1")]), a)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^^^^^ source.liquidsoap
+>
+>b = sine(duration=20.,880.)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^^ source.liquidsoap constant.numeric.integer
+#                    ^^ source.liquidsoap
+#                      ^^^ source.liquidsoap constant.numeric.integer
+#                         ^^^ source.liquidsoap
+>b = metadata.map(update=false, (fun (_) -> [("title","b1")]), b)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^^^^^ source.liquidsoap
+>
+>s = sequence([a,b])
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>fa = crossfade(smart=true, deduplicate=true, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>a = sine(duration=20.,440.)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^^ source.liquidsoap constant.numeric.integer
+#                    ^^ source.liquidsoap
+#                      ^^^ source.liquidsoap constant.numeric.integer
+#                         ^^^ source.liquidsoap
+>a = metadata.map(update=false, (fun (_) -> [("title","a2")]), a)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^^^^^ source.liquidsoap
+>
+>b = sine(duration=20.,880.)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^^ source.liquidsoap constant.numeric.integer
+#                    ^^ source.liquidsoap
+#                      ^^^ source.liquidsoap constant.numeric.integer
+#                         ^^^ source.liquidsoap
+>b = metadata.map(update=false, (fun (_) -> [("title","b2")]), b)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^^^^^ source.liquidsoap
+>
+>s = sequence([a,b])
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>fb = crossfade(smart=true, deduplicate=false, conservative=false, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>let {track_marks=_, ...tracks} = source.tracks(fa)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s = sequence([source(tracks), fb])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>dedup_a = ref(0)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>dedup_b = ref(0)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>dup_a = ref(0)
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^ source.liquidsoap
+>dup_b = ref(0)
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^ source.liquidsoap
+>
+>def check_duplicate(m) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if m["title"] == "a1" then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    dedup_a := dedup_a() + 1
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  if m["title"] == "b1" then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    dedup_b := dedup_b() + 1
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  if m["title"] == "a2" then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    dup_a := dup_a() + 1
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  if m["title"] == "b2" then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    dup_b := dup_b() + 1
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s.on_metadata(check_duplicate)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>clock.assign_new(sync="none",[s])
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^ source.liquidsoap
+>
+>def on_stop () =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^ source.liquidsoap
+>  if !dup_a == 2 and !dup_b == 2 and !dedup_a == 1 and !dedup_b == 1 then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^ source.liquidsoap
+#                 ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                    ^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap constant.numeric.integer
+#                                ^ source.liquidsoap
+#                                 ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                                    ^^^^^^^^^^^^^ source.liquidsoap
+#                                                 ^ source.liquidsoap constant.numeric.integer
+#                                                  ^ source.liquidsoap
+#                                                   ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                                                      ^^^^^^^^^^^^^ source.liquidsoap
+#                                                                   ^ source.liquidsoap constant.numeric.integer
+#                                                                    ^ source.liquidsoap
+#                                                                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>output.dummy(fallible=true, on_stop=on_stop,s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

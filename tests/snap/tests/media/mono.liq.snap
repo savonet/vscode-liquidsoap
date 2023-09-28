@@ -1,0 +1,111 @@
+>log.level.set(5)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>audio.samplerate.set(48000)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^^^ source.liquidsoap constant.numeric.integer
+#                          ^^ source.liquidsoap
+>settings.decoder.priorities.ffmpeg.set(-1)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                        ^ source.liquidsoap constant.numeric.integer
+#                                         ^^ source.liquidsoap
+>
+>fname = argv(default="",1)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^ source.liquidsoap
+>out = "#{fname}+mono.wav"
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+>
+>if file.exists(out) then
+#^^ source.liquidsoap keyword.control.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>  file.remove(out)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = single(fname)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s = sequence([s, s, once(s)])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>#clock.assign_new(sync='none',[s])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def on_close (filename) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if not test.done() then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    j = process.read("ffprobe -v quiet -print_format json -show_streams #{process.quote(filename)}")
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                   ^^ source.liquidsoap
+>
+>    let json.parse ( parsed: {
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      streams: [{
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        channels: int,
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        sample_rate: string
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      }]
+#^^^^^^^^^ source.liquidsoap
+>    }) = j
+#^^^^^^^^^^^ source.liquidsoap
+>
+>    let [stream] = parsed.streams
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>    if stream.channels == 1 and stream.sample_rate == "48000" then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap constant.numeric.integer
+#                           ^ source.liquidsoap
+#                            ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                               ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^ source.liquidsoap
+#                                                              ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      test.pass()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      test.fail()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>output.file(fallible=true, on_close=on_close, %wav(mono), out, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

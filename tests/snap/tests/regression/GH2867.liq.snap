@@ -1,0 +1,26 @@
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  output.file(
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>    %mp3(stereo=false),
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^^^^^^^^^^^^^^^ source.liquidsoap
+>    "/tmp/bla",
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap
+>    mean(blank()))
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

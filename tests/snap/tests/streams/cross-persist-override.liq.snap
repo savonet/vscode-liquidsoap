@@ -1,0 +1,195 @@
+>success = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>a = sine(duration=5.,440.)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+#                     ^^^ source.liquidsoap constant.numeric.integer
+#                        ^^^ source.liquidsoap
+>a = metadata.map(update=false, (fun (_) -> [("source", "a")]), a)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^^^^^ source.liquidsoap
+>
+>b = sine(duration=5.,880.)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+#                     ^^^ source.liquidsoap constant.numeric.integer
+#                        ^^^ source.liquidsoap
+>b = metadata.map(update=false, (fun (_) -> [("source", "b"), ("liq_cross_duration","1.1")]), b)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^ source.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                  ^ source.liquidsoap
+#                                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                        ^^^^^^^^ source.liquidsoap
+>
+>c = sine(duration=5.,440.)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+#                     ^^^ source.liquidsoap constant.numeric.integer
+#                        ^^^ source.liquidsoap
+>c = metadata.map(update=false, (fun (_) -> [("source", "c")]), c)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^^^^^ source.liquidsoap
+>
+>s = sequence([a,b,c])
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s = crossfade(persist_override=true, duration=5., s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                              ^ source.liquidsoap constant.numeric.integer
+#                                               ^^^^^^ source.liquidsoap
+>
+>track_count = ref(0)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+>
+>def on_metadata(m) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  ref.incr(track_count)
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  if track_count() == 1 then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap constant.numeric.integer
+#                       ^ source.liquidsoap
+#                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    if m["source"] != "b" then test.fail() end
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap
+#                          ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                              ^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^^^ source.liquidsoap keyword.control.liquidsoap
+>    if s.cross_duration() != 1.1 then test.fail() end
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^^^ source.liquidsoap constant.numeric.float
+#                                ^ source.liquidsoap
+#                                 ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                     ^^^^^^^^^^^^^ source.liquidsoap
+#                                                  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  if track_count() == 2 then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap constant.numeric.integer
+#                       ^ source.liquidsoap
+#                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    if m["source"] != "c" then test.fail() end
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap
+#                          ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                              ^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^^^ source.liquidsoap keyword.control.liquidsoap
+>    if s.cross_duration() != 1.1 then test.fail() end
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^^^ source.liquidsoap constant.numeric.float
+#                                ^ source.liquidsoap
+#                                 ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                     ^^^^^^^^^^^^^ source.liquidsoap
+#                                                  ^^^ source.liquidsoap keyword.control.liquidsoap
+>    success := true
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s.on_metadata(on_metadata)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>clock.assign_new(sync="none",[s])
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^ source.liquidsoap
+>
+>def on_stop() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^ source.liquidsoap
+>  if !success then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^ source.liquidsoap
+#              ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>output.dummy(fallible=true, on_stop=on_stop, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

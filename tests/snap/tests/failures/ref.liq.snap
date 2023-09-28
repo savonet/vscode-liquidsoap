@@ -1,0 +1,31 @@
+>#!../../liquidsoap
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+># Ensure that value restriction prevents the usual problems.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def id(x) = x end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^ source.liquidsoap
+#              ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def incr(n) = n+1 end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^ source.liquidsoap
+#                  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>r = ref(id)
+#^^^^^^^^^^^^ source.liquidsoap
+>r := incr
+#^^^^^^^^^^ source.liquidsoap
+>f = !r
+#^^^^^^^ source.liquidsoap
+>_ = f("a")
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^ source.liquidsoap
+>

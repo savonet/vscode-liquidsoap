@@ -1,0 +1,123 @@
+># Test that a second harbor client can
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># disconnect existing one if needed.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def fn() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^ source.liquidsoap
+> kick_client = ref(fun () -> error.raise(error.assertion))
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap keyword.control.liquidsoap
+#                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+> first_client_connected = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+> def auth(_) =
+#^ source.liquidsoap
+# ^^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^ source.liquidsoap
+>   if !first_client_connected then
+#^^^ source.liquidsoap
+#   ^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^^^^ source.liquidsoap keyword.control.liquidsoap
+>     fn = !kick_client
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>     fn()
+#^^^^^^^^^^ source.liquidsoap
+>   end
+#^^^ source.liquidsoap
+#   ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>   true
+#^^^^^^^^ source.liquidsoap
+> end
+#^ source.liquidsoap
+# ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+> def on_connect(_) =
+#^ source.liquidsoap
+# ^^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>   if !first_client_connected then
+#^^^ source.liquidsoap
+#   ^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^^^^ source.liquidsoap keyword.control.liquidsoap
+>     test.pass()
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>   end
+#^^^ source.liquidsoap
+#   ^^^ source.liquidsoap keyword.control.liquidsoap
+>   first_client_connected := true
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+> end
+#^ source.liquidsoap
+# ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+> s = input.harbor(buffer=0.1, auth=auth, on_connect=on_connect, port=9878, "harbor_kick_client")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^ source.liquidsoap constant.numeric.float
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                     ^^^^ source.liquidsoap constant.numeric.integer
+#                                                                         ^^ source.liquidsoap
+#                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                            ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                               ^^ source.liquidsoap
+>
+> kick_client := s.stop
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+> output.dummy(fallible=true,s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+> output.icecast(%mp3, password="testtest", user="testtest", mount="harbor_kick_client", port=9878, noise())
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^^^^^ source.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^^^^^ source.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                      ^^^^^^^ source.liquidsoap
+#                                                                                             ^^^^ source.liquidsoap constant.numeric.integer
+#                                                                                                 ^^^^^^^^^^^ source.liquidsoap
+>
+> thread.run(delay=1.,{
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^^^ source.liquidsoap
+>   output.icecast(%mp3, password="testtest", user="testtest", mount="harbor_kick_client", port=9878, noise())
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^^^^ source.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^^^^^^^ source.liquidsoap
+#                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                        ^^^^^^^ source.liquidsoap
+#                                                                                               ^^^^ source.liquidsoap constant.numeric.integer
+#                                                                                                   ^^^^^^^^^^^ source.liquidsoap
+> })
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(fn)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>

@@ -1,0 +1,88 @@
+>log.level := 4
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+>
+>tls = http.transport.tls(
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  certificate="./ssl.cert",
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+>  key="./ssl.key"
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+>ssl = http.transport.ssl(
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  certificate="./ssl.cert",
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+>  key="./ssl.key"
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+>port = random.int(min=8000, max=10000)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^^ source.liquidsoap constant.numeric.integer
+#                          ^^^^^^ source.liquidsoap
+#                                ^^^^^ source.liquidsoap constant.numeric.integer
+#                                     ^^ source.liquidsoap
+>
+>s = sine()
+#^^^^^^^^^^^ source.liquidsoap
+>
+>output.icecast(
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  port=port,
+#^^^^^^^^^^^^^ source.liquidsoap
+>  mount="tls_test",
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^ source.liquidsoap
+>  transport=tls,
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  %vorbis,
+#^^^^^^^^^^^ source.liquidsoap
+>  s)
+#^^^^^ source.liquidsoap
+>
+>i = input.harbor(
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  buffer=2.,
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+#          ^^^ source.liquidsoap
+>  port=port,
+#^^^^^^^^^^^^^ source.liquidsoap
+>  transport=ssl,
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  "tls_test")
+#^^ source.liquidsoap
+#  ^ source.liquidsoap string.quoted.double.liquidsoap
+#   ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^ source.liquidsoap
+>
+>i = source.on_track(i, fun (_) -> test.pass())
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^^^ source.liquidsoap keyword.control.liquidsoap
+#                          ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output.dummy(fallible=true, i)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

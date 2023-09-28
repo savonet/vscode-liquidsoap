@@ -1,0 +1,39 @@
+>a = sine(duration=5., amplitude=0.01, 440.)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^^ source.liquidsoap constant.numeric.float
+#                                    ^^ source.liquidsoap
+#                                      ^^^ source.liquidsoap constant.numeric.integer
+#                                         ^^^ source.liquidsoap
+>b = sine(amplitude=0.1, 880.)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap constant.numeric.float
+#                      ^^ source.liquidsoap
+#                        ^^^ source.liquidsoap constant.numeric.integer
+#                           ^^^ source.liquidsoap
+>s = sequence([a,b])
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>s = crossfade(smart=true, duration=3., s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap constant.numeric.integer
+#                                    ^^^^^^ source.liquidsoap
+>
+>output.dummy(fallible=true, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def on_done () =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^ source.liquidsoap
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>  shutdown()
+#^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>thread.run(delay=8., on_done)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^ source.liquidsoap
+>

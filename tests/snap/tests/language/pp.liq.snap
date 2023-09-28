@@ -1,0 +1,141 @@
+>success = ref(true)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def t(x, y)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^ source.liquidsoap
+>  if x != y then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^ source.liquidsoap
+#            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    print("Failure: got #{x} instead of #{y}")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>    success := false
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  %ifdef sine
+#^^^^^^^^^^^^^^ source.liquidsoap
+>    x = 0
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+>  %endif
+#^^^^^^^^^ source.liquidsoap
+>  t(x, 0)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>
+>  %ifdef sine
+#^^^^^^^^^^^^^^ source.liquidsoap
+>    x = 1
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+>  %else
+#^^^ source.liquidsoap
+#   ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    x = 2
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+>  %endif
+#^^^^^^^^^ source.liquidsoap
+>  t(x, 1)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>
+>  %ifdef xxx
+#^^^^^^^^^^^^^ source.liquidsoap
+>    x = 3
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+>  %else
+#^^^ source.liquidsoap
+#   ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    x = 4
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+>  %endif
+#^^^^^^^^^ source.liquidsoap
+>  t(x, 4)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>
+>  %ifversion >= 0.0
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^^ source.liquidsoap constant.numeric.float
+>    x = 5
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+>  %endif
+#^^^^^^^^^ source.liquidsoap
+>  t(x, 5)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>
+>  %ifversion >= 2
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+>    x = 6
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+>  %endif
+#^^^^^^^^^ source.liquidsoap
+>  t(x, 6)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>
+>  x = 6
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+>  %ifversion < 2.0
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^^^ source.liquidsoap constant.numeric.float
+>    x = 7
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+>  %endif
+#^^^^^^^^^ source.liquidsoap
+>  %ifversion == 5145
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^^^ source.liquidsoap constant.numeric.integer
+>    x = 8
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+>  %endif
+#^^^^^^^^^ source.liquidsoap
+>  t(x, 6)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>
+>  if !success then test.pass() else test.fail() end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^ source.liquidsoap
+#              ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                  ^^^^^^^^^^^^^ source.liquidsoap
+#                               ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^^^^^^ source.liquidsoap
+#                                                ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

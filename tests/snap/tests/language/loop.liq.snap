@@ -1,0 +1,165 @@
+>success = ref(true)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def t(x, y)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^ source.liquidsoap
+>  if x != y then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^ source.liquidsoap
+#            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    print("Failure: got #{x} instead of #{y}")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>    success := false
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  n = ref(1)
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^^ source.liquidsoap
+>  while n() < 10 do
+#^^ source.liquidsoap
+#  ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^ source.liquidsoap
+#              ^^ source.liquidsoap constant.numeric.integer
+#                ^ source.liquidsoap
+#                 ^^ source.liquidsoap keyword.control.liquidsoap
+>    n := n() * 2
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  t(n(), 16)
+#^^^^^^^^^ source.liquidsoap
+#         ^^ source.liquidsoap constant.numeric.integer
+#           ^^ source.liquidsoap
+>
+>  n = ref(0)
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^^ source.liquidsoap
+>  for i = 0 to 10 do
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^ source.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
+#              ^ source.liquidsoap
+#               ^^ source.liquidsoap constant.numeric.integer
+#                 ^ source.liquidsoap
+#                  ^^ source.liquidsoap keyword.control.liquidsoap
+>    n := n() + i
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  t(n(), 55)
+#^^^^^^^^^ source.liquidsoap
+#         ^^ source.liquidsoap constant.numeric.integer
+#           ^^ source.liquidsoap
+>
+>  n = ref(0)
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^^ source.liquidsoap
+>  for i = list.iterator([0,1,2,3,4,5,6,7,8,9,10]) do
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^ source.liquidsoap
+#                           ^ source.liquidsoap constant.numeric.integer
+#                            ^ source.liquidsoap
+#                             ^ source.liquidsoap constant.numeric.integer
+#                              ^ source.liquidsoap
+#                               ^ source.liquidsoap constant.numeric.integer
+#                                ^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+#                                  ^ source.liquidsoap
+#                                   ^ source.liquidsoap constant.numeric.integer
+#                                    ^ source.liquidsoap
+#                                     ^ source.liquidsoap constant.numeric.integer
+#                                      ^ source.liquidsoap
+#                                       ^ source.liquidsoap constant.numeric.integer
+#                                        ^ source.liquidsoap
+#                                         ^ source.liquidsoap constant.numeric.integer
+#                                          ^ source.liquidsoap
+#                                           ^ source.liquidsoap constant.numeric.integer
+#                                            ^ source.liquidsoap
+#                                             ^^ source.liquidsoap constant.numeric.integer
+#                                               ^^^ source.liquidsoap
+#                                                  ^^ source.liquidsoap keyword.control.liquidsoap
+>    n := n() + i
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  t(n(), 55)
+#^^^^^^^^^ source.liquidsoap
+#         ^^ source.liquidsoap constant.numeric.integer
+#           ^^ source.liquidsoap
+>
+>  s = ref("")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^ source.liquidsoap
+>  for i = list.iterator(["a","b","c"]) do
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^ source.liquidsoap
+#                                       ^^ source.liquidsoap keyword.control.liquidsoap
+>    s := s() ^ i
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  t(s(), "abc")
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap
+>
+>  if success() then test.pass() else test.fail() end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                   ^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                    ^^^^^^^^^^^^^ source.liquidsoap
+#                                                 ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

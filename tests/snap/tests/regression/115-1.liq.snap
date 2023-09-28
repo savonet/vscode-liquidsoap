@@ -1,0 +1,24 @@
+>s = add(normalize=true,[
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  sine(),
+#^^^^^^^^^^ source.liquidsoap
+>  sequence([sine(amplitude=0.3,duration=1.),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^^^ source.liquidsoap constant.numeric.float
+#                              ^^^^^^^^^^ source.liquidsoap
+#                                        ^ source.liquidsoap constant.numeric.integer
+#                                         ^^^^ source.liquidsoap
+>            once(sine(duration=1.))])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap constant.numeric.integer
+#                                ^^^^^^ source.liquidsoap
+>])
+#^^^ source.liquidsoap
+>
+>output.dummy(s)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>thread.run(delay=3., {test.pass(); shutdown()})
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

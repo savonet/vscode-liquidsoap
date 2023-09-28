@@ -1,0 +1,34 @@
+>#!../../liquidsoap ../test.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>g = file.replaygain("file1.mp3")
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap
+>print("Replay gain: #{g} dB")
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+>if null.defined(g) and abs(null.get(g) - 7.37) < 0.05 then
+#^^ source.liquidsoap keyword.control.liquidsoap
+#  ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                      ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^^^^ source.liquidsoap constant.numeric.float
+#                                             ^^^^ source.liquidsoap
+#                                                 ^^^^ source.liquidsoap constant.numeric.float
+#                                                     ^ source.liquidsoap
+#                                                      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>else
+#^^^^ source.liquidsoap keyword.control.liquidsoap
+>  test.fail()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>

@@ -1,0 +1,467 @@
+>def c(x, y) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^ source.liquidsoap
+>  if x != y then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^ source.liquidsoap
+#            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    print("#{x} != #{y}")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^ source.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  # Tuples
+#^^ source.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  let tuple = (123, "aabbcc", true, {foo=1})
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^ source.liquidsoap
+#               ^^^ source.liquidsoap constant.numeric.integer
+#                  ^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^ source.liquidsoap constant.numeric.integer
+#                                          ^^^ source.liquidsoap
+>  let (x, y, z, t) = tuple
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  c(x, 123)
+#^^^^^^^ source.liquidsoap
+#       ^^^ source.liquidsoap constant.numeric.integer
+#          ^^ source.liquidsoap
+>  c(y, "aabbcc")
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+>  c(z, true)
+#^^^^^^^^^^^^^ source.liquidsoap
+>  c(t, {foo=1})
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^^ source.liquidsoap
+>
+>  # List
+#^^ source.liquidsoap
+#  ^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  let l =  [1, 2, 3, 4, 5, 6, 7, 8, 9]
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^ source.liquidsoap
+#                           ^ source.liquidsoap constant.numeric.integer
+#                            ^^ source.liquidsoap
+#                              ^ source.liquidsoap constant.numeric.integer
+#                               ^^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+#                                  ^^ source.liquidsoap
+#                                    ^ source.liquidsoap constant.numeric.integer
+#                                     ^^ source.liquidsoap
+>  let [x, y, ...z, t, u, v] = l
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  c(x, 1)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>  c(y, 2)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>  c(z, [3, 4, 5, 6])
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^ source.liquidsoap
+#           ^ source.liquidsoap constant.numeric.integer
+#            ^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^ source.liquidsoap
+>  c(t, 7)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>  c(u, 8)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>  c(v, 9)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>
+>  let [x,y] = [1,2,3]
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap constant.numeric.integer
+#                ^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^ source.liquidsoap
+>  c(x, 1)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>  c(y, 2)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>
+>  let [..._,x,y] = [1,2,3]
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^ source.liquidsoap
+#                      ^ source.liquidsoap constant.numeric.integer
+#                       ^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^ source.liquidsoap
+>  c(x, 2)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>  c(y, 3)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>
+>  let [...,x,y] = [1,2,3]
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^ source.liquidsoap
+#                       ^ source.liquidsoap constant.numeric.integer
+#                        ^^ source.liquidsoap
+>  c(x, 2)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>  c(y, 3)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>
+>  let [x,_,...z] = [1,2,3]
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^ source.liquidsoap
+#                      ^ source.liquidsoap constant.numeric.integer
+#                       ^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^ source.liquidsoap
+>  c(x, 1)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>  c(z, [3])
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^^ source.liquidsoap
+>
+>  # Record
+#^^ source.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  record = {foo=123, gni="gno", bla=3.24}
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^^ source.liquidsoap
+#                                    ^^^^ source.liquidsoap constant.numeric.float
+#                                        ^^ source.liquidsoap
+>  let {foo, gni, bla} = record
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  c(foo, 123)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^ source.liquidsoap
+>  c(gni, "gno")
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap
+>  c(bla, 3.24)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^^ source.liquidsoap constant.numeric.float
+#             ^^ source.liquidsoap
+>
+>  # Values with methods
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  record = 123.{foo=123, gni="gno", bla=3.24}
+#^^^^^^^^^^^ source.liquidsoap
+#           ^^^ source.liquidsoap constant.numeric.integer
+#              ^^^^^^ source.liquidsoap
+#                    ^^^ source.liquidsoap constant.numeric.integer
+#                       ^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^ source.liquidsoap
+#                                        ^^^^ source.liquidsoap constant.numeric.float
+#                                            ^^ source.liquidsoap
+>  let v.{foo, gni, bla} = record
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  c(v, 123)
+#^^^^^^^ source.liquidsoap
+#       ^^^ source.liquidsoap constant.numeric.integer
+#          ^^ source.liquidsoap
+>  c(foo, 123)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^ source.liquidsoap
+>  c(gni, "gno")
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap
+>  c(bla, 3.24)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^^ source.liquidsoap constant.numeric.float
+#             ^^ source.liquidsoap
+>
+>  record = 123.{foo=321, gni="gnu", bla=4.12}
+#^^^^^^^^^^^ source.liquidsoap
+#           ^^^ source.liquidsoap constant.numeric.integer
+#              ^^^^^^ source.liquidsoap
+#                    ^^^ source.liquidsoap constant.numeric.integer
+#                       ^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^ source.liquidsoap
+#                                        ^^^^ source.liquidsoap constant.numeric.float
+#                                            ^^ source.liquidsoap
+>  let _.{foo, gni, bla} = record
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  c(foo, 321)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^ source.liquidsoap
+>  c(gni, "gnu")
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap
+>  c(bla, 4.12)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^^ source.liquidsoap constant.numeric.float
+#             ^^ source.liquidsoap
+>
+>  # Combined patterns
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  # Patterns inside records
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  record' = {foo=tuple, gni=l, r=record}
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.single.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  let {foo = (x,y,z,t), gni=[a,b,...s,d], r=v.{gni}} = record'
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.single.liquidsoap
+>  c(foo, tuple)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  c(x, 123)
+#^^^^^^^ source.liquidsoap
+#       ^^^ source.liquidsoap constant.numeric.integer
+#          ^^ source.liquidsoap
+>  c(y, "aabbcc")
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+>  c(z, true)
+#^^^^^^^^^^^^^ source.liquidsoap
+>  c(t, {foo=1})
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^^ source.liquidsoap
+>  c(a, 1)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>  c(b, 2)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>  c(s, [3, 4, 5, 6, 7, 8])
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^ source.liquidsoap
+#           ^ source.liquidsoap constant.numeric.integer
+#            ^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^ source.liquidsoap
+#                       ^ source.liquidsoap constant.numeric.integer
+#                        ^^^ source.liquidsoap
+>  c(d, 9)
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap constant.numeric.integer
+#        ^^ source.liquidsoap
+>  c(r, record)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>  c(v, 123)
+#^^^^^^^ source.liquidsoap
+#       ^^^ source.liquidsoap constant.numeric.integer
+#          ^^ source.liquidsoap
+>  c(gni, "gnu")
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap
+>
+>  x = {foo=123, gni="gno", bla=3.24}
+#^^^^^^^^^^^ source.liquidsoap
+#           ^^^ source.liquidsoap constant.numeric.integer
+#              ^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^^ source.liquidsoap
+#                               ^^^^ source.liquidsoap constant.numeric.float
+#                                   ^^ source.liquidsoap
+>  y = {foo=123, gni="gnu", bla=3.24}
+#^^^^^^^^^^^ source.liquidsoap
+#           ^^^ source.liquidsoap constant.numeric.integer
+#              ^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^^ source.liquidsoap
+#                               ^^^^ source.liquidsoap constant.numeric.float
+#                                   ^^ source.liquidsoap
+>  z = {foo=123, gni="gno", bla=3.24}
+#^^^^^^^^^^^ source.liquidsoap
+#           ^^^ source.liquidsoap constant.numeric.integer
+#              ^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^^ source.liquidsoap
+#                               ^^^^ source.liquidsoap constant.numeric.float
+#                                   ^^ source.liquidsoap
+>  t = {foo=123, gni="gno", bla=4.24}
+#^^^^^^^^^^^ source.liquidsoap
+#           ^^^ source.liquidsoap constant.numeric.integer
+#              ^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^^ source.liquidsoap
+#                               ^^^^ source.liquidsoap constant.numeric.float
+#                                   ^^ source.liquidsoap
+>  l = [x, y, z, t]
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  let [{foo}, {gni}, ..._, {bla}] = l
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  c(foo, 123)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^ source.liquidsoap
+>  c(gni, "gnu")
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap
+>  c(bla, 4.24)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^^ source.liquidsoap constant.numeric.float
+#             ^^ source.liquidsoap
+>
+>  let ({foo = [{foo}, {gni}, ..._, {bla}]}, z) = ({foo = l}, "the letter z")
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                           ^^ source.liquidsoap
+>  c(foo, 123)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^ source.liquidsoap
+>  c(gni, "gnu")
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap
+>  c(bla, 4.24)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^^ source.liquidsoap constant.numeric.float
+#             ^^ source.liquidsoap
+>  c(z, "the letter z")
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+>
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

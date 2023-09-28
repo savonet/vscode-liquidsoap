@@ -1,0 +1,61 @@
+>log.level.set(4)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>
+>port = random.int(min=8000, max=10000)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^^ source.liquidsoap constant.numeric.integer
+#                          ^^^^^^ source.liquidsoap
+#                                ^^^^^ source.liquidsoap constant.numeric.integer
+#                                     ^^ source.liquidsoap
+>
+>def fn() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^ source.liquidsoap
+> def listen_callback(~hs_version=_, ~peeraddr=_, ~streamid, _) =
+#^ source.liquidsoap
+# ^^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>   if streamid == null("foobar") then test.pass() end
+#^^^ source.liquidsoap
+#   ^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap
+#                                 ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                     ^^^^^^^^^^^^^ source.liquidsoap
+#                                                  ^^^ source.liquidsoap keyword.control.liquidsoap
+>   false
+#^^^^^^^^^ source.liquidsoap
+> end
+#^ source.liquidsoap
+# ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>
+> output.srt(%wav,blank(),port=port,mode="listener",listen_callback=listen_callback)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+> thread.run(delay=1., {output.dummy(mksafe(input.srt(mode="caller",port=port,streamid="foobar")))})
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap constant.numeric.integer
+#                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                              ^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(fn)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>

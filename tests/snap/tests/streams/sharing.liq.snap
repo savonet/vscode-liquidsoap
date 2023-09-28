@@ -1,0 +1,49 @@
+>#!../../liquidsoap ../test.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+># Test whether modifying one source does not affect a copy of it. See #2170.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>s = sine()
+#^^^^^^^^^^^ source.liquidsoap
+>s = add(normalize=false, [s, amplify(0., s)])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap constant.numeric.integer
+#                                      ^^^^^^^^ source.liquidsoap
+>s = rms(s)
+#^^^^^^^^^^^ source.liquidsoap
+>rms = s.rms
+#^^^^^^^^^^^^ source.liquidsoap
+>output.dummy(s)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def on_done () =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^ source.liquidsoap
+>  print("RMS: #{rms()}")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+>  if rms() > 0.5 then test.pass() else test.fail() end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^ source.liquidsoap
+#             ^^^ source.liquidsoap constant.numeric.float
+#                ^ source.liquidsoap
+#                 ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                     ^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                      ^^^^^^^^^^^^^ source.liquidsoap
+#                                                   ^^^ source.liquidsoap keyword.control.liquidsoap
+>  shutdown()
+#^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>thread.run(delay=2., on_done)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^ source.liquidsoap
+>

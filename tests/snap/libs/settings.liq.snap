@@ -1,0 +1,161 @@
+># Instantiate a new setting.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Settings
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag hidden
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def settings.make(~comments="", ~(description:string), v) =
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                 ^ source.liquidsoap
+#                  ^ source.liquidsoap
+#                   ^^^^^^^^ source.liquidsoap variable.parameter.liquidsoap
+#                           ^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                               ^^^ source.liquidsoap
+#                                  ^^^^^^^^^^^ source.liquidsoap variable.liquidsoap
+#                                             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.cast.liquidsoap
+#                                              ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                     ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                      ^ source.liquidsoap
+#                                                       ^ source.liquidsoap variable.liquidsoap
+#                                                        ^ source.liquidsoap
+#                                                         ^^ source.liquidsoap
+>  current_value = ref(v)
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#               ^^ source.liquidsoap
+#                 ^ source.liquidsoap
+#                  ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                     ^ source.liquidsoap meta.function-call.liquidsoap
+#                      ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                       ^ source.liquidsoap meta.function-call.liquidsoap
+>  current_value.{
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^ source.liquidsoap variable.liquidsoap
+#               ^^ source.liquidsoap
+>    description = description,
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#               ^^ source.liquidsoap
+#                 ^ source.liquidsoap
+#                  ^^^^^^^^^^^ source.liquidsoap variable.liquidsoap
+#                             ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+>    comments    = comments
+#^^^^ source.liquidsoap
+#    ^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#            ^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap
+#                  ^^^^^^^^ source.liquidsoap variable.liquidsoap
+>  }
+#^^ source.liquidsoap
+#  ^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>
+># Instantiate a new empty setting.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Settings
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag hidden
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def settings.make.void(~comments="", (description:string)) =
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                      ^ source.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^^^^^^^ source.liquidsoap variable.parameter.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                    ^^ source.liquidsoap
+#                                      ^^^^^^^^^^^ source.liquidsoap variable.liquidsoap
+#                                                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.cast.liquidsoap
+#                                                  ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                         ^ source.liquidsoap
+#                                                          ^^ source.liquidsoap
+>  { description = description, comments = comments }
+#^^ source.liquidsoap
+#  ^ source.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#               ^^ source.liquidsoap
+#                 ^ source.liquidsoap
+#                  ^^^^^^^^^^^ source.liquidsoap variable.liquidsoap
+#                             ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                              ^ source.liquidsoap
+#                               ^^^^^^^^ source.liquidsoap entity.name.method.liquidsoap
+#                                       ^^ source.liquidsoap
+#                                         ^ source.liquidsoap
+#                                          ^^^^^^^^ source.liquidsoap variable.liquidsoap
+#                                                  ^ source.liquidsoap
+#                                                   ^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>
+>let frame = ()
+#^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#         ^ source.liquidsoap
+#          ^^^^^ source.liquidsoap
+>
+># Duration of a frame.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Settings
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def frame.duration =
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                  ^^ source.liquidsoap
+>  settings.frame.duration
+#^^ source.liquidsoap
+#  ^^^^^^^^ source.liquidsoap variable.liquidsoap
+#          ^ source.liquidsoap keyword.other.liquidsoap
+#           ^^^^^ source.liquidsoap variable.method.liquidsoap
+#                ^ source.liquidsoap keyword.other.liquidsoap
+#                 ^^^^^^^^ source.liquidsoap variable.method.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+>
+># Top-level init module for convenience.
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Settings
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^ source.liquidsoap comment.line.number-sign.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap comment.doc.category.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag hidden
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>init = settings.init
+#^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^ source.liquidsoap
+#      ^ source.liquidsoap
+#       ^^^^^^^^ source.liquidsoap variable.liquidsoap
+#               ^ source.liquidsoap keyword.other.liquidsoap
+#                ^^^^ source.liquidsoap variable.method.liquidsoap
+>

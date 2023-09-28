@@ -1,0 +1,13 @@
+>#!../../src/liquidsoap ../../libs/stdlib.liq ../../libs/deprecations.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>output.dummy(input.rtmp("rtmp://127.0.0.1:53163/share"), fallible=true)
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>thread.run(test.pass)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

@@ -1,0 +1,67 @@
+># Scenario:
+#^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>#  Let foo start using q, then stop it, skip in q.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>#  When foo restarts it doesn't know that q isn't ready anymore,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>#  which can lead to a crash.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>q = once(sine(duration=10.))
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^^ source.liquidsoap constant.numeric.integer
+#                         ^^^^ source.liquidsoap
+>output.dummy(id="bar",mksafe(q))
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^^^^^^^^^^ source.liquidsoap
+>output.dummy(id="foo",fallback([amplify(1.,q),blank(duration=1.)]))
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                        ^ source.liquidsoap constant.numeric.integer
+#                                         ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                             ^ source.liquidsoap constant.numeric.integer
+#                                                              ^^^^^^ source.liquidsoap
+>
+>def at(t,s)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^ source.liquidsoap
+>  thread.run(delay=t,{ignore(server.execute(s))})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>at(3.,"foo.stop")
+#^^^ source.liquidsoap
+#   ^ source.liquidsoap constant.numeric.integer
+#    ^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^ source.liquidsoap
+>at(4.,"bar.skip")
+#^^^ source.liquidsoap
+#   ^ source.liquidsoap constant.numeric.integer
+#    ^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^ source.liquidsoap
+>at(5.,"foo.start")
+#^^^ source.liquidsoap
+#   ^ source.liquidsoap constant.numeric.integer
+#    ^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^ source.liquidsoap
+>thread.run(delay=6.,{test.pass(); shutdown()})
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

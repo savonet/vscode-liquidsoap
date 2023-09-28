@@ -1,0 +1,370 @@
+>log.level.set(5)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>audio.samplerate.set(48000)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^^^ source.liquidsoap constant.numeric.integer
+#                          ^^ source.liquidsoap
+>
+>debian_version = string.trim(process.run("cat /etc/os-release | grep VERSION_ID | cut -d'=' -f 2 | xargs").stdout)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                         ^^^^^^^^^^ source.liquidsoap
+>
+>if debian_version == "10" then
+#^^ source.liquidsoap keyword.control.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap
+#                          ^^^^ source.liquidsoap keyword.control.liquidsoap
+>  test.skip()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>raw_encoder = %ffmpeg(%audio.raw,%video.raw)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>mpegts = %ffmpeg(
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  format="mpegts",
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^ source.liquidsoap
+>  %audio.raw(
+#^^^^^^^^^^^^^^ source.liquidsoap
+>    codec="aac",
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+>    b="128k",
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^ source.liquidsoap
+>    channels=2,
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^ source.liquidsoap
+>    ar=44100
+#^^^^^^^ source.liquidsoap
+#       ^^^^^ source.liquidsoap constant.numeric.integer
+>  ),
+#^^^^^ source.liquidsoap
+>  %video.raw(
+#^^^^^^^^^^^^^^ source.liquidsoap
+>    codec="libx264",
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^ source.liquidsoap
+>    b="5M",
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^ source.liquidsoap
+>    flags="+global_header"
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+>  )
+#^^^^ source.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+>mp4 = %ffmpeg(
+#^^ source.liquidsoap
+#  ^ source.liquidsoap constant.numeric.integer
+#   ^^^^^^^^^^^^ source.liquidsoap
+>  format="mp4",
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap
+>  movflags="+dash+skip_sidx+skip_trailer+frag_custom",
+#^^^^^^^^^^^ source.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap
+>  frag_duration=2,
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^ source.liquidsoap
+>  %audio.raw(
+#^^^^^^^^^^^^^^ source.liquidsoap
+>    codec="aac",
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+>    b="128k",
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^^ source.liquidsoap
+>    channels=2,
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^ source.liquidsoap
+>    ar=44100
+#^^^^^^^ source.liquidsoap
+#       ^^^^^ source.liquidsoap constant.numeric.integer
+>  ),
+#^^^^^ source.liquidsoap
+>  %video.raw(
+#^^^^^^^^^^^^^^ source.liquidsoap
+>    codec="libx264",
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^ source.liquidsoap
+>    b="5M",
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^ source.liquidsoap
+>    flags="+global_header"
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+>  )
+#^^^^ source.liquidsoap
+>)
+#^^ source.liquidsoap
+>
+>s = noise()
+#^^^^^^^^^^^^ source.liquidsoap
+>
+>raw = ffmpeg.raw.encode.audio_video(raw_encoder, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>streams = [
+#^^^^^^^^^^^^ source.liquidsoap
+>  ("mp4", mp4),
+#^^^ source.liquidsoap
+#   ^ source.liquidsoap string.quoted.double.liquidsoap
+#    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^ source.liquidsoap
+#            ^ source.liquidsoap constant.numeric.integer
+#             ^^^ source.liquidsoap
+>  ("mpegts",mpegts)
+#^^^ source.liquidsoap
+#   ^ source.liquidsoap string.quoted.double.liquidsoap
+#    ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap
+>]
+#^^ source.liquidsoap
+>
+>output_dir = file.temp_dir("liq","hls")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^ source.liquidsoap
+>
+>def cleanup() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^ source.liquidsoap
+>  file.rmdir(output_dir)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>on_cleanup(cleanup)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>is_done = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def check_stream() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if not !is_done then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    is_done := true
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>    ojson = process.read("ffprobe -v quiet -print_format json -show_streams #{output_dir}/mp4.m3u8")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                   ^^ source.liquidsoap
+>
+>    let json.parse ( parsed : {
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      streams: [{
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        channel_layout: string?,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        sample_rate: string?,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        sample_fmt: string?,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        codec_name: string?,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        pix_fmt: string?
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      }]
+#^^^^^^^^^ source.liquidsoap
+>    }) = ojson
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>    video_stream = list.find((fun (stream) -> null.defined(stream.pix_fmt)), parsed.streams)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    audio_stream = list.find((fun (stream) -> null.defined(stream.sample_rate)), parsed.streams)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>    if null.get(video_stream.codec_name) == "h264" and
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap
+#                                                   ^^^ source.liquidsoap keyword.operator.liquidsoap
+>       null.get(video_stream.pix_fmt) == "yuv420p" and
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap
+#                                                   ^^^ source.liquidsoap keyword.operator.liquidsoap
+>       null.get(audio_stream.channel_layout) == "stereo" and
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap
+#                                                         ^^^ source.liquidsoap keyword.operator.liquidsoap
+>       null.get(audio_stream.codec_name) == "aac" and
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap
+#                                                  ^^^ source.liquidsoap keyword.operator.liquidsoap
+>       null.get(audio_stream.sample_fmt) == "fltp" and
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap
+#                                                   ^^^ source.liquidsoap keyword.operator.liquidsoap
+>       null.get(audio_stream.sample_rate) == "44100" then
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap
+#                                                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      test.pass()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      test.fail()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>def segment_name(~position,~extname,stream_name) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if position > 2 then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^ source.liquidsoap
+#                  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    check_stream()
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  timestamp = int_of_float(time())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  "#{stream_name}_#{timestamp}_#{position}.#{extname}"
+#^^ source.liquidsoap
+#  ^ source.liquidsoap string.quoted.double.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>#clock.assign_new(sync='none',[raw])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>output.file.hls(playlist="live.m3u8",
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap
+>                segment_duration=2.0,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^^^ source.liquidsoap constant.numeric.float
+#                                    ^^ source.liquidsoap
+>                segments=5,
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^ source.liquidsoap
+>                segments_overhead=5,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap constant.numeric.integer
+#                                   ^^ source.liquidsoap
+>                segment_name=segment_name,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                output_dir,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                streams,
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                fallible=true,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                raw)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

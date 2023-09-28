@@ -1,0 +1,237 @@
+>log.level.set(4)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>settings.decoder.decoders.set(["ffmpeg"])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^^ source.liquidsoap
+>
+>test.skip()
+#^^^^^^^^^^^^ source.liquidsoap
+>
+>fname = argv(default="",1)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^ source.liquidsoap
+>out = "#{fname}+ffmpeg_filter.mp4"
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+>
+>if file.exists(out) then
+#^^ source.liquidsoap keyword.control.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>  file.remove(out)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = single(fname)
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s = sequence([s,s,s,s,s,source.fail()])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s = video.add_text.ffmpeg("bla blo", s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^^^ source.liquidsoap
+>
+>started = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def on_track(_) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^ source.liquidsoap
+>  started := true
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s.on_track(on_track)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>#clock.assign_new(id='test_clock',sync='none',[s])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>def on_close(filename) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if !started then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^ source.liquidsoap
+#              ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    ojson = process.read("ffprobe -v quiet -print_format json -show_streams #{process.quote(filename)}")
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                       ^^ source.liquidsoap
+>
+>    output_format = json.parse(default=[("streams", [[("samplerate", "0")]])], ojson)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^^^ source.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^^ source.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^^^^^^^^^^^^^ source.liquidsoap
+>
+>    output_streams = list.assoc(default=[], "streams", output_format)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>    params = ["channel_layout", "sample_rate",
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^ source.liquidsoap
+>              "sample_fmt", "codec_name", "pix_fmt"]
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^ source.liquidsoap
+>
+>    def m(s) =
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^ source.liquidsoap
+>      def f(e) =
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^^^ source.liquidsoap
+>        let (p, _) = e
+#^^^^^^^^ source.liquidsoap
+#        ^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^^^^^^^ source.liquidsoap
+>        list.mem(p, params)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>      list.filter(f, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>    output_streams = list.map(m, output_streams)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>    def cmp(c, c') =
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.single.liquidsoap
+#                 ^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      if c < c' then
+#^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#              ^ source.liquidsoap string.quoted.single.liquidsoap
+#               ^ source.liquidsoap
+#                ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        -1
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+>      elsif c' < c then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^ source.liquidsoap
+#             ^ source.liquidsoap string.quoted.single.liquidsoap
+#              ^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        1
+#^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      else
+#^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>        0
+#^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      end
+#^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    end
+#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>    output_streams = list.map((fun (stream) -> list.sort(cmp, stream)), output_streams)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>    def cmd_l(l, l') =
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                  ^ source.liquidsoap string.quoted.single.liquidsoap
+#                   ^^^^ source.liquidsoap
+>      cmp(list.assoc("codec_name", l), list.assoc("codec_name", l'))
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^^^ source.liquidsoap
+#                                                                 ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                                  ^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    end
+#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>    output_streams = list.sort(cmd_l, output_streams)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>    expected = [
+#^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      [("channel_layout", "stereo"), ("codec_name", "aac"), ("sample_fmt", "fltp"), ("sample_rate", "44100")],
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      [("codec_name", "h264"), ("pix_fmt", "yuv420p")]
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    ]
+#^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>    if output_streams == expected then
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      test.pass()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    else
+#^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>      test.fail()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>    end
+#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  end
+#^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>end
+#^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>output.file(fallible=true, on_close=on_close, %ffmpeg(format="mkv",%audio(codec="aac"),%video(codec="libx264")), out, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>

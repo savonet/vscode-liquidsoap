@@ -1,0 +1,25 @@
+>#!../../src/liquidsoap ../../libs/stdlib.liq ../../libs/deprecations.liq
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+># Make sure that we properly shutdown on init error
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>log.level.set(5)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>settings.clock.allow_streaming_errors.set(true)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s = source.fail.init()
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s.on_shutdown(test.pass)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s = fallback([blank(), blank(), s])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>output.dummy(fallible=true, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

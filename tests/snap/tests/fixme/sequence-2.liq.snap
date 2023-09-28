@@ -1,0 +1,90 @@
+># Testing that head_ready is used in sequence#is_ready.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>#
+#^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># We setup a sequence to start playing a source s, then stop playing the
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># sequence, make s unavailable and start playing the sequence again.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># At this point the sequence should end its track and cleanup s *before*
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># becoming unavailable.
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>#
+#^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># Pitfalls when cooking up this test:
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>#  - Does not work with a track insensitive switch to "instantly kill" the
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>#    source, because the switch makes sure to stay ready until the end of
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>#    track.
+#^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>#  - Also does not work simply with a sequence underneath a fallible output,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>#    because such an output will stop as soon as its source is not ready.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>%include "test.liq"
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+#          ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+>
+># Create a fallible source. We use the experimental operator source.dynamic()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># which is bit fragile for a test.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>
+>flag = ref true
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>thread.run(delay=1., { flag:=false })
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap constant.numeric.integer
+#                  ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>on = sine()
+#^^^^^^^^^^^^ source.liquidsoap
+>off = fail()
+#^^^^^^^^^^^^^ source.liquidsoap
+>s = source.dynamic({ if !flag then [on] else [off] end })
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^^^^^^ source.liquidsoap
+#                              ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                  ^^^^^^ source.liquidsoap
+#                                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                            ^^^^^^^ source.liquidsoap
+#                                                   ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                      ^^^^ source.liquidsoap
+>
+>test = sequence([ s, fail() ])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>def check()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^ source.liquidsoap
+>  if source.is_up(s) then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  shutdown()
+#^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>output.dummy(fallback([test,on_track(fun(_)->check(),sine())]))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                        ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>

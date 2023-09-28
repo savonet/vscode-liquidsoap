@@ -1,0 +1,60 @@
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  if process.read.lines('echo "aa\rbb\ncc\r\ndd\r\r\nee"') !=
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.single.liquidsoap
+#                         ^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                 ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
+#                                   ^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                     ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
+#                                       ^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                         ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
+#                                           ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
+#                                             ^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                               ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
+#                                                 ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
+#                                                   ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
+#                                                     ^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                         ^^^^^ source.liquidsoap
+>     ["aa\rbb", "cc", "dd\r", "ee"] then
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#           ^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^ source.liquidsoap
+#                                    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

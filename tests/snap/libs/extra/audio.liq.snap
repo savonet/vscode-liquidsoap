@@ -1,0 +1,1506 @@
+># Compand the signal.
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Audio processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @argsof track.audio.compand
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def compand(~id=null("compand"), %argsof(track.audio.compand[!id]), s) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  tracks = source.tracks(s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  source(id=id, tracks.{audio=track.audio.compand(%argsof(track.audio.compand), tracks.audio)})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Comb filter
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Audio processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @argsof track.audio.comb
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def comb(~id=null("comb"), %argsof(track.audio.comb[!id]), s) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  tracks = source.tracks(s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  source(id=id, tracks.{audio=track.audio.comb(%argsof(track.audio.comb), tracks.audio)})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Compress the signal.
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Audio processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @argsof track.audio.compress
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def compress(%argsof(track.audio.compress), s) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  tracks = source.tracks(s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  let audio.{gain, rms} = track.audio.compress(%argsof(track.audio.compress), tracks.audio)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  source(id=id, tracks.{audio=audio}).{gain=gain, rms=rms}
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Exponential compressor.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Audio processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @argsof track.audio.compress.exponential
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def compress.exponential(%argsof(track.audio.compress.exponential), s) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  tracks = source.tracks(s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  source(id=id, tracks.{audio=track.audio.compress.exponential(%argsof(track.audio.compress.exponential), tracks.audio)})
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># A limiter. This is a `compress` with tweaked parameters.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Audio processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def limit(~id=null(), ~attack=getter(50.), ~release=getter(200.), ~ratio=getter(20.), ~threshold=getter(-2.), ~pre_gain=getter(0.), ~gain=getter(0.), s)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^^ source.liquidsoap constant.numeric.integer
+#                                       ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                           ^^^ source.liquidsoap constant.numeric.integer
+#                                                              ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                ^^ source.liquidsoap constant.numeric.integer
+#                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                         ^ source.liquidsoap constant.numeric.integer
+#                                                                                                          ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                                               ^ source.liquidsoap constant.numeric.integer
+#                                                                                                                                ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                                                                 ^ source.liquidsoap constant.numeric.integer
+#                                                                                                                                                  ^^^^^^^ source.liquidsoap
+>  compress(id=id, attack=attack, release=release, ratio=ratio, threshold=threshold, pre_gain=pre_gain, gain=gain, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>let limiter = limit
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+># A bandpass filter obtained by chaining a low-pass and a high-pass filter.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Audio processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param id Force the value of the source ID.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~low Lower frequency of the bandpass filter.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~high Higher frequency of the bandpass filter.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~q Q factor.
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def filter.iir.eq.low_high(~id=null(), ~low, ~high, ~q=1., s)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                       ^ source.liquidsoap constant.numeric.integer
+#                                                        ^^^^^^ source.liquidsoap
+>  s = if not (getter.is_constant(high) and getter.get(high) == infinity) then filter.iir.eq.low(id=id, frequency=high, q=q, s) else s end
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                       ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                         ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                                               ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                                                                   ^^^ source.liquidsoap
+#                                                                                                                                      ^^^ source.liquidsoap keyword.control.liquidsoap
+>  s = if not (getter.is_constant(low) and getter.get(low) == 0.) then filter.iir.eq.high(id=id, frequency=low, q=q, s) else s end
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                      ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                                         ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                             ^ source.liquidsoap constant.numeric.integer
+#                                                              ^^^ source.liquidsoap
+#                                                                 ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                                                           ^^^ source.liquidsoap
+#                                                                                                                              ^^^ source.liquidsoap keyword.control.liquidsoap
+>  s
+#^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Multiband compression. The list in argument specifies
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># - the `frequency` below which we should apply compression (it is above previous band)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># - the `attack` time (ms)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># - the `release` time (ms)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># - the compression `ratio`
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># - the `threshold` for compression
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># - the `gain` for the band
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Audio processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~limit Also apply limiting to bands.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param l Parameters for compression bands.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param s Source on which multiband compression should be applied.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def compress.multiband(~limit=true, ~wet=getter(1.), s, l)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                ^ source.liquidsoap constant.numeric.integer
+#                                                 ^^^^^^^^^^ source.liquidsoap
+>  # Check that the bands are with increasing frequencies.
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  for i = 0 to list.length(l) - 2 do
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^ source.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
+#              ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap constant.numeric.integer
+#                                 ^ source.liquidsoap
+#                                  ^^ source.liquidsoap keyword.control.liquidsoap
+>    if getter.get(list.nth(l,i+1).frequency) < getter.get(list.nth(l,i).frequency) then failwith("Bands should be sorted.") end
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap constant.numeric.integer
+#                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                   ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                       ^^^^^^^^^^ source.liquidsoap
+#                                                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                          ^^ source.liquidsoap
+#                                                                                                                            ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  # Process a band
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  def band(low, band)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    high = if getter.is_constant(band.frequency) and getter.get(band.frequency) >= float_of_int(audio.samplerate()) / 2. then infinity else band.frequency end
+#^^^^^^^^^^^ source.liquidsoap
+#           ^^ source.liquidsoap keyword.control.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                 ^^^ source.liquidsoap keyword.operator.liquidsoap
+#                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                                      ^ source.liquidsoap constant.numeric.integer
+#                                                                                                                       ^^ source.liquidsoap
+#                                                                                                                         ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                                                             ^^^^^^^^^^ source.liquidsoap
+#                                                                                                                                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                                                                           ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                                                                           ^^^ source.liquidsoap keyword.control.liquidsoap
+>    s = filter.iir.eq.low_high(low=low, high=high, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    s = compress(attack=band.attack, release=band.release, threshold=band.threshold, ratio=band.ratio, gain=band.gain, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    if limit then limiter(s) else s end
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^ source.liquidsoap
+#             ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                 ^^^^^^^^^^^^ source.liquidsoap
+#                             ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                 ^^^ source.liquidsoap
+#                                    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  ls = list.mapi(fun (i, b) -> band(if i == 0 then 0. else list.nth(l,i-1).frequency end, b), l)
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^^^ source.liquidsoap keyword.control.liquidsoap
+#                    ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^^ source.liquidsoap keyword.control.liquidsoap
+#                                      ^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap constant.numeric.integer
+#                                             ^ source.liquidsoap
+#                                              ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                  ^ source.liquidsoap
+#                                                   ^ source.liquidsoap constant.numeric.integer
+#                                                    ^^ source.liquidsoap
+#                                                      ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                          ^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                        ^ source.liquidsoap constant.numeric.integer
+#                                                                         ^^^^^^^^^^^^ source.liquidsoap
+#                                                                                     ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                        ^^^^^^^^^ source.liquidsoap
+>  c = add(normalize=false, ls)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s =
+#^^^^^^ source.liquidsoap
+>    if not getter.is_constant(wet) or getter.get(wet) != 1. then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^^ source.liquidsoap keyword.operator.liquidsoap
+#                                     ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                         ^ source.liquidsoap constant.numeric.integer
+#                                                          ^^ source.liquidsoap
+#                                                            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      add(normalize=false, [amplify({1.-getter.get(wet)}, s), amplify(wet, c)])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap constant.numeric.integer
+#                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      c
+#^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  # Seal l element type
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  if false then () else list.hd(l) end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^ source.liquidsoap
+#           ^^^^ source.liquidsoap keyword.control.liquidsoap
+#               ^^^^ source.liquidsoap
+#                   ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^^^^^^^^^^^ source.liquidsoap
+#                                   ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  # Limit to avoid bad surprises
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  limiter(s)
+#^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Compress and normalize, producing a more uniform and "full" sound.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Audio processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param s The input source.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def nrj(s)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^ source.liquidsoap
+>  compress(threshold=-15.,ratio=3.,gain=3.,normalize(s))
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^ source.liquidsoap constant.numeric.integer
+#                        ^^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap constant.numeric.integer
+#                                 ^^^^^^^ source.liquidsoap
+#                                        ^ source.liquidsoap constant.numeric.integer
+#                                         ^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Multiband-compression.
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Audio processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param s The input source.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def sky(s)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^ source.liquidsoap
+>  # 3-band crossover
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  low = fun(s) -> filter.iir.eq.low(frequency = 168., s)
+#^^^^^^^^ source.liquidsoap
+#        ^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                ^^^ source.liquidsoap constant.numeric.integer
+#                                                   ^^^^^^ source.liquidsoap
+>  mh = fun(s) -> filter.iir.eq.high(frequency = 100., s)
+#^^^^^^^ source.liquidsoap
+#       ^^^ source.liquidsoap keyword.control.liquidsoap
+#          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                ^^^ source.liquidsoap constant.numeric.integer
+#                                                   ^^^^^^ source.liquidsoap
+>  mid = fun(s) -> filter.iir.eq.low(frequency = 1800., s)
+#^^^^^^^^ source.liquidsoap
+#        ^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                ^^^^ source.liquidsoap constant.numeric.integer
+#                                                    ^^^^^^ source.liquidsoap
+>  high = fun(s) -> filter.iir.eq.high(frequency = 1366., s)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap keyword.control.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                  ^^^^ source.liquidsoap constant.numeric.integer
+#                                                      ^^^^^^ source.liquidsoap
+>
+>  # Add back
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>  add(normalize = false,
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      [ compress(attack = 100., release = 200., threshold = -20.,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^^^ source.liquidsoap constant.numeric.integer
+#                             ^^^^^^^^^^^^^ source.liquidsoap
+#                                          ^^^ source.liquidsoap constant.numeric.integer
+#                                             ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                             ^^ source.liquidsoap constant.numeric.integer
+#                                                               ^^^ source.liquidsoap
+>                 ratio = 6., gain = 6.7, knee = 0.3,
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^^^^^^^^^ source.liquidsoap
+#                                    ^^^ source.liquidsoap constant.numeric.float
+#                                       ^^^^^^^^^ source.liquidsoap
+#                                                ^^^ source.liquidsoap constant.numeric.float
+#                                                   ^^ source.liquidsoap
+>                 low(s)),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        compress(attack = 100., release = 200., threshold = -20.,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^^^ source.liquidsoap constant.numeric.integer
+#                             ^^^^^^^^^^^^^ source.liquidsoap
+#                                          ^^^ source.liquidsoap constant.numeric.integer
+#                                             ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                             ^^ source.liquidsoap constant.numeric.integer
+#                                                               ^^^ source.liquidsoap
+>                 ratio = 6., gain = 6.7, knee = 0.3,
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^^^^^^^^^ source.liquidsoap
+#                                    ^^^ source.liquidsoap constant.numeric.float
+#                                       ^^^^^^^^^ source.liquidsoap
+#                                                ^^^ source.liquidsoap constant.numeric.float
+#                                                   ^^ source.liquidsoap
+>                 mid(mh(s))),
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        compress(attack = 100., release = 200., threshold = -20.,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^^^ source.liquidsoap constant.numeric.integer
+#                             ^^^^^^^^^^^^^ source.liquidsoap
+#                                          ^^^ source.liquidsoap constant.numeric.integer
+#                                             ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                             ^^ source.liquidsoap constant.numeric.integer
+#                                                               ^^^ source.liquidsoap
+>                 ratio = 6., gain = 6.7, knee = 0.3,
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^^^^^^^^^ source.liquidsoap
+#                                    ^^^ source.liquidsoap constant.numeric.float
+#                                       ^^^^^^^^^ source.liquidsoap
+#                                                ^^^ source.liquidsoap constant.numeric.float
+#                                                   ^^ source.liquidsoap
+>                 high(s))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      ])
+#^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Add some bass to the sound.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Audio processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~frequency Frequency below which sound is considered as bass.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~gain Amount of boosting (dB).
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param s Source whose bass should be boosted
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def bass_boost(~frequency=getter(200.), ~gain=getter(10.), s)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^^^ source.liquidsoap constant.numeric.integer
+#                                    ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                     ^^ source.liquidsoap constant.numeric.integer
+#                                                       ^^^^^^^ source.liquidsoap
+>  bass = limit(pre_gain=gain, filter.iir.eq.low(frequency=frequency, s))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  add([s, bass])
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>%ifdef soundtouch
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+># Increases the pitch, making voices sound like on helium.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Audio processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param s The input source.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def helium(s)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^ source.liquidsoap
+>  soundtouch(pitch=1.5,s)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap constant.numeric.float
+#                      ^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>%endif
+#^^^^^^^ source.liquidsoap
+>
+># Remove low frequencies often produced by microphones.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Audio processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~frequency Frequency under which sound should be lowered.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param s The input source.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def mic_filter(~frequency=200., s)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^^^ source.liquidsoap constant.numeric.integer
+#                             ^^^^^^ source.liquidsoap
+>  filter(freq=frequency, q=1., mode="high", s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap constant.numeric.integer
+#                            ^^^^^^^^ source.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Mix between dry and wet sources. Useful for testing effects. Typically:
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># ```
+#^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># c = interactive.float("wetness", min=0., max=1., 1.)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># s = dry_wet(c, s, effect(s))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># ```
+#^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># and vary `c` to hear the difference between the source without and with
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># the effect.
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Audio processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~power If `true` use constant power mixing.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param wetness Wetness coefficient, from 0 (fully dry) to  1 (fully wet).
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param dry Dry source.
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param wet Wet source.
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def dry_wet(~power=false, wetness, dry, wet)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  add(power=power, weights=[getter.map(fun(x) -> 1.-x, wetness), wetness], [dry, wet])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                       ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                          ^^^^^^^ source.liquidsoap
+#                                                 ^ source.liquidsoap constant.numeric.integer
+#                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Generate DTMF tones.
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Sound synthesis
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~duration Duration of a tone (in seconds).
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~delay Dealy between two successive tones (in seconds).
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param dtmf String describing DTMF tones to generates: it should contains characters 0 to 9, A to D, or * or #.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def replaces dtmf(~duration=0.1, ~delay=0.05, dtmf)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^^^ source.liquidsoap constant.numeric.float
+#                               ^^^^^^^^^ source.liquidsoap
+#                                        ^^^^ source.liquidsoap constant.numeric.float
+#                                            ^^^^^^^^ source.liquidsoap
+>  l = ref([])
+#^^^^^^^^^^^^^^ source.liquidsoap
+>  for i = 0 to string.length(dtmf) - 1 do
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^ source.liquidsoap
+#          ^ source.liquidsoap constant.numeric.integer
+#           ^ source.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
+#              ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap constant.numeric.integer
+#                                      ^ source.liquidsoap
+#                                       ^^ source.liquidsoap keyword.control.liquidsoap
+>    c = string.sub(dtmf, start=i, length=1)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^ source.liquidsoap constant.numeric.integer
+#                                          ^^ source.liquidsoap
+>    let (row, col) =
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^^ source.liquidsoap
+>      if c == "1" then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^ source.liquidsoap
+#                  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (697., 1209.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "2" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (697., 1336.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "3" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (697., 1477.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "A" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (697., 1633.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "4" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (770., 1209.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "5" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (770., 1336.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "6" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (770., 1477.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "B" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (770., 1633.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "7" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (852., 1209.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "8" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (852., 1336.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "9" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (852., 1477.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "C" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (852., 1633.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "*" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (941., 1209.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "0" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (941., 1336.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "#" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (941., 1477.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      elsif c == "D" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (941., 1633.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+#               ^^^^ source.liquidsoap constant.numeric.integer
+#                   ^^^ source.liquidsoap
+>      else
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        (0., 0.)
+#^^^^^^^^^ source.liquidsoap
+#         ^ source.liquidsoap constant.numeric.integer
+#          ^^^ source.liquidsoap
+#             ^ source.liquidsoap constant.numeric.integer
+#              ^^^ source.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    s = add([sine(row, duration=duration), sine(col, duration=duration)])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    l := blank(duration=delay) :: l()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    l := s :: l()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  l = list.rev(l())
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  sequence(l)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Mixing table controllable via source methods and optional
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># server/telnet commands.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Audio processing
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~id Force the value of the source ID.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~register_server_commands Register corresponding server commands
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def mix(~id=null(), ~register_server_commands=true, sources) =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  id = string.id.default(default="mixer", id)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^^^ source.liquidsoap
+>
+>  inputs = list.map(fun (s) ->
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^^^^^^^ source.liquidsoap
+>    begin
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>      volume      = ref(1.)
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap constant.numeric.integer
+#                         ^^^ source.liquidsoap
+>      is_selected = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      is_single   = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>      {
+#^^^^^^^^ source.liquidsoap
+>        volume = volume,
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        selected = is_selected,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        single = is_single,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        source = s
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      }
+#^^^^^^^^ source.liquidsoap
+>    end, sources)
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^ source.liquidsoap
+>
+>  insert_metadata_fn = ref(fun (_) -> ())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^^^ source.liquidsoap keyword.control.liquidsoap
+#                              ^^^^^^^^^^^^ source.liquidsoap
+>
+>  sources = list.map(fun (input) ->
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^ source.liquidsoap keyword.control.liquidsoap
+#                        ^^^^^^^^^^^^ source.liquidsoap
+>    begin
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>      s = amplify(input.volume, input.source)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      s = source.on_track(s, fun (_) ->
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                ^^^^^^^^ source.liquidsoap
+>         if input.single() then
+#^^^^^^^^^ source.liquidsoap
+#         ^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^^^^ source.liquidsoap keyword.control.liquidsoap
+>           input.selected := false
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>         end
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap keyword.control.liquidsoap
+>      )
+#^^^^^^^^ source.liquidsoap
+>      s = source.on_metadata(s, fun (m) ->
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^ source.liquidsoap
+>        begin
+#^^^^^^^^ source.liquidsoap
+#        ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>          fn = insert_metadata_fn()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>          fn(m)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>        end
+#^^^^^^^^ source.liquidsoap
+#        ^^^ source.liquidsoap keyword.control.liquidsoap
+>      )
+#^^^^^^^^ source.liquidsoap
+>      switch([(input.selected, s)])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end, inputs)
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^ source.liquidsoap
+>
+>  s = add(sources)
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  let {metadata=_, ...tracks} = source.tracks(s)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s = source(tracks)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s = insert_metadata(s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  insert_metadata_fn := s.insert_metadata
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  let {track_marks=_, ...tracks} = source.tracks(s)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  s = source(id=id, tracks)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  if register_server_commands then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^^^^ source.liquidsoap keyword.control.liquidsoap
+>     def status(input) =
+#^^^^^ source.liquidsoap
+#     ^^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>       "ready=#{source.is_ready(input.source)} selected=#{input.selected()} single=#{input.single()} volume=#{int_of_float(input.volume() * 100.)}% remaining=#{source.remaining(input.source)}"
+#^^^^^^^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+>     end
+#^^^^^ source.liquidsoap
+#     ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>     server.register(namespace=source.id(s), description="Skip current track on all enabled sources.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                     ^^ source.liquidsoap
+>                      "skip", fun (_) -> begin
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap
+#                              ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                 ^^^^^^^^ source.liquidsoap
+#                                         ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                         list.iter(fun (input) -> if input.selected() then source.skip(input.source) end, inputs)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                      ^^^^^^^^^^^^ source.liquidsoap
+#                                                  ^^ source.liquidsoap keyword.control.liquidsoap
+#                                                    ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                      ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                     ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                                        ^^^^^^^^^^ source.liquidsoap
+>                         "OK"
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>     server.register(namespace=source.id(s), description="Set volume for a given source.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                         ^^ source.liquidsoap
+>                     usage="volume <source nb> <vol%>", "volume", fun (v) -> begin
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^ source.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^^ source.liquidsoap
+#                                                                  ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                     ^^^^^^^^ source.liquidsoap
+#                                                                             ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                         try
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                           let [i, v] = r/\s/.split(v)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^^^ source.liquidsoap keyword.control.liquidsoap
+#                              ^^^^^^^^^^ source.liquidsoap
+#                                        ^^ source.liquidsoap string.regexp.liquidsoap
+#                                          ^^ source.liquidsoap string.regexp.liquidsoap
+#                                            ^ source.liquidsoap string.regexp.liquidsoap
+#                                             ^^^^^^^^^^ source.liquidsoap
+>                           input = list.nth(inputs, int_of_string(i))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                           input.volume := float_of_string(v)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                           status(input)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                         catch _ do
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^^ source.liquidsoap keyword.control.liquidsoap
+>                           "Usage: volume <source nb> <vol%>"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+>                         end
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^ source.liquidsoap keyword.control.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>     server.register(namespace=source.id(s), description="Enable/disable a source.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                   ^^ source.liquidsoap
+>                     usage="select <source nb> <true|false>", "select", fun (arg) -> begin
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^ source.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^ source.liquidsoap
+#                                                                        ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                           ^^^^^^^^^^ source.liquidsoap
+#                                                                                     ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                         try
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                           let [i, b] = r/\s/.split(arg)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^^^ source.liquidsoap keyword.control.liquidsoap
+#                              ^^^^^^^^^^ source.liquidsoap
+#                                        ^^ source.liquidsoap string.regexp.liquidsoap
+#                                          ^^ source.liquidsoap string.regexp.liquidsoap
+#                                            ^ source.liquidsoap string.regexp.liquidsoap
+#                                             ^^^^^^^^^^^^ source.liquidsoap
+>                           input = list.nth(inputs, int_of_string(i))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                           input.selected := (b == "true")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^ source.liquidsoap
+>                           status(input)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                         catch _ do
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^^ source.liquidsoap keyword.control.liquidsoap
+>                           "Usage: select <source nb> <true|false>"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+>                         end
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^ source.liquidsoap keyword.control.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>     server.register(namespace=source.id(s), description="Enable/disable automatic stop at the end of track.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                             ^^ source.liquidsoap
+>                     usage="single <source nb> <true|false>", "single", fun (arg) -> begin
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^ source.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^ source.liquidsoap
+#                                                                        ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                           ^^^^^^^^^^ source.liquidsoap
+#                                                                                     ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                         try
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                           let [i, b] = r/\s/.split(arg)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^^^ source.liquidsoap keyword.control.liquidsoap
+#                              ^^^^^^^^^^ source.liquidsoap
+#                                        ^^ source.liquidsoap string.regexp.liquidsoap
+#                                          ^^ source.liquidsoap string.regexp.liquidsoap
+#                                            ^ source.liquidsoap string.regexp.liquidsoap
+#                                             ^^^^^^^^^^^^ source.liquidsoap
+>                           input = list.nth(inputs, int_of_string(i))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                           input.single := (b == "true")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^ source.liquidsoap
+>                           status(input)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                         catch _ do
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^^ source.liquidsoap keyword.control.liquidsoap
+>                           "Usage: single <source nb> <true|false>"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+>                         end
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^ source.liquidsoap keyword.control.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>     server.register(namespace=source.id(s), description="Display current status.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                  ^^ source.liquidsoap
+>                     "status", fun (i) -> begin
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+#                               ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                  ^^^^^^^^ source.liquidsoap
+#                                          ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>                         try
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                           status(list.nth(inputs, int_of_string(i)))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                         catch _ do
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^^ source.liquidsoap keyword.control.liquidsoap
+>                           "Usage: status <source nb>"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+>                         end
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^ source.liquidsoap keyword.control.liquidsoap
+>                      end)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^ source.liquidsoap
+>     server.register(namespace=source.id(s), description="Print the list of input sources.",
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                           ^^ source.liquidsoap
+>                     "inputs", fun (_) -> string.concat(separator=" ", list.map(fun (input) -> source.id(input.source), inputs)))
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap
+#                               ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^^^^^^^^^^ source.liquidsoap
+#                                                                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  s.{inputs = inputs}
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Indicate beats.
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Sound synthesis
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~frequency Frequency of the sound.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param bpm Number of beats per minute.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def metronome(~frequency=440., bpm=60.)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^ source.liquidsoap constant.numeric.integer
+#                            ^^^^^^^ source.liquidsoap
+#                                   ^^ source.liquidsoap constant.numeric.integer
+#                                     ^^^ source.liquidsoap
+>  volume_down = 0.
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap constant.numeric.integer
+#                 ^^ source.liquidsoap
+>  beat_duration = 0.1
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^^^ source.liquidsoap constant.numeric.float
+>  s = sine(frequency)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  def f() =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^ source.liquidsoap
+>    if s.time() mod (60. / bpm) <= beat_duration then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^ source.liquidsoap constant.numeric.integer
+#                       ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                 ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      1.
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap constant.numeric.integer
+#       ^^ source.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      volume_down
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  amplify(f,s)
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Mixes two streams, with faded transitions between the state when only the
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># normal stream is available and when the special stream gets added on top of
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># it.
+#^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Fade
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~duration Duration of the fade in seconds.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~p       Portion of amplitude of the normal source in the mix.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~normal  The normal source, which could be called the carrier too.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~special The special source.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def smooth_add(~duration=1., ~p=getter(0.2), ~normal, ~special)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^^^^^^^^^^^^ source.liquidsoap
+#                                       ^^^ source.liquidsoap constant.numeric.float
+#                                          ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  p = getter.function(p)
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  last_p = ref(p())
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  def c(fn,s) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^ source.liquidsoap
+>    def v() =
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^ source.liquidsoap
+>      fn = fn()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>      fn()
+#^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    fade.scale(v,s)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  special_volume = ref(fun () -> 0.)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^^^ source.liquidsoap keyword.control.liquidsoap
+#                          ^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap constant.numeric.integer
+#                                  ^^^ source.liquidsoap
+>  special = c(special_volume,special)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  normal_volume = ref(fun () -> 1.)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap constant.numeric.integer
+#                                 ^^^ source.liquidsoap
+>  normal = c(normal_volume,normal)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  def to_special(_,special) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    last_p := p()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    q = 1. - last_p()
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap constant.numeric.integer
+#         ^^^^^^^^^^^^^ source.liquidsoap
+>    normal_volume := mkfade(start=1.,stop=last_p(),duration=duration,normal)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap constant.numeric.integer
+#                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    special_volume := mkfade(stop=q,duration=duration,special)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    special
+#^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  def to_blank(special,b)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    normal_volume := mkfade(start=last_p(),duration=duration,normal)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    special_volume := mkfade(start=1.-last_p(),duration=duration,special)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap constant.numeric.integer
+#                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    sequence([special,b])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  special = fallback(track_sensitive=false,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>               transitions=[to_special,to_blank],
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>               [special,blank()])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  add(normalize=false,[normal,special])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>%ifencoder %ffmpeg
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+># Output an MPEG-DASH playlist.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Source / Output
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~id Force the value of the source ID.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~codec Codec to use for audio (following FFmpeg's conventions).
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~fallible Allow the child source to fail, in which case the output will be (temporarily) stopped.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~on_start Callback executed when outputting starts.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~on_stop Callback executed when outputting stops.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~start Automatically start outputting whenever possible. If true, an infallible (normal) output will start outputting as soon as it is created, and a fallible output will (re)start as soon as its source becomes available for streaming.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~playlist Playlist name
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~directory Directory to write to
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def output.file.dash(~id=null(), ~fallible=false,
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>                     ~on_start={()}, ~on_stop={()}, ~codec="libmp3lame", ~bitrate=128,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                       ^^^^^^^^^^^ source.liquidsoap
+#                                                                                  ^^^ source.liquidsoap constant.numeric.integer
+#                                                                                     ^^ source.liquidsoap
+>                     ~start=true, ~playlist="stream.mpd", ~directory, s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  enc = %ffmpeg(format="dash", %audio(codec=codec, b="#{bitrate}k"))
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^^^ source.liquidsoap
+>  output.file(id=id, fallible=fallible, on_start=on_start, on_stop=on_stop, start=start, enc, "#{(directory:string)}/#{playlist}", s)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                 ^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>%endif
+#^^^^^^^ source.liquidsoap
+>

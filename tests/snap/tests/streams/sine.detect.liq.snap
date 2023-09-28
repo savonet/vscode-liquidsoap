@@ -1,0 +1,32 @@
+>log.level.set(4)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>
+>def f(freq)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^ source.liquidsoap
+>  print("Detected sine at #{freq}Hz.")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap
+>  test.pass()
+#^^^^^^^^^^^^^^ source.liquidsoap
+>  shutdown()
+#^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = sine(440.)
+#^^^^^^^^^ source.liquidsoap
+#         ^^^ source.liquidsoap constant.numeric.integer
+#            ^^^ source.liquidsoap
+>s = sine.detect(debug=false, [440.], s, f)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^^^ source.liquidsoap constant.numeric.integer
+#                                 ^^^^^^^^^^ source.liquidsoap
+>output.dummy(s)
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>

@@ -1,0 +1,1915 @@
+># Information about all variables
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>variables        = ref([])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+># Float variables
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>variables_float  = ref([])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+># Int variables
+#^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>variables_int    = ref([])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+># Bool variables
+#^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>variables_bool   = ref([])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+># String variables
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>variables_string = ref([])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+># Unit variables: those are not references but handler functions
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>variables_unit   = ref([])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>let interactive        = ()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>let interactive.float  = ()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>let interactive.int    = ()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>let interactive.bool   = ()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>let interactive.string = ()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>let interactive.unit   = ()
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>let interactive.error = error.register("interactive.error")
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^ source.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.list(_)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  l = variables()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  l = list.map(fun(xv) -> begin
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^^^ source.liquidsoap keyword.control.liquidsoap
+#                  ^^^^^^^^ source.liquidsoap
+#                          ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    let (x,v) = xv
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^ source.liquidsoap
+>    "#{x} : #{v.type}"
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+>  end, l)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^ source.liquidsoap
+>  string.concat(separator="\n", l)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>server.register(usage="list", description="List available interactive variables.", namespace="var", "list", interactive.list)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^^^^^^^^^^^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^^^^^^^^^^^^ source.liquidsoap
+#                                                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                              ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                  ^^ source.liquidsoap
+#                                                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                     ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                          ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+># Description of an interactive variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.description(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  list.assoc(name, variables()).description
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Type of an interactive variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.type(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  list.assoc(name, variables()).type
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.float.ref(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  list.assoc(name, variables_float()).ref
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.int.ref(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  list.assoc(name, variables_int()).ref
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.bool.ref(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  list.assoc(name, variables_bool()).ref
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.string.ref(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  list.assoc(name, variables_string()).ref
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.unit.handler(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  list.assoc(name, variables_unit()).handler
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.remove(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  variables := list.assoc.remove.all(name, variables())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Remove an interactive variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param name Name of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.float.remove(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  interactive.remove(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  variables_float := list.assoc.remove.all(name, variables_float())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Remove an interactive variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param name Name of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.int.remove(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  interactive.remove(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  variables_int := list.assoc.remove.all(name, variables_int())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Remove an interactive variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param name Name of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.bool.remove(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  interactive.remove(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  variables_bool := list.assoc.remove.all(name, variables_bool())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Remove an interactive variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param name Name of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.string.remove(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  interactive.remove(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  variables_string := list.assoc.remove.all(name, variables_string())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Remove an interactive variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param name Name of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.unit.remove(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  interactive.remove(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  variables_unit := list.assoc.remove.all(name, variables_unit())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Function called to ensure persistency of data.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>let interactive.persistency = ref(fun()->())
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                     ^^^^^^^^ source.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.float.set(name, v)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  interactive.float.ref(name) := v
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  p = interactive.persistency()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  p()
+#^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.int.set(name, v)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  interactive.int.ref(name) := v
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  p = interactive.persistency()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  p()
+#^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.bool.set(name, v)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  interactive.bool.ref(name) := v
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  p = interactive.persistency()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  p()
+#^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.string.set(name, v)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  interactive.string.ref(name) := v
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  p = interactive.persistency()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  p()
+#^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.unit.set(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  f = interactive.unit.handler(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  f()
+#^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>%ifdef osc.on_float
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>let stdlib_osc = osc
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>%endif
+#^^^^^^^ source.liquidsoap
+>
+># Create an interactive variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~name Name of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~description Description of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~osc OSC address for the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~type Type of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.create(~name, ~description="", ~osc="", ~type)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^ source.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^^^^^^^ source.liquidsoap
+>  if list.assoc.mem(name, variables()) then error.raise(interactive.error, "variable already registered") end
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                        ^^ source.liquidsoap
+#                                                                                                          ^^^ source.liquidsoap keyword.control.liquidsoap
+>  variables := (name, { type=type, description=description }) :: variables()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  variables := list.sort(fun(n, n') -> if fst(n) < fst(n') then -1 else 1 end, variables())
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^^^ source.liquidsoap keyword.control.liquidsoap
+#                            ^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                         ^^ source.liquidsoap
+#                                                           ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                               ^^ source.liquidsoap
+#                                                                 ^ source.liquidsoap constant.numeric.integer
+#                                                                  ^ source.liquidsoap
+#                                                                   ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                       ^ source.liquidsoap
+#                                                                        ^ source.liquidsoap constant.numeric.integer
+#                                                                         ^ source.liquidsoap
+#                                                                          ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                             ^^^^^^^^^^^^^^^ source.liquidsoap
+>%ifdef osc.on_float
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if osc != "" then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap
+#               ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    if type == "float" then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap
+#                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      stdlib_osc.on_float(osc, fun(x) -> interactive.float.set(name, x))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    elsif type == "int" then
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      stdlib_osc.on_int(osc, fun(x) -> interactive.int.set(name, x))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    elsif type == "bool" then
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap
+#                         ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      stdlib_osc.on_bool(osc, fun(x) -> interactive.bool.set(name, x))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    elsif type == "string" then
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap
+#                           ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      stdlib_osc.on_string(osc, fun(x) -> interactive.string.set(name, x))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    elsif type == "unit" then
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap
+#                         ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      () # TODO
+#^^^^^^^^^ source.liquidsoap
+#         ^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      error.raise(error.not_found)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>%else
+#^ source.liquidsoap
+# ^^^^ source.liquidsoap keyword.control.liquidsoap
+>  ignore(osc)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>%endif
+#^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.get(name)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>try
+#^^^^ source.liquidsoap
+>    t = interactive.type(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    if t == "float" then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap
+#                    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      r = interactive.float.ref(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      string.float(decimal_places=3, r())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap constant.numeric.integer
+#                                   ^^^^^^^ source.liquidsoap
+>    elsif t == "int" then
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      r = interactive.int.ref(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      string(r())
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    elsif t == "bool" then
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap
+#                      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      r = interactive.bool.ref(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      string(r())
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    elsif t == "string" then
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      r = interactive.string.ref(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      r()
+#^^^^^^^^^^ source.liquidsoap
+>    elsif t == "unit" then
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap
+#                      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      "()"
+#^^^^^^ source.liquidsoap
+#      ^ source.liquidsoap string.quoted.double.liquidsoap
+#       ^^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^ source.liquidsoap string.quoted.double.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      error.raise(error.not_found)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>  catch _ do
+#^^^^^^^^^^ source.liquidsoap
+#          ^^ source.liquidsoap keyword.control.liquidsoap
+>    "Variable not found."
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>server.register(namespace="var", description="Get the value of a variable.", "get", interactive.get)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^^^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                           ^^ source.liquidsoap
+#                                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                              ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                  ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+># @flag hidden
+#^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.set(arg)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  try
+#^^^^^^ source.liquidsoap
+>    arg = r/=/.split(arg)
+#^^^^^^^^^^ source.liquidsoap
+#          ^^ source.liquidsoap string.regexp.liquidsoap
+#            ^ source.liquidsoap string.regexp.liquidsoap
+#             ^ source.liquidsoap string.regexp.liquidsoap
+#              ^^^^^^^^^^^^ source.liquidsoap
+>    name = string.trim(list.nth(arg, 0))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                     ^ source.liquidsoap constant.numeric.integer
+#                                      ^^^ source.liquidsoap
+>    value = string.trim(list.nth(arg, 1))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                      ^ source.liquidsoap constant.numeric.integer
+#                                       ^^^ source.liquidsoap
+>    t = interactive.type(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    if t == "float" then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap
+#                    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      interactive.float.set(name, float_of_string(value))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    elsif t == "int" then
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      interactive.int.set(name, int_of_string(value))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    elsif t == "bool" then
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap
+#                      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      interactive.bool.set(name, bool_of_string(value))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    elsif t == "string" then
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      interactive.string.set(name, value)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    elsif t == "unit" then
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap
+#                      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      interactive.unit.set(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    else
+#^^^^ source.liquidsoap
+#    ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      error.raise(error.not_found)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    "Variable #{name} set."
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+>  catch _ do
+#^^^^^^^^^^ source.liquidsoap
+#          ^^ source.liquidsoap keyword.control.liquidsoap
+>    "Syntax error or variable not found."
+#^^^^ source.liquidsoap
+#    ^ source.liquidsoap string.quoted.double.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>server.register(usage="set <name> = <value>", description="Set the value of a variable.", namespace="var", "set", interactive.set)
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^^^^^^^^^^^^ source.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                        ^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                     ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                         ^^ source.liquidsoap
+#                                                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                            ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+># Save the value of all interactive variables in a file.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param fname Name of the file.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.save(fname)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  data = json.stringify({
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    float = list.map(fun (nv) -> begin let (name, v) = nv; (name, v.ref()) end, variables_float()),
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^^^ source.liquidsoap keyword.control.liquidsoap
+#                        ^^^^^^^^^ source.liquidsoap
+#                                 ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                      ^ source.liquidsoap
+#                                       ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                           ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                              ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    int = list.map(fun (nv) -> begin let (name, v) = nv; (name, v.ref()) end, variables_int()),
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap keyword.control.liquidsoap
+#                      ^^^^^^^^^ source.liquidsoap
+#                               ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                    ^ source.liquidsoap
+#                                     ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                         ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                            ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    bool = list.map(fun (nv) -> begin let (name, v) = nv; (name, v.ref()) end, variables_bool()),
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^^^ source.liquidsoap keyword.control.liquidsoap
+#                       ^^^^^^^^^ source.liquidsoap
+#                                ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                     ^ source.liquidsoap
+#                                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                          ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                             ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    string = list.map(fun (nv) -> begin let (name, v) = nv; (name, v.ref()) end, variables_string())
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^^^ source.liquidsoap keyword.control.liquidsoap
+#                         ^^^^^^^^^ source.liquidsoap
+#                                  ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                       ^ source.liquidsoap
+#                                        ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                            ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                               ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  })
+#^^^^^ source.liquidsoap
+>
+>  file.write(data=data, fname)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Load the value of interactive variables from a file.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param fname Name of the file.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.load(fname)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  vars = file.contents(fname)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  let json.parse ( vars: {
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    float : [(string * float)],
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    int : [(string * int)],
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    bool : [(string * bool)],
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    string : [(string * string)]
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  } ) = vars
+#^^^^^^^^^^^^^ source.liquidsoap
+>
+>  list.iter(fun (nv) -> try interactive.float.set (fst(nv), snd(nv)) catch _ do log.important(label="interactive.load", "Variable #{fst(nv)} not found.") end, vars.float )
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^^ source.liquidsoap keyword.control.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                             ^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                               ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                     ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                      ^^ source.liquidsoap
+#                                                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                        ^^ source.liquidsoap
+#                                                                                                                                                          ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                                                                                             ^^^^^^^^^^^^^^^ source.liquidsoap
+>  list.iter(fun (nv) -> try interactive.int.set   (fst(nv), snd(nv)) catch _ do log.important(label="interactive.load", "Variable #{fst(nv)} not found.") end, vars.int   )
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^^ source.liquidsoap keyword.control.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                             ^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                               ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                     ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                      ^^ source.liquidsoap
+#                                                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                        ^^ source.liquidsoap
+#                                                                                                                                                          ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                                                                                             ^^^^^^^^^^^^^^^ source.liquidsoap
+>  list.iter(fun (nv) -> try interactive.bool.set  (fst(nv), snd(nv)) catch _ do log.important(label="interactive.load", "Variable #{fst(nv)} not found.") end, vars.bool  )
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^^ source.liquidsoap keyword.control.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                             ^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                               ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                     ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                      ^^ source.liquidsoap
+#                                                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                        ^^ source.liquidsoap
+#                                                                                                                                                          ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                                                                                             ^^^^^^^^^^^^^^^ source.liquidsoap
+>  list.iter(fun (nv) -> try interactive.string.set(fst(nv), snd(nv)) catch _ do log.important(label="interactive.load", "Variable #{fst(nv)} not found.") end, vars.string)
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^^^ source.liquidsoap keyword.control.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                             ^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                               ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                     ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                      ^^ source.liquidsoap
+#                                                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                        ^^ source.liquidsoap
+#                                                                                                                                                          ^^^ source.liquidsoap keyword.control.liquidsoap
+#                                                                                                                                                             ^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Make the value of interactive variables persistent: they are loaded from the
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># given file and stored there whenever updated. This function should be called
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># after all interactive variables have been defined (variables not declared yet
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># will not be loaded).
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param fname Name of the file.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.persistent(fname)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  if file.exists(fname) then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    interactive.load(fname)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    interactive.save(fname)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  interactive.persistency := {interactive.save(fname)}
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Expose interactive variables through habor http server. Once this is called,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># with default parameters, you can browse <http://localhost:8000/interactive> to
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># change the value of interactive variables using sliders.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~port Port of the server.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~transport Http transport. Use `http.transport.ssl` or http.transport.secure_transport`, when available, to enable HTTPS output
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~uri URI of the server.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def interactive.harbor(~transport=http.transport.unix, ~port=8000, ~uri="/interactive")
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                             ^^^^ source.liquidsoap constant.numeric.integer
+#                                                                 ^^^^^^^ source.liquidsoap
+#                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                      ^^ source.liquidsoap
+>  def webpage(request, response)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    form_data = request.data
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    data = ref("")
+#^^^^^^^^^^^^^^^ source.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^ source.liquidsoap
+>    def add(s) =
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^ source.liquidsoap
+>      data := data() ^ s ^ "\n"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    title = "Interactive values"
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+>    add("<!DOCTYPE html><html><head>")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^^ source.liquidsoap
+>    add("<meta charset='utf-8'/>")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^ source.liquidsoap
+>    add("<title>#{title}</title>")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^ source.liquidsoap
+>    add("<style>
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    body {
+#^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      font-family: sans-serif;
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    }
+#^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    h1 {
+#^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      text-align: center;
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    }
+#^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    form {
+#^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      border-radius: 20px;
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      display: block;
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      background-color: whitesmoke;
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      width: max-content;
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      margin: 0 auto;
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      padding: 2ex;
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      display:grid;
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      grid-template-columns: max-content max-content;
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      grid-gap: 5px;
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    }
+#^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    label {
+#^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      text-align: right;
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    }
+#^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    input {
+#^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      width: 300px;
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    }
+#^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    </style>")
+#^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^ source.liquidsoap
+>    # TODO: we could send only the updated value instead of sending them all
+#^^^^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>    add("<script>
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    function send() {
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      let interactive = document.getElementsByClassName('interactive');
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      let data = '';
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      for(var i=0; i<interactive.length; i++){
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>        if (interactive[i].type == 'checkbox') {
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>          if (interactive[i].checked) {
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>            interactive[i].value = 'true'
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>          } else {
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>            interactive[i].value = 'false'
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>          }
+#^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>        }
+#^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>        if (interactive[i].type != 'button') {
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>          data = data.concat(interactive[i].name+'='+encodeURIComponent(interactive[i].value))+'&';
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>        }
+#^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      }
+#^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      console.log('Posting: ' + data);
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      let xmlHttp = new XMLHttpRequest();
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      xmlHttp.open('POST', '#{uri}');
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      xmlHttp.onreadystatechange = function () {
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>        if(xmlHttp.readyState === XMLHttpRequest.DONE) {
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>          var status = xmlHttp.status;
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>          if (status === 0 || (status >= 200 && status < 400)) {
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>            //console.log(xmlHttp.responseText);
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>          } else {
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>            console.log('Failed to send values.')
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>          }
+#^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>        }
+#^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      }
+#^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      xmlHttp.send(data);
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    }
+#^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    function sendUnit(name) {
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      const body = name + '=';
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      console.log('Posting: ' + body);
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>      fetch('#{uri}', {method: 'POST', body: body});
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    }
+#^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    </script>")
+#^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap
+>    add("</head><body>")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+>    add("<h1>#{title}</h1>")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^^ source.liquidsoap
+>    def add_var(nv)
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^^ source.liquidsoap
+>      let (name, v) = nv
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^^^^^^^^^^^ source.liquidsoap
+>      description = interactive.description(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      description =
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        if description == "" then name else "#{description} (#{name})" end
+#^^^^^^^^ source.liquidsoap
+#        ^^ source.liquidsoap keyword.control.liquidsoap
+#          ^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap
+#                             ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                 ^^^^^^ source.liquidsoap
+#                                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                           ^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^ source.liquidsoap
+#                                                                       ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>      add("<label for=#{name}>#{string.escape.html(description)}</label>")
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^^ source.liquidsoap
+>      common =
+#^^^^^^^^^^^^^^^ source.liquidsoap
+>        "id='#{name}' name='#{name}' class='interactive' onchange=\"send()\""
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                    ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+>
+>      if
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+>        v.type == "float"
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+>      then
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        v = list.assoc(name, variables_float())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        value = http.string_of_float(v.ref())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        if v.min == 0.-infinity or v.max == infinity then
+#^^^^^^^^ source.liquidsoap
+#        ^^ source.liquidsoap keyword.control.liquidsoap
+#          ^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^^^^^^^^^^ source.liquidsoap
+#                                ^^ source.liquidsoap keyword.operator.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                     ^^^^ source.liquidsoap keyword.control.liquidsoap
+>          add("<input type='number' #{common} step='#{v.step}' value='#{value}'>")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^^ source.liquidsoap
+>        else
+#^^^^^^^^ source.liquidsoap
+#        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>          min = http.string_of_float(v.min)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>          max = http.string_of_float(v.max)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>          step = http.string_of_float(v.step)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>          value = http.string_of_float(v.ref())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>          unit = if v.unit == "" then "" else " "^v.unit end
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^^ source.liquidsoap keyword.control.liquidsoap
+#                   ^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap
+#                                 ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                     ^ source.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap
+#                                         ^^^^ source.liquidsoap keyword.control.liquidsoap
+#                                             ^ source.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^^^^^^^ source.liquidsoap
+#                                                         ^^^ source.liquidsoap keyword.control.liquidsoap
+>          add("<div><input type='range' #{common} min='#{min}' max='#{max}' step='#{step}' value='#{value}' oninput='document.getElementById(\"#{name}-value\").innerHTML = this.value+\"#{unit}\"'><text id='#{name}-value' style='inline'>#{value}#{unit}</text></div>")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                                               ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                            ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                                                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                                                                                         ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                                                                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                                                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                                                                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                                                                                                                                                                         ^^ source.liquidsoap
+>        end
+#^^^^^^^^ source.liquidsoap
+#        ^^^ source.liquidsoap keyword.control.liquidsoap
+>      elsif v.type == "int" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap
+#                            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        v = list.assoc(name, variables_int())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        value = string(v.ref())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        add("<input type='number' #{common} step='1' value='#{value}'>")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                       ^^ source.liquidsoap
+>      elsif v.type == "bool" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap
+#                             ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        v = list.assoc(name, variables_bool())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        c = (v.ref()) ? "checked" : ""
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^ source.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+>        add("<input type='checkbox' #{common} value='true' #{c}>")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                 ^^ source.liquidsoap
+>      elsif v.type == "string" then
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^ source.liquidsoap
+#                               ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        v = list.assoc(name, variables_string())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        add("<input type='text' #{common} value='#{string.escape.html(v.ref())}'>")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                  ^^ source.liquidsoap
+>      elsif
+#^^^^^^ source.liquidsoap
+#      ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>        v.type == "unit"
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                   ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+>      then
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        add(
+#^^^^^^^^^^^^^ source.liquidsoap
+>          "<button type='button' #{common} onclick=\"sendUnit('#{name}')\">#{name}</button>"
+#^^^^^^^^^^ source.liquidsoap
+#          ^ source.liquidsoap string.quoted.double.liquidsoap
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
+#                                                                          ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+>        )
+#^^^^^^^^^^ source.liquidsoap
+>      else
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        ()
+#^^^^^^^^^^^ source.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    add("<form>")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^ source.liquidsoap
+>    list.iter(add_var, variables())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    add("</form>")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^ source.liquidsoap
+>    add("</body>")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^ source.liquidsoap
+>    response.html(data())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  harbor.http.register(transport=transport, port=port, method="GET", uri, webpage)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  def setter(request, _)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    data = url.split_args(request.body())
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    def update(nv)
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^^^^^^^^^^ source.liquidsoap
+>      let (name, v) = nv
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^^^^^^^^^^^^^^ source.liquidsoap
+>      try
+#^^^^^^^^^^ source.liquidsoap
+>        t = interactive.type(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        if t == "float" then
+#^^^^^^^^ source.liquidsoap
+#        ^^ source.liquidsoap keyword.control.liquidsoap
+#          ^^^^^^ source.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap
+#                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>          interactive.float.set(name, float_of_string(v))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        elsif t == "int" then
+#^^^^^^^^ source.liquidsoap
+#        ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#             ^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap
+#                         ^^^^ source.liquidsoap keyword.control.liquidsoap
+>          interactive.int.set(name, int_of_string(v))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        elsif t == "bool" then
+#^^^^^^^^ source.liquidsoap
+#        ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#             ^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap
+#                          ^^^^ source.liquidsoap keyword.control.liquidsoap
+>          interactive.bool.set(name, bool_of_string(v))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        elsif t == "string" then
+#^^^^^^^^ source.liquidsoap
+#        ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#             ^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap
+#                            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>          interactive.string.set(name, v)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        elsif t == "unit" then
+#^^^^^^^^ source.liquidsoap
+#        ^^^^^ source.liquidsoap keyword.control.liquidsoap
+#             ^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap
+#                          ^^^^ source.liquidsoap keyword.control.liquidsoap
+>          interactive.unit.set(name)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        end
+#^^^^^^^^ source.liquidsoap
+#        ^^^ source.liquidsoap keyword.control.liquidsoap
+>      catch e do
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^^ source.liquidsoap keyword.control.liquidsoap
+>        log.important(label="interactive.harbor", "Could not update variable #{name} (#{e.kind}: #{e.message}).")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^ source.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                                ^^ source.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>    list.iter(update, data)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  harbor.http.register(transport=transport, port=port, method="POST", uri, setter)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^^^^^^^^^^^^^^^ source.liquidsoap
+>  log.important(label="interactive.harbor", "Website should be ready at <http://localhost:#{port}#{uri}>.")
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^ source.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                          ^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Read a float from an interactive input.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~min Minimal value.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~max Maximal value.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~step Typical variation of the value.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~description Description of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~unit Unit for the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~osc OSC address.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param name Name of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param v Initial value.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def replaces interactive.float(~min=0.-infinity, ~max=infinity, ~step=0.1, ~description="", ~unit="", ~osc="", name, v)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                    ^ source.liquidsoap constant.numeric.integer
+#                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                      ^^^ source.liquidsoap constant.numeric.float
+#                                                                         ^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                          ^^^^^^^^ source.liquidsoap
+#                                                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                    ^^^^^^^ source.liquidsoap
+#                                                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                                             ^^^^^^^^^^^ source.liquidsoap
+>  interactive.create(name=name, description=description, osc=osc, type="float")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                              ^^ source.liquidsoap
+>  r = ref(v)
+#^^^^^^^^^^^^^ source.liquidsoap
+>  variables_float := (name, {ref=r, unit=unit, min=min, max=max, step=step }) :: variables_float()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  r.{set = fun(x) -> interactive.float.set(name, x), remove = {interactive.float.remove(name)}}
+#^^^^^^^^^^^ source.liquidsoap
+#           ^^^ source.liquidsoap keyword.control.liquidsoap
+#              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Read an integer from an interactive input.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~description Description of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~osc OSC address.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param name Name of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param v Initial value.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def replaces interactive.int(~description="", ~osc="", name, v)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^^^^^^^ source.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^^^^^^^^^^ source.liquidsoap
+>  interactive.create(name=name, description=description, osc=osc, type="int")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                            ^^ source.liquidsoap
+>  r = ref(v)
+#^^^^^^^^^^^^^ source.liquidsoap
+>  variables_int := (name, {ref=r }) :: variables_int()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  r.{set = fun(x) -> interactive.int.set(name, x), remove = {interactive.int.remove(name)}}
+#^^^^^^^^^^^ source.liquidsoap
+#           ^^^ source.liquidsoap keyword.control.liquidsoap
+#              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Read a boolean from an interactive input.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~description Description of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~osc OSC address.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param name Name of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param v Initial value.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def replaces interactive.bool(~description="", ~osc="", name, v)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^ source.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^^^^^^^^^ source.liquidsoap
+>  interactive.create(name=name, description=description, osc=osc, type="bool")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                             ^^ source.liquidsoap
+>  r = ref(v)
+#^^^^^^^^^^^^^ source.liquidsoap
+>  variables_bool := (name, { ref=r }) :: variables_bool()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  r.{set = fun(x) -> interactive.bool.set(name, x), remove = {interactive.bool.remove(name)}}
+#^^^^^^^^^^^ source.liquidsoap
+#           ^^^ source.liquidsoap keyword.control.liquidsoap
+#              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Read a string from an interactive input.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~description Description of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~osc OSC address.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param name Name of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param v Initial value.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def replaces interactive.string(~description="", ~osc="", name, v)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^^^^^^^ source.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^^^^^^^^^^ source.liquidsoap
+>  interactive.create(name=name, description=description, osc=osc, type="string")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                               ^^ source.liquidsoap
+>  r = ref(v)
+#^^^^^^^^^^^^^ source.liquidsoap
+>  variables_string := (name, { ref=r }) :: variables_string()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  r.{set = fun(x) -> interactive.string.set(name, x), remove = {interactive.string.remove(name)}}
+#^^^^^^^^^^^ source.liquidsoap
+#           ^^^ source.liquidsoap keyword.control.liquidsoap
+#              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Register a callback when a unit interactive input is set.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~description Description of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~osc OSC address.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param name Name of the variable.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param f Function triggered when the value is set.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def replaces interactive.unit(~description="", ~osc="", name, f)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^ source.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^^^^^^^^^ source.liquidsoap
+>  interactive.create(name=name, description=description, osc=osc, type="unit")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                             ^^ source.liquidsoap
+>  variables_unit := (name, { handler=f }) :: variables_unit()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  {set = f, remove = {interactive.float.remove(name)}}
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+># Create a multiband compressor whose parameters are interactive variables.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @category Interaction
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @flag extra
+#^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~id Id of the source. Variable names are prefixed with this.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param ~bands Number of bands.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+># @param s Source to compress.
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>def compress.multiband.interactive(~id=null(), ~bands=5, s)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                      ^ source.liquidsoap constant.numeric.integer
+#                                                       ^^^^^ source.liquidsoap
+>  id = string.id.default(default="compress.multiband.interactive", id)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                 ^^^^^^ source.liquidsoap
+>  prefix = id^"_"
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap
+>  wet = interactive.float(prefix^"wet", min=0., max=1., 1.)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^^^^^^ source.liquidsoap
+#                                            ^ source.liquidsoap constant.numeric.integer
+#                                             ^^^^^^^ source.liquidsoap
+#                                                    ^ source.liquidsoap constant.numeric.integer
+#                                                     ^^^ source.liquidsoap
+#                                                        ^ source.liquidsoap constant.numeric.integer
+#                                                         ^^^ source.liquidsoap
+>  min_freq = 100.
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^ source.liquidsoap constant.numeric.integer
+#                ^^ source.liquidsoap
+>  max_freq = 15000.
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^^^ source.liquidsoap constant.numeric.integer
+#                  ^^ source.liquidsoap
+>  def band(i)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^ source.liquidsoap
+>    frequency = exp((ln(max_freq) - ln(min_freq)) * float_of_int(i) / float_of_int(bands-1) + ln(min_freq))
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                                         ^ source.liquidsoap constant.numeric.integer
+#                                                                                          ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    log.important(label=id, "Adding a band at #{frequency} Hz.")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^ source.liquidsoap
+>    frequency = interactive.float("#{prefix}frequency#{i}", unit="Hz", min=0., max=20000., step=10., frequency)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^^^^ source.liquidsoap
+#                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^^^^^ source.liquidsoap
+#                                                                           ^ source.liquidsoap constant.numeric.integer
+#                                                                            ^^^^^^^ source.liquidsoap
+#                                                                                   ^^^^^ source.liquidsoap constant.numeric.integer
+#                                                                                        ^^^^^^^^ source.liquidsoap
+#                                                                                                ^^ source.liquidsoap constant.numeric.integer
+#                                                                                                  ^^^^^^^^^^^^^^ source.liquidsoap
+>    attack = interactive.float("#{prefix}attack#{i}", unit="ms", min=0., max=1000., step=10., 100.)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^^^^^^^ source.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                            ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                               ^^^^^^ source.liquidsoap
+#                                                                     ^ source.liquidsoap constant.numeric.integer
+#                                                                      ^^^^^^^ source.liquidsoap
+#                                                                             ^^^^ source.liquidsoap constant.numeric.integer
+#                                                                                 ^^^^^^^^ source.liquidsoap
+#                                                                                         ^^ source.liquidsoap constant.numeric.integer
+#                                                                                           ^^^ source.liquidsoap
+#                                                                                              ^^^ source.liquidsoap constant.numeric.integer
+#                                                                                                 ^^^ source.liquidsoap
+>    release = interactive.float("#{prefix}release#{i}", unit="ms", min=0., max=1000., step=10., 200.)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                 ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^^^^^^ source.liquidsoap
+#                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                              ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                 ^^^^^^ source.liquidsoap
+#                                                                       ^ source.liquidsoap constant.numeric.integer
+#                                                                        ^^^^^^^ source.liquidsoap
+#                                                                               ^^^^ source.liquidsoap constant.numeric.integer
+#                                                                                   ^^^^^^^^ source.liquidsoap
+#                                                                                           ^^ source.liquidsoap constant.numeric.integer
+#                                                                                             ^^^ source.liquidsoap
+#                                                                                                ^^^ source.liquidsoap constant.numeric.integer
+#                                                                                                   ^^^ source.liquidsoap
+>    threshold = interactive.float("#{prefix}threshold#{i}", unit="dB", min=-20., max=0., step=0.1, -10.)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^^^^^^^ source.liquidsoap
+#                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^^^^^^ source.liquidsoap
+#                                                                            ^^ source.liquidsoap constant.numeric.integer
+#                                                                              ^^^^^^^ source.liquidsoap
+#                                                                                     ^ source.liquidsoap constant.numeric.integer
+#                                                                                      ^^^^^^^^ source.liquidsoap
+#                                                                                              ^^^ source.liquidsoap constant.numeric.float
+#                                                                                                 ^^^ source.liquidsoap
+#                                                                                                    ^^ source.liquidsoap constant.numeric.integer
+#                                                                                                      ^^^ source.liquidsoap
+>    ratio = interactive.float("#{prefix}ratio#{i}", min=1., max=10., step=0.1, 4.)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^^^^ source.liquidsoap
+#                                                        ^ source.liquidsoap constant.numeric.integer
+#                                                         ^^^^^^^ source.liquidsoap
+#                                                                ^^ source.liquidsoap constant.numeric.integer
+#                                                                  ^^^^^^^^ source.liquidsoap
+#                                                                          ^^^ source.liquidsoap constant.numeric.float
+#                                                                             ^^ source.liquidsoap
+#                                                                               ^ source.liquidsoap constant.numeric.integer
+#                                                                                ^^^ source.liquidsoap
+>    gain = interactive.float("#{prefix}gain#{i}", unit="dB", min=0., max=30., step=0.1, 3.)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^^^^^^^ source.liquidsoap
+#                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                        ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                           ^^^^^^ source.liquidsoap
+#                                                                 ^ source.liquidsoap constant.numeric.integer
+#                                                                  ^^^^^^^ source.liquidsoap
+#                                                                         ^^ source.liquidsoap constant.numeric.integer
+#                                                                           ^^^^^^^^ source.liquidsoap
+#                                                                                   ^^^ source.liquidsoap constant.numeric.float
+#                                                                                      ^^ source.liquidsoap
+#                                                                                        ^ source.liquidsoap constant.numeric.integer
+#                                                                                         ^^^ source.liquidsoap
+>    {frequency=frequency, attack=attack, release=release, threshold=threshold, ratio=ratio, gain=gain}
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>  l = list.init(bands, band)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  compress.multiband(wet=wet, s, l)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>

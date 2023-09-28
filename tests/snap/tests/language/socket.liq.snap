@@ -1,0 +1,132 @@
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  test.equals(socket.internet_address.ipv6.any.is_ipv6, true)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^ source.liquidsoap constant.numeric.integer
+#                                          ^^^^^^^^^^^ source.liquidsoap
+#                                                     ^ source.liquidsoap constant.numeric.integer
+#                                                      ^^^^^^^^ source.liquidsoap
+>  test.equals(socket.internet_address.ipv6.loopback.to_string(), "::1")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                         ^ source.liquidsoap constant.numeric.integer
+#                                          ^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                      ^^ source.liquidsoap
+>
+>  let [h] = null.get(host.of_name("localhost")).addresses
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^^^^^^^^^^^^^ source.liquidsoap
+>  test.equals(socket.address.internet_address(h, 80).port, 80)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                                 ^^ source.liquidsoap constant.numeric.integer
+#                                                   ^^^^^^^^ source.liquidsoap
+#                                                           ^^ source.liquidsoap constant.numeric.integer
+#                                                             ^^ source.liquidsoap
+>
+>  fname = file.temp("unix", "socket")
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap
+>  file.remove(fname)
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  thread.run(fun () -> begin
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^^^ source.liquidsoap keyword.control.liquidsoap
+#                ^^^^^^^ source.liquidsoap
+#                       ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    s = socket.unix.listen(fname)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    test.equals(s.type, "unix")
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                              ^^ source.liquidsoap
+>    s.write.wait(fun () -> begin
+#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                 ^^^ source.liquidsoap keyword.control.liquidsoap
+#                    ^^^^^^^ source.liquidsoap
+#                           ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>      s.write("done!")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                     ^^ source.liquidsoap
+>      s.close()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end)
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^ source.liquidsoap
+>  end)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^ source.liquidsoap
+>
+>  thread.run(delay=0.1, fun () -> begin
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^^^ source.liquidsoap constant.numeric.float
+#                      ^^ source.liquidsoap
+#                        ^^^ source.liquidsoap keyword.control.liquidsoap
+#                           ^^^^^^^ source.liquidsoap
+#                                  ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    s = socket.unix.client(fname)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    s.read.wait(fun () ->
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+#                ^^^ source.liquidsoap keyword.control.liquidsoap
+#                   ^^^^^^^ source.liquidsoap
+>     begin
+#^^^^^ source.liquidsoap
+#     ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>      if s.read() == "done!" then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap
+#                             ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        s.close()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        test.pass()
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      else
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        test.fail()
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>     end)
+#^^^^^ source.liquidsoap
+#     ^^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^ source.liquidsoap
+>  end)
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

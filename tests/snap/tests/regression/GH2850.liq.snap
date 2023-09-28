@@ -1,0 +1,217 @@
+>
+>def f() =
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^^ source.liquidsoap
+>  has_connected = ref(false)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>  def on_start() =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^ source.liquidsoap
+>    has_connected := true
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  error_count = ref(0)
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                    ^ source.liquidsoap constant.numeric.integer
+#                     ^^ source.liquidsoap
+>
+>  def on_error(_) =
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^^^^^^^^^^^^^ source.liquidsoap
+>    error_count := error_count() + 1
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                   ^ source.liquidsoap constant.numeric.integer
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>  s = sine()
+#^^^^^^^^^^^^^ source.liquidsoap
+>
+>  output.url(
+#^^^^^^^^^^^^^^ source.liquidsoap
+>    on_error=on_error,
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    on_start=on_start,
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    restart_delay=0.5,
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                  ^^^ source.liquidsoap constant.numeric.float
+#                     ^^ source.liquidsoap
+>    url="icecast://source:hackme@localhost:8005/test",
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^^ source.liquidsoap
+>    %ffmpeg(
+#^^^^^^^^^^^^^ source.liquidsoap
+>      format="ogg",
+#^^^^^^^^^^^^^ source.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^ source.liquidsoap
+>      content_type="application/ogg",
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^ source.liquidsoap
+>      %audio(codec="flac")),
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                    ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                         ^^^^ source.liquidsoap
+>    s
+#^^^^^^ source.liquidsoap
+>  )
+#^^^^ source.liquidsoap
+>
+>  thread.run(delay=1., {begin
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                   ^ source.liquidsoap constant.numeric.integer
+#                    ^^^^ source.liquidsoap
+#                        ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>    if has_connected() or error_count() == 0 then
+#^^^^ source.liquidsoap
+#    ^^ source.liquidsoap keyword.control.liquidsoap
+#      ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^^ source.liquidsoap keyword.operator.liquidsoap
+#                         ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                           ^ source.liquidsoap constant.numeric.integer
+#                                            ^ source.liquidsoap
+#                                             ^^^^ source.liquidsoap keyword.control.liquidsoap
+>      test.fail()
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>    end
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>    s = input.harbor(port=8005,password="hackme","test")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^^^^ source.liquidsoap constant.numeric.integer
+#                              ^^^^^^^^^^ source.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^ source.liquidsoap
+>
+>    thread.run(delay=1., {begin
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+#                      ^^^^ source.liquidsoap
+#                          ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>      if not !has_connected then
+#^^^^^^ source.liquidsoap
+#      ^^ source.liquidsoap keyword.control.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^^^^ source.liquidsoap keyword.control.liquidsoap
+>        test.fail()
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      end
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>      print("Shutting down initial source")
+#^^^^^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^ source.liquidsoap
+>      s.shutdown()
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>      error_count := 0
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                     ^ source.liquidsoap constant.numeric.integer
+>
+>      thread.run(delay=3., {begin
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                       ^ source.liquidsoap constant.numeric.integer
+#                        ^^^^ source.liquidsoap
+#                            ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>        if error_count() == 0 then
+#^^^^^^^^ source.liquidsoap
+#        ^^ source.liquidsoap keyword.control.liquidsoap
+#          ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                            ^ source.liquidsoap constant.numeric.integer
+#                             ^ source.liquidsoap
+#                              ^^^^ source.liquidsoap keyword.control.liquidsoap
+>          test.fail()
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        end
+#^^^^^^^^ source.liquidsoap
+#        ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>        has_connected := false
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        print("Starting new source")
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                   ^^ source.liquidsoap
+>        input.harbor(port=8005,password="hackme","test")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                          ^^^^ source.liquidsoap constant.numeric.integer
+#                              ^^^^^^^^^^ source.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                  ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^ source.liquidsoap
+>
+>        thread.run(delay=1., {begin
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                         ^ source.liquidsoap constant.numeric.integer
+#                          ^^^^ source.liquidsoap
+#                              ^^^^^ source.liquidsoap keyword.control.liquidsoap
+>          if not has_connected() then
+#^^^^^^^^^^ source.liquidsoap
+#          ^^ source.liquidsoap keyword.control.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                                 ^^^^ source.liquidsoap keyword.control.liquidsoap
+>            test.fail()
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>          end
+#^^^^^^^^^^ source.liquidsoap
+#          ^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>          test.pass()
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>        end})
+#^^^^^^^^ source.liquidsoap
+#        ^^^ source.liquidsoap keyword.control.liquidsoap
+#           ^^^ source.liquidsoap
+>      end})
+#^^^^^^ source.liquidsoap
+#      ^^^ source.liquidsoap keyword.control.liquidsoap
+#         ^^^ source.liquidsoap
+>    end})
+#^^^^ source.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#       ^^^ source.liquidsoap
+>  end})
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#     ^^^ source.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>test.check(f)
+#^^^^^^^^^^^^^^ source.liquidsoap
+>

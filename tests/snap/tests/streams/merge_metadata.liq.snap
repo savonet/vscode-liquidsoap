@@ -1,0 +1,135 @@
+>log.level.set(4)
+#^^^^^^^^^^^^^^ source.liquidsoap
+#              ^ source.liquidsoap constant.numeric.integer
+#               ^^ source.liquidsoap
+>
+>def f(m)
+#^^^ source.liquidsoap keyword.control.liquidsoap
+#   ^^^^^^ source.liquidsoap
+>  print("Got metadata!")
+#^^^^^^^^ source.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^^ source.liquidsoap
+>  if m == [("s", "That's me!"), ("test", "bla"), ("s'", "That's me!"), ("test", "blo")] then
+#^^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.control.liquidsoap
+#    ^^^^^^^^ source.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#               ^^ source.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                  ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^^ source.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                       ^^ source.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                              ^^^^ source.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                   ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                      ^^ source.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                    ^^^^ source.liquidsoap
+#                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                              ^^ source.liquidsoap
+#                                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                                                     ^^^ source.liquidsoap
+#                                                                                        ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.pass()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  else
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap keyword.control.liquidsoap
+>    test.fail()
+#^^^^^^^^^^^^^^^^ source.liquidsoap
+>  end
+#^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
+>end
+#^^^ source.liquidsoap keyword.control.liquidsoap
+>
+>s = sine()
+#^^^^^^^^^^^ source.liquidsoap
+>s = insert_metadata(s)
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+>
+>s' = sine()
+#^ source.liquidsoap
+# ^ source.liquidsoap string.quoted.single.liquidsoap
+#  ^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>s' = insert_metadata(s')
+#^ source.liquidsoap string.quoted.single.liquidsoap
+# ^ source.liquidsoap string.quoted.single.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#                      ^ source.liquidsoap string.quoted.single.liquidsoap
+#                       ^^ source.liquidsoap string.quoted.single.liquidsoap
+>
+>def insert()
+#^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  print("Inserting metadata")
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+>  s.insert_metadata([("test", "bla"), ("s","That's me!")])
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                 ^^^^^ source.liquidsoap
+#                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                       ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>  s'.insert_metadata([("test", "blo"), ("s'","That's me!")])
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap
+#                        ^^^^ source.liquidsoap
+#                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#                             ^^ source.liquidsoap string.quoted.double.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^ source.liquidsoap
+#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                    ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                           ^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                  ^ source.liquidsoap string.quoted.single.liquidsoap
+#                                                   ^^^^^ source.liquidsoap
+#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>end
+#^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>
+>s = source({
+#^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>  audio = source.tracks(s).audio,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>  metadata = track.metadata.merge([
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    source.tracks(s).metadata,
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>    source.tracks(s').metadata
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>  ])
+#^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>})
+#^^^ source.liquidsoap string.quoted.double.liquidsoap
+>
+>s = source.on_metadata(s,f)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>
+>thread.run(delay=1., insert)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>
+>output.dummy(s)
+#^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+>
