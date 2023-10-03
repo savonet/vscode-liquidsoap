@@ -14,7 +14,7 @@ Syntax highlighting should be working out of the box.
 Formatting requires `prettier` and uses the `prettier-liquidsoap-plugin`.
 
 Unfortunately, the prettier ecosystem is pretty tied up with node and `package.json` files. The
-fastests way to enable formatting is to go to your project's root and:
+fastest way to enable formatting is to go to your project's root and:
 
 1. Install `prettier` and `prettier-plugin-liquidsoap`:
 
