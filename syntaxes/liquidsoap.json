@@ -58,7 +58,7 @@
       "patterns": [
         {
           "comment": "for loop",
-          "match": "\\b(for)[[:space:]]+(__*|_*\\p{Alphabetic}[\\p{Alphabetic}0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])",
+          "match": "\\b(for)[[:space:]]+(__*|_*[[:alpha:]][[[:alpha:]]0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])",
           "captures": {
             "1": { "name": "keyword.liquidsoap" },
             "2": { "name": "entity.name.function.binding.liquidsoap" }
@@ -66,7 +66,7 @@
         },
         {
           "comment": "let expression binding",
-          "match": "\\b(let)[[:space:]]+(eval[[:space:]]+|replaces[[:space:]]+|json\\.parse(?:\\[[^\\]]*\\])?[[:space:]]+|yaml\\.parse(?:\\[[^\\]]*\\])?[[:space:]]+)?(?<!eval|replaces|json\\.parse|yaml\\.parse)(__*|_*\\p{Alphabetic}[\\p{Alphabetic}0-9_'.]*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])[[:space:]]*(?!,|::|[[:space:]])",
+          "match": "\\b(let)[[:space:]]+(eval[[:space:]]+|replaces[[:space:]]+|json\\.parse(?:\\[[^\\]]*\\])?[[:space:]]+|yaml\\.parse(?:\\[[^\\]]*\\])?[[:space:]]+)?(?<!eval|replaces|json\\.parse|yaml\\.parse)(__*|_*[[:alpha:]][[[:alpha:]]0-9_'.]*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])[[:space:]]*(?!,|::|[[:space:]])",
           "captures": {
             "1": { "name": "keyword.other.function.declaration.liquidsoap" },
             "2": { "name": "storage.modifier.liquidsoap" },
@@ -108,7 +108,7 @@
         },
         {
           "comment": "def expression binding with params",
-          "begin": "\\b(def)[[:space:]]+(rec[[:space:]]+|replaces[[:space:]]+)?(?<!rec|replaces)(__*|_*\\p{Alphabetic}[\\p{Alphabetic}0-9_'.]*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])",
+          "begin": "\\b(def)[[:space:]]+(rec[[:space:]]+|replaces[[:space:]]+)?(?<!rec|replaces)(__*|_*[[:alpha:]][[[:alpha:]]0-9_'.]*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])",
           "end": "(?<=end)\\b",
           "beginCaptures": {
             "1": {
@@ -127,7 +127,7 @@
         },
         {
           "comment": "expression binding",
-          "match": "\\b(__*|_*\\p{Alphabetic}[\\p{Alphabetic}0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])[[:space:]]*=(?!=)",
+          "match": "\\b(__*|_*[[:alpha:]][[[:alpha:]]0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])[[:space:]]*=(?!=)",
           "captures": {
             "1": { "name": "entity.name.function.binding.liquidsoap" }
           }
@@ -194,7 +194,7 @@
           "endCaptures": { "1": { "name": "keyword.control.liquidsoap" } },
           "patterns": [
             {
-              "match": "\\b(catch)[[:space:]]+(__*|\\p{Alphabetic}[\\p{Alphabetic}0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])[[:space:]]+(do)\\b",
+              "match": "\\b(catch)[[:space:]]+(__*|[[:alpha:]][[[:alpha:]]0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])[[:space:]]+(do)\\b",
               "captures": {
                 "1": { "name": "keyword.control.liquidsoap" },
                 "2": { "name": "entity.name.function.binding.liquidsoap" },
@@ -202,7 +202,7 @@
               }
             },
             {
-              "begin": "\\b(catch)[[:space:]]+(__*|\\p{Alphabetic}[\\p{Alphabetic}0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])[[:space:]]+(:)",
+              "begin": "\\b(catch)[[:space:]]+(__*|[[:alpha:]][[[:alpha:]]0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])[[:space:]]+(:)",
               "end": "(do)",
               "beginCaptures": {
                 "1": { "name": "keyword.control.liquidsoap" },
@@ -245,7 +245,7 @@
         {
           "comment": "function invocation",
           "name": "meta.function-call.liquidsoap",
-          "begin": "\\??\\.?%?(__*|\\p{Alphabetic}[\\p{Alphabetic}0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])[[:space:]]*\\(",
+          "begin": "\\??\\.?%?(__*|[[:alpha:]][[[:alpha:]]0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])[[:space:]]*\\(",
           "end": "\\)",
           "beginCaptures": {
             "1": { "name": "entity.name.function.liquidsoap" }
@@ -254,7 +254,7 @@
         },
         {
           "comment": "method invocation",
-          "match": "(\\??\\.)(__*|_*\\p{Alphabetic}[\\p{Alphabetic}0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])",
+          "match": "(\\??\\.)(__*|_*[[:alpha:]][[[:alpha:]]0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])",
           "captures": {
             "1": { "name": "keyword.other.liquidsoap" },
             "2": { "name": "variable.method.liquidsoap" }
@@ -341,7 +341,7 @@
           "patterns": [
             {
               "comment": "method assignment",
-              "match": "\\b(__*|_*\\p{Alphabetic}[\\p{Alphabetic}0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])[[:space:]]*:(?!:)",
+              "match": "\\b(__*|_*[[:alpha:]][[[:alpha:]]0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])[[:space:]]*:(?!:)",
               "captures": {
                 "1": {
                   "name": "entity.name.method.liquidsoap"
@@ -361,7 +361,7 @@
     "source-type-arguments": {
       "patterns": [
         {
-          "match": "\\b([\\p{Alphabetic}]+)(\\??)[[:space:]]*=[[:space:]]*([\\p{Alphabetic}.]+)(\\([\\p{Alphabetic}0-9.]+\\))?",
+          "match": "\\b([[[:alpha:]]]+)(\\??)[[:space:]]*=[[:space:]]*([[[:alpha:]].]+)(\\([[[:alpha:]]0-9.]+\\))?",
           "captures": {
             "1": { "name": "storage.type.source.track.liquidsoap" },
             "2": { "name": "keyword.other.liquidsoap" },
@@ -370,7 +370,7 @@
           }
         },
         {
-          "match": "\\b([\\p{Alphabetic}]+)(\\??)\\b",
+          "match": "\\b([[[:alpha:]]]+)(\\??)\\b",
           "captures": {
             "1": { "name": "storage.type.source.track.liquidsoap" },
             "2": { "name": "keyword.other.liquidsoap" }
@@ -386,7 +386,7 @@
     "function-call-arguments": {
       "patterns": [
         {
-          "match": "(__*|_*\\p{Alphabetic}[\\p{Alphabetic}0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])=",
+          "match": "(__*|_*[[:alpha:]][[[:alpha:]]0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])=",
           "captures": {
             "1": { "name": "variable.language.arguments.named.liquidsoap" }
           }
@@ -527,12 +527,12 @@
         {
           "comment": "encoder literal",
           "name": "variable.encoder.liquidsoap",
-          "match": "%\\p{Alphabetic}[\\p{Alphabetic}0-9_']*"
+          "match": "%[[:alpha:]][[[:alpha:]]0-9_']*"
         },
         {
           "comment": "variable literal",
           "name": "variable.liquidsoap",
-          "match": "\\b(?!r/)(__*|_*\\p{Alphabetic}[\\p{Alphabetic}0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])"
+          "match": "\\b(?!r/)(__*|_*[[:alpha:]][[[:alpha:]]0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])"
         }
       ]
     },
@@ -541,7 +541,7 @@
         {
           "comment": "variable assignment",
           "name": "entity.name.function.binding.liquidsoap",
-          "match": "\\b(?!r/)(__*|_*\\p{Alphabetic}[\\p{Alphabetic}0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])"
+          "match": "\\b(?!r/)(__*|_*[[:alpha:]][[[:alpha:]]0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])"
         },
         {
           "comment": "list pattern",
@@ -576,7 +576,7 @@
       "patterns": [
         {
           "comment": "method assignment",
-          "match": "\\b(__*|_*\\p{Alphabetic}[\\p{Alphabetic}0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])[[:space:]]*=(?!=)",
+          "match": "\\b(__*|_*[[:alpha:]][[[:alpha:]]0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])[[:space:]]*=(?!=)",
           "captures": {
             "1": {
               "name": "entity.name.method.liquidsoap"
@@ -594,7 +594,7 @@
     "def-param": {
       "patterns": [
         {
-          "match": "~(__*|_*\\p{Alphabetic}[\\p{Alphabetic}0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])",
+          "match": "~(__*|_*[[:alpha:]][[[:alpha:]]0-9_']*|[\\p{Emoji_Presentation}\\p{Other_Symbol}])",
           "captures": {
             "1": { "name": "variable.parameter.liquidsoap" }
           }
