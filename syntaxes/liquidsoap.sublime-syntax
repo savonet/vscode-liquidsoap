@@ -1,0 +1,426 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: liquidsoap
+file_extensions:
+  - liq
+scope: source.liquidsoap
+contexts:
+  main:
+    - include: comments
+    - include: bindings
+    - include: expressions
+  bindings:
+    - match: '\b(for)[[:space:]]+(__*|_*[[:alpha:]][[[:alpha:]]0-9_'']*)'
+      comment: for loop
+      captures:
+        1: keyword.liquidsoap
+        2: entity.name.function.binding.liquidsoap
+    - match: '\b(let)[[:space:]]+(eval[[:space:]]+|replaces[[:space:]]+|json\.parse(?:\[[^\]]*\])?[[:space:]]+|yaml\.parse(?:\[[^\]]*\])?[[:space:]]+)?(?<!eval|replaces|json\.parse|yaml\.parse)(__*|_*[[:alpha:]][[[:alpha:]]0-9_''.]*)[[:space:]]*(?!,|::|[[:space:]])'
+      comment: let expression binding
+      captures:
+        1: keyword.other.function.declaration.liquidsoap
+        2: storage.modifier.liquidsoap
+        3: entity.name.function.binding.liquidsoap
+    - match: '\b(let)[[:space:]]+\['
+      comment: list pattern binding
+      captures:
+        1: keyword.other.function.declaration.pattern.liquidsoap
+      push:
+        - match: '\]'
+          pop: true
+        - include: pattern-assignments
+    - match: '\b(let)[[:space:]]+\{'
+      comment: module pattern binding
+      captures:
+        1: keyword.other.function.declaration.pattern.liquidsoap
+      push:
+        - match: '\}'
+          pop: true
+        - include: pattern-assignments
+    - match: '\b(let)[[:space:]]+\('
+      comment: tuple pattern binding
+      captures:
+        1: keyword.other.function.declaration.pattern.liquidsoap
+      push:
+        - match: \)
+          pop: true
+        - include: pattern-assignments
+    - match: '\b(def)[[:space:]]+(rec[[:space:]]+|replaces[[:space:]]+)?(?<!rec|replaces)(__*|_*[[:alpha:]][[[:alpha:]]0-9_''.]*)'
+      comment: def expression binding with params
+      captures:
+        1: keyword.other.function.definition.liquidsoap
+        2: storage.modifier.liquidsoap
+        3: entity.name.function.binding.liquidsoap
+      push:
+        - match: (?<=end)\b
+          captures:
+            1: keyword.other.function.end.liquidsoap
+          pop: true
+        - include: def-params
+        - include: function-body
+    - match: '\b(__*|_*[[:alpha:]][[[:alpha:]]0-9_'']*)[[:space:]]*=(?!=)'
+      comment: expression binding
+      captures:
+        1: entity.name.function.binding.liquidsoap
+  comments:
+    - match: "#<"
+      push:
+        - meta_scope: comment.block.liquidsoap
+        - match: ">#"
+          pop: true
+        - include: comments-doc
+    - match: "#"
+      push:
+        - meta_scope: comment.line.number-sign.liquidsoap
+        - match: \n
+          pop: true
+        - include: comments-doc
+  comments-doc:
+    - match: "@param"
+      scope: comment.doc.param.liquidsoap
+    - match: "@category"
+      scope: comment.doc.category.liquidsoap
+    - match: "@argsof"
+      scope: comment.doc.argsof.liquidsoap
+  constants:
+    - match: \b(true|false)\b
+      scope: constant.language.boolean.liquidsoap
+    - match: '\b([0-9][0-9_]*?)\.[0-9][0-9_]*(?!\})\b'
+      scope: constant.numeric.decimal.float.liquidsoap
+    - match: '\b0(x|X)[0-9][0-9a-fA-F_]+\b'
+      scope: constant.numeric.hexadecimal.integer.liquidsoap
+    - match: '\b0(o|O)[0-9][0-9_]+\b'
+      scope: constant.numeric.octal.integer.liquidsoap
+    - match: '\b([0-9]+w?)[0-9]+h[0-9]+\b'
+      scope: constant.time.predicate.liquidsoap
+    - match: '\b[0-9]+w([0-9]+h?)([0-9]+m?)([0-9]+s?)\b'
+      scope: constant.time.predicate.liquidsoap
+    - match: '\b([0-9]+w?)[0-9]+h([0-9]+m?)([0-9]+s?)\b'
+      scope: constant.time.predicate.liquidsoap
+    - match: '\b([0-9]+w?)([0-9]+h?)[0-9]+m([0-9]+s?)\b'
+      scope: constant.time.predicate.liquidsoap
+    - match: '\b([0-9]+w?)([0-9]+h?)([0-9]+m?)[0-9]+s\b'
+      scope: constant.time.predicate.liquidsoap
+    - match: '\b[0-9][0-9_]*\b'
+      scope: constant.numeric.decimal.integer.liquidsoap
+  def-param:
+    - match: "~(__*|_*[[:alpha:]][[[:alpha:]]0-9_']*)"
+      captures:
+        1: variable.parameter.liquidsoap
+    - match: ","
+      comment: comma separator
+      scope: keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+    - include: expressions
+  def-params:
+    - match: '[[:space:]]*\('
+      push:
+        - match: \)
+          pop: true
+        - include: def-param
+  expressions:
+    - match: '(\?)(?![\?\.])'
+      comment: inline if
+      captures:
+        1: keyword.control.liquidsoap
+      push:
+        - match: (:)
+          captures:
+            1: keyword.control.liquidsoap
+          pop: true
+        - include: expressions
+    - match: \b(if)\b
+      comment: if
+      captures:
+        1: keyword.control.liquidsoap
+      push:
+        - match: \b(end)\b
+          captures:
+            1: keyword.control.liquidsoap
+          pop: true
+        - match: \b(then|else|elsif)\b
+          scope: keyword.control.liquidsoap
+        - include: main
+    - match: \b(for)\b
+      comment: for
+      captures:
+        1: keyword.control.liquidsoap
+      push:
+        - match: \b(end)\b
+          captures:
+            1: keyword.control.liquidsoap
+          pop: true
+        - match: \b(to|do)\b
+          scope: keyword.control.liquidsoap
+        - include: main
+    - match: \b(while)\b
+      comment: while
+      captures:
+        1: keyword.control.liquidsoap
+      push:
+        - match: \b(end)\b
+          captures:
+            1: keyword.control.liquidsoap
+          pop: true
+        - match: \b(do)\b
+          scope: keyword.control.liquidsoap
+        - include: main
+    - match: \b(try)\b
+      comment: try
+      captures:
+        1: keyword.control.liquidsoap
+      push:
+        - match: \b(end)\b
+          captures:
+            1: keyword.control.liquidsoap
+          pop: true
+        - match: '\b(catch)[[:space:]]+(__*|[[:alpha:]][[[:alpha:]]0-9_'']*)[[:space:]]+(do)\b'
+          captures:
+            1: keyword.control.liquidsoap
+            2: entity.name.function.binding.liquidsoap
+            3: keyword.control.liquidsoap
+        - match: '\b(catch)[[:space:]]+(__*|[[:alpha:]][[[:alpha:]]0-9_'']*)[[:space:]]+(:)'
+          captures:
+            1: keyword.control.liquidsoap
+            2: entity.name.function.binding.liquidsoap
+            3: keyword.control.liquidsoap
+          push:
+            - match: (do)
+              captures:
+                1: keyword.other.liquidsoap
+              pop: true
+            - include: expressions
+        - include: main
+    - match: \b(begin)\b
+      comment: begin
+      captures:
+        1: keyword.control.liquidsoap
+      push:
+        - match: \b(end)\b
+          captures:
+            1: keyword.control.liquidsoap
+          pop: true
+        - include: main
+    - match: '\.?\{'
+      comment: record declaration
+      push:
+        - match: '\}'
+          pop: true
+        - include: records
+        - include: expressions
+    - match: '\b(fun)[[:space:]]*\('
+      comment: fun with params
+      captures:
+        1: keyword.other.function.definition.anonymous.liquidsoap
+      push:
+        - match: \)
+          captures:
+            1: keyword.other.function.definition.anonymous.liquidsoap
+          pop: true
+        - include: def-param
+    - match: '\??\.?%?(__*|[[:alpha:]][[[:alpha:]]0-9_'']*)[[:space:]]*\('
+      comment: function invocation
+      captures:
+        1: entity.name.function.liquidsoap
+      push:
+        - meta_scope: meta.function-call.liquidsoap
+        - match: \)
+          pop: true
+        - include: function-call-arguments
+    - match: '(\??\.)(__*|_*[[:alpha:]][[[:alpha:]]0-9_'']*)'
+      comment: method invocation
+      captures:
+        1: keyword.other.liquidsoap
+        2: variable.method.liquidsoap
+    - match: "(:)(?![=:])"
+      captures:
+        1: keyword.other.cast.liquidsoap
+      push:
+        - meta_scope: meta.type-annotation.liquidsoap
+        - match: \)
+          pop: true
+        - include: types
+    - include: keywords
+    - include: constants
+    - include: identifiers
+    - include: strings
+  function-body:
+    - match: '[[:space:]]*(?:=|\n)'
+      push:
+        - match: \b(end)\b
+          captures:
+            1: keyword.other.function.end.liquidsoap
+          pop: true
+        - include: main
+  function-call-arguments:
+    - match: "(__*|_*[[:alpha:]][[[:alpha:]]0-9_']*)="
+      captures:
+        1: variable.language.arguments.named.liquidsoap
+    - match: ","
+      comment: comma separator
+      scope: keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+    - include: expressions
+  identifiers:
+    - match: "%[[:alpha:]][[[:alpha:]]0-9_']*"
+      comment: encoder literal
+      scope: variable.encoder.liquidsoap
+    - match: '\b(?!r/)(__*|_*[[:alpha:]][[[:alpha:]]0-9_'']*)'
+      comment: variable literal
+      scope: variable.liquidsoap
+  keywords:
+    - match: (%ifdef|%ifndef|%ifversion|%ifnversion|%ifencoder|%ifnencoder|%else|%endif)\b
+      scope: keyword.other.liquidsoap
+    - match: "->"
+      scope: keyword.control.function.declaration.liquidsoap
+    - match: \b(and|or|not)\b
+      scope: keyword.operator.boolean.liquidsoap
+    - match: \.\.\.
+      scope: keyword.operator.spread.liquidsoap
+    - match: "::"
+      scope: keyword.operator.append.liquidsoap
+    - match: '[+\-/*]\.?'
+      scope: keyword.operator.arithmetic.liquidsoap
+    - match: (>=|<=|>|<|==|!=)
+      scope: keyword.operator.compare.liquidsoap
+    - match: ":="
+      scope: keyword.operator.set.liquidsoap
+    - match: \?\?
+      scope: keyword.operator.coalesce.liquidsoap
+    - match: ","
+      comment: comma separator
+      scope: keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+  pattern-assignments:
+    - match: '\b(?!r/)(__*|_*[[:alpha:]][[[:alpha:]]0-9_'']*)'
+      comment: variable assignment
+      scope: entity.name.function.binding.liquidsoap
+    - match: '\['
+      comment: list pattern
+      push:
+        - match: '\]'
+          pop: true
+        - include: pattern-assignments
+    - match: \(
+      comment: tuple pattern
+      push:
+        - match: \)
+          pop: true
+        - include: pattern-assignments
+    - match: '\{'
+      comment: module pattern
+      push:
+        - match: '\}'
+          pop: true
+        - include: pattern-assignments
+    - match: ","
+      comment: comma separator
+      scope: keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+    - match: \.\.\.
+      scope: keyword.operator.spread.liquidsoap
+  records:
+    - match: '\b(__*|_*[[:alpha:]][[[:alpha:]]0-9_'']*)[[:space:]]*=(?!=)'
+      comment: method assignment
+      captures:
+        1: entity.name.method.liquidsoap
+    - match: ","
+      comment: comma separator
+      scope: keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+    - include: expressions
+  source-type-arguments:
+    - match: '\b([[[:alpha:]]]+)(\??)[[:space:]]*=[[:space:]]*([[[:alpha:]].]+)(\([[[:alpha:]]0-9.]+\))?'
+      captures:
+        1: storage.type.source.track.liquidsoap
+        2: keyword.other.liquidsoap
+        3: storage.type.source.format.liquidsoap
+        4: storage.type.source.format.params.liquidsoap
+    - match: '\b([[[:alpha:]]]+)(\??)\b'
+      captures:
+        1: storage.type.source.track.liquidsoap
+        2: keyword.other.liquidsoap
+    - match: ","
+      comment: comma separator
+      scope: keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+  string-escapes:
+    - match: \\.
+      scope: constant.character.escape.liquidsoap
+    - match: '#\{'
+      push:
+        - meta_scope: string.interpolation.liquidsoap
+        - match: '\}'
+          pop: true
+        - match: '\\}'
+          scope: string.interpolation.escape.liquidsoap
+        - include: expressions
+  strings:
+    - match: '"'
+      push:
+        - meta_scope: string.quoted.double.liquidsoap
+        - match: '"'
+          pop: true
+        - include: string-escapes
+    - match: "'"
+      push:
+        - meta_scope: string.quoted.single.liquidsoap
+        - match: "'"
+          pop: true
+        - include: string-escapes
+    - match: r/
+      push:
+        - meta_scope: string.regexp.liquidsoap
+        - match: "/[gismu]*"
+          pop: true
+        - match: \\/
+          scope: constant.character.escape.liquidsoap
+  types:
+    - match: \b(int|float|unit|bool)(?:(\?)|\b)
+      captures:
+        1: storage.type.ground.liquidsoap
+        2: keyword.other.liquidsoap
+    - match: \b(source)\(
+      captures:
+        1: storage.type.source.liquidsoap
+      push:
+        - match: \)(\??)
+          captures:
+            1: keyword.other.liquidsoap
+          pop: true
+        - include: source-type-arguments
+    - match: source(\??)
+      captures:
+        1: storage.type.source.liquidsoap
+        2: keyword.other.liquidsoap
+    - match: \(
+      push:
+        - match: \)(\??)
+          captures:
+            1: keyword.other.liquidsoap
+          pop: true
+        - include: types
+        - match: ","
+          comment: comma separator
+          scope: keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+    - match: '\['
+      comment: list
+      push:
+        - match: '\](\??)'
+          captures:
+            1: keyword.other.liquidsoap
+          pop: true
+        - include: types
+        - match: ","
+          comment: comma separator
+          scope: keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+    - match: '\{'
+      comment: record
+      push:
+        - match: '\}(\??)'
+          captures:
+            1: keyword.other.liquidsoap
+          pop: true
+        - match: '\b(__*|_*[[:alpha:]][[[:alpha:]]0-9_'']*)[[:space:]]*:(?!:)'
+          comment: method assignment
+          captures:
+            1: entity.name.method.liquidsoap
+        - include: types
+        - match: ","
+          comment: comma separator
+          scope: keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
