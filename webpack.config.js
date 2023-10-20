@@ -23,12 +23,6 @@ const config = {
   resolve: {
     mainFields: ["browser", "module", "main"],
     extensions: [".ts", ".js"],
-    fallback: {
-      child_process: false,
-      constants: false,
-      fs: false,
-      tty: false,
-    },
   },
   module: {
     rules: [
