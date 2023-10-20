@@ -2,9 +2,9 @@
   "name": "vscode-liquidsoap",
   "displayName": "vscode-liquidsoap",
   "description": "VSCode support for the liquidsoap language",
-	"publisher": "savonet",
-	"repository": "https://github.com/savonet/vscode-liquidsoap.git",
-	"homepage": "https://github.com/savonet/vscode-liquidsoap",
+  "publisher": "savonet",
+  "repository": "https://github.com/savonet/vscode-liquidsoap.git",
+  "homepage": "https://github.com/savonet/vscode-liquidsoap",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.82.0"
@@ -12,9 +12,13 @@
   "icon": "assets/logo.png",
   "license": "MIT",
   "categories": [
-    "Programming Languages"
+    "Programming Languages",
+    "Formatters"
   ],
+  "main": "dist/extension.js",
   "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "typecheck": "tsc --noEmit",
     "update:snapshots": "vscode-tmgrammar-snap --updateSnapshot tests/snap/**/*.liq"
   },
   "contributes": {
@@ -39,10 +43,17 @@
       }
     ]
   },
-  "extensionDependencies": [
-    "esbenp.prettier-vscode"
-  ],
   "devDependencies": {
-    "vscode-tmgrammar-test": "^0.1.2"
+    "esbuild": "^0.19.5",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.2.2",
+    "vscode-tmgrammar-test": "^0.1.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "liquidsoap-prettier": "^1.4.5",
+    "prettier": "^3.0.3",
+    "vscode": "^1.1.37"
   }
 }
