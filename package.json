@@ -5,7 +5,7 @@
   "publisher": "savonet",
   "repository": "https://github.com/savonet/vscode-liquidsoap.git",
   "homepage": "https://github.com/savonet/vscode-liquidsoap",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.82.0"
   },
@@ -17,6 +17,7 @@
   ],
   "main": "dist/extension.js",
   "scripts": {
+    "release": "pnpm build && vsce publish",
     "build": "webpack --config webpack.config.js",
     "typecheck": "tsc --noEmit",
     "update:snapshots": "vscode-tmgrammar-snap --updateSnapshot tests/snap/**/*.liq"
@@ -45,15 +46,13 @@
   },
   "devDependencies": {
     "esbuild": "^0.19.5",
+    "liquidsoap-prettier": "^1.4.5",
+    "prettier": "^3.0.3",
     "ts-loader": "^9.5.0",
     "typescript": "^5.2.2",
+    "vscode": "^1.1.37",
     "vscode-tmgrammar-test": "^0.1.2",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
-  },
-  "dependencies": {
-    "liquidsoap-prettier": "^1.4.5",
-    "prettier": "^3.0.3",
-    "vscode": "^1.1.37"
   }
 }
