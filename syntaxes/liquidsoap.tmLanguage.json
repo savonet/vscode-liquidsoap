@@ -537,16 +537,17 @@
           "match": "\\\\."
         },
         {
-          "name": "string.interpolation.liquidsoap",
+          "name": "meta.interpolation.liquidsoap",
+          "contentName": "meta.embedded.line.liquidsoap",
           "begin": "#\\{",
           "end": "\\}",
-          "patterns": [
-            {
-              "name": "string.interpolation.escape.liquidsoap",
-              "match": "\\\\}"
-            },
-            { "include": "#expressions" }
-          ]
+          "beginCaptures": {
+            "0": { "name": "punctuation.section.interpolation.begin.liquidsoap" }
+          },
+          "endCaptures": {
+            "0": { "name": "punctuation.section.interpolation.end.liquidsoap" }
+          },
+          "patterns": [{ "include": "#expressions" }]
         }
       ]
     },
