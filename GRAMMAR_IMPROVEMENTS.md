@@ -90,10 +90,8 @@ y = 3.0 *. 4.0
 **Issue:** The string interpolation `#{...}` captures expressions but the scope names could be more specific for better theme support.
 
 ### 3. Type annotation ending pattern
-**Issue:** Type annotations use `\\)` as end marker which may cause issues when type appears mid-expression.
-```liquidsoap
-def f((x: int), (y: string)) = ...
-```
+**Status:** Not an issue - works correctly with proper syntax.
+**Note:** Liquidsoap requires double parentheses for typed parameters: `def f((x: int)) = ...`
 
 ### 4. Integer literal patterns
 **Issue:** Hexadecimal pattern `0(x|X)[0-9][0-9a-fA-F_]+` requires at least 2 hex digits. Single digit hex like `0x0` won't match correctly.
