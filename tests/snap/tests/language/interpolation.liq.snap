@@ -53,87 +53,6 @@
 #                               ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
 #                                ^ source.liquidsoap string.quoted.double.liquidsoap
 >
-># Nested string in interpolation
-#^ source.liquidsoap comment.line.number-sign.liquidsoap
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
->w = "Msg: #{string.concat([a, " - ", b])}"
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
-# ^^ source.liquidsoap
-#   ^ source.liquidsoap
-#    ^ source.liquidsoap string.quoted.double.liquidsoap
-#     ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#          ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
-#            ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
-#                  ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                   ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
-#                         ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                          ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                           ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
-#                            ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
-#                             ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                              ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
-#                               ^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
-#                                  ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
-#                                   ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
-#                                    ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                     ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
-#                                      ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                       ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                        ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
-#                                         ^ source.liquidsoap string.quoted.double.liquidsoap
->
-># Chained method calls
-#^ source.liquidsoap comment.line.number-sign.liquidsoap
-# ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
->m = "Value: #{x.to_string().trim()}"
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
-# ^^ source.liquidsoap
-#   ^ source.liquidsoap
-#    ^ source.liquidsoap string.quoted.double.liquidsoap
-#     ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#            ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
-#              ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
-#               ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
-#                         ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                          ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                           ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                            ^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
-#                                ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                 ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                  ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
-#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
->
-># Conditional in interpolation
-#^ source.liquidsoap comment.line.number-sign.liquidsoap
-# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
->c = "Status: #{if active then "on" else "off" end}"
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
-# ^^ source.liquidsoap
-#   ^ source.liquidsoap
-#    ^ source.liquidsoap string.quoted.double.liquidsoap
-#     ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#             ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
-#               ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap keyword.control.liquidsoap
-#                 ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap
-#                  ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
-#                        ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap
-#                         ^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap keyword.control.liquidsoap
-#                             ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap
-#                              ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.double.liquidsoap
-#                               ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.double.liquidsoap
-#                                 ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.double.liquidsoap
-#                                  ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap
-#                                   ^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap keyword.control.liquidsoap
-#                                       ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap
-#                                        ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.double.liquidsoap
-#                                         ^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.double.liquidsoap
-#                                            ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.double.liquidsoap
-#                                             ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap
-#                                              ^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap keyword.control.liquidsoap
-#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
-#                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
->
 ># Multiple interpolations
 #^ source.liquidsoap comment.line.number-sign.liquidsoap
 # ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
@@ -159,37 +78,64 @@
 #                                     ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
 #                                      ^ source.liquidsoap string.quoted.double.liquidsoap
 >
-># Complex nested
+># INVALID: Top-level double quote in interpolation (grammar catches this)
 #^ source.liquidsoap comment.line.number-sign.liquidsoap
-# ^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
->complex = "Data: #{json.stringify({foo = "bar", count = #{n}})}"
-#^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
-#       ^^ source.liquidsoap
-#         ^ source.liquidsoap
-#          ^ source.liquidsoap string.quoted.double.liquidsoap
-#           ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                 ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
-#                   ^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
-#                       ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                        ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
-#                                 ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                  ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                   ^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap entity.name.method.liquidsoap
-#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                        ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                         ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
-#                                          ^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
-#                                             ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
-#                                              ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
-#                                               ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                                ^^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap entity.name.method.liquidsoap
-#                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                                       ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
-#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                                             ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
-#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
-#                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>bad1 = "test: #{"inner"}"
+#^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^ source.liquidsoap
+#      ^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap invalid.illegal.quoted-in-interpolation.liquidsoap
+#                 ^^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                      ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap invalid.illegal.quoted-in-interpolation.liquidsoap
+#                       ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
+#                        ^ source.liquidsoap string.quoted.double.liquidsoap
+>
+># INVALID: Double quote in nested expression (grammar limitation - cannot catch)
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>bad2 = "Status: #{if active then "on" end}"
+#^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^ source.liquidsoap
+#      ^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#                ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#                  ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap keyword.control.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap
+#                     ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                           ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap
+#                            ^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap keyword.control.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.double.liquidsoap
+#                                  ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap
+#                                      ^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap keyword.control.liquidsoap
+#                                         ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
+#                                          ^ source.liquidsoap string.quoted.double.liquidsoap
+>
+># INVALID: Nested interpolation (grammar limitation - cannot catch)
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+>bad3 = "outer #{x = 'inner #{y}'}"
+#^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^ source.liquidsoap
+#      ^ source.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap
+#        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
+#              ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#                ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                 ^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap
+#                    ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.single.liquidsoap
+#                     ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.single.liquidsoap
+#                           ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.single.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#                             ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.single.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                              ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.single.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
+#                               ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap string.quoted.single.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
+#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
 >

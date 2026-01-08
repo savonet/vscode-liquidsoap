@@ -7,17 +7,14 @@ y = "Result: #{1 + 2 * 3}"
 # Function calls in interpolation
 z = "Length: #{string.length(s)}"
 
-# Nested string in interpolation
-w = "Msg: #{string.concat([a, " - ", b])}"
-
-# Chained method calls
-m = "Value: #{x.to_string().trim()}"
-
-# Conditional in interpolation
-c = "Status: #{if active then "on" else "off" end}"
-
 # Multiple interpolations
 multi = "#{a} and #{b} equals #{a + b}"
 
-# Complex nested
-complex = "Data: #{json.stringify({foo = "bar", count = #{n}})}"
+# INVALID: Top-level double quote in interpolation (grammar catches this)
+bad1 = "test: #{"inner"}"
+
+# INVALID: Double quote in nested expression (grammar limitation - cannot catch)
+bad2 = "Status: #{if active then "on" end}"
+
+# INVALID: Nested interpolation (grammar limitation - cannot catch)
+bad3 = "outer #{x = 'inner #{y}'}"

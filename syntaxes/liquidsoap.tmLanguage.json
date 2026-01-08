@@ -509,13 +509,13 @@
           "name": "string.quoted.double.liquidsoap",
           "begin": "\"",
           "end": "\"",
-          "patterns": [{ "include": "#string-escapes" }]
+          "patterns": [{ "include": "#string-escapes-in-double" }]
         },
         {
           "name": "string.quoted.single.liquidsoap",
           "begin": "'",
           "end": "'",
-          "patterns": [{ "include": "#string-escapes" }]
+          "patterns": [{ "include": "#string-escapes-in-single" }]
         },
         {
           "begin": "r/",
@@ -530,24 +530,37 @@
         }
       ]
     },
-    "string-escapes": {
+    "string-escapes-in-double": {
       "patterns": [
-        {
-          "name": "constant.character.escape.liquidsoap",
-          "match": "\\\\."
-        },
+        { "name": "constant.character.escape.liquidsoap", "match": "\\\\." },
         {
           "name": "meta.interpolation.liquidsoap",
           "contentName": "meta.embedded.line.liquidsoap",
           "begin": "#\\{",
           "end": "\\}",
-          "beginCaptures": {
-            "0": { "name": "punctuation.section.interpolation.begin.liquidsoap" }
-          },
-          "endCaptures": {
-            "0": { "name": "punctuation.section.interpolation.end.liquidsoap" }
-          },
-          "patterns": [{ "include": "#expressions" }]
+          "beginCaptures": { "0": { "name": "punctuation.section.interpolation.begin.liquidsoap" } },
+          "endCaptures": { "0": { "name": "punctuation.section.interpolation.end.liquidsoap" } },
+          "patterns": [
+            { "match": "\"", "name": "invalid.illegal.quoted-in-interpolation.liquidsoap" },
+            { "include": "#expressions" }
+          ]
+        }
+      ]
+    },
+    "string-escapes-in-single": {
+      "patterns": [
+        { "name": "constant.character.escape.liquidsoap", "match": "\\\\." },
+        {
+          "name": "meta.interpolation.liquidsoap",
+          "contentName": "meta.embedded.line.liquidsoap",
+          "begin": "#\\{",
+          "end": "\\}",
+          "beginCaptures": { "0": { "name": "punctuation.section.interpolation.begin.liquidsoap" } },
+          "endCaptures": { "0": { "name": "punctuation.section.interpolation.end.liquidsoap" } },
+          "patterns": [
+            { "match": "'|#\\{", "name": "invalid.illegal.quoted-in-interpolation.liquidsoap" },
+            { "include": "#expressions" }
+          ]
         }
       ]
     },
