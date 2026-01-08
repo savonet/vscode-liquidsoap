@@ -1,144 +1,254 @@
 >def fn() =
-#^^^ source.liquidsoap keyword.control.liquidsoap
-#   ^^^^^^^^ source.liquidsoap
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap
+#       ^ source.liquidsoap
+#        ^^ source.liquidsoap
 >  def on_metadata(m) =
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#  ^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                 ^ source.liquidsoap
+#                  ^ source.liquidsoap variable.liquidsoap
+#                   ^ source.liquidsoap
+#                    ^^ source.liquidsoap
 >    if m["title"] == "song title" and m["metadata_url"] == "metadata url" then
 #^^^^ source.liquidsoap
 #    ^^ source.liquidsoap keyword.control.liquidsoap
-#      ^^^ source.liquidsoap
+#      ^ source.liquidsoap
+#       ^ source.liquidsoap variable.liquidsoap
+#        ^ source.liquidsoap
 #         ^ source.liquidsoap string.quoted.double.liquidsoap
 #          ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
 #               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                ^^^^^ source.liquidsoap
+#                ^^ source.liquidsoap
+#                  ^^ source.liquidsoap keyword.operator.compare.liquidsoap
+#                    ^ source.liquidsoap
 #                     ^ source.liquidsoap string.quoted.double.liquidsoap
 #                      ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
 #                                ^ source.liquidsoap string.quoted.double.liquidsoap
 #                                 ^ source.liquidsoap
-#                                  ^^^ source.liquidsoap keyword.operator.liquidsoap
-#                                     ^^^ source.liquidsoap
+#                                  ^^^ source.liquidsoap keyword.operator.boolean.liquidsoap
+#                                     ^ source.liquidsoap
+#                                      ^ source.liquidsoap variable.liquidsoap
+#                                       ^ source.liquidsoap
 #                                        ^ source.liquidsoap string.quoted.double.liquidsoap
 #                                         ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
 #                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                      ^^^^^ source.liquidsoap
+#                                                      ^^ source.liquidsoap
+#                                                        ^^ source.liquidsoap keyword.operator.compare.liquidsoap
+#                                                          ^ source.liquidsoap
 #                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
 #                                                            ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
 #                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
 #                                                                         ^ source.liquidsoap
 #                                                                          ^^^^ source.liquidsoap keyword.control.liquidsoap
 >      test.pass()
-#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap
+#      ^^^^ source.liquidsoap variable.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap
+#           ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#               ^ source.liquidsoap meta.function-call.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap
 >    end
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.control.liquidsoap
 > end
 #^ source.liquidsoap
-# ^^^ source.liquidsoap keyword.control.liquidsoap
+# ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 > s = input.harbor(buffer=0.1, password="testtest", user="testtest", "test", port=9834)
-#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                         ^^^ source.liquidsoap constant.numeric.float
-#                            ^^^^^^^^^^^ source.liquidsoap
-#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                        ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                 ^^^^^^^ source.liquidsoap
-#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                         ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                  ^^ source.liquidsoap
-#                                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                     ^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                          ^^^^^^^ source.liquidsoap
-#                                                                                 ^^^^ source.liquidsoap constant.numeric.integer
-#                                                                                     ^^ source.liquidsoap
+#^ source.liquidsoap
+# ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap
+#    ^ source.liquidsoap
+#     ^^^^^ source.liquidsoap variable.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap
+#           ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                 ^ source.liquidsoap meta.function-call.liquidsoap
+#                  ^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#                        ^ source.liquidsoap meta.function-call.liquidsoap
+#                         ^^^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.float.liquidsoap
+#                            ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                             ^ source.liquidsoap meta.function-call.liquidsoap
+#                              ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#                                      ^ source.liquidsoap meta.function-call.liquidsoap
+#                                       ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                        ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                  ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                   ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#                                                       ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                        ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                                 ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                                  ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                   ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                    ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                                     ^^^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                                         ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                                          ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                           ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                            ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#                                                                                ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                                 ^^^^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
+#                                                                                     ^ source.liquidsoap meta.function-call.liquidsoap
 > s.on_metadata(on_metadata)
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^ source.liquidsoap
+# ^ source.liquidsoap variable.liquidsoap
+#  ^ source.liquidsoap meta.function-call.liquidsoap
+#   ^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#              ^ source.liquidsoap meta.function-call.liquidsoap
+#               ^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                          ^ source.liquidsoap meta.function-call.liquidsoap
 > output.dummy(fallible=true,s)
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^ source.liquidsoap
+# ^^^^^^ source.liquidsoap variable.liquidsoap
+#       ^ source.liquidsoap meta.function-call.liquidsoap
+#        ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap
+#              ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#                      ^ source.liquidsoap meta.function-call.liquidsoap
+#                       ^^^^ source.liquidsoap meta.function-call.liquidsoap constant.language.boolean.liquidsoap
+#                           ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                            ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                             ^ source.liquidsoap meta.function-call.liquidsoap
 > output.icecast(%mp3, password="testtest", user="testtest", mount="test", port=9834, noise())
-#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                   ^ source.liquidsoap constant.numeric.integer
-#                    ^^^^^^^^^^^ source.liquidsoap
-#                               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                         ^^^^^^^ source.liquidsoap
-#                                                ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                 ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                         ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                          ^^^^^^^^ source.liquidsoap
-#                                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                   ^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                        ^^^^^^^ source.liquidsoap
-#                                                                               ^^^^ source.liquidsoap constant.numeric.integer
-#                                                                                   ^^^^^^^^^^^ source.liquidsoap
+#^ source.liquidsoap
+# ^^^^^^ source.liquidsoap variable.liquidsoap
+#       ^ source.liquidsoap meta.function-call.liquidsoap
+#        ^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#               ^ source.liquidsoap meta.function-call.liquidsoap
+#                ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.encoder.liquidsoap
+#                    ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                     ^ source.liquidsoap meta.function-call.liquidsoap
+#                      ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#                              ^ source.liquidsoap meta.function-call.liquidsoap
+#                               ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                        ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                         ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                          ^ source.liquidsoap meta.function-call.liquidsoap
+#                                           ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#                                               ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                 ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                         ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                          ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                           ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                            ^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#                                                                 ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                  ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                                   ^^^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                                       ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                                        ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                         ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                          ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#                                                                              ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                               ^^^^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
+#                                                                                   ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                                    ^ source.liquidsoap meta.function-call.liquidsoap
+#                                                                                     ^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                                                                                          ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                                                                                           ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                                                                                            ^ source.liquidsoap meta.function-call.liquidsoap
 >
 > thread.run(delay=1.,{
-#^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                  ^ source.liquidsoap constant.numeric.integer
-#                   ^^^^ source.liquidsoap
+#^ source.liquidsoap
+# ^^^^^^ source.liquidsoap variable.liquidsoap
+#       ^ source.liquidsoap meta.function-call.liquidsoap
+#        ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap
+#            ^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#                 ^ source.liquidsoap meta.function-call.liquidsoap
+#                  ^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
+#                   ^ source.liquidsoap meta.function-call.liquidsoap
+#                    ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                     ^ source.liquidsoap meta.function-call.liquidsoap
 >    icy.update_metadata(
-#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^ source.liquidsoap meta.function-call.liquidsoap
+#    ^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#       ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#        ^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                       ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 >      password="testtest",
-#^^^^^^^^^^^^^^^ source.liquidsoap
-#               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                        ^ source.liquidsoap string.quoted.double.liquidsoap
-#                         ^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#      ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#              ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#               ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                        ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                         ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      user="testtest",
-#^^^^^^^^^^^ source.liquidsoap
-#           ^ source.liquidsoap string.quoted.double.liquidsoap
-#            ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                    ^ source.liquidsoap string.quoted.double.liquidsoap
-#                     ^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#      ^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#            ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                    ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      host="localhost",
-#^^^^^^^^^^^ source.liquidsoap
-#           ^ source.liquidsoap string.quoted.double.liquidsoap
-#            ^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                     ^ source.liquidsoap string.quoted.double.liquidsoap
-#                      ^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#      ^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#            ^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                     ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                      ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      port=9834,
-#^^^^^^^^^^^ source.liquidsoap
-#           ^^^^ source.liquidsoap constant.numeric.integer
-#               ^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#      ^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#           ^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
+#               ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      mount="test",
-#^^^^^^^^^^^^ source.liquidsoap
-#            ^ source.liquidsoap string.quoted.double.liquidsoap
-#             ^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                 ^ source.liquidsoap string.quoted.double.liquidsoap
-#                  ^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#      ^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#             ^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                 ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                  ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      [("song", "song title"),
-#^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap string.quoted.double.liquidsoap
-#         ^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#             ^ source.liquidsoap string.quoted.double.liquidsoap
-#              ^^ source.liquidsoap
-#                ^ source.liquidsoap string.quoted.double.liquidsoap
-#                 ^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                           ^ source.liquidsoap string.quoted.double.liquidsoap
-#                            ^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#        ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#              ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#               ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                 ^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                           ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                             ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >       ("url", "metadata url")]
-#^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap string.quoted.double.liquidsoap
-#         ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#            ^ source.liquidsoap string.quoted.double.liquidsoap
-#             ^^ source.liquidsoap
-#               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                            ^ source.liquidsoap string.quoted.double.liquidsoap
-#                             ^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap
+#        ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#         ^^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#              ^ source.liquidsoap meta.function-call.liquidsoap
+#               ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                ^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                            ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                             ^^^ source.liquidsoap meta.function-call.liquidsoap
 >    )
-#^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.function-call.liquidsoap
 > })
-#^^^^ source.liquidsoap
+#^ source.liquidsoap meta.function-call.liquidsoap
+# ^ source.liquidsoap meta.function-call.liquidsoap
+#  ^ source.liquidsoap meta.function-call.liquidsoap
 >end
-#^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >test.check(fn)
-#^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^ source.liquidsoap variable.liquidsoap
+#    ^ source.liquidsoap meta.function-call.liquidsoap
+#     ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap
+#           ^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap
 >

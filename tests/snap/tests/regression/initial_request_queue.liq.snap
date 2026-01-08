@@ -1,23 +1,78 @@
 >def f() =
-#^^^ source.liquidsoap keyword.control.liquidsoap
-#   ^^^^^^^ source.liquidsoap
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#     ^ source.liquidsoap
+#      ^ source.liquidsoap
+#       ^^ source.liquidsoap
 >  r = request.create("../media/@wav[stereo].wav")
-#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                     ^ source.liquidsoap string.quoted.double.liquidsoap
-#                      ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                ^^ source.liquidsoap
+#^^ source.liquidsoap
+#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^^^^^ source.liquidsoap variable.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap
+#              ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                    ^ source.liquidsoap meta.function-call.liquidsoap
+#                     ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                      ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                               ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                                ^ source.liquidsoap meta.function-call.liquidsoap
 >  s = request.queue(queue=[r])
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^ source.liquidsoap
+#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^^^^^ source.liquidsoap variable.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap
+#              ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                   ^ source.liquidsoap meta.function-call.liquidsoap
+#                    ^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#                         ^ source.liquidsoap meta.function-call.liquidsoap
+#                          ^ source.liquidsoap meta.function-call.liquidsoap
+#                           ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                            ^ source.liquidsoap meta.function-call.liquidsoap
+#                             ^ source.liquidsoap meta.function-call.liquidsoap
 >  s.on_track(fun (_) -> test.pass())
-#^^^^^^^^^^^^^ source.liquidsoap
-#             ^^^ source.liquidsoap keyword.control.liquidsoap
-#                ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^ source.liquidsoap
+#  ^ source.liquidsoap variable.liquidsoap
+#   ^ source.liquidsoap meta.function-call.liquidsoap
+#    ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+#             ^^^ source.liquidsoap meta.function-call.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
+#                ^^ source.liquidsoap meta.function-call.liquidsoap
+#                  ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                   ^ source.liquidsoap meta.function-call.liquidsoap
+#                    ^ source.liquidsoap meta.function-call.liquidsoap
+#                     ^^ source.liquidsoap meta.function-call.liquidsoap keyword.control.function.declaration.liquidsoap
+#                       ^ source.liquidsoap meta.function-call.liquidsoap
+#                        ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                            ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                             ^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                                 ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                                  ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#                                   ^ source.liquidsoap meta.function-call.liquidsoap
 >  output.dummy(fallible=true, s)
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^ source.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.liquidsoap
+#        ^ source.liquidsoap meta.function-call.liquidsoap
+#         ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#              ^ source.liquidsoap meta.function-call.liquidsoap
+#               ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#                       ^ source.liquidsoap meta.function-call.liquidsoap
+#                        ^^^^ source.liquidsoap meta.function-call.liquidsoap constant.language.boolean.liquidsoap
+#                            ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                             ^ source.liquidsoap meta.function-call.liquidsoap
+#                              ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                               ^ source.liquidsoap meta.function-call.liquidsoap
 >end
-#^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >test.check(f)
-#^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^ source.liquidsoap variable.liquidsoap
+#    ^ source.liquidsoap meta.function-call.liquidsoap
+#     ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
 >

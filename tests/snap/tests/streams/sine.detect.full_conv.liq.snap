@@ -1,50 +1,144 @@
 >log.level.set(4)
-#^^^^^^^^^^^^^^ source.liquidsoap
-#              ^ source.liquidsoap constant.numeric.integer
-#               ^^ source.liquidsoap
+#^^^ source.liquidsoap variable.liquidsoap
+#   ^ source.liquidsoap keyword.other.liquidsoap
+#    ^^^^^ source.liquidsoap variable.method.liquidsoap
+#         ^ source.liquidsoap meta.function-call.liquidsoap
+#          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap
+#              ^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
+#               ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >def f(freq)
-#^^^ source.liquidsoap keyword.control.liquidsoap
-#   ^^^^^^^^^ source.liquidsoap
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#     ^ source.liquidsoap
+#      ^^^^ source.liquidsoap variable.liquidsoap
+#          ^ source.liquidsoap
 >  print("Detected sine at #{freq}Hz.")
-#^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap string.quoted.double.liquidsoap
-#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                     ^^ source.liquidsoap
+#^^ source.liquidsoap
+#  ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#       ^ source.liquidsoap meta.function-call.liquidsoap
+#        ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#         ^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                          ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
+#                            ^^^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
+#                                ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
+#                                 ^^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                    ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#                                     ^ source.liquidsoap meta.function-call.liquidsoap
 >  test.pass()
-#^^^^^^^^^^^^^^ source.liquidsoap
+#^^ source.liquidsoap
+#  ^^^^ source.liquidsoap variable.liquidsoap
+#      ^ source.liquidsoap meta.function-call.liquidsoap
+#       ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
 >  shutdown()
-#^^^^^^^^^^^^^ source.liquidsoap
+#^^ source.liquidsoap
+#  ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap
 >end
-#^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >s = sine(440.)
-#^^^^^^^^^ source.liquidsoap
-#         ^^^ source.liquidsoap constant.numeric.integer
-#            ^^^ source.liquidsoap
+#^ source.liquidsoap entity.name.function.binding.liquidsoap
+# ^^ source.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#        ^ source.liquidsoap meta.function-call.liquidsoap
+#         ^^^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap
 >s = (s:source(audio=pcm))
-#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^ source.liquidsoap entity.name.function.binding.liquidsoap
+# ^^ source.liquidsoap
+#   ^^ source.liquidsoap
+#     ^ source.liquidsoap variable.liquidsoap
+#      ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.cast.liquidsoap
+#       ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.source.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.source.track.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.source.format.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
 >s = audio.encode.pcm_s16(s)
-#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                      ^^ source.liquidsoap constant.numeric.integer
-#                        ^^^^ source.liquidsoap
+#^ source.liquidsoap entity.name.function.binding.liquidsoap
+# ^^ source.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^ source.liquidsoap variable.liquidsoap
+#         ^ source.liquidsoap keyword.other.liquidsoap
+#          ^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap
+#                 ^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                        ^ source.liquidsoap meta.function-call.liquidsoap
+#                         ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                          ^ source.liquidsoap meta.function-call.liquidsoap
 >s = audio.decode.pcm_s16(s)
-#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                      ^^ source.liquidsoap constant.numeric.integer
-#                        ^^^^ source.liquidsoap
+#^ source.liquidsoap entity.name.function.binding.liquidsoap
+# ^^ source.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^ source.liquidsoap variable.liquidsoap
+#         ^ source.liquidsoap keyword.other.liquidsoap
+#          ^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap
+#                 ^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                        ^ source.liquidsoap meta.function-call.liquidsoap
+#                         ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                          ^ source.liquidsoap meta.function-call.liquidsoap
 >s = audio.encode.pcm_f32(s)
-#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                      ^^ source.liquidsoap constant.numeric.integer
-#                        ^^^^ source.liquidsoap
+#^ source.liquidsoap entity.name.function.binding.liquidsoap
+# ^^ source.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^ source.liquidsoap variable.liquidsoap
+#         ^ source.liquidsoap keyword.other.liquidsoap
+#          ^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap
+#                 ^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                        ^ source.liquidsoap meta.function-call.liquidsoap
+#                         ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                          ^ source.liquidsoap meta.function-call.liquidsoap
 >s = audio.decode.pcm_f32(s)
-#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                      ^^ source.liquidsoap constant.numeric.integer
-#                        ^^^^ source.liquidsoap
+#^ source.liquidsoap entity.name.function.binding.liquidsoap
+# ^^ source.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^ source.liquidsoap variable.liquidsoap
+#         ^ source.liquidsoap keyword.other.liquidsoap
+#          ^^^^^^ source.liquidsoap variable.method.liquidsoap
+#                ^ source.liquidsoap meta.function-call.liquidsoap
+#                 ^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                        ^ source.liquidsoap meta.function-call.liquidsoap
+#                         ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                          ^ source.liquidsoap meta.function-call.liquidsoap
 >s = sine.detect(debug=false, [440.], s, f)
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                              ^^^ source.liquidsoap constant.numeric.integer
-#                                 ^^^^^^^^^^ source.liquidsoap
+#^ source.liquidsoap entity.name.function.binding.liquidsoap
+# ^^ source.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^ source.liquidsoap variable.liquidsoap
+#        ^ source.liquidsoap meta.function-call.liquidsoap
+#         ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#               ^ source.liquidsoap meta.function-call.liquidsoap
+#                ^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.language.arguments.named.liquidsoap
+#                     ^ source.liquidsoap meta.function-call.liquidsoap
+#                      ^^^^^ source.liquidsoap meta.function-call.liquidsoap constant.language.boolean.liquidsoap
+#                           ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                            ^^ source.liquidsoap meta.function-call.liquidsoap
+#                              ^^^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
+#                                 ^^ source.liquidsoap meta.function-call.liquidsoap
+#                                   ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                    ^ source.liquidsoap meta.function-call.liquidsoap
+#                                     ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                                      ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                       ^ source.liquidsoap meta.function-call.liquidsoap
+#                                        ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                                         ^ source.liquidsoap meta.function-call.liquidsoap
 >output.dummy(s)
-#^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap variable.liquidsoap
+#      ^ source.liquidsoap meta.function-call.liquidsoap
+#       ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#              ^ source.liquidsoap meta.function-call.liquidsoap
 >

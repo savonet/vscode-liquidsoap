@@ -1,31 +1,67 @@
 >#!../../liquidsoap
-#^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >
 ># Ensure that value restriction prevents the usual problems.
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >
 >def id(x) = x end
-#^^^ source.liquidsoap keyword.control.liquidsoap
-#   ^^^^^^^^^^^ source.liquidsoap
-#              ^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap
+#       ^ source.liquidsoap variable.liquidsoap
+#        ^ source.liquidsoap
+#         ^^ source.liquidsoap
+#           ^ source.liquidsoap
+#            ^ source.liquidsoap variable.liquidsoap
+#             ^ source.liquidsoap
+#              ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >def incr(n) = n+1 end
-#^^^ source.liquidsoap keyword.control.liquidsoap
-#   ^^^^^^^^^^^^^ source.liquidsoap
-#                ^ source.liquidsoap constant.numeric.integer
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^ source.liquidsoap
+#         ^ source.liquidsoap variable.liquidsoap
+#          ^ source.liquidsoap
+#           ^^ source.liquidsoap
+#             ^ source.liquidsoap
+#              ^ source.liquidsoap variable.liquidsoap
+#               ^ source.liquidsoap keyword.operator.arithmetic.liquidsoap
+#                ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #                 ^ source.liquidsoap
-#                  ^^^ source.liquidsoap keyword.control.liquidsoap
+#                  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >r = ref(id)
-#^^^^^^^^^^^^ source.liquidsoap
+#^ source.liquidsoap entity.name.function.binding.liquidsoap
+# ^^ source.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#       ^ source.liquidsoap meta.function-call.liquidsoap
+#        ^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap
 >r := incr
-#^^^^^^^^^^ source.liquidsoap
+#^ source.liquidsoap variable.liquidsoap
+# ^ source.liquidsoap
+#  ^^ source.liquidsoap keyword.operator.set.liquidsoap
+#    ^ source.liquidsoap
+#     ^^^^ source.liquidsoap variable.liquidsoap
 >f = !r
-#^^^^^^^ source.liquidsoap
+#^ source.liquidsoap entity.name.function.binding.liquidsoap
+# ^^ source.liquidsoap
+#   ^ source.liquidsoap
+#    ^ source.liquidsoap keyword.operator.dereference.liquidsoap
+#     ^ source.liquidsoap variable.liquidsoap
 >_ = f("a")
-#^^^^^^ source.liquidsoap
-#      ^ source.liquidsoap string.quoted.double.liquidsoap
-#       ^ source.liquidsoap string.quoted.double.liquidsoap
-#        ^ source.liquidsoap string.quoted.double.liquidsoap
-#         ^^ source.liquidsoap
+#^ source.liquidsoap entity.name.function.binding.liquidsoap
+# ^^ source.liquidsoap
+#   ^ source.liquidsoap
+#    ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#     ^ source.liquidsoap meta.function-call.liquidsoap
+#      ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#       ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#        ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
+#         ^ source.liquidsoap meta.function-call.liquidsoap
 >

@@ -1,1016 +1,1582 @@
 ># We test some ground values for json import/export.
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+#^ source.liquidsoap comment.line.number-sign.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >
 >def test_parse_error(name, f, msg) =
-#^^^ source.liquidsoap keyword.control.liquidsoap
-#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^ source.liquidsoap keyword.other.function.definition.liquidsoap
+#   ^ source.liquidsoap
+#    ^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                    ^ source.liquidsoap
+#                     ^^^^ source.liquidsoap variable.liquidsoap
+#                         ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                          ^ source.liquidsoap
+#                           ^ source.liquidsoap variable.liquidsoap
+#                            ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                             ^ source.liquidsoap
+#                              ^^^ source.liquidsoap variable.liquidsoap
+#                                 ^ source.liquidsoap
+#                                  ^^ source.liquidsoap
 >  error_caught = ref(false)
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^ source.liquidsoap
+#  ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#              ^^ source.liquidsoap
+#                ^ source.liquidsoap
+#                 ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                    ^ source.liquidsoap meta.function-call.liquidsoap
+#                     ^^^^^ source.liquidsoap meta.function-call.liquidsoap constant.language.boolean.liquidsoap
+#                          ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >  try
-#^^^^^^ source.liquidsoap
->    print(f ())
-#^^^^^^^^^^^^^^^^ source.liquidsoap
->  catch err: [error.json] do
-#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                          ^^ source.liquidsoap keyword.control.liquidsoap
->    if err.kind != "json" then
-#^^^^ source.liquidsoap
-#    ^^ source.liquidsoap keyword.control.liquidsoap
-#      ^^^^^^^^^^^^^ source.liquidsoap
-#                   ^ source.liquidsoap string.quoted.double.liquidsoap
-#                    ^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                        ^ source.liquidsoap string.quoted.double.liquidsoap
-#                         ^ source.liquidsoap
-#                          ^^^^ source.liquidsoap keyword.control.liquidsoap
->      print("parse error test #{name} failed: wrong error kind, got: #{err.kind}, expected: json")
-#^^^^^^^^^^^^ source.liquidsoap
-#            ^ source.liquidsoap string.quoted.double.liquidsoap
-#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                 ^^ source.liquidsoap
->      test.fail()
-#^^^^^^^^^^^^^^^^^^ source.liquidsoap
->    end
-#^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap keyword.control.liquidsoap
->    if err.message != msg then
-#^^^^ source.liquidsoap
-#    ^^ source.liquidsoap keyword.control.liquidsoap
-#      ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                          ^^^^ source.liquidsoap keyword.control.liquidsoap
->      print("parse error test #{name} failed: wrong error message, got: #{err.message}, expected: #{msg}")
-#^^^^^^^^^^^^ source.liquidsoap
-#            ^ source.liquidsoap string.quoted.double.liquidsoap
-#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                         ^^ source.liquidsoap
->      test.fail()
-#^^^^^^^^^^^^^^^^^^ source.liquidsoap
->    end
-#^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap keyword.control.liquidsoap
->    error_caught := true
-#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
->  end
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.control.liquidsoap
+>    print(f ())
+#^^^^ source.liquidsoap
+#    ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#         ^ source.liquidsoap meta.function-call.liquidsoap
+#          ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#           ^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
+#              ^ source.liquidsoap meta.function-call.liquidsoap
+>  catch err: [error.json] do
+#^^ source.liquidsoap
+#  ^^^^^ source.liquidsoap variable.liquidsoap
+#       ^ source.liquidsoap
+#        ^^^ source.liquidsoap variable.liquidsoap
+#           ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.cast.liquidsoap
+#            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+>    if err.kind != "json" then
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+>      print("parse error test #{name} failed: wrong error kind, got: #{err.kind}, expected: json")
+#^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                              ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                               ^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                       ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                                 ^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+>      test.fail()
+#^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap
+>    end
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+>    if err.message != msg then
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+>      print("parse error test #{name} failed: wrong error message, got: #{err.message}, expected: #{msg}")
+#^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                  ^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                          ^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                      ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                                       ^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                                    ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+>      test.fail()
+#^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap
+>    end
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+>    error_caught := true
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+>  end
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  if not !error_caught then
-#^^ source.liquidsoap
-#  ^^ source.liquidsoap keyword.control.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                       ^^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >    print("parse error test #{name} failed: no error caught")
-#^^^^^^^^^^ source.liquidsoap
-#          ^ source.liquidsoap string.quoted.double.liquidsoap
-#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                            ^^ source.liquidsoap
+#^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                              ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                            ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    test.fail()
-#^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  end
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >end
-#^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >def f() =
-#^^^ source.liquidsoap keyword.control.liquidsoap
-#   ^^^^^^^ source.liquidsoap
+#^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#       ^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(json.stringify(()), '[]')
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                                  ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                   ^^ source.liquidsoap string.quoted.single.liquidsoap
-#                                     ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                      ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                 ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                      ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(json.stringify("aa'bb"), "\"aa'bb\"")
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                             ^ source.liquidsoap string.quoted.double.liquidsoap
-#                              ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                    ^^^ source.liquidsoap
-#                                       ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                          ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                  ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                      ^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                  ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(json.stringify("a"), '"a"')
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                             ^ source.liquidsoap string.quoted.double.liquidsoap
-#                              ^ source.liquidsoap string.quoted.double.liquidsoap
-#                               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                ^^^ source.liquidsoap
-#                                   ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                    ^^^ source.liquidsoap string.quoted.single.liquidsoap
-#                                       ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                        ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                  ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(json.stringify("©"), '"©"')
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                             ^ source.liquidsoap string.quoted.double.liquidsoap
-#                              ^ source.liquidsoap string.quoted.double.liquidsoap
-#                               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                ^^^ source.liquidsoap
-#                                   ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                    ^^^ source.liquidsoap string.quoted.single.liquidsoap
-#                                       ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                        ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                  ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(json.stringify('"'), '"\\""')
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                             ^ source.liquidsoap string.quoted.single.liquidsoap
-#                              ^ source.liquidsoap string.quoted.single.liquidsoap
-#                               ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                ^^^ source.liquidsoap
-#                                   ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                    ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                     ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
-#                                       ^^ source.liquidsoap string.quoted.single.liquidsoap
-#                                         ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                          ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                  ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                          ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(json.stringify('\\'), '"\\\\"')
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                             ^ source.liquidsoap string.quoted.single.liquidsoap
-#                              ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
-#                                ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                 ^^^ source.liquidsoap
-#                                    ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                     ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                      ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
-#                                        ^^ source.liquidsoap string.quoted.single.liquidsoap constant.character.escape.liquidsoap
-#                                          ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                           ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                            ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                  ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                   ^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                            ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  test.equals(json.stringify(json5=true, infinity), 'Infinity')
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                                 ^ source.liquidsoap constant.numeric.integer
-#                                  ^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                                                    ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                                     ^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
-#                                                             ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                                              ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                       ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                        ^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                  ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                   ^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                              ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(json.stringify(json5=true, (0.-infinity)), '-Infinity')
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                                 ^ source.liquidsoap constant.numeric.integer
-#                                  ^^^^^^^^ source.liquidsoap
-#                                          ^ source.liquidsoap constant.numeric.integer
-#                                           ^^^^^^^^^^^^^^ source.liquidsoap
-#                                                         ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                                          ^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
-#                                                                   ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                                                    ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                       ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                          ^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                       ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                        ^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(json.stringify(json5=true,nan), 'NaN')
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                                 ^ source.liquidsoap constant.numeric.integer
-#                                  ^^^^^^^^^^^^ source.liquidsoap
-#                                              ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                               ^^^ source.liquidsoap string.quoted.single.liquidsoap
-#                                                  ^ source.liquidsoap string.quoted.single.liquidsoap
-#                                                   ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                       ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                        ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                            ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                             ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                   ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  let b = json()
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  b.add("b", 1)
-#^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap string.quoted.double.liquidsoap
-#         ^ source.liquidsoap string.quoted.double.liquidsoap
-#          ^ source.liquidsoap string.quoted.double.liquidsoap
-#           ^^ source.liquidsoap
-#             ^ source.liquidsoap constant.numeric.integer
-#              ^^ source.liquidsoap
+#^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#            ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  s = json.stringify({
-#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap
 >     a = null({a=1}),
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                 ^ source.liquidsoap constant.numeric.integer
-#                  ^^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >     b = null(b)
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  })
-#^^^^^ source.liquidsoap
+#^^ source.liquidsoap meta.type-annotation.liquidsoap
+#  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#   ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(s, "{ \"a\": { \"a\": 1 }, \"b\": { \"b\": 1 } }")
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                 ^ source.liquidsoap string.quoted.double.liquidsoap
-#                  ^^ source.liquidsoap string.quoted.double.liquidsoap
-#                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                      ^ source.liquidsoap string.quoted.double.liquidsoap
-#                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                         ^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                  ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                           ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                            ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                              ^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                    ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                       ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                              ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                               ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                       ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                        ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                 ^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                               ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  data = "123"
-#^^^^^^^^^ source.liquidsoap
-#         ^ source.liquidsoap string.quoted.double.liquidsoap
-#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#             ^ source.liquidsoap string.quoted.double.liquidsoap
+#^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  let json.parse ( x : int ) = data
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(x, 123)
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                 ^^^ source.liquidsoap constant.numeric.integer
-#                    ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  data = '{
-#^^^^^^^^^ source.liquidsoap
-#         ^ source.liquidsoap string.quoted.single.liquidsoap
-#          ^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    "foo": 34.24,
-#^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    "gni gno": true,
-#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    "nested": {
-#^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
 >       "tuple": [123, 3.14, false],
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                     ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                           ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                  ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >       "list":  [44.0, 55, 66.12],
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                      ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                          ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >       "nullable_list": [12.33, 23, "aabb"],
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                              ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                               ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                  ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                   ^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                           ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >       "object_as_list": {
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^ source.liquidsoap meta.type-annotation.liquidsoap
 >         "foo": 123,
-#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >         "gni": 456.0,
-#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >         "gno": 3.14
-#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >       },
-#^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >       "arbitrary object key ✨": true
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >     },
-#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >     "extra": "ignored"
-#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  }'
-#^^^ source.liquidsoap string.quoted.single.liquidsoap
-#   ^ source.liquidsoap string.quoted.single.liquidsoap
+#^^ source.liquidsoap meta.type-annotation.liquidsoap
+#  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#   ^^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  let json.parse ( x : {
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    foo : float,
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#    ^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#       ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    "gni gno" as gni_gno : bool,
-#^^^^ source.liquidsoap
-#    ^ source.liquidsoap string.quoted.double.liquidsoap
-#     ^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#            ^ source.liquidsoap string.quoted.double.liquidsoap
-#             ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                        ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                           ^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    nested : {
-#^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#    ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#          ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
 >      tuple : (_ * float),
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#           ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      list : [float],
-#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#          ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      nullable_list : [int?],
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                   ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap
+#                           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      object_as_list : [(string * float)] as json.object,
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                    ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                               ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                  ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                         ^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                        ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      "arbitrary object key ✨" as arbitrary_object_key : bool,
-#^^^^^^ source.liquidsoap
-#      ^ source.liquidsoap string.quoted.double.liquidsoap
-#       ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                             ^ source.liquidsoap string.quoted.double.liquidsoap
-#                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                  ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                                                      ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                         ^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                                             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      not_present : bool?
-#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                 ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap
 >    }
-#^^^^^^ source.liquidsoap
+#^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#    ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  }) = data
-#^^^^^^^^^^^^ source.liquidsoap
+#^^ source.liquidsoap meta.type-annotation.liquidsoap
+#  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#    ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  test.equals(x, {
-#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    foo = 34.24,
-#^^^^^^^^^^ source.liquidsoap
-#          ^^^^^ source.liquidsoap constant.numeric.float
-#               ^^ source.liquidsoap
+#^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    gni_gno = true,
-#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    nested = {
-#^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
 >      tuple = (null(), 3.14),
-#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                       ^^^^ source.liquidsoap constant.numeric.float
-#                           ^^^ source.liquidsoap
+#^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                      ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      list = [44., 55., 66.12],
-#^^^^^^^^^^^^^^ source.liquidsoap
-#              ^^ source.liquidsoap constant.numeric.integer
-#                ^^^ source.liquidsoap
-#                   ^^ source.liquidsoap constant.numeric.integer
-#                     ^^^ source.liquidsoap
-#                        ^^^^^ source.liquidsoap constant.numeric.float
-#                             ^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                  ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                       ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                              ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      nullable_list = [null(), 23, null()],
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                               ^^ source.liquidsoap constant.numeric.integer
-#                                 ^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                              ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                  ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      object_as_list = [("foo", 123.), ("gni", 456.0), ("gno", 3.14)],
-#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                         ^ source.liquidsoap string.quoted.double.liquidsoap
-#                          ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                             ^ source.liquidsoap string.quoted.double.liquidsoap
-#                              ^^ source.liquidsoap
-#                                ^^^ source.liquidsoap constant.numeric.integer
-#                                   ^^^^^ source.liquidsoap
-#                                        ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                            ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                             ^^ source.liquidsoap
-#                                               ^^^^^ source.liquidsoap constant.numeric.float
-#                                                    ^^^^ source.liquidsoap
-#                                                        ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                             ^^ source.liquidsoap
-#                                                               ^^^^ source.liquidsoap constant.numeric.float
-#                                                                   ^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                              ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                               ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                        ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                              ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                     ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                        ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                              ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                     ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      arbitrary_object_key = true,
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      not_present = null()
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    }
-#^^^^^^ source.liquidsoap
+#^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#    ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  })
-#^^^^^ source.liquidsoap
+#^^ source.liquidsoap meta.type-annotation.liquidsoap
+#  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#   ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  # Pattern extraction with json parsing
-#^^ source.liquidsoap
-#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  let json.parse {
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    foo,
-#^^^^^^^^^ source.liquidsoap
+#^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#       ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    nested = {
-#^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
 >      tuple = (t1, t2, t3),
-#^^^^^^^^^^^^^^^^ source.liquidsoap
-#                ^ source.liquidsoap constant.numeric.integer
-#                 ^^^ source.liquidsoap
-#                    ^ source.liquidsoap constant.numeric.integer
-#                     ^^^ source.liquidsoap
-#                        ^ source.liquidsoap constant.numeric.integer
-#                         ^^^ source.liquidsoap
+#^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                  ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                      ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >      nullable_list = [l1, ...tl]
-#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                        ^ source.liquidsoap constant.numeric.integer
-#                         ^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                          ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    }
-#^^^^^^ source.liquidsoap
+#^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#    ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  } = data
-#^^^^^^^^^^^ source.liquidsoap
+#^^ source.liquidsoap meta.type-annotation.liquidsoap
+#  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#   ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(foo, 34.24)
-#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                   ^^^^^ source.liquidsoap constant.numeric.float
-#                        ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                  ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(t1, 123)
-#^^^^^^^^^^^^^^^ source.liquidsoap
-#               ^ source.liquidsoap constant.numeric.integer
-#                ^^ source.liquidsoap
-#                  ^^^ source.liquidsoap constant.numeric.integer
-#                     ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                 ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(t2, 3.14)
-#^^^^^^^^^^^^^^^ source.liquidsoap
-#               ^ source.liquidsoap constant.numeric.integer
-#                ^^ source.liquidsoap
-#                  ^^^^ source.liquidsoap constant.numeric.float
-#                      ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                 ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(t3, false)
-#^^^^^^^^^^^^^^^ source.liquidsoap
-#               ^ source.liquidsoap constant.numeric.integer
-#                ^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                 ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(l1, null())
-#^^^^^^^^^^^^^^^ source.liquidsoap
-#               ^ source.liquidsoap constant.numeric.integer
-#                ^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                 ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(tl, [23, null()])
-#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                   ^^ source.liquidsoap constant.numeric.integer
-#                     ^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                      ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                              ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  let json.parse x = data
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  ignore(x.foo + 1.0)
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                 ^^^ source.liquidsoap constant.numeric.float
-#                    ^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#         ^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  let (x, y, _) = x.nested.tuple
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#         ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#            ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  ignore(x + 1)
-#^^^^^^^^^^^^^ source.liquidsoap
-#             ^ source.liquidsoap constant.numeric.integer
-#              ^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#         ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  ignore(y + 3.14)
-#^^^^^^^^^^^^^ source.liquidsoap
-#             ^^^^ source.liquidsoap constant.numeric.float
-#                 ^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#         ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  def failed_array () =
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >    data = "[]"
-#^^^^^^^^^^^ source.liquidsoap
-#           ^ source.liquidsoap string.quoted.double.liquidsoap
-#            ^^ source.liquidsoap string.quoted.double.liquidsoap
-#              ^ source.liquidsoap string.quoted.double.liquidsoap
+#^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^ source.liquidsoap meta.type-annotation.liquidsoap
 >    let json.parse (val : { x : int }) = data
-#^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap keyword.control.liquidsoap
-#       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                             ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                      ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >    print(val.x)
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  end
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  test_parse_error(
-#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    "failed array parsing",
-#^^^^ source.liquidsoap
-#    ^ source.liquidsoap string.quoted.double.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                         ^ source.liquidsoap string.quoted.double.liquidsoap
-#                          ^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    failed_array,
-#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    "Parsing error: json value cannot be parsed as type {x : int}"
-#^^^^ source.liquidsoap
-#    ^ source.liquidsoap string.quoted.double.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                 ^ source.liquidsoap string.quoted.double.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                         ^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                                                          ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                             ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                                                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                 ^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  )
-#^^^^ source.liquidsoap
+#^^ source.liquidsoap meta.type-annotation.liquidsoap
+#  ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  def failed_runtime () =
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >    let json.parse x = data
-#^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap keyword.control.liquidsoap
-#       ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >    ignore(x.foo + 1.0)
-#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                   ^^^ source.liquidsoap constant.numeric.float
-#                      ^^ source.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    let (x, _, _) = x.nested.tuple
-#^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap keyword.control.liquidsoap
-#       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#           ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#              ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >    ignore(x ^ "foo")
-#^^^^^^^^^^^^^^^ source.liquidsoap
-#               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                   ^ source.liquidsoap string.quoted.double.liquidsoap
-#                    ^^ source.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  end
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  test_parse_error(
-#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    "failed runtime",
-#^^^^ source.liquidsoap
-#    ^ source.liquidsoap string.quoted.double.liquidsoap
-#     ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                   ^ source.liquidsoap string.quoted.double.liquidsoap
-#                    ^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    failed_runtime,
-#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    "Parsing error: json value cannot be parsed as type {nested: {tuple: (string,_,_), _}, _}"
-#^^^^ source.liquidsoap
-#    ^ source.liquidsoap string.quoted.double.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                         ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                                                               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                  ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                                                                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                          ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                                                                ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                  ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                     ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                                      ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                         ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                                          ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                             ^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  )
-#^^^^ source.liquidsoap
+#^^ source.liquidsoap meta.type-annotation.liquidsoap
+#  ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >
 >  def nested_tuple () =
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >    let json.parse ( x : {
-#^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap keyword.control.liquidsoap
-#       ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^ source.liquidsoap meta.type-annotation.liquidsoap
 >      nested : {
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#            ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
 >        tuple : (int * float * int * bool),
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#             ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                    ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                            ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                               ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                  ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        list : [float],
-#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#            ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        nullable_list : [int?],
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                     ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap
+#                             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                              ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        object_as_list : [(string * float)] as json.object,
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                      ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                           ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                 ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                           ^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        "arbitrary object key ✨" as arbitrary_object_key : bool,
-#^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap string.quoted.double.liquidsoap
-#         ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                                                        ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                           ^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                                               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        not_present : bool?
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                   ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap
 >      }
-#^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    }) = data
-#^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >    ignore(data)
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  end
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  test_parse_error(
-#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    "nested tuple",
-#^^^^ source.liquidsoap
-#    ^ source.liquidsoap string.quoted.double.liquidsoap
-#     ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                 ^ source.liquidsoap string.quoted.double.liquidsoap
-#                  ^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    nested_tuple,
-#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    "Parsing error: json value cannot be parsed as type {nested: {tuple: (_,_,int,_), _}, _}"
-#^^^^ source.liquidsoap
-#    ^ source.liquidsoap string.quoted.double.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                         ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                                                               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                  ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                                                                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                           ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                              ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                                                                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                                  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                    ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                                     ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                        ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                                         ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                            ^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  )
-#^^^^ source.liquidsoap
+#^^ source.liquidsoap meta.type-annotation.liquidsoap
+#  ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  def nested_list() =
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >    let json.parse ( x : {
-#^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap keyword.control.liquidsoap
-#       ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^ source.liquidsoap meta.type-annotation.liquidsoap
 >      nested : {
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#            ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
 >        tuple : (int * float * bool),
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#             ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                    ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                            ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                               ^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        list : [int],
-#^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#            ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        nullable_list : [int?],
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                     ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap
+#                             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                              ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        object_as_list : [(string * float)] as json.object,
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                      ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                           ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                 ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                           ^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        "arbitrary object key ✨" as arbitrary_object_key : bool,
-#^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap string.quoted.double.liquidsoap
-#         ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                                                        ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                           ^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                                               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        not_present : bool?
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                   ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap
 >      }
-#^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    }) = data
-#^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >    ignore(data)
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  end
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  test_parse_error(
-#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    "nested list",
-#^^^^ source.liquidsoap
-#    ^ source.liquidsoap string.quoted.double.liquidsoap
-#     ^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                ^ source.liquidsoap string.quoted.double.liquidsoap
-#                 ^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    nested_list,
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    "Parsing error: json value cannot be parsed as type {nested: {list: [int], _}, _}"
-#^^^^ source.liquidsoap
-#    ^ source.liquidsoap string.quoted.double.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                     ^ source.liquidsoap string.quoted.double.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                         ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                                                               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                  ^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                                                                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                         ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                                                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                              ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                                  ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                     ^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  )
-#^^^^ source.liquidsoap
+#^^ source.liquidsoap meta.type-annotation.liquidsoap
+#  ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  def nested_object() =
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >    let json.parse ( x : {
-#^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap keyword.control.liquidsoap
-#       ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^ source.liquidsoap meta.type-annotation.liquidsoap
 >      nested : {
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#            ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
 >        tuple : (int * float * bool),
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#             ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                    ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                            ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                               ^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        list : [float],
-#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#            ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        nullable_list : [int],
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                     ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        object_as_list : [(string * float)] as json.object,
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                      ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                           ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                 ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                           ^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        "arbitrary object key ✨" as arbitrary_object_key : bool,
-#^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap string.quoted.double.liquidsoap
-#         ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                                                        ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                           ^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                                               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >        not_present : bool?
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                   ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap
 >      }
-#^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    }) = data
-#^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >    ignore(data)
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  end
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  test_parse_error(
-#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    "nested object",
-#^^^^ source.liquidsoap
-#    ^ source.liquidsoap string.quoted.double.liquidsoap
-#     ^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                  ^ source.liquidsoap string.quoted.double.liquidsoap
-#                   ^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    nested_object,
-#^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >    'Parsing error: json value cannot be parsed as type {nested: {nullable_list: [int], _}, _}'
-#^^^^ source.liquidsoap
-#    ^ source.liquidsoap string.quoted.single.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
-#                                                                                              ^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                         ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                                                               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                  ^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#                                                                               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                  ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                                                                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                      ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                                       ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                                                                           ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                              ^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  )
-#^^^^ source.liquidsoap
+#^^ source.liquidsoap meta.type-annotation.liquidsoap
+#  ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  data = '{"aabbcc": 34, "ddeerr": 54 }'
-#^^^^^^^^^ source.liquidsoap
-#         ^ source.liquidsoap string.quoted.single.liquidsoap
-#          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
-#                                       ^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                        ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                       ^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  let json.parse (x : [(string * int)] as json.object) = data
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                              ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                 ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                      ^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                      ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(list.assoc("aabbcc", x), 34)
-#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                         ^ source.liquidsoap string.quoted.double.liquidsoap
-#                          ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                 ^^^^^^ source.liquidsoap
-#                                       ^^ source.liquidsoap constant.numeric.integer
-#                                         ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                  ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                      ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                         ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(list.assoc("ddeerr", x), 54)
-#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                         ^ source.liquidsoap string.quoted.double.liquidsoap
-#                          ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                 ^^^^^^ source.liquidsoap
-#                                       ^^ source.liquidsoap constant.numeric.integer
-#                                         ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                  ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                      ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                         ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  data = '{ "foo": 123 }'
-#^^^^^^^^^ source.liquidsoap
-#         ^ source.liquidsoap string.quoted.single.liquidsoap
-#          ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
-#                        ^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  let json.parse ( x : {
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    foo : string
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#    ^^^ source.liquidsoap meta.type-annotation.liquidsoap entity.name.method.liquidsoap
+#       ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
 >  }?) = data
-#^^^^^^^^^^^^^ source.liquidsoap
+#^^ source.liquidsoap meta.type-annotation.liquidsoap
+#  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#   ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap
+#    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#     ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(x, null())
-#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  data = '[ "gni", 123 ]'
-#^^^^^^^^^ source.liquidsoap
-#         ^ source.liquidsoap string.quoted.single.liquidsoap
-#          ^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
-#                        ^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                  ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  let json.parse ( x : [int]? ) = data
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap
+#                             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                               ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(x, null())
-#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  let json.parse ( x : (string * int * bool)? ) = data
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                              ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                 ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                    ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                       ^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                            ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap
+#                                             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                               ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(x, null())
-#^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  data = '[ "gni", 123, "gno" ]'
-#^^^^^^^^^ source.liquidsoap
-#         ^ source.liquidsoap string.quoted.single.liquidsoap
-#          ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
-#                               ^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                  ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                       ^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                               ^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  let json.parse ( x : (string * int) ) = data
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                              ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                 ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                      ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                       ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(x, ("gni",123))
-#^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                  ^ source.liquidsoap string.quoted.double.liquidsoap
-#                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                      ^ source.liquidsoap string.quoted.double.liquidsoap
-#                       ^ source.liquidsoap
-#                        ^^^ source.liquidsoap constant.numeric.integer
-#                           ^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                       ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                        ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  data = '{
-#^^^^^^^^^ source.liquidsoap
-#         ^ source.liquidsoap string.quoted.single.liquidsoap
-#          ^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    "foo": {
-#^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^ source.liquidsoap meta.type-annotation.liquidsoap
 >      "gni": {
-#^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
 >        "bla": 123
-#^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >      }
-#^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    }
-#^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#    ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  }'
-#^^^ source.liquidsoap string.quoted.single.liquidsoap
-#   ^ source.liquidsoap string.quoted.single.liquidsoap
+#^^ source.liquidsoap meta.type-annotation.liquidsoap
+#  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#   ^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  let json.parse x = data
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(x?.foo.gni?.bla, null(123))
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                                    ^^^ source.liquidsoap constant.numeric.integer
-#                                       ^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                              ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  data = '{
-#^^^^^^^^^ source.liquidsoap
-#         ^ source.liquidsoap string.quoted.single.liquidsoap
-#          ^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    "foo": {}
-#^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  }'
-#^^^ source.liquidsoap string.quoted.single.liquidsoap
-#   ^ source.liquidsoap string.quoted.single.liquidsoap
+#^^ source.liquidsoap meta.type-annotation.liquidsoap
+#  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#   ^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  let json.parse x = data
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(x?.foo.gni?.bla, null())
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                              ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  data = '{}'
-#^^^^^^^^^ source.liquidsoap
-#         ^ source.liquidsoap string.quoted.single.liquidsoap
-#          ^^ source.liquidsoap string.quoted.single.liquidsoap
-#            ^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  let json.parse x = data
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(x?.foo?.gni?.bla, null())
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                              ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                               ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                      ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  # Test escaping of invalid utf8 strings.
-#^^ source.liquidsoap
-#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  s = "S\x00e\x00k\x00e\x00r\x00n\x00u\x00p\x00 \x00K\x00i\x00n\x00g\x00e\x00r\x00p\x00\xE2\x00"
-#^^^^^^ source.liquidsoap
-#      ^ source.liquidsoap string.quoted.double.liquidsoap
-#       ^ source.liquidsoap string.quoted.double.liquidsoap
-#        ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#          ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#               ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                    ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                         ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                            ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                              ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                 ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                   ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                      ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                        ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                           ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                             ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                  ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                       ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                          ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                            ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                               ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                 ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                      ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                           ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                              ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                   ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                       ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                         ^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                           ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                               ^ source.liquidsoap string.quoted.double.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(json.stringify(s), "\"S\\u0000e\\u0000k\\u0000e\\u0000r\\u0000n\\u0000u\\u0000p\\u0000 \\u0000K\\u0000i\\u0000n\\u0000g\\u0000e\\u0000r\\u0000p\\u0000\\uFFFD\"")
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                                 ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                  ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                    ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                                                                               ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                                                                     ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                                                                                       ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                                                                             ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                                                                                               ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                                                                                    ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                                                                                                      ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                                                                                           ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#                                                                                                                                                                             ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                                                                                                                                              ^^ source.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                                                                                                                                              ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  j = json()
-#^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  j.add("foo", 1)
-#^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap string.quoted.double.liquidsoap
-#         ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#            ^ source.liquidsoap string.quoted.double.liquidsoap
-#             ^^ source.liquidsoap
-#               ^ source.liquidsoap constant.numeric.integer
-#                ^^ source.liquidsoap
+#^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#              ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  j.add("bla", "bar")
-#^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap string.quoted.double.liquidsoap
-#         ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#            ^ source.liquidsoap string.quoted.double.liquidsoap
-#             ^^ source.liquidsoap
-#               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                   ^ source.liquidsoap string.quoted.double.liquidsoap
-#                    ^^ source.liquidsoap
+#^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#              ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  j.add("baz", 3.14)
-#^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap string.quoted.double.liquidsoap
-#         ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#            ^ source.liquidsoap string.quoted.double.liquidsoap
-#             ^^ source.liquidsoap
-#               ^^^^ source.liquidsoap constant.numeric.float
-#                   ^^ source.liquidsoap
+#^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#              ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  j.add("key_with_methods", "value".{method = 123})
-#^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap string.quoted.double.liquidsoap
-#         ^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                         ^ source.liquidsoap string.quoted.double.liquidsoap
-#                          ^^ source.liquidsoap
-#                            ^ source.liquidsoap string.quoted.double.liquidsoap
-#                             ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                  ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                   ^^^^^^^^^^^ source.liquidsoap
-#                                              ^^^ source.liquidsoap constant.numeric.integer
-#                                                 ^^^ source.liquidsoap
+#^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                          ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                           ^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                                  ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  j.add("record", { a = 1, b = "ert"})
-#^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap string.quoted.double.liquidsoap
-#         ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                ^^^^^^^^ source.liquidsoap
-#                        ^ source.liquidsoap constant.numeric.integer
-#                         ^^^^^^ source.liquidsoap
-#                               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                                   ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                    ^^^ source.liquidsoap
+#^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                   ^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                          ^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                     ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  j.remove("foo")
-#^^^^^^^^^^^ source.liquidsoap
-#           ^ source.liquidsoap string.quoted.double.liquidsoap
-#            ^^^ source.liquidsoap string.quoted.double.liquidsoap
-#               ^ source.liquidsoap string.quoted.double.liquidsoap
-#                ^^ source.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  j = json.stringify(j)
-#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  test.equals(j, '{
-#^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                 ^ source.liquidsoap string.quoted.single.liquidsoap
-#                  ^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                  ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  "record": { "a": 1, "b": "ert" },
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                    ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
+#                     ^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                 ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                  ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >  "key_with_methods": "value",
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >  "bla": "bar",
-#^^^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 >  "baz": 3.14
-#^^^^^^^^^^^^^^ source.liquidsoap string.quoted.single.liquidsoap
+#^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >}')
-#^ source.liquidsoap string.quoted.single.liquidsoap
-# ^ source.liquidsoap string.quoted.single.liquidsoap
-#  ^^ source.liquidsoap
+#^ source.liquidsoap meta.type-annotation.liquidsoap
+# ^ source.liquidsoap meta.type-annotation.liquidsoap
+#  ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  e = ref(null())
-#^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#      ^^^ source.liquidsoap meta.type-annotation.liquidsoap storage.type.ground.liquidsoap
+#         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
+#               ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  def f(data)
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
-#     ^^^^^^^^^ source.liquidsoap
+#^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#       ^ source.liquidsoap meta.type-annotation.liquidsoap
+#        ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    try
-#^^^^^^^^ source.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >      d = json.stringify(data)
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                             ^ source.liquidsoap meta.type-annotation.liquidsoap
 >      ignore(d)
-#^^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^ source.liquidsoap meta.type-annotation.liquidsoap
+#             ^ source.liquidsoap meta.type-annotation.liquidsoap
+#              ^ source.liquidsoap meta.type-annotation.liquidsoap
 >    catch err do
-#^^^^^^^^^^^^^^ source.liquidsoap
-#              ^^ source.liquidsoap keyword.control.liquidsoap
+#^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >      e := err
-#^^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >    end
-#^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >  end
-#^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  f(infinity)
-#^^^^^^^^^^^^^^ source.liquidsoap
+#^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#   ^ source.liquidsoap meta.type-annotation.liquidsoap
+#    ^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  if not null.defined(!e) then test.fail() end
-#^^ source.liquidsoap
-#  ^^ source.liquidsoap keyword.control.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap
-#                          ^^^^ source.liquidsoap keyword.control.liquidsoap
-#                              ^^^^^^^^^^^^^ source.liquidsoap
-#                                           ^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                     ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                      ^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                         ^^^^^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                        ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                         ^ source.liquidsoap meta.type-annotation.liquidsoap
+#                                          ^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >  test.pass()
-#^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^ source.liquidsoap meta.type-annotation.liquidsoap
 >end
-#^^^ source.liquidsoap keyword.control.liquidsoap
+#^^^^ source.liquidsoap meta.type-annotation.liquidsoap
 >
 >test.check(f)
-#^^^^^^^^^^^^^^ source.liquidsoap
+#^^^^^^^^^^ source.liquidsoap meta.type-annotation.liquidsoap
+#          ^ source.liquidsoap meta.type-annotation.liquidsoap
+#           ^ source.liquidsoap meta.type-annotation.liquidsoap
+#            ^ source.liquidsoap meta.type-annotation.liquidsoap
 >
