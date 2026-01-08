@@ -22,8 +22,8 @@
     "typecheck": "tsc --noEmit",
     "update:snapshots": "vscode-tmgrammar-snap --updateSnapshot tests/snap/**/*.liq",
     "test:fetch-stdlib": "node test-suite/fetch-stdlib.js",
-    "test:stdlib": "node test-suite/run-tests.js",
-    "test:stdlib:full": "npm run test:fetch-stdlib && npm run test:stdlib"
+    "test": "node test-suite/run-tests.js",
+    "test:full": "npm run test:fetch-stdlib && npm run test"
   },
   "contributes": {
     "languages": [
