@@ -16,8 +16,11 @@ const GRAMMAR_PATH = path.join(
   "syntaxes",
   "liquidsoap.tmLanguage.json"
 );
-const STDLIB_DIR = path.join(__dirname, "stdlib");
 const OUTPUT_DIR = path.join(__dirname, "output");
+const SOURCE_DIRS = [
+  { dir: path.join(__dirname, "stdlib"), prefix: "stdlib" },
+  { dir: path.join(__dirname, "..", "tests", "snap", "tests"), prefix: "tests" },
+];
 const ONIG_WASM_PATH = path.join(
   __dirname,
   "..",
@@ -480,49 +483,48 @@ async function main() {
   console.log("Initializing grammar...");
   const grammar = await initGrammar();
 
-  if (!fs.existsSync(STDLIB_DIR)) {
-    console.error(
-      "Error: stdlib directory not found. Run 'node fetch-stdlib.js' first."
-    );
-    process.exit(1);
-  }
-
   // Clean and create output directory
   if (fs.existsSync(OUTPUT_DIR)) {
     fs.rmSync(OUTPUT_DIR, { recursive: true });
   }
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-  const liqFiles = getAllLiqFiles(STDLIB_DIR);
-  console.log(`\nProcessing ${liqFiles.length} files...\n`);
-
   const fileResults = [];
 
-  for (const { fullPath, relativePath } of liqFiles) {
-    const content = fs.readFileSync(fullPath, "utf8");
-    const tokenResult = tokenizeFile(grammar, content);
+  for (const { dir, prefix } of SOURCE_DIRS) {
+    if (!fs.existsSync(dir)) {
+      console.log(`Skipping ${prefix}: directory not found`);
+      continue;
+    }
 
-    // Create output directory structure
-    const outputPath = path.join(
-      OUTPUT_DIR,
-      relativePath.replace(".liq", ".html")
-    );
-    const outputDir = path.dirname(outputPath);
-    fs.mkdirSync(outputDir, { recursive: true });
+    const liqFiles = getAllLiqFiles(dir);
+    console.log(`\nProcessing ${prefix}/ (${liqFiles.length} files)...\n`);
 
-    // Generate and write HTML
-    const html = generateFileHtml(relativePath, tokenResult);
-    fs.writeFileSync(outputPath, html, "utf8");
+    for (const { fullPath, relativePath } of liqFiles) {
+      const content = fs.readFileSync(fullPath, "utf8");
+      const tokenResult = tokenizeFile(grammar, content);
 
-    const issueCount = tokenResult.issues.length;
-    const status = issueCount > 0 ? `⚠️  ${issueCount} issues` : "✓";
-    console.log(`  ${status.padEnd(15)} ${relativePath}`);
+      const prefixedPath = path.join(prefix, relativePath);
+      const outputPath = path.join(
+        OUTPUT_DIR,
+        prefixedPath.replace(".liq", ".html")
+      );
+      const outputDir = path.dirname(outputPath);
+      fs.mkdirSync(outputDir, { recursive: true });
 
-    fileResults.push({
-      name: relativePath,
-      htmlPath: relativePath.replace(".liq", ".html"),
-      issues: issueCount,
-    });
+      const html = generateFileHtml(prefixedPath, tokenResult);
+      fs.writeFileSync(outputPath, html, "utf8");
+
+      const issueCount = tokenResult.issues.length;
+      const status = issueCount > 0 ? `⚠️  ${issueCount} issues` : "✓";
+      console.log(`  ${status.padEnd(15)} ${prefixedPath}`);
+
+      fileResults.push({
+        name: prefixedPath,
+        htmlPath: prefixedPath.replace(".liq", ".html"),
+        issues: issueCount,
+      });
+    }
   }
 
   // Generate index
