@@ -370,6 +370,11 @@ contexts:
           pop: true
         - match: \\/
           scope: constant.character.escape.liquidsoap
+    - match: '\{([a-z_]*)\|'
+      push:
+        - meta_scope: string.unquoted.raw.liquidsoap
+        - match: '\|\1\}'
+          pop: true
   types:
     - match: \b(int|float|unit|bool)(?:(\?)|\b)
       captures:
