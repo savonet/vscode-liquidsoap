@@ -72,10 +72,10 @@
 #^^^^^^ source.liquidsoap
 #      ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #         ^^ source.liquidsoap
-#           ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#           ^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #             ^ source.liquidsoap
-#              ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#              ^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^ source.liquidsoap
 #                ^^^ source.liquidsoap
 #                   ^ source.liquidsoap variable.liquidsoap
@@ -94,7 +94,7 @@
 #                                ^^^^ source.liquidsoap keyword.control.liquidsoap
 >        v = int_of_string(v)
 #^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -103,7 +103,7 @@
 #                           ^ source.liquidsoap meta.function-call.liquidsoap
 >        v = v + 5 # normalize to -18 dB as usual replaygain instead of -23 dB
 #^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^ source.liquidsoap variable.liquidsoap
@@ -116,7 +116,7 @@
 #                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >        v = lin_of_dB(float(v) / 256.)
 #^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -189,7 +189,7 @@
 #  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >  s = metadata.map(f, s)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -268,7 +268,7 @@
 #                                                 ^ source.liquidsoap
 >  id = string.id.default(default="file.replaygain", id)
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -291,7 +291,7 @@
 #  ^^^ source.liquidsoap keyword.control.liquidsoap
 >    meta = file.metadata(exclude=["replaygain_track_gain"], fname)
 #^^^^ source.liquidsoap
-#    ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^ source.liquidsoap variable.liquidsoap
@@ -311,7 +311,7 @@
 #                                                                 ^ source.liquidsoap meta.function-call.liquidsoap
 >    replaygain_meta = meta["replaygain_track_gain"]
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                   ^^ source.liquidsoap
 #                     ^ source.liquidsoap
 #                      ^^^^ source.liquidsoap variable.liquidsoap
@@ -322,7 +322,7 @@
 #                                                  ^^ source.liquidsoap
 >    match = r/([\+\-\d\.]+)\s*dB/i.exec(replaygain_meta)
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^ source.liquidsoap string.regexp.liquidsoap
@@ -335,7 +335,7 @@
 #                                                       ^ source.liquidsoap meta.function-call.liquidsoap
 >    gain = float_of_string(list.assoc(1, match))
 #^^^^ source.liquidsoap
-#    ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -389,7 +389,7 @@
 #          ^^ source.liquidsoap keyword.control.liquidsoap
 >    r = request.create(resolve_metadata=false, fname)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -440,7 +440,7 @@
 #                                                                                ^ source.liquidsoap meta.function-call.liquidsoap
 >      t = time()
 #^^^^^^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -448,7 +448,7 @@
 #               ^ source.liquidsoap meta.function-call.liquidsoap
 >      s = source.replaygain.compute(request.once(r))
 #^^^^^^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -479,7 +479,7 @@
 #                                ^ source.liquidsoap meta.function-call.liquidsoap
 >      gain = s.gain()
 #^^^^^^ source.liquidsoap
-#      ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^ source.liquidsoap variable.liquidsoap
@@ -594,7 +594,7 @@
 #                                            ^ source.liquidsoap
 >    meta = file.metadata(exclude=["replaygain_track_gain"], fname)
 #^^^^ source.liquidsoap
-#    ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^ source.liquidsoap variable.liquidsoap
@@ -614,7 +614,7 @@
 #                                                                 ^ source.liquidsoap meta.function-call.liquidsoap
 >    replaygain_meta = meta["replaygain_track_gain"]
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                   ^^ source.liquidsoap
 #                     ^ source.liquidsoap
 #                      ^^^^ source.liquidsoap variable.liquidsoap
@@ -678,7 +678,7 @@
 #    ^^^^ source.liquidsoap keyword.control.liquidsoap
 >      gain = file.replaygain(ratio=ratio, fname)
 #^^^^^^ source.liquidsoap
-#      ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^^^^ source.liquidsoap variable.liquidsoap

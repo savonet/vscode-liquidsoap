@@ -10,7 +10,7 @@
 #       ^^ source.liquidsoap
 >  s = once(single("../media/@ffmpeg[format='mp4',@audio[codec='aac',channels=2],@audio_2[codec='aac',channels=1],@video[codec='libx264'],@video_2[codec='libx264']].mp4"))
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -33,7 +33,7 @@
 #               ^^ source.liquidsoap
 >    j = process.read("ffprobe -v quiet -print_format json -show_streams ffmpeg-copy-encode.mkv")
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -49,7 +49,7 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^ source.liquidsoap
 #                     ^ source.liquidsoap

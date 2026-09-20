@@ -1,5 +1,5 @@
 >jingles = mksafe(playlist(id="jingles", mode="normal", "jingles"))
-#^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -26,7 +26,7 @@
 #                                                                ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #                                                                 ^ source.liquidsoap meta.function-call.liquidsoap
 >music   = mksafe(playlist(id="music", mode="normal", "playlist"))
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -53,7 +53,7 @@
 #                                                               ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #                                                                ^ source.liquidsoap meta.function-call.liquidsoap
 >music2  = mksafe(playlist(id="music2", mode="normal", "playlist"))
-#^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -81,17 +81,17 @@
 #                                                                 ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >rounds = 10
-#^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 >round_len = 8
-#^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 >played = ref([])
-#^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -99,7 +99,7 @@
 #             ^^ source.liquidsoap meta.function-call.liquidsoap
 #               ^ source.liquidsoap meta.function-call.liquidsoap
 >njingles = ref(0)
-#^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -107,7 +107,7 @@
 #               ^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #                ^ source.liquidsoap meta.function-call.liquidsoap
 >nmusic = ref(0)
-#^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -115,7 +115,7 @@
 #             ^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #              ^ source.liquidsoap meta.function-call.liquidsoap
 >nmusic2 = ref(0)
-#^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -414,7 +414,7 @@
 #                                       ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >radio = rotate(id="rotate", weights=[3,1], [music,jingles])
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -441,7 +441,7 @@
 #                                                         ^ source.liquidsoap meta.function-call.liquidsoap
 #                                                          ^ source.liquidsoap meta.function-call.liquidsoap
 >radio = rotate(id="rotate2", weights=[1,1], [radio, music2])
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

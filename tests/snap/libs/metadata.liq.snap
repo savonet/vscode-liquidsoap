@@ -1,7 +1,7 @@
 >let metadata.getter = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                   ^ source.liquidsoap
 #                    ^^^^^ source.liquidsoap
 >
@@ -56,7 +56,7 @@
 #                                               ^ source.liquidsoap
 >  x = ref(init)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -73,7 +73,7 @@
 #         ^ source.liquidsoap
 >    v = m[metadata]
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap variable.liquidsoap
@@ -400,7 +400,7 @@
 #                                           ^ source.liquidsoap
 >  fname = metadata.filename(m)
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -439,7 +439,7 @@
 #                                                                   ^^^^ source.liquidsoap keyword.control.liquidsoap
 >    cover = list.assoc(default="", "coverart", m)
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^ source.liquidsoap variable.liquidsoap
@@ -504,7 +504,7 @@
 #     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >    cover = list.assoc(default="", "metadata_block_picture", m)
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^ source.liquidsoap variable.liquidsoap
@@ -526,7 +526,7 @@
 #                                                              ^ source.liquidsoap meta.function-call.liquidsoap
 >    cover = file.metadata.flac.cover.decode(cover)
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^ source.liquidsoap variable.liquidsoap
@@ -597,7 +597,7 @@
 #     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >    m =
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 >      if list.assoc.mem("apic", m) or list.assoc.mem("pic", m) then
 #^^^^^^ source.liquidsoap
@@ -684,7 +684,7 @@
 #      ^^^ source.liquidsoap keyword.control.liquidsoap
 >    pic = list.assoc(default="", "pic", m)
 #^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^ source.liquidsoap variable.liquidsoap
@@ -706,7 +706,7 @@
 #                                         ^ source.liquidsoap meta.function-call.liquidsoap
 >    apic = list.assoc(default="", "apic", m)
 #^^^^ source.liquidsoap
-#    ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^ source.liquidsoap variable.liquidsoap
@@ -812,7 +812,7 @@
 #       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >      pic = string.pic.parse(pic)
 #^^^^^^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -825,7 +825,7 @@
 #                                ^ source.liquidsoap meta.function-call.liquidsoap
 >      mime =
 #^^^^^^ source.liquidsoap
-#      ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 >        if pic.format == "JPG" then
 #^^^^^^^^ source.liquidsoap
@@ -1060,7 +1060,7 @@
 #                      ^^ source.liquidsoap
 >  exported_keys = settings.encoder.metadata.export()
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^^ source.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1114,7 +1114,7 @@
 >let metadata.json = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^^^ source.liquidsoap
 >
@@ -1183,7 +1183,7 @@
 #                                                                                                 ^^ source.liquidsoap
 >  c = metadata.cover(coverart_mime=coverart_mime, m)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1199,7 +1199,7 @@
 #                                                   ^ source.liquidsoap meta.function-call.liquidsoap
 >  m = metadata.cover.remove(m)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1212,7 +1212,7 @@
 #                             ^ source.liquidsoap meta.function-call.liquidsoap
 >  m = metadata.export(m)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1224,7 +1224,7 @@
 >
 >  m =
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 >    if null.defined(c) then
 #^^^^ source.liquidsoap
@@ -1240,7 +1240,7 @@
 #                       ^^^^ source.liquidsoap keyword.control.liquidsoap
 >      c = null.get(c)
 #^^^^^^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^ source.liquidsoap variable.liquidsoap
@@ -1294,7 +1294,7 @@
 >
 >  data = json()
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1370,7 +1370,7 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^ source.liquidsoap
 #                 ^^ source.liquidsoap
 #                   ^^^^^^^^^^^^^ source.liquidsoap variable.liquidsoap

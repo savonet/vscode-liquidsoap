@@ -1,7 +1,7 @@
 >let request.queue = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^^^ source.liquidsoap
 >
@@ -12,7 +12,7 @@
 >let stdlib_native = native
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^ source.liquidsoap
 #                    ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -213,7 +213,7 @@
 #                                                                                                    ^ source.liquidsoap
 >  id = string.id.default(default="request.queue", id)
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -239,7 +239,7 @@
 #               ^ source.liquidsoap meta.function-call.liquidsoap
 >  queue = ref(queue)
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -248,7 +248,7 @@
 #                   ^ source.liquidsoap meta.function-call.liquidsoap
 >  fetch = ref(fun () -> true)
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -284,11 +284,11 @@
 #^^^^^^ source.liquidsoap
 #      ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #         ^^ source.liquidsoap
-#           ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#           ^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #             ^ source.liquidsoap
 #              ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                 ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                 ^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^ source.liquidsoap
 #                      ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -364,7 +364,7 @@
 #                           ^^ source.liquidsoap
 >    fn = fetch()
 #^^^^ source.liquidsoap
-#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -391,7 +391,7 @@
 #                  ^ source.liquidsoap
 >    r = request.create(uri)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -411,7 +411,7 @@
 #  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >  s =
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 >%ifdef native
 #^^^^^^ source.liquidsoap keyword.other.liquidsoap
@@ -535,7 +535,7 @@
 #                ^ source.liquidsoap
 >      r = request.create(uri)
 #^^^^^^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -701,7 +701,7 @@
 #                         ^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 >          queue = [...s.queue(), ...(queue())]
 #^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
-#          ^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#          ^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #               ^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #                 ^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #                   ^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap keyword.operator.spread.liquidsoap
@@ -1048,7 +1048,7 @@
 #                  ^^^^ source.liquidsoap keyword.control.liquidsoap
 >    l = ref([])
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1175,7 +1175,7 @@
 #  ^^^^ source.liquidsoap keyword.control.liquidsoap
 >    s = source.dynamic()
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap

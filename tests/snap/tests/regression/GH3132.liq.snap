@@ -1,5 +1,5 @@
 >last_source = sine()
-#^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -7,7 +7,7 @@
 #                   ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >last_source = metadata.map(insert_missing=true, fun (_) -> [("last","true")], last_source)
-#^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -41,7 +41,7 @@
 #                                                                                         ^^ source.liquidsoap
 >
 >s = sequence([sine(duration=5.), blank(duration=5.), last_source])
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -70,7 +70,7 @@
 #                                                                 ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = blank.eat(max_blank=1., s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^ source.liquidsoap variable.liquidsoap
@@ -87,7 +87,7 @@
 #                             ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = source.on_metadata(s, fun (m) -> if m["last"] == "true" then test.pass() end)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap variable.liquidsoap

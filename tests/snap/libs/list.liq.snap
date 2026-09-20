@@ -56,7 +56,7 @@
 #                       ^^ source.liquidsoap
 >  f = list.case(l, d, fun (x,l) -> {f(x,l)})
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^ source.liquidsoap variable.liquidsoap
@@ -412,7 +412,7 @@
 #                 ^ source.liquidsoap
 >  err = error.register("mem")
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^ source.liquidsoap variable.liquidsoap
@@ -570,7 +570,7 @@
 #                  ^ source.liquidsoap
 >  n = ref(0)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -588,7 +588,7 @@
 #          ^^ source.liquidsoap
 >    i = n()
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -709,7 +709,7 @@
 #                     ^ source.liquidsoap
 >  ret = ref(x)
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1028,7 +1028,7 @@
 #               ^ source.liquidsoap
 >    y = f(x)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1127,7 +1127,7 @@
 #                                      ^ source.liquidsoap
 >  ret = ref(💣())
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1137,7 +1137,7 @@
 #                ^^ source.liquidsoap
 >  err = error.register("assoc")
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^ source.liquidsoap variable.liquidsoap
@@ -1415,7 +1415,7 @@
 #                            ^ source.liquidsoap
 >  ret = ref(💣())
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1425,7 +1425,7 @@
 #                ^^ source.liquidsoap
 >  err = error.register("assoc.remove")
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^ source.liquidsoap variable.liquidsoap
@@ -1620,7 +1620,7 @@
 #                     ^ source.liquidsoap
 >  err = error.register("for_all")
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^ source.liquidsoap variable.liquidsoap
@@ -1731,7 +1731,7 @@
 #                    ^ source.liquidsoap
 >  err = error.register("exists")
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^ source.liquidsoap variable.liquidsoap
@@ -1856,7 +1856,7 @@
 #                                   ^ source.liquidsoap
 >  ret = ref(💣())
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1866,7 +1866,7 @@
 #                ^^ source.liquidsoap
 >  err = error.register("find")
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^ source.liquidsoap variable.liquidsoap
@@ -2094,7 +2094,7 @@
 #                      ^ source.liquidsoap
 >  err = error.register("find")
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^ source.liquidsoap variable.liquidsoap
@@ -2194,7 +2194,7 @@
 #                   ^ source.liquidsoap
 >  l = ref(l)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2368,16 +2368,16 @@
 #^^^^^^ source.liquidsoap
 #      ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #         ^^ source.liquidsoap
-#           ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#           ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #               ^ source.liquidsoap
-#                ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                ^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^ source.liquidsoap
 #                     ^^^ source.liquidsoap variable.liquidsoap
 >      l = if pos+1 == index then
 #^^^^^^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^ source.liquidsoap keyword.control.liquidsoap
@@ -2426,10 +2426,10 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #       ^^ source.liquidsoap
-#         ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#         ^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #           ^ source.liquidsoap
-#            ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#            ^ source.liquidsoap variable.other.binding.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^ source.liquidsoap
 #                 ^^^^ source.liquidsoap variable.liquidsoap
@@ -2491,7 +2491,7 @@
 #                    ^ source.liquidsoap
 >  len = list.length(l)
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^ source.liquidsoap variable.liquidsoap
@@ -2502,7 +2502,7 @@
 #                     ^ source.liquidsoap meta.function-call.liquidsoap
 >  n = n < len ? n : len
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap variable.liquidsoap

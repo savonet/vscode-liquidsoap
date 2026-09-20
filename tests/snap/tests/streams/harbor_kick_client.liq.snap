@@ -13,7 +13,7 @@
 #        ^^ source.liquidsoap
 > kick_client = ref(fun () -> error.raise(error.assertion))
 #^ source.liquidsoap
-# ^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+# ^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -35,7 +35,7 @@
 #                                                         ^ source.liquidsoap meta.function-call.liquidsoap
 > first_client_connected = ref(false)
 #^ source.liquidsoap
-# ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+# ^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                       ^^ source.liquidsoap
 #                         ^ source.liquidsoap
 #                          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -62,7 +62,7 @@
 #                              ^^^^ source.liquidsoap keyword.control.liquidsoap
 >     fn = !kick_client
 #^^^^^ source.liquidsoap
-#     ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#     ^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^ source.liquidsoap keyword.operator.dereference.liquidsoap
@@ -123,7 +123,7 @@
 >
 > s = input.harbor(buffer=0.1, auth=auth, on_connect=on_connect, port=9878, "harbor_kick_client")
 #^ source.liquidsoap
-# ^ source.liquidsoap entity.name.function.binding.liquidsoap
+# ^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^ source.liquidsoap variable.liquidsoap

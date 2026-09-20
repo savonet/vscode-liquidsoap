@@ -8,7 +8,7 @@
 #             ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 >
 >s = sine()
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -16,7 +16,7 @@
 #         ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >count = ref(0)
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -48,7 +48,7 @@
 >
 >  j = process.read("ffprobe -v quiet -print_format json -show_streams #{process.quote(filename)}")
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -72,7 +72,7 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^ source.liquidsoap
 #                 ^^ source.liquidsoap
 #                   ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -163,7 +163,7 @@
 #^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >dir = file.temp_dir("flac")
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^ source.liquidsoap variable.liquidsoap
@@ -189,7 +189,7 @@
 #                            ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >last_time = ref(time())
-#^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -208,7 +208,7 @@
 #                 ^^ source.liquidsoap
 >  current_time = time()
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^^ source.liquidsoap
 #                ^ source.liquidsoap
 #                 ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -216,7 +216,7 @@
 #                      ^ source.liquidsoap meta.function-call.liquidsoap
 >  time_diff = current_time - last_time()
 #^^ source.liquidsoap
-#  ^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^^^^^^^^^^ source.liquidsoap variable.liquidsoap

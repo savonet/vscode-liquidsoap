@@ -3,7 +3,7 @@
 # ^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >
 >day     = playlist("playlist")
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^^^^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -13,7 +13,7 @@
 #                            ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
 #                             ^ source.liquidsoap meta.function-call.liquidsoap
 >night   = playlist("playlist")
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -23,7 +23,7 @@
 #                            ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
 #                             ^ source.liquidsoap meta.function-call.liquidsoap
 >jingles = playlist("playlist")
-#^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -37,7 +37,7 @@
 #^ source.liquidsoap comment.line.number-sign.liquidsoap
 # ^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >radio = switch([({8h-20h}, day), ({20h-8h}, night)])
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -67,7 +67,7 @@
 #^ source.liquidsoap comment.line.number-sign.liquidsoap
 # ^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >radio = crossfade(fade_out=3., fade_in=3., duration=5., radio)
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -96,7 +96,7 @@
 #^ source.liquidsoap comment.line.number-sign.liquidsoap
 # ^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >radio = random(weights=[1, 4], [jingles, radio])
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

@@ -11,7 +11,7 @@
 #                       ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >a = sine(duration=5.,440.)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -25,7 +25,7 @@
 #                        ^ source.liquidsoap meta.function-call.liquidsoap
 #                         ^ source.liquidsoap meta.function-call.liquidsoap
 >a = metadata.map(update=false, (fun (_) -> [("title","a")]), a)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -59,7 +59,7 @@
 #                                                              ^^ source.liquidsoap
 >
 >b = sine(duration=5.,880.)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -73,7 +73,7 @@
 #                        ^ source.liquidsoap meta.function-call.liquidsoap
 #                         ^ source.liquidsoap meta.function-call.liquidsoap
 >b = metadata.map(update=false, (fun (_) -> [("title","b")]), b)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -107,7 +107,7 @@
 #                                                              ^^ source.liquidsoap
 >
 >s = sequence([a,b])
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -200,7 +200,7 @@
 #^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >s = cross(duration=3., width=1., t, s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -224,7 +224,7 @@
 #                                     ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >seen_a = ref(false)
-#^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -232,7 +232,7 @@
 #             ^^^^^ source.liquidsoap meta.function-call.liquidsoap constant.language.boolean.liquidsoap
 #                  ^ source.liquidsoap meta.function-call.liquidsoap
 >seen_b = ref(false)
-#^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

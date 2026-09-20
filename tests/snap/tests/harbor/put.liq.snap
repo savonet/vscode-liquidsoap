@@ -7,7 +7,7 @@
 #       ^^ source.liquidsoap
 >  data = http.multipart_form_data(boundary="foobar", [{
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -217,7 +217,7 @@
 >
 >  data = http.multipart_form_data(boundary="foobar", [{
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -433,7 +433,7 @@
 >
 >  fname = "put.liq"
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -442,7 +442,7 @@
 >
 >  range = [...string.char.ascii.alphabet, ...string.char.ascii.number]
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^^ source.liquidsoap
 #           ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
@@ -466,7 +466,7 @@
 #                                                                     ^^ source.liquidsoap
 >  l = list.init(12, fun(_) -> string.char.ascii.random(range))
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^ source.liquidsoap variable.liquidsoap
@@ -496,7 +496,7 @@
 #                                                             ^ source.liquidsoap meta.function-call.liquidsoap
 >  boundary = string.concat(l)
 #^^ source.liquidsoap
-#  ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -770,7 +770,7 @@
 >
 >  resp = http.put.file(file=fname, content_type="text/plain", boundary=boundary, "http://localhost:5427/large_non_chunked")
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -879,7 +879,7 @@
 >
 >  range = [...string.char.ascii.alphabet, ...string.char.ascii.number]
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^^ source.liquidsoap
 #           ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
@@ -903,7 +903,7 @@
 #                                                                     ^^ source.liquidsoap
 >  l = list.init(12, fun(_) -> string.char.ascii.random(range))
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^ source.liquidsoap variable.liquidsoap
@@ -933,7 +933,7 @@
 #                                                             ^ source.liquidsoap meta.function-call.liquidsoap
 >  boundary = string.concat(l)
 #^^ source.liquidsoap
-#  ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1197,7 +1197,7 @@
 >
 >  resp = http.put.file(filename="foo.txt", contents="foobarlol", content_type="text/plain", boundary=boundary, "http://localhost:5427/in_memory_file_upload")
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -1314,7 +1314,7 @@
 #   ^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  j = json()
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1359,7 +1359,7 @@
 #                                            ^ source.liquidsoap meta.function-call.liquidsoap
 >  data = json.stringify(j)
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -1577,7 +1577,7 @@
 >
 >  resp = http.put(headers=[("Content-Type","application/json"),("Accept","application/json")], data=data, "http://localhost:5427/json_put")
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -1607,7 +1607,7 @@
 #                                                                                           ^^ source.liquidsoap
 #                                                                                             ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                                                                                              ^ source.liquidsoap
-#                                                                                               ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                                                                                               ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                                                                                   ^ source.liquidsoap
 #                                                                                                    ^^^^ source.liquidsoap variable.liquidsoap
 #                                                                                                        ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma

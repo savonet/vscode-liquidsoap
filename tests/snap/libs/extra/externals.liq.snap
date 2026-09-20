@@ -5,7 +5,7 @@
 >let settings.decoder.external = settings.make.void(
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                             ^ source.liquidsoap
 #                              ^^ source.liquidsoap
 #                                ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -57,7 +57,7 @@
 >let settings.decoder.external.ffmpeg = settings.make.external("FFmpeg")
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                    ^ source.liquidsoap
 #                                     ^^ source.liquidsoap
 #                                       ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -74,7 +74,7 @@
 >let settings.decoder.external.ffmpeg.path = settings.make(
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                         ^ source.liquidsoap
 #                                          ^^ source.liquidsoap
 #                                            ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -103,7 +103,7 @@
 >let settings.decoder.external.ffprobe = settings.make.external("FFprobe")
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                     ^ source.liquidsoap
 #                                      ^^ source.liquidsoap
 #                                        ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -120,7 +120,7 @@
 >let settings.decoder.external.ffprobe.path = settings.make(
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                          ^ source.liquidsoap
 #                                           ^^ source.liquidsoap
 #                                             ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -149,7 +149,7 @@
 >let settings.decoder.external.ffmpeg.mime_types = settings.make(
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                               ^ source.liquidsoap
 #                                                ^^ source.liquidsoap
 #                                                  ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -186,7 +186,7 @@
 #                                    ^^ source.liquidsoap
 >  ffmpeg     = settings.decoder.external.ffmpeg.path()
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^^^^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -202,7 +202,7 @@
 #                                                     ^ source.liquidsoap meta.function-call.liquidsoap
 >  ffprobe    = settings.decoder.external.ffprobe.path()
 #^^ source.liquidsoap
-#  ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^^^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -218,7 +218,7 @@
 #                                                      ^ source.liquidsoap meta.function-call.liquidsoap
 >  mime_types = settings.decoder.external.ffmpeg.mime_types()
 #^^ source.liquidsoap
-#  ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -244,7 +244,7 @@
 #                         ^^ source.liquidsoap
 >    j = process.read("#{ffprobe} -print_format json -show_streams #{process.quote(fname)}")
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -271,7 +271,7 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^ source.liquidsoap
 #                     ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -315,7 +315,7 @@
 #                            ^^^^ source.liquidsoap keyword.control.liquidsoap
 >      parsed = null.get(parsed)
 #^^^^^^ source.liquidsoap
-#      ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^^^ source.liquidsoap variable.liquidsoap
@@ -327,7 +327,7 @@
 >
 >      streams = parsed.streams
 #^^^^^^ source.liquidsoap
-#      ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #             ^^ source.liquidsoap
 #               ^ source.liquidsoap
 #                ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -335,7 +335,7 @@
 #                       ^^^^^^^ source.liquidsoap variable.method.liquidsoap
 >      stream = list.find(
 #^^^^^^ source.liquidsoap
-#      ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^^^ source.liquidsoap variable.liquidsoap
@@ -516,7 +516,7 @@
 >let settings.decoder.external.mpcdec = settings.make.external("mpcdec")
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                    ^ source.liquidsoap
 #                                     ^^ source.liquidsoap
 #                                       ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -533,7 +533,7 @@
 >let settings.decoder.external.mpcdec.path = settings.make(
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                         ^ source.liquidsoap
 #                                          ^^ source.liquidsoap
 #                                            ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -584,7 +584,7 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  mpc_mimes = [ "audio/x-musepack", "audio/musepack" ]
 #^^ source.liquidsoap
-#  ^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^^^ source.liquidsoap
 #                ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -598,7 +598,7 @@
 #                                                    ^^^ source.liquidsoap
 >  mpc_filexts = [ "mpc", "mp+", "mpp" ]
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #             ^^ source.liquidsoap
 #               ^^^ source.liquidsoap
 #                  ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -618,7 +618,7 @@
 >
 >  mpcdec = settings.decoder.external.mpcdec.path()
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -703,7 +703,7 @@
 #     ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >    mime = file.mime(f)
 #^^^^ source.liquidsoap
-#    ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^ source.liquidsoap variable.liquidsoap
@@ -745,7 +745,7 @@
 #       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >      ret = r/\.(?<ext>.+)$/.exec(f)
 #^^^^^^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^ source.liquidsoap string.regexp.liquidsoap
@@ -774,7 +774,7 @@
 #                               ^^^^ source.liquidsoap keyword.control.liquidsoap
 >        ext = ret.groups["ext"]
 #^^^^^^^^ source.liquidsoap
-#        ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^ source.liquidsoap variable.liquidsoap
@@ -867,7 +867,7 @@
 #                                                                    ^ source.liquidsoap meta.function-call.liquidsoap
 >    mpcdec_p = fun(f) -> "#{mpcdec} #{process.quote(f)} -"
 #^^^^ source.liquidsoap
-#    ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -950,7 +950,7 @@
 >let settings.decoder.external.flac = settings.make.external("flac")
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                  ^ source.liquidsoap
 #                                   ^^ source.liquidsoap
 #                                     ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -967,7 +967,7 @@
 >let settings.decoder.external.flac.path = settings.make(
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                       ^ source.liquidsoap
 #                                        ^^ source.liquidsoap
 #                                          ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -996,7 +996,7 @@
 >let settings.decoder.external.metaflac = settings.make.external("metaflac")
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                      ^ source.liquidsoap
 #                                       ^^ source.liquidsoap
 #                                         ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1013,7 +1013,7 @@
 >let settings.decoder.external.metaflac.path = settings.make(
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                           ^ source.liquidsoap
 #                                            ^^ source.liquidsoap
 #                                              ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1062,7 +1062,7 @@
 #                                  ^^ source.liquidsoap
 >  flac = settings.decoder.external.flac.path()
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1078,7 +1078,7 @@
 #                                             ^ source.liquidsoap meta.function-call.liquidsoap
 >  metaflac = settings.decoder.external.metaflac.path()
 #^^ source.liquidsoap
-#  ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1127,7 +1127,7 @@
 #                                                                           ^ source.liquidsoap meta.function-call.liquidsoap
 >    flac_p = "#{flac} -d -c -"
 #^^^^ source.liquidsoap
-#    ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -1165,7 +1165,7 @@
 #                                        ^^^^ source.liquidsoap keyword.control.liquidsoap
 >        channels = list.hd(default="",
 #^^^^^^^^ source.liquidsoap
-#        ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^^ source.liquidsoap variable.liquidsoap
@@ -1378,7 +1378,7 @@
 #                                    ^ source.liquidsoap
 >      ret = process.read.lines("#{metaflac} --export-tags-to=- \
 #^^^^^^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1406,7 +1406,7 @@
 #                                           ^ source.liquidsoap meta.function-call.liquidsoap
 >      ret = list.map(r/=/.split, ret)
 #^^^^^^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^ source.liquidsoap variable.liquidsoap
@@ -1609,7 +1609,7 @@
 >let settings.decoder.external.faad = settings.make.external("faad")
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                  ^ source.liquidsoap
 #                                   ^^ source.liquidsoap
 #                                     ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1626,7 +1626,7 @@
 >let settings.decoder.external.faad.path = settings.make(
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                       ^ source.liquidsoap
 #                                        ^^ source.liquidsoap
 #                                          ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1678,7 +1678,7 @@
 #                                  ^^ source.liquidsoap
 >  faad = settings.decoder.external.faad.path()
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1707,7 +1707,7 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  aac_mimes =
 #^^ source.liquidsoap
-#  ^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 >    ["audio/aac", "audio/aacp", "audio/3gpp", "audio/3gpp2", "audio/mp4",
 #^^^^^ source.liquidsoap
@@ -1753,7 +1753,7 @@
 #                                                                    ^^ source.liquidsoap
 >  aac_filexts = ["m4a", "m4b", "m4p", "m4v",
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #             ^^ source.liquidsoap
 #               ^^ source.liquidsoap
 #                 ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -1820,7 +1820,7 @@
 #     ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >    mime = file.mime(f)
 #^^^^ source.liquidsoap
-#    ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^ source.liquidsoap variable.liquidsoap
@@ -1859,7 +1859,7 @@
 #       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >      ret = r/\.(?<ext>.+)$/.exec(f)
 #^^^^^^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^ source.liquidsoap string.regexp.liquidsoap
@@ -1888,7 +1888,7 @@
 #                               ^^^^ source.liquidsoap keyword.control.liquidsoap
 >        ext = ret.groups["ext"]
 #^^^^^^^^ source.liquidsoap
-#        ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^ source.liquidsoap variable.liquidsoap
@@ -1961,7 +1961,7 @@
 #                                    ^ source.liquidsoap meta.function-call.liquidsoap
 >    faad_p = (fun (f) -> "#{faad} -w #{process.quote(f)}")
 #^^^^ source.liquidsoap
-#    ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^^ source.liquidsoap
 #              ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -2007,7 +2007,7 @@
 #                         ^^^^ source.liquidsoap keyword.control.liquidsoap
 >        channels = list.hd(default="",
 #^^^^^^^^ source.liquidsoap
-#        ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^^ source.liquidsoap variable.liquidsoap
@@ -2048,7 +2048,7 @@
 #                                                          ^ source.liquidsoap meta.function-call.liquidsoap
 >        ret = r/, (\d) ch,/.exec(channels)
 #^^^^^^^^ source.liquidsoap
-#        ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^ source.liquidsoap string.regexp.liquidsoap
@@ -2061,7 +2061,7 @@
 #                                         ^ source.liquidsoap meta.function-call.liquidsoap
 >        ret =
 #^^^^^^^^ source.liquidsoap
-#        ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 >          if list.length(ret) == 0 then
 #^^^^^^^^^^ source.liquidsoap
@@ -2186,7 +2186,7 @@
 #                         ^^^^ source.liquidsoap keyword.control.liquidsoap
 >        ret = process.read.lines("#{faad} -i #{process.quote(file)} 2>&1")
 #^^^^^^^^ source.liquidsoap
-#        ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -2228,7 +2228,7 @@
 #                         ^ source.liquidsoap
 >          ret = r/^(\w+):\s(.+)$/.exec(s)
 #^^^^^^^^^^ source.liquidsoap
-#          ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#          ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #             ^^ source.liquidsoap
 #               ^ source.liquidsoap
 #                ^^ source.liquidsoap string.regexp.liquidsoap
@@ -2377,7 +2377,7 @@
 #                        ^ source.liquidsoap
 >  artist = m["artist"]
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^ source.liquidsoap variable.liquidsoap
@@ -2388,7 +2388,7 @@
 #                     ^^ source.liquidsoap
 >  title  = m["title"]
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^ source.liquidsoap variable.liquidsoap
@@ -2399,7 +2399,7 @@
 #                    ^^ source.liquidsoap
 >  artist = if ""==artist then "Unknown" else artist end
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^ source.liquidsoap keyword.control.liquidsoap
@@ -2422,7 +2422,7 @@
 #                                                    ^^^ source.liquidsoap keyword.control.liquidsoap
 >  title  = if ""==title  then "Unknown" else title  end
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^ source.liquidsoap keyword.control.liquidsoap
@@ -2531,7 +2531,7 @@
 #         ^ source.liquidsoap
 >  osd = 'osd_cat -p #{position} --font #{process.quote(font)}'
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap string.quoted.single.liquidsoap
@@ -2693,7 +2693,7 @@
 #                                           ^ source.liquidsoap
 >  time = int_of_float(timeout * 1000.)
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2707,7 +2707,7 @@
 #                                     ^ source.liquidsoap meta.function-call.liquidsoap
 >  send = 'notify-send -i #{icon} -u #{urgency}'
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^ source.liquidsoap string.quoted.single.liquidsoap
@@ -3026,7 +3026,7 @@
 #                                                        ^ source.liquidsoap
 >  inputopts = (inputopts : string)
 #^^ source.liquidsoap
-#  ^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^^ source.liquidsoap
 #               ^^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -3037,7 +3037,7 @@
 #                                 ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  ffmpeg = null.get(settings.decoder.external.ffmpeg.path())
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^ source.liquidsoap variable.liquidsoap
@@ -3058,7 +3058,7 @@
 #                                                           ^ source.liquidsoap meta.function-call.liquidsoap
 >  cmd = "#{ffmpeg} #{inputopts} -f avi \
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -3306,7 +3306,7 @@
 #                                                                                                                               ^ source.liquidsoap
 >  framerate = if framerate <= 0 then video.frame.rate() else framerate end
 #^^ source.liquidsoap
-#  ^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^ source.liquidsoap keyword.control.liquidsoap
@@ -3334,7 +3334,7 @@
 #                                                                       ^^^ source.liquidsoap keyword.control.liquidsoap
 >  cmd = "-f lavfi -i testsrc=size=#{video.frame.width()}x#{video.frame.height()}:rate=#{framerate} \
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -3545,7 +3545,7 @@
 #                                                     ^ source.liquidsoap
 >  outputopts = (outputopts : string)
 #^^ source.liquidsoap
-#  ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^^ source.liquidsoap
 #                ^^^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -3556,7 +3556,7 @@
 #                                   ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  cmd = "ffmpeg -f avi -vcodec rawvideo -r #{video.frame.rate()} -acodec pcm_s16le -i pipe:0 #{outputopts}"
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -3814,7 +3814,7 @@
 #                                                                              ^ source.liquidsoap
 >  width = video.frame.width()
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^ source.liquidsoap variable.liquidsoap
@@ -3826,7 +3826,7 @@
 #                            ^ source.liquidsoap meta.function-call.liquidsoap
 >  height = video.frame.height()
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^^ source.liquidsoap variable.liquidsoap
@@ -3838,7 +3838,7 @@
 #                              ^ source.liquidsoap meta.function-call.liquidsoap
 >  directory = (directory : string)
 #^^ source.liquidsoap
-#  ^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^^ source.liquidsoap
 #               ^^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -3849,7 +3849,7 @@
 #                                 ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  cmd = "-profile:v baseline -pix_fmt yuv420p -level 3.0 -s #{width}x#{height} -start_number 0 -hls_time 10 -hls_list_size 0 -f hls #{directory}/#{playlist}"
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -3940,7 +3940,7 @@
 >let output.file.dash = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                    ^ source.liquidsoap
 #                     ^^^^^ source.liquidsoap
 >
@@ -4087,7 +4087,7 @@
 #                                                                             ^ source.liquidsoap
 >  width = video.frame.width()
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^ source.liquidsoap variable.liquidsoap
@@ -4099,7 +4099,7 @@
 #                            ^ source.liquidsoap meta.function-call.liquidsoap
 >  height = video.frame.height()
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^^ source.liquidsoap variable.liquidsoap
@@ -4111,7 +4111,7 @@
 #                              ^ source.liquidsoap meta.function-call.liquidsoap
 >  samplerate = audio.samplerate()
 #^^ source.liquidsoap
-#  ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^^^^ source.liquidsoap variable.liquidsoap
@@ -4121,7 +4121,7 @@
 #                                ^ source.liquidsoap meta.function-call.liquidsoap
 >  cmd = "-map 0 -map 0 -c:a libfdk_aac -c:v libx264 -b:v:0 800k -b:v:1 300k -s:v:1 #{width}x#{height} -profile:v:1 baseline -profile:v:0 main -bf 1 -keyint_min 120 -g 120 -sc_threshold 0 -b_strategy 0 -ar:a:1 #{samplerate} -use_timeline 1 -use_template 1 -window_size 5 -adaptation_sets \"id=0,streams=v id=1,streams=a\" -f dash #{(directory:string)}/#{playlist}"
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap string.quoted.double.liquidsoap

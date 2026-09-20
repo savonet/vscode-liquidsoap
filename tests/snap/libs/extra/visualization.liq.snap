@@ -68,13 +68,13 @@
 #                                                                      ^ source.liquidsoap
 >  screen_width = 80
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^^ source.liquidsoap
 #                ^ source.liquidsoap
 #                 ^^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 >  bar_width = screen_width
 #^^ source.liquidsoap
-#  ^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^^^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -82,7 +82,7 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^ source.liquidsoap
 #        ^^ source.liquidsoap
 #          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -103,7 +103,7 @@
 #              ^ source.liquidsoap
 >    v = dB_of_lin(s.rms())
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -116,7 +116,7 @@
 #                         ^ source.liquidsoap meta.function-call.liquidsoap
 >    x = (v - rms_min) / (rms_max - rms_min)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap variable.liquidsoap
@@ -135,7 +135,7 @@
 #                                          ^^ source.liquidsoap
 >    x = if x < 0. then 0. else x end
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^ source.liquidsoap keyword.control.liquidsoap
@@ -157,7 +157,7 @@
 #                                 ^^^ source.liquidsoap keyword.control.liquidsoap
 >    x = if x > 1. then 1. else x end
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^ source.liquidsoap keyword.control.liquidsoap
@@ -179,7 +179,7 @@
 #                                 ^^^ source.liquidsoap keyword.control.liquidsoap
 >    n = int_of_float(x * float_of_int(bar_width))
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -195,7 +195,7 @@
 #                                                ^ source.liquidsoap meta.function-call.liquidsoap
 >    bar = ref("")
 #^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -455,7 +455,7 @@
 #                                                                                              ^ source.liquidsoap
 >  s = source(s.{video = source.tracks(blank()).video})
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -479,7 +479,7 @@
 #                                                     ^ source.liquidsoap meta.function-call.liquidsoap
 >  s = rms(duration=window, s)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -493,7 +493,7 @@
 #                            ^ source.liquidsoap meta.function-call.liquidsoap
 >  height = video.frame.height()
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^^ source.liquidsoap variable.liquidsoap
@@ -505,7 +505,7 @@
 #                              ^ source.liquidsoap meta.function-call.liquidsoap
 >  width = ref(0)
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -521,7 +521,7 @@
 #             ^ source.liquidsoap
 >    v = dB_of_lin(s.rms())
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -534,7 +534,7 @@
 #                         ^ source.liquidsoap meta.function-call.liquidsoap
 >    x = (v - rms_min) / (rms_max - rms_min)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap variable.liquidsoap
@@ -553,7 +553,7 @@
 #                                          ^^ source.liquidsoap
 >    x = if x < 0. then 0. else x end
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^ source.liquidsoap keyword.control.liquidsoap
@@ -575,7 +575,7 @@
 #                                 ^^^ source.liquidsoap keyword.control.liquidsoap
 >    x = if x > 1. then 1. else x end
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^ source.liquidsoap keyword.control.liquidsoap
@@ -641,7 +641,7 @@
 #                                            ^ source.liquidsoap meta.function-call.liquidsoap
 >  s = video.add_rectangle(width=width, height=height, color=color, s)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^ source.liquidsoap variable.liquidsoap

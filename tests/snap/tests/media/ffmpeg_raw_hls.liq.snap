@@ -18,7 +18,7 @@
 #                          ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >debian_version = string.trim(process.run("cat /etc/os-release | grep VERSION_ID | cut -d'=' -f 2 | xargs").stdout)
-#^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^^ source.liquidsoap
 #                ^ source.liquidsoap
 #                 ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -60,7 +60,7 @@
 #^^^ source.liquidsoap keyword.control.liquidsoap
 >
 >raw_encoder = %ffmpeg(%audio.raw,%video.raw)
-#^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^ source.liquidsoap meta.function-call.liquidsoap
@@ -76,7 +76,7 @@
 #                                           ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >mpegts = %ffmpeg(
-#^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^ source.liquidsoap meta.function-call.liquidsoap
@@ -163,7 +163,7 @@
 #^ source.liquidsoap meta.function-call.liquidsoap
 >
 >mp4 = %ffmpeg(
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap meta.function-call.liquidsoap
@@ -264,7 +264,7 @@
 #^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = noise()
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -272,7 +272,7 @@
 #          ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >raw = ffmpeg.raw.encode.audio_video(raw_encoder, s)
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -290,7 +290,7 @@
 #                                                  ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >streams = [
-#^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^^^ source.liquidsoap
 >  ("mp4", mp4),
@@ -315,7 +315,7 @@
 #^^ source.liquidsoap
 >
 >output_dir = file.temp_dir("liq","hls")
-#^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^^^^ source.liquidsoap variable.liquidsoap
@@ -356,7 +356,7 @@
 #                  ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >is_done = ref(false)
-#^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -391,7 +391,7 @@
 >
 >    ojson = process.read("ffprobe -v quiet -print_format json -show_streams #{output_dir}/mp4.m3u8")
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -411,7 +411,7 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^ source.liquidsoap
 #                     ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -478,7 +478,7 @@
 >
 >    video_stream = list.find((fun (stream) -> null.defined(stream.pix_fmt)), parsed.streams)
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^^ source.liquidsoap variable.liquidsoap
@@ -510,7 +510,7 @@
 #                                                                                           ^^ source.liquidsoap
 >    audio_stream = list.find((fun (stream) -> null.defined(stream.sample_rate)), parsed.streams)
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^^ source.liquidsoap variable.liquidsoap
@@ -713,7 +713,7 @@
 >
 >  timestamp = int_of_float(time())
 #^^ source.liquidsoap
-#  ^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

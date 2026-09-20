@@ -24,7 +24,7 @@
 #                                        ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >fname = argv(default="",1)
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -37,7 +37,7 @@
 #                        ^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #                         ^ source.liquidsoap meta.function-call.liquidsoap
 >out = "#{fname}+ffmpeg_copy_decoder.mp4"
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -70,7 +70,7 @@
 #^^^ source.liquidsoap keyword.control.liquidsoap
 >
 >s = single(fname)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -79,7 +79,7 @@
 #                ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = once(s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -114,7 +114,7 @@
 #                     ^^^^ source.liquidsoap keyword.control.liquidsoap
 >    ijson = process.read("ffprobe -v quiet -print_format json -show_streams #{process.quote(fname)}")
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -135,7 +135,7 @@
 #                                                                                                    ^ source.liquidsoap meta.function-call.liquidsoap
 >    ojson = process.read("ffprobe -v quiet -print_format json -show_streams #{process.quote(encoded_fname)}")
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -159,7 +159,7 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^ source.liquidsoap
 #                     ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -234,7 +234,7 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^ source.liquidsoap
 #                     ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -307,7 +307,7 @@
 >
 >    filter = fun(type, l) -> list.filter(fun (s) -> s.codec_type == type, l)
 #^^^^ source.liquidsoap
-#    ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -344,7 +344,7 @@
 #                                                                           ^ source.liquidsoap meta.function-call.liquidsoap
 >    sort = fun (l) -> list.sort(fun (s1, s2) -> if s1.index < s2.index then -1 else 1 end, l)
 #^^^^ source.liquidsoap
-#    ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -400,11 +400,11 @@
 #    ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
-#          ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#          ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                ^ source.liquidsoap
 #                 ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                    ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                    ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                          ^ source.liquidsoap
 #                           ^ source.liquidsoap
 #                            ^^^ source.liquidsoap
@@ -427,11 +427,11 @@
 #    ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
-#          ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#          ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                ^ source.liquidsoap
 #                 ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                    ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                    ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                          ^ source.liquidsoap
 #                           ^ source.liquidsoap
 #                            ^^^ source.liquidsoap
@@ -455,11 +455,11 @@
 #    ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
-#          ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#          ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                ^ source.liquidsoap
 #                 ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                    ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                    ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                          ^ source.liquidsoap
 #                           ^ source.liquidsoap
 #                            ^^^ source.liquidsoap
@@ -482,11 +482,11 @@
 #    ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
-#          ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#          ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                ^ source.liquidsoap
 #                 ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                    ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                    ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                          ^ source.liquidsoap
 #                           ^ source.liquidsoap
 #                            ^^^ source.liquidsoap

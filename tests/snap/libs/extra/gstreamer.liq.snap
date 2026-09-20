@@ -67,7 +67,7 @@
 #                                                                    ^ source.liquidsoap
 >  pipeline = "v4l2src device=#{device}"
 #^^ source.liquidsoap
-#  ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -161,7 +161,7 @@
 #                                                                               ^ source.liquidsoap
 >  audio_pipeline = "autoaudiosrc"
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -169,7 +169,7 @@
 #                                ^ source.liquidsoap string.quoted.double.liquidsoap
 >  video_pipeline = "v4l2src device=#{device}"
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -211,13 +211,13 @@
 >let gstreamer = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^^^ source.liquidsoap
 >let gstreamer.single = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                    ^ source.liquidsoap
 #                     ^^^^^ source.liquidsoap
 >
@@ -277,7 +277,7 @@
 #                                                               ^^ source.liquidsoap
 >  uri = getter.function(uri)
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -379,7 +379,7 @@
 #                                                                  ^^ source.liquidsoap
 >  uri = getter.function(uri)
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -390,7 +390,7 @@
 #                           ^ source.liquidsoap meta.function-call.liquidsoap
 >  pipeline = {"souphttpsrc location=\"#{uri()}\" ! tee name=t"}
 #^^ source.liquidsoap
-#  ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^ source.liquidsoap
@@ -408,7 +408,7 @@
 #                                                              ^ source.liquidsoap
 >  audio_pipeline = "t. ! queue"
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -416,7 +416,7 @@
 #                              ^ source.liquidsoap string.quoted.double.liquidsoap
 >  video_pipeline = "t. ! queue"
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -513,7 +513,7 @@
 #                                                                        ^^ source.liquidsoap
 >  uri = getter.function(uri)
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -524,7 +524,7 @@
 #                           ^ source.liquidsoap meta.function-call.liquidsoap
 >  pipeline = {"souphttpsrc location=\"#{uri()}\""}
 #^^ source.liquidsoap
-#  ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^ source.liquidsoap
@@ -741,7 +741,7 @@
 >let gstreamer.rtp = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^^^ source.liquidsoap
 >
@@ -929,7 +929,7 @@
 #         ^^ source.liquidsoap
 >  video_pipeline = "videoconvert ! \
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -945,7 +945,7 @@
 #                                              ^ source.liquidsoap string.quoted.double.liquidsoap
 >  audio_pipeline = "audioconvert ! #{audio_encoder} bitrate=#{audio_bitrate} ! queue ! mux."
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -961,7 +961,7 @@
 #                                                                                           ^ source.liquidsoap string.quoted.double.liquidsoap
 >  key = (key : string)
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^^ source.liquidsoap
 #         ^^^ source.liquidsoap variable.liquidsoap
@@ -972,7 +972,7 @@
 #                     ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  pipeline = "flvmux streamable=true name=mux ! rtmpsink location=\"#{url}/#{key} app=live2\""
 #^^ source.liquidsoap
-#  ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -1047,14 +1047,14 @@
 #                                      ^ source.liquidsoap
 >  video_pipeline="videotestsrc"
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^ source.liquidsoap
 #                 ^ source.liquidsoap string.quoted.double.liquidsoap
 #                  ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
 #                              ^ source.liquidsoap string.quoted.double.liquidsoap
 >  audio_pipeline="audiotestsrc"
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^ source.liquidsoap
 #                 ^ source.liquidsoap string.quoted.double.liquidsoap
 #                  ^^^^^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap

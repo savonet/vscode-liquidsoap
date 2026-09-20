@@ -8,7 +8,7 @@
 #             ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 >
 >port = random.int(min=8000, max=10000)
-#^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -45,7 +45,7 @@
 #                               ^^^^^ source.liquidsoap meta.function-call.liquidsoap keyword.control.liquidsoap
 >  s = input.http("http://localhost:#{port}/test")
 #^^ source.liquidsoap meta.function-call.liquidsoap
-#  ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap meta.function-call.liquidsoap
 #     ^ source.liquidsoap meta.function-call.liquidsoap
 #      ^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
@@ -63,7 +63,7 @@
 >
 >  track_count = ref(0)
 #^^ source.liquidsoap meta.function-call.liquidsoap
-#  ^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #             ^^ source.liquidsoap meta.function-call.liquidsoap
 #               ^ source.liquidsoap meta.function-call.liquidsoap
 #                ^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -72,7 +72,7 @@
 #                     ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 >  s = source.on_track(s, fun (_) -> begin
 #^^ source.liquidsoap meta.function-call.liquidsoap
-#  ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap meta.function-call.liquidsoap
 #     ^ source.liquidsoap meta.function-call.liquidsoap
 #      ^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap

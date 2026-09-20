@@ -23,7 +23,7 @@
 #                                                          ^^ source.liquidsoap
 >  s = request.dynamic(%argsof(request.dynamic), fn)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -171,7 +171,7 @@
 #                                                                              ^^ source.liquidsoap
 >  s = input.gstreamer.audio_video(%argsof(input.gstreamer.audio_video))
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^ source.liquidsoap variable.liquidsoap
@@ -451,7 +451,7 @@
 #                                                 ^^ source.liquidsoap
 >  s = blank.strip(%argsof(blank.strip), s)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^ source.liquidsoap variable.liquidsoap
@@ -574,7 +574,7 @@
 #                                                               ^^ source.liquidsoap
 >  s = output.external(%argsof(output.external), f, p, s)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -699,7 +699,7 @@
 #                                                               ^^ source.liquidsoap
 >  s = input.external.avi(%argsof(input.external.avi), s)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^ source.liquidsoap variable.liquidsoap
@@ -770,7 +770,7 @@
 #                                                ^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap keyword.control.liquidsoap
 >                      buffered = s.buffered()
 #^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
-#                      ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#                      ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #                              ^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #                                ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #                                 ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
@@ -780,7 +780,7 @@
 #                                            ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 >                      audio = list.assoc(default=0., "audio", buffered)
 #^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
-#                      ^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#                      ^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #                           ^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #                             ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #                              ^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
@@ -802,7 +802,7 @@
 #                                                                      ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 >                      video = list.assoc(default=0., "video", buffered)
 #^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
-#                      ^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#                      ^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #                           ^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #                             ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #                              ^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
@@ -824,7 +824,7 @@
 #                                                                      ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 >                      total = min(audio, video)
 #^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
-#                      ^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#                      ^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #                           ^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #                             ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #                              ^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -893,7 +893,7 @@
 #                                                   ^^ source.liquidsoap
 >  s = input.harbor(%argsof(input.harbor), s)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^ source.liquidsoap variable.liquidsoap
@@ -1125,7 +1125,7 @@
 #                                               ^^ source.liquidsoap
 >  s = input.http(%argsof(input.http), s)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^ source.liquidsoap variable.liquidsoap

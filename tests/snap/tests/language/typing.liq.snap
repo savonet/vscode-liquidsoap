@@ -217,7 +217,7 @@
 #                 ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >  _ = id(3)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -226,7 +226,7 @@
 #          ^ source.liquidsoap meta.function-call.liquidsoap
 >  _ = id("a")
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -238,13 +238,13 @@
 >
 >  id' = id
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^ source.liquidsoap variable.liquidsoap
 >  _ = id'(3)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -253,7 +253,7 @@
 #           ^ source.liquidsoap meta.function-call.liquidsoap
 >  _ = id'("a")
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -332,7 +332,7 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  f1 = fun () -> 3
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -344,7 +344,7 @@
 #                 ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 >  f2 = fun (a=1) -> a
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -364,7 +364,7 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  l1 = [f1,f2]
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^^ source.liquidsoap
 #        ^^ source.liquidsoap variable.liquidsoap
@@ -550,7 +550,7 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  g = fun(f) -> f(x=3)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -568,7 +568,7 @@
 #                     ^ source.liquidsoap meta.function-call.liquidsoap
 >  f = fun(~x=3) -> x+5
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -601,7 +601,7 @@
 >
 >  echo = fun(x) -> process.run(process.quote.command("echo", args=[(x:string)]))
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -1019,11 +1019,11 @@
 #  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
-#        ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^ source.liquidsoap
-#          ^ source.liquidsoap
+#          ^ source.liquidsoap keyword.other.cast.liquidsoap
 #           ^ source.liquidsoap
-#            ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#            ^^^ source.liquidsoap storage.type.ground.liquidsoap
 #               ^ source.liquidsoap
 #                ^ source.liquidsoap
 #                 ^^^^ source.liquidsoap
@@ -1501,7 +1501,7 @@
 #   ^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  s = (sine():source(video=none))
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^^ source.liquidsoap
 #       ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1517,7 +1517,7 @@
 #                                ^ source.liquidsoap meta.type-annotation.liquidsoap
 >  s = (sine():source(video=none,...))
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^^ source.liquidsoap
 #       ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

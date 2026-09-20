@@ -150,7 +150,7 @@
 #                         ^ source.liquidsoap
 >  x = {getter.get(x)}
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap
@@ -163,7 +163,7 @@
 #                    ^ source.liquidsoap
 >  old = ref(x())
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -183,7 +183,7 @@
 #            ^^^^^ source.liquidsoap keyword.control.liquidsoap
 >    new = x()
 #^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -241,7 +241,7 @@
 #                    ^ source.liquidsoap
 >  old = ref(getter.get(x))
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -264,7 +264,7 @@
 #            ^^^^^ source.liquidsoap keyword.control.liquidsoap
 >    new = getter.get(x)
 #^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -327,7 +327,7 @@
 #                     ^ source.liquidsoap
 >  v = ref(getter.get(x))
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -341,7 +341,7 @@
 #                       ^ source.liquidsoap meta.function-call.liquidsoap
 >  x = getter.on_change(fun(x) -> v := x, x)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -366,7 +366,7 @@
 #                                          ^ source.liquidsoap meta.function-call.liquidsoap
 >  y = getter.on_change(fun(y) -> v := y, y)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap

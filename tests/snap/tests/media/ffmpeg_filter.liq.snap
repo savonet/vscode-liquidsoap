@@ -24,7 +24,7 @@
 #                                        ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >fname = argv(default="",1)
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -37,7 +37,7 @@
 #                        ^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #                         ^ source.liquidsoap meta.function-call.liquidsoap
 >out = "#{fname}+ffmpeg_filter.mp4"
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -79,7 +79,7 @@
 #        ^^ source.liquidsoap
 >  tracks = source.tracks(s)
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -99,7 +99,7 @@
 #                     ^^ source.liquidsoap
 >    a = ffmpeg.filter.audio.input(graph, tracks.audio)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -119,7 +119,7 @@
 #                                                     ^ source.liquidsoap meta.function-call.liquidsoap
 >    a = ffmpeg.filter.flanger(graph, a, delay=10.)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -141,7 +141,7 @@
 #                                                 ^ source.liquidsoap meta.function-call.liquidsoap
 >    a = ffmpeg.filter.highpass(graph, a, frequency=4000.)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -163,7 +163,7 @@
 #                                                        ^ source.liquidsoap meta.function-call.liquidsoap
 >    a = ffmpeg.filter.audio.output(graph, a)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -182,7 +182,7 @@
 >
 >    v = ffmpeg.filter.video.input(graph, tracks.video)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -202,7 +202,7 @@
 #                                                     ^ source.liquidsoap meta.function-call.liquidsoap
 >    v = ffmpeg.filter.hflip(graph, v)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -218,7 +218,7 @@
 #                                    ^ source.liquidsoap meta.function-call.liquidsoap
 >    v = ffmpeg.filter.video.output(graph, v)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -268,7 +268,7 @@
 #^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >s = single(fname)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -277,7 +277,7 @@
 #                ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = sequence([s,s,s,s,s,source.fail()])
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -302,7 +302,7 @@
 #                                      ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = f(s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -311,7 +311,7 @@
 #       ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >started = ref(false)
-#^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -377,7 +377,7 @@
 #                                  ^^^^ source.liquidsoap keyword.control.liquidsoap
 >    j = process.read("ffprobe -v quiet -print_format json -show_streams #{process.quote(filename)}")
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -401,7 +401,7 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^ source.liquidsoap
 #                     ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -468,7 +468,7 @@
 >
 >    video_stream = list.find((fun (stream) -> null.defined(stream.pix_fmt)), parsed.streams)
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^^ source.liquidsoap variable.liquidsoap
@@ -500,7 +500,7 @@
 #                                                                                           ^^ source.liquidsoap
 >    audio_stream = list.find((fun (stream) -> null.defined(stream.sample_rate)), parsed.streams)
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^^ source.liquidsoap variable.liquidsoap

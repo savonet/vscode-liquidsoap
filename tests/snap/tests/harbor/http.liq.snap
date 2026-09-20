@@ -123,7 +123,7 @@
 #                                                     ^ source.liquidsoap meta.function-call.liquidsoap
 >  resp = http.get("http://localhost:3456/default")
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -277,7 +277,7 @@
 #                                                     ^ source.liquidsoap meta.function-call.liquidsoap
 >  resp = http.get("http://localhost:3456/default")
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -497,7 +497,7 @@
 #                                                            ^ source.liquidsoap meta.function-call.liquidsoap
 >  resp = http.get("http://localhost:3456/path/gno/blo")
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -830,7 +830,7 @@
 >
 >    data_count = ref(3)
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^^ source.liquidsoap
 #                ^ source.liquidsoap
 #                 ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -967,7 +967,7 @@
 #                                                                                                         ^ source.liquidsoap meta.function-call.liquidsoap
 >  resp = http.post(http_version="1.0", data="foobarlol", headers=[("req","header")], "http://localhost:3456/some/path/with/full/in/it?gni=gno&gnu=gno")
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -1320,7 +1320,7 @@
 >
 >  resp = http.post(data=string.make(10_000), "http://localhost:3456/large_non_chunked")
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -1624,13 +1624,13 @@
 >
 >  data = begin
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^^ source.liquidsoap keyword.control.liquidsoap
 >    is_done = ref(false)
 #^^^^ source.liquidsoap
-#    ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1679,7 +1679,7 @@
 >
 >  resp = http.post(data=data, "http://localhost:3456/chunked")
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -1937,7 +1937,7 @@
 #                    ^^ source.liquidsoap
 >      ret = req.data()
 #^^^^^^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^ source.liquidsoap variable.liquidsoap
@@ -2034,13 +2034,13 @@
 >
 >  data = begin
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^^ source.liquidsoap keyword.control.liquidsoap
 >    tmp = string.make(10_000)
 #^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -2051,7 +2051,7 @@
 #                            ^ source.liquidsoap meta.function-call.liquidsoap
 >    count = ref(10_000_000 / 10_000)
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2259,7 +2259,7 @@
 #                                                           ^ source.liquidsoap meta.function-call.liquidsoap
 >  resp = http.get("http://localhost:3456/custom")
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -2382,7 +2382,7 @@
 #                                                                               ^ source.liquidsoap meta.function-call.liquidsoap
 >  resp = http.get("http://localhost:3456/default")
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -2495,7 +2495,7 @@
 #   ^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  transport = http.transport.ssl(certificate="foo", key="bla")
 #^^ source.liquidsoap
-#  ^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^^ source.liquidsoap variable.liquidsoap
@@ -2600,7 +2600,7 @@
 #   ^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  read = ref(fun (~timeout=_) -> error.raise(error.assertion))
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2671,7 +2671,7 @@
 #                                                            ^ source.liquidsoap meta.function-call.liquidsoap
 >  resp = http.get("http://localhost:3456/response_ended")
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -2716,7 +2716,7 @@
 #  ^^^ source.liquidsoap keyword.control.liquidsoap
 >    fn = read()
 #^^^^ source.liquidsoap
-#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

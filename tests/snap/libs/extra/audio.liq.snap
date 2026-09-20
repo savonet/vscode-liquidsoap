@@ -52,7 +52,7 @@
 #                                                                      ^^ source.liquidsoap
 >  tracks = source.tracks(s)
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -154,7 +154,7 @@
 #                                                             ^^ source.liquidsoap
 >  tracks = source.tracks(s)
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -241,7 +241,7 @@
 #                                              ^^ source.liquidsoap
 >  tracks = source.tracks(s)
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -254,7 +254,7 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^ source.liquidsoap
 #             ^^^^ source.liquidsoap variable.liquidsoap
 #                 ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
@@ -353,7 +353,7 @@
 #                                                                      ^^ source.liquidsoap
 >  tracks = source.tracks(s)
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -541,7 +541,7 @@
 >let limiter = limit
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^ source.liquidsoap
 #            ^^ source.liquidsoap
 #              ^^^^^ source.liquidsoap variable.liquidsoap
@@ -611,7 +611,7 @@
 #                                                            ^ source.liquidsoap
 >  s = if not (getter.is_constant(high) and getter.get(high) == infinity) then filter.iir.eq.low(id=id, frequency=high, q=q, s) else s end
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^ source.liquidsoap keyword.control.liquidsoap
@@ -674,7 +674,7 @@
 #                                                                                                                                      ^^^ source.liquidsoap keyword.control.liquidsoap
 >  s = if not (getter.is_constant(low) and getter.get(low) == 0.) then filter.iir.eq.high(id=id, frequency=low, q=q, s) else s end
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^ source.liquidsoap keyword.control.liquidsoap
@@ -910,7 +910,7 @@
 #                    ^ source.liquidsoap
 >    high = if getter.is_constant(band.frequency) and getter.get(band.frequency) >= float_of_int(audio.samplerate()) / 2. then infinity else band.frequency end
 #^^^^ source.liquidsoap
-#    ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^ source.liquidsoap keyword.control.liquidsoap
@@ -963,7 +963,7 @@
 #                                                                                                                                                           ^^^ source.liquidsoap keyword.control.liquidsoap
 >    s = filter.iir.eq.low_high(low=low, high=high, s)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -988,7 +988,7 @@
 #                                                    ^ source.liquidsoap meta.function-call.liquidsoap
 >    s = compress(attack=band.attack, release=band.release, threshold=band.threshold, ratio=band.ratio, gain=band.gain, s)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1053,7 +1053,7 @@
 #  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >  ls = list.mapi(fun (i, b) -> band(if i == 0 then 0. else list.nth(l,i-1).frequency end, b), l)
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^ source.liquidsoap variable.liquidsoap
@@ -1110,7 +1110,7 @@
 #                                                                                               ^ source.liquidsoap meta.function-call.liquidsoap
 >  c = add(normalize=false, ls)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1124,7 +1124,7 @@
 #                             ^ source.liquidsoap meta.function-call.liquidsoap
 >  s =
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 >    if not getter.is_constant(wet) or getter.get(wet) != 1. then
 #^^^^ source.liquidsoap
@@ -1320,7 +1320,7 @@
 #   ^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  low = fun(s) -> filter.iir.eq.low(frequency = 168., s)
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -1348,7 +1348,7 @@
 #                                                       ^ source.liquidsoap meta.function-call.liquidsoap
 >  mh = fun(s) -> filter.iir.eq.high(frequency = 100., s)
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -1376,7 +1376,7 @@
 #                                                       ^ source.liquidsoap meta.function-call.liquidsoap
 >  mid = fun(s) -> filter.iir.eq.low(frequency = 1800., s)
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -1404,7 +1404,7 @@
 #                                                        ^ source.liquidsoap meta.function-call.liquidsoap
 >  high = fun(s) -> filter.iir.eq.high(frequency = 1366., s)
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -1649,7 +1649,7 @@
 #                                                            ^ source.liquidsoap
 >  bass = limit(pre_gain=gain, filter.iir.eq.low(frequency=frequency, s))
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1963,7 +1963,7 @@
 #                                                  ^ source.liquidsoap
 >  l = ref([])
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1994,7 +1994,7 @@
 #                                       ^^ source.liquidsoap keyword.control.liquidsoap
 >    c = string.sub(dtmf, start=i, length=1)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -2017,10 +2017,10 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #       ^^ source.liquidsoap
-#         ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#         ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #             ^ source.liquidsoap
-#              ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#              ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^ source.liquidsoap
 >      if c == "1" then
@@ -2375,7 +2375,7 @@
 #      ^^^ source.liquidsoap keyword.control.liquidsoap
 >    s = add([sine(row, duration=duration), sine(col, duration=duration)])
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2439,7 +2439,7 @@
 #  ^^^ source.liquidsoap keyword.control.liquidsoap
 >  l = list.rev(l())
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^ source.liquidsoap variable.liquidsoap
@@ -2509,7 +2509,7 @@
 #                                                            ^^ source.liquidsoap
 >  id = string.id.default(default="mixer", id)
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -2530,7 +2530,7 @@
 >
 >  inputs = list.map(fun (s) ->
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^ source.liquidsoap variable.liquidsoap
@@ -2548,7 +2548,7 @@
 #    ^^^^^ source.liquidsoap meta.function-call.liquidsoap keyword.control.liquidsoap
 >      volume      = ref(1.)
 #^^^^^^ source.liquidsoap meta.function-call.liquidsoap
-#      ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #            ^^^^^^^ source.liquidsoap meta.function-call.liquidsoap
 #                   ^ source.liquidsoap meta.function-call.liquidsoap
 #                    ^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2558,7 +2558,7 @@
 #                          ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 >      is_selected = ref(false)
 #^^^^^^ source.liquidsoap meta.function-call.liquidsoap
-#      ^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #                 ^^ source.liquidsoap meta.function-call.liquidsoap
 #                   ^ source.liquidsoap meta.function-call.liquidsoap
 #                    ^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2567,7 +2567,7 @@
 #                             ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 >      is_single   = ref(false)
 #^^^^^^ source.liquidsoap meta.function-call.liquidsoap
-#      ^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #               ^^^^ source.liquidsoap meta.function-call.liquidsoap
 #                   ^ source.liquidsoap meta.function-call.liquidsoap
 #                    ^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2618,7 +2618,7 @@
 >
 >  insert_metadata_fn = ref(fun (_) -> ())
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                    ^^ source.liquidsoap
 #                      ^ source.liquidsoap
 #                       ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2635,7 +2635,7 @@
 >
 >  sources = list.map(fun (input) ->
 #^^ source.liquidsoap
-#  ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^ source.liquidsoap variable.liquidsoap
@@ -2653,7 +2653,7 @@
 #    ^^^^^ source.liquidsoap meta.function-call.liquidsoap keyword.control.liquidsoap
 >      s = amplify(input.volume, input.source)
 #^^^^^^ source.liquidsoap meta.function-call.liquidsoap
-#      ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap meta.function-call.liquidsoap
 #         ^ source.liquidsoap meta.function-call.liquidsoap
 #          ^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2669,7 +2669,7 @@
 #                                            ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 >      s = source.on_track(s, fun (_) ->
 #^^^^^^ source.liquidsoap meta.function-call.liquidsoap
-#      ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap meta.function-call.liquidsoap
 #         ^ source.liquidsoap meta.function-call.liquidsoap
 #          ^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
@@ -2713,7 +2713,7 @@
 #      ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 >      s = source.on_metadata(s, fun (m) ->
 #^^^^^^ source.liquidsoap meta.function-call.liquidsoap
-#      ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap meta.function-call.liquidsoap
 #         ^ source.liquidsoap meta.function-call.liquidsoap
 #          ^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
@@ -2734,7 +2734,7 @@
 #        ^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap keyword.control.liquidsoap
 >          fn = insert_metadata_fn()
 #^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
-#          ^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#          ^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #              ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #               ^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2775,7 +2775,7 @@
 >
 >  s = add(sources)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2786,13 +2786,13 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #     ^^ source.liquidsoap
-#       ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#       ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^ source.liquidsoap
-#                ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                ^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                  ^ source.liquidsoap
 #                   ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                      ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                      ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                            ^ source.liquidsoap
 #                             ^^^ source.liquidsoap
 #                                ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -2803,7 +2803,7 @@
 #                                               ^ source.liquidsoap meta.function-call.liquidsoap
 >  s = source(tracks)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2812,7 +2812,7 @@
 #                   ^ source.liquidsoap meta.function-call.liquidsoap
 >  s = insert_metadata(s)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2832,13 +2832,13 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #     ^^ source.liquidsoap
-#       ^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#       ^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
-#                   ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                   ^ source.liquidsoap variable.other.binding.liquidsoap
 #                    ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                     ^ source.liquidsoap
 #                      ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                         ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                         ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                               ^ source.liquidsoap
 #                                ^^^ source.liquidsoap
 #                                   ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -2849,7 +2849,7 @@
 #                                                  ^ source.liquidsoap meta.function-call.liquidsoap
 >  s = source(id=id, tracks)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -3074,10 +3074,10 @@
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap
 #                           ^^^ source.liquidsoap meta.function-call.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #                              ^^ source.liquidsoap meta.function-call.liquidsoap
-#                                ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#                                ^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #                                 ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                                  ^ source.liquidsoap meta.function-call.liquidsoap
-#                                   ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#                                   ^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #                                    ^ source.liquidsoap meta.function-call.liquidsoap
 #                                     ^^^ source.liquidsoap meta.function-call.liquidsoap
 #                                        ^^ source.liquidsoap meta.function-call.liquidsoap string.regexp.liquidsoap
@@ -3090,7 +3090,7 @@
 #                                                     ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 >                           input = list.nth(inputs, int_of_string(i))
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap
-#                           ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#                           ^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #                                ^^ source.liquidsoap meta.function-call.liquidsoap
 #                                  ^ source.liquidsoap meta.function-call.liquidsoap
 #                                   ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
@@ -3193,10 +3193,10 @@
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap
 #                           ^^^ source.liquidsoap meta.function-call.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #                              ^^ source.liquidsoap meta.function-call.liquidsoap
-#                                ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#                                ^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #                                 ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                                  ^ source.liquidsoap meta.function-call.liquidsoap
-#                                   ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#                                   ^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #                                    ^ source.liquidsoap meta.function-call.liquidsoap
 #                                     ^^^ source.liquidsoap meta.function-call.liquidsoap
 #                                        ^^ source.liquidsoap meta.function-call.liquidsoap string.regexp.liquidsoap
@@ -3209,7 +3209,7 @@
 #                                                       ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 >                           input = list.nth(inputs, int_of_string(i))
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap
-#                           ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#                           ^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #                                ^^ source.liquidsoap meta.function-call.liquidsoap
 #                                  ^ source.liquidsoap meta.function-call.liquidsoap
 #                                   ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
@@ -3316,10 +3316,10 @@
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap
 #                           ^^^ source.liquidsoap meta.function-call.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #                              ^^ source.liquidsoap meta.function-call.liquidsoap
-#                                ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#                                ^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #                                 ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                                  ^ source.liquidsoap meta.function-call.liquidsoap
-#                                   ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#                                   ^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #                                    ^ source.liquidsoap meta.function-call.liquidsoap
 #                                     ^^^ source.liquidsoap meta.function-call.liquidsoap
 #                                        ^^ source.liquidsoap meta.function-call.liquidsoap string.regexp.liquidsoap
@@ -3332,7 +3332,7 @@
 #                                                       ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 >                           input = list.nth(inputs, int_of_string(i))
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap
-#                           ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#                           ^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #                                ^^ source.liquidsoap meta.function-call.liquidsoap
 #                                  ^ source.liquidsoap meta.function-call.liquidsoap
 #                                   ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
@@ -3594,20 +3594,20 @@
 #                                      ^ source.liquidsoap
 >  volume_down = 0.
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #             ^^ source.liquidsoap
 #               ^ source.liquidsoap
 #                ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #                 ^^ source.liquidsoap
 >  beat_duration = 0.1
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^^ source.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^ source.liquidsoap constant.numeric.decimal.float.liquidsoap
 >  s = sine(frequency)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -3743,7 +3743,7 @@
 #                                                              ^ source.liquidsoap
 >  p = getter.function(p)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -3754,7 +3754,7 @@
 #                       ^ source.liquidsoap meta.function-call.liquidsoap
 >  last_p = ref(p())
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -3785,7 +3785,7 @@
 #           ^^ source.liquidsoap
 >      fn = fn()
 #^^^^^^ source.liquidsoap
-#      ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -3815,7 +3815,7 @@
 >
 >  special_volume = ref(fun () -> 0.)
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -3831,7 +3831,7 @@
 #                                   ^ source.liquidsoap meta.function-call.liquidsoap
 >  special = c(special_volume,special)
 #^^ source.liquidsoap
-#  ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -3843,7 +3843,7 @@
 >
 >  normal_volume = ref(fun () -> 1.)
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^^ source.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -3859,7 +3859,7 @@
 #                                  ^ source.liquidsoap meta.function-call.liquidsoap
 >  normal = c(normal_volume,normal)
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -3891,7 +3891,7 @@
 #                ^ source.liquidsoap meta.function-call.liquidsoap
 >    q = 1. - last_p()
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
@@ -4020,7 +4020,7 @@
 >
 >  special = fallback(track_sensitive=false,
 #^^ source.liquidsoap
-#  ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -4196,7 +4196,7 @@
 #                                                                       ^ source.liquidsoap
 >  enc = %ffmpeg(format="dash", %audio(codec=codec, b="#{bitrate}k"))
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap meta.function-call.liquidsoap

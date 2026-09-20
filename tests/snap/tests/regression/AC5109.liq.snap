@@ -9,7 +9,7 @@
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >
 >s1 = sine(duration=20.)
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -20,7 +20,7 @@
 #                     ^ source.liquidsoap meta.function-call.liquidsoap
 #                      ^ source.liquidsoap meta.function-call.liquidsoap
 >s2 = sine(duration=20.)
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -31,7 +31,7 @@
 #                     ^ source.liquidsoap meta.function-call.liquidsoap
 #                      ^ source.liquidsoap meta.function-call.liquidsoap
 >s = sequence([s1,s2])
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -56,7 +56,7 @@
 #                    ^^ source.liquidsoap
 >  s1 = sine(duration=0.5)
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -67,7 +67,7 @@
 #                        ^ source.liquidsoap meta.function-call.liquidsoap
 >  s1 = metadata.map(fun (_) -> [("type", "s1")], s1)
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -98,7 +98,7 @@
 >
 >  s2 = sine(duration=0.5)
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -109,7 +109,7 @@
 #                        ^ source.liquidsoap meta.function-call.liquidsoap
 >  s2 = metadata.map(fun (_) -> [("type", "s2")], s2)
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -174,7 +174,7 @@
 #^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >s = cross(transition, s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

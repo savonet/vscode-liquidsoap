@@ -1,5 +1,5 @@
 >out = "concat.mp4"
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -7,7 +7,7 @@
 #                 ^ source.liquidsoap string.quoted.double.liquidsoap
 >
 >s1 = single("first-concat.mp4")
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -17,7 +17,7 @@
 #                             ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
 #                              ^ source.liquidsoap meta.function-call.liquidsoap
 >s2 = single("second-concat.mp4")
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -27,7 +27,7 @@
 #                              ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
 #                               ^ source.liquidsoap meta.function-call.liquidsoap
 >s3 = single("third-concat.mp4")
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -38,7 +38,7 @@
 #                              ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = sequence([s1,s2,s3,switch([])])
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -84,7 +84,7 @@
 #                     ^^^^ source.liquidsoap keyword.control.liquidsoap
 >    ojson = process.read("ffprobe -v quiet -print_format json -show_streams #{process.quote(filename)}")
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -108,7 +108,7 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^ source.liquidsoap
 >      streams = [

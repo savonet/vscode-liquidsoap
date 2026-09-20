@@ -246,7 +246,7 @@
 #                                ^^ source.liquidsoap
 >  weights = list.map(getter.function, weights)
 #^^ source.liquidsoap
-#  ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^ source.liquidsoap variable.liquidsoap
@@ -262,7 +262,7 @@
 #                                             ^ source.liquidsoap meta.function-call.liquidsoap
 >  default_weight = {1}
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^ source.liquidsoap
@@ -270,7 +270,7 @@
 #                     ^ source.liquidsoap
 >  failed = (source.fail():source)
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^^ source.liquidsoap
 #            ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -288,7 +288,7 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  picked_index = ref(-1)
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^^ source.liquidsoap
 #                ^ source.liquidsoap
 #                 ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -307,7 +307,7 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  tracks_played = list.map(fun (s) -> ((fun () -> source.id(s)), ref(0)), sources)
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^^ source.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^^ source.liquidsoap variable.liquidsoap
@@ -347,7 +347,7 @@
 #                                                                                 ^^ source.liquidsoap
 >  tracks_played = fun () -> list.map(fun (x) -> begin
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^^ source.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -370,7 +370,7 @@
 #                                                ^^^^^ source.liquidsoap meta.function-call.liquidsoap keyword.control.liquidsoap
 >    label_fn = fst(x)
 #^^^^ source.liquidsoap meta.function-call.liquidsoap
-#    ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap meta.function-call.liquidsoap
 #              ^ source.liquidsoap meta.function-call.liquidsoap
 #               ^^^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -472,7 +472,7 @@
 #                      ^^ source.liquidsoap
 >        s = list.nth(default=failed, sources, index)
 #^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^ source.liquidsoap variable.liquidsoap
@@ -638,7 +638,7 @@
 #                              ^^^^ source.liquidsoap keyword.control.liquidsoap
 >        picked_weight = list.nth(default=default_weight, weights, picked_index())
 #^^^^^^^^ source.liquidsoap
-#        ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                     ^^ source.liquidsoap
 #                       ^ source.liquidsoap
 #                        ^^^^ source.liquidsoap variable.liquidsoap
@@ -659,7 +659,7 @@
 #                                                                                ^ source.liquidsoap meta.function-call.liquidsoap
 >        picked_source = list.nth(sources, picked_index())
 #^^^^^^^^ source.liquidsoap
-#        ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                     ^^ source.liquidsoap
 #                       ^ source.liquidsoap
 #                        ^^^^ source.liquidsoap variable.liquidsoap
@@ -675,7 +675,7 @@
 #                                                        ^ source.liquidsoap meta.function-call.liquidsoap
 >        fn = list.assoc(source.id(picked_source), tracks_played())
 #^^^^^^^^ source.liquidsoap
-#        ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^^^^ source.liquidsoap variable.liquidsoap
@@ -747,7 +747,7 @@
 >
 >  s = switch(override=override, replay_metadata=replay_metadata, track_sensitive=true,
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -817,7 +817,7 @@
 #                                  ^^^^ source.liquidsoap keyword.control.liquidsoap
 >      selected_id = source.id(null.get(s.selected()))
 #^^^^^^ source.liquidsoap
-#      ^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^^ source.liquidsoap
 #                   ^ source.liquidsoap
 #                    ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -856,7 +856,7 @@
 #                                                      ^^^^ source.liquidsoap keyword.control.liquidsoap
 >        played = list.assoc(selected_id, tracks_played())
 #^^^^^^^^ source.liquidsoap
-#        ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^^ source.liquidsoap
 #                ^ source.liquidsoap
 #                 ^^^^ source.liquidsoap variable.liquidsoap
@@ -890,7 +890,7 @@
 >
 >  s = source.on_track(s, f)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1028,7 +1028,7 @@
 #                                ^^ source.liquidsoap
 >  weights = list.map(getter.function, weights)
 #^^ source.liquidsoap
-#  ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^ source.liquidsoap variable.liquidsoap
@@ -1044,7 +1044,7 @@
 #                                             ^ source.liquidsoap meta.function-call.liquidsoap
 >  default_weight = fun () -> 1
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^ source.liquidsoap keyword.other.function.definition.anonymous.liquidsoap
@@ -1056,7 +1056,7 @@
 #                             ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 >  next_index = ref(-1)
 #^^ source.liquidsoap
-#  ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1089,19 +1089,19 @@
 #^^^^^^ source.liquidsoap
 #      ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #         ^^ source.liquidsoap
-#           ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#           ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                 ^ source.liquidsoap
-#                  ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                  ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                                 ^ source.liquidsoap
-#                                  ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                                  ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                         ^ source.liquidsoap
 #                                          ^^^ source.liquidsoap
 #                                             ^^^ source.liquidsoap variable.liquidsoap
 >      weight = list.nth(default=default_weight, weights, index)
 #^^^^^^ source.liquidsoap
-#      ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^^^ source.liquidsoap variable.liquidsoap
@@ -1123,10 +1123,10 @@
 #^^^^^^ source.liquidsoap
 #      ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #         ^^ source.liquidsoap
-#           ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#           ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                         ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                          ^ source.liquidsoap
-#                           ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                           ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                  ^ source.liquidsoap
 #                                   ^^^ source.liquidsoap
 >        if source.is_ready(s) then
@@ -1143,7 +1143,7 @@
 #                              ^^^^ source.liquidsoap keyword.control.liquidsoap
 >          weight = weight()
 #^^^^^^^^^^ source.liquidsoap
-#          ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#          ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1151,7 +1151,7 @@
 #                          ^ source.liquidsoap meta.function-call.liquidsoap
 >          indexes = (current_weight, current_weight+weight, index) :: indexes
 #^^^^^^^^^^ source.liquidsoap
-#          ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#          ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^^ source.liquidsoap
 #                   ^^ source.liquidsoap
 #                     ^^^^^^^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1212,13 +1212,13 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #       ^^ source.liquidsoap
-#         ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#         ^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #           ^ source.liquidsoap
-#            ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#            ^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                        ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                         ^ source.liquidsoap
-#                          ^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                          ^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                          ^ source.liquidsoap
 #                                           ^^^^ source.liquidsoap
 >      list.fold(available_weighted_sources, (0, 0, []), sources)
@@ -1244,7 +1244,7 @@
 >
 >    picked_weight =
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^^ source.liquidsoap
 >      if total_weight > 0 then
 #^^^^^^ source.liquidsoap
@@ -1298,13 +1298,13 @@
 #^^^^^^ source.liquidsoap
 #      ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #         ^^ source.liquidsoap
-#           ^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#           ^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                      ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                       ^ source.liquidsoap
-#                        ^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                        ^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                   ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                                    ^ source.liquidsoap
-#                                     ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                                     ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                          ^ source.liquidsoap
 #                                           ^^^ source.liquidsoap
 #                                              ^^ source.liquidsoap variable.liquidsoap
@@ -1433,7 +1433,7 @@
 >
 >  s = switch(override=override, replay_metadata=replay_metadata, track_sensitive=true,
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1499,7 +1499,7 @@
 >
 >  s = source.on_track(s, f)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap

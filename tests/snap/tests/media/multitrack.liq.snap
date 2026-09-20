@@ -1,5 +1,5 @@
 >s1 = sine(440.)
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -8,7 +8,7 @@
 #             ^ source.liquidsoap meta.function-call.liquidsoap
 #              ^ source.liquidsoap meta.function-call.liquidsoap
 >audio = source.tracks(s1).audio
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -21,7 +21,7 @@
 #                          ^^^^^ source.liquidsoap variable.method.liquidsoap
 >
 >out = "test-multistream.mp4"
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -29,7 +29,7 @@
 #                           ^ source.liquidsoap string.quoted.double.liquidsoap
 >
 >s2 = sine(880.)
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -38,7 +38,7 @@
 #             ^ source.liquidsoap meta.function-call.liquidsoap
 #              ^ source.liquidsoap meta.function-call.liquidsoap
 >audio_2 = source.tracks(s2).audio
-#^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -51,7 +51,7 @@
 #                            ^^^^^ source.liquidsoap variable.method.liquidsoap
 >
 >s3 = single("@ffmpeg[format='mp4',@audio[codec='aac',channels=2],@video[codec='libx264']].mp4")
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -61,7 +61,7 @@
 #                                                                                             ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
 #                                                                                              ^ source.liquidsoap meta.function-call.liquidsoap
 >video = source.tracks(s3).video
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -74,14 +74,14 @@
 #                          ^^^^^ source.liquidsoap variable.method.liquidsoap
 >
 >s4 = blank()
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
 #          ^ source.liquidsoap meta.function-call.liquidsoap
 #           ^ source.liquidsoap meta.function-call.liquidsoap
 >s4 = insert_metadata(s4)
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -89,7 +89,7 @@
 #                     ^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
 #                       ^ source.liquidsoap meta.function-call.liquidsoap
 >metadata = source.tracks(s4).metadata
-#^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -102,14 +102,14 @@
 #                             ^^^^^^^^ source.liquidsoap variable.method.liquidsoap
 >
 >s5 = blank()
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
 #          ^ source.liquidsoap meta.function-call.liquidsoap
 #           ^ source.liquidsoap meta.function-call.liquidsoap
 >s5 = chop(s5)
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -117,7 +117,7 @@
 #          ^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
 #            ^ source.liquidsoap meta.function-call.liquidsoap
 >track_marks = source.tracks(s5).track_marks
-#^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -130,7 +130,7 @@
 #                                ^^^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
 >
 >s = source(id="muxed", {
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -182,7 +182,7 @@
 # ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >meta_seen = ref(false)
-#^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -190,7 +190,7 @@
 #                ^^^^^ source.liquidsoap meta.function-call.liquidsoap constant.language.boolean.liquidsoap
 #                     ^ source.liquidsoap meta.function-call.liquidsoap
 >track_seen = ref(false)
-#^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -259,18 +259,18 @@
 >let {metadata=_, track_marks=_, ...tracks} = source.tracks(s)
 #^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #   ^^ source.liquidsoap
-#     ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#     ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #             ^ source.liquidsoap
-#              ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#              ^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                ^ source.liquidsoap
-#                 ^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                 ^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                            ^ source.liquidsoap
-#                             ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                             ^ source.liquidsoap variable.other.binding.liquidsoap
 #                              ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                               ^ source.liquidsoap
 #                                ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                                   ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                                   ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                         ^ source.liquidsoap
 #                                          ^^^ source.liquidsoap
 #                                             ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -281,7 +281,7 @@
 #                                                            ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >file_no_meta_seen = ref(true)
-#^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^^ source.liquidsoap
 #                   ^ source.liquidsoap
 #                    ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -289,7 +289,7 @@
 #                        ^^^^ source.liquidsoap meta.function-call.liquidsoap constant.language.boolean.liquidsoap
 #                            ^ source.liquidsoap meta.function-call.liquidsoap
 >file_track_seen = ref(0)
-#^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^^ source.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -298,7 +298,7 @@
 #                       ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = source(id="muxed_final", tracks)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -352,7 +352,7 @@
 #                                               ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >should_stop = ref(false)
-#^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -361,7 +361,7 @@
 #                       ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = switch(track_sensitive=false, [({not should_stop()}, s)])
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -385,7 +385,7 @@
 #                                                           ^^^ source.liquidsoap
 >
 >enc = %ffmpeg(
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap meta.function-call.liquidsoap
@@ -512,7 +512,7 @@
 >
 >    ojson = process.read("ffprobe -v quiet -print_format json -show_streams #{process.quote(filename)}")
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -536,7 +536,7 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^ source.liquidsoap
 #                     ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -622,7 +622,7 @@
 >
 >    video_stream = list.find((fun (stream) -> null.defined(stream.pix_fmt)), parsed.streams)
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^^ source.liquidsoap variable.liquidsoap
@@ -654,7 +654,7 @@
 #                                                                                           ^^ source.liquidsoap
 >    aac_stream = list.find((fun (stream) -> stream.codec_name == "aac"), parsed.streams)
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^^ source.liquidsoap
 #                ^ source.liquidsoap
 #                 ^^^^ source.liquidsoap variable.liquidsoap
@@ -687,7 +687,7 @@
 #                                                                                       ^^ source.liquidsoap
 >    mp3_stream = list.find((fun (stream) -> stream.codec_name == "mp3"), parsed.streams)
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^^ source.liquidsoap
 #                ^ source.liquidsoap
 #                 ^^^^ source.liquidsoap variable.liquidsoap
@@ -818,7 +818,7 @@
 #                                                         ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >meta_count = ref(0)
-#^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

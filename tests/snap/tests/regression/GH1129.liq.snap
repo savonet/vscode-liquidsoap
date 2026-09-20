@@ -12,7 +12,7 @@
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >
 >selected = ref([])
-#^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -21,7 +21,7 @@
 #                 ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s1 = blank(duration=0.04)
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -53,7 +53,7 @@
 #^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >s1 = metadata.map(id="s1",m1,s1)
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -72,7 +72,7 @@
 #                               ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s2_ready = ref(false)
-#^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -81,7 +81,7 @@
 #                    ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s2 = switch(id="s2",[({!s2_ready},blank(duration=0.04))])
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -129,7 +129,7 @@
 #^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >s2 = metadata.map(id="s2",m2,s2)
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -148,7 +148,7 @@
 #                               ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s3 = blank(id="s3",duration=0.04)
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -186,7 +186,7 @@
 #^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >s3 = metadata.map(id="s3",m3,s3)
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -258,7 +258,7 @@
 #^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >s = rotate([s1,s2,s3])
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -297,7 +297,7 @@
 #              ^^ source.liquidsoap
 >  s = list.rev(!selected)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^ source.liquidsoap variable.liquidsoap

@@ -1,5 +1,5 @@
 >s = single("annotate:liq_cue_in=3.,liq_cue_out=15.:../media/@wav[stereo].wav")
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -10,7 +10,7 @@
 #                                                                             ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >track_count = ref(0)
-#^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -64,7 +64,7 @@
 #^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >s = source.on_track(s, on_track)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -78,7 +78,7 @@
 #                               ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = amplify(id="amp", 1.0, s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -97,7 +97,7 @@
 #                            ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = bpm(s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -106,7 +106,7 @@
 #         ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = cue_cut(s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -115,7 +115,7 @@
 #             ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = accelerate(ratio=0.8, s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -129,7 +129,7 @@
 #                           ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = crossfade(smart=true,s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

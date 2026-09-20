@@ -15,13 +15,13 @@
 #   ^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  n = 2
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 >  r = n.{ a = 8 , b = 12 , f = fun(x) -> 2 * x }
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap variable.liquidsoap
@@ -115,7 +115,7 @@
 #                        ^ source.liquidsoap meta.function-call.liquidsoap
 >  r = 2.{a = 5}
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
@@ -138,21 +138,21 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  r = ()
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^^^^ source.liquidsoap
 >  let r.f = ()
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^ source.liquidsoap
 >  let r.f.variant = 7
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^ source.liquidsoap
 #                    ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
@@ -160,7 +160,7 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^ source.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap variable.liquidsoap
@@ -181,21 +181,21 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  r = ()
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^^^^ source.liquidsoap
 >  let r.a = ()
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^ source.liquidsoap
 >  let r.a.b = 5
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^ source.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
@@ -204,7 +204,7 @@
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^^^^ source.liquidsoap storage.modifier.liquidsoap
-#               ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#               ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^ source.liquidsoap
 #                     ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
@@ -251,7 +251,7 @@
 #   ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  n = ref(0)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -358,7 +358,7 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  r = 3.{s = "a"}
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
@@ -372,7 +372,7 @@
 #                ^ source.liquidsoap
 >  _ = r.s
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap variable.liquidsoap
@@ -385,7 +385,7 @@
 #   ^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  r = ()
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^^^^ source.liquidsoap
 >  def r.f(n) = 2*n end
@@ -429,7 +429,7 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  a = "a"
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -437,7 +437,7 @@
 #        ^ source.liquidsoap string.quoted.double.liquidsoap
 >  b = "b"
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -447,7 +447,7 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^ source.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
@@ -455,7 +455,7 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^ source.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
@@ -463,14 +463,14 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^ source.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #             ^^ source.liquidsoap
 >  l = [a,b]
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap variable.liquidsoap
@@ -492,7 +492,7 @@
 #                     ^ source.liquidsoap meta.function-call.liquidsoap
 >  l = [b,a]
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap variable.liquidsoap
@@ -540,7 +540,7 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  _ = if true then {a = 4, b = 5} else {a = 4} end
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^ source.liquidsoap keyword.control.liquidsoap
@@ -574,7 +574,7 @@
 #                                               ^^^ source.liquidsoap keyword.control.liquidsoap
 >  _ = if true then {a = 4} else {a = 4, b = 5} end
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^ source.liquidsoap keyword.control.liquidsoap
@@ -613,7 +613,7 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  _ = [{a = 4, b = 5, c = 6}, {a = "a", b = 2, d = "d"}]
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
@@ -995,7 +995,7 @@
 #          ^^ source.liquidsoap
 >   ret = x?.foo(123)
 #^^^ source.liquidsoap
-#   ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#   ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^ source.liquidsoap variable.liquidsoap
@@ -1159,7 +1159,7 @@
 >
 >  x = { }
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap
@@ -1222,7 +1222,7 @@
 #  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >  x = f(())
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1242,7 +1242,7 @@
 >
 >  x = (():{foo?:int?})
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^^^^ source.liquidsoap
 #         ^ source.liquidsoap meta.type-annotation.liquidsoap keyword.other.cast.liquidsoap
@@ -1452,7 +1452,7 @@
 >
 >  x = ({foo = null()}:{foo: int?})
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
@@ -1491,7 +1491,7 @@
 >
 >  x = ({foo = null()}:{foo?:int?})
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
@@ -1950,7 +1950,7 @@
 #   ^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  x = { foo = 123, gni = "aabb" }
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap
@@ -1974,11 +1974,11 @@
 #  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #            ^ source.liquidsoap
 #             ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                ^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^ source.liquidsoap
@@ -2038,7 +2038,7 @@
 >
 >  x = 1.{ foo = 123, gni = "aabb" }
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
@@ -2063,11 +2063,11 @@
 #  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #            ^ source.liquidsoap
 #             ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                ^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^ source.liquidsoap
@@ -2127,7 +2127,7 @@
 >
 >  x = 1.{ foo = 123, gni = "aabb" }
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
@@ -2151,7 +2151,7 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap variable.liquidsoap
@@ -2214,7 +2214,7 @@
 >
 >  x = {foo = 3.14}.{ foo = 123, gni = "aabb" }
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap
@@ -2246,11 +2246,11 @@
 #  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #            ^ source.liquidsoap
 #             ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                ^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^ source.liquidsoap
@@ -2310,7 +2310,7 @@
 >
 >  x = { foo = 123, gni = "aabb" }
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap
@@ -2331,7 +2331,7 @@
 #                                ^ source.liquidsoap
 >  y = { bla = 3.14, ...x }
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap
@@ -2381,7 +2381,7 @@
 >
 >  x = 1.{ foo = 123, gni = "aabb" }
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
@@ -2403,7 +2403,7 @@
 #                                  ^ source.liquidsoap
 >  y = { bla = 3.14, ...x }
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap
@@ -2487,7 +2487,7 @@
 #  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >  x = {foo = 123}
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap
@@ -2500,13 +2500,13 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #     ^^ source.liquidsoap
-#       ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#       ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^^ source.liquidsoap
-#             ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#             ^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #               ^ source.liquidsoap
 #                ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                   ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                   ^ source.liquidsoap variable.other.binding.liquidsoap
 #                    ^ source.liquidsoap
 #                     ^^^ source.liquidsoap
 #                        ^ source.liquidsoap variable.liquidsoap

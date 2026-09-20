@@ -5,7 +5,7 @@
 >let native = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^^ source.liquidsoap
 >
@@ -35,7 +35,7 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  a = ref(true)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -44,7 +44,7 @@
 #              ^ source.liquidsoap meta.function-call.liquidsoap
 >  s = source.on_track(s, fun(_) -> a := false)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -127,7 +127,7 @@
 #                                                              ^ source.liquidsoap
 >  fail = (source.fail() : source)
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^^ source.liquidsoap
 #          ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -172,7 +172,7 @@
 >
 >  infallible = not(list.for_all(source.fallible, sources))
 #^^ source.liquidsoap
-#  ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -258,7 +258,7 @@
 #                                       ^ source.liquidsoap
 >  len  = list.length(sources)
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -269,7 +269,7 @@
 #                            ^ source.liquidsoap meta.function-call.liquidsoap
 >  n    = ref(0)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^^^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -278,7 +278,7 @@
 #              ^ source.liquidsoap meta.function-call.liquidsoap
 >  fail = source.fail()
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -297,7 +297,7 @@
 #            ^ source.liquidsoap
 >    sn = list.nth(default=list.last(default=fail, sources), sources, n())
 #^^^^ source.liquidsoap
-#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -379,7 +379,7 @@
 #  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >  infallible = not source.fallible(list.last(default=fail, sources))
 #^^ source.liquidsoap
-#  ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^^ source.liquidsoap keyword.operator.boolean.liquidsoap
@@ -402,7 +402,7 @@
 #                                                                   ^ source.liquidsoap meta.function-call.liquidsoap
 >  s = source.dynamic(id=id, infallible=infallible, track_sensitive=true, s)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -429,7 +429,7 @@
 >
 >  first = ref(true)
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -482,7 +482,7 @@
 >
 >  s = source.on_track(s, ot)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -554,7 +554,7 @@
 #                                                            ^ source.liquidsoap
 >  sources = list.map(fun(ps) -> source.available(snd(ps), fst(ps)), sources)
 #^^ source.liquidsoap
-#  ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^ source.liquidsoap variable.liquidsoap
@@ -614,7 +614,7 @@
 >let native.request = request
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^ source.liquidsoap
 #                     ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -694,7 +694,7 @@
 #   ^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  queue = ref([])
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -755,7 +755,7 @@
 #            ^^ source.liquidsoap
 >    s = request.once(r)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -850,7 +850,7 @@
 >
 >  current = ref(null())
 #^^ source.liquidsoap
-#  ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -884,7 +884,7 @@
 #                               ^^^^ source.liquidsoap keyword.control.liquidsoap
 >      s = null.get(current())
 #^^^^^^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^ source.liquidsoap variable.liquidsoap
@@ -928,7 +928,7 @@
 #            ^ source.liquidsoap
 >    r = f()
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -948,7 +948,7 @@
 #                       ^^^^ source.liquidsoap keyword.control.liquidsoap
 >      r = null.get(r)
 #^^^^^^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^ source.liquidsoap variable.liquidsoap
@@ -959,7 +959,7 @@
 #                    ^ source.liquidsoap meta.function-call.liquidsoap
 >      s = request.once(r)
 #^^^^^^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1142,11 +1142,11 @@
 #^^^^^^ source.liquidsoap
 #      ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #         ^^ source.liquidsoap
-#           ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#           ^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #             ^ source.liquidsoap
 #              ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                 ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                 ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                     ^ source.liquidsoap
 #                      ^^^ source.liquidsoap
 #                         ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

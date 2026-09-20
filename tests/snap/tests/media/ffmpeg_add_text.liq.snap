@@ -31,7 +31,7 @@
 #          ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >fname = argv(default="",1)
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -44,7 +44,7 @@
 #                        ^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #                         ^ source.liquidsoap meta.function-call.liquidsoap
 >out = "#{fname}+ffmpeg_filter.mp4"
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -77,7 +77,7 @@
 #^^^ source.liquidsoap keyword.control.liquidsoap
 >
 >s = single(fname)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -86,7 +86,7 @@
 #                ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = sequence([s,s,s,s,s,source.fail()])
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -111,7 +111,7 @@
 #                                      ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = video.add_text.ffmpeg("bla blo", s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^ source.liquidsoap variable.liquidsoap
@@ -129,7 +129,7 @@
 #                                      ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >started = ref(false)
-#^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -185,7 +185,7 @@
 #              ^^^^ source.liquidsoap keyword.control.liquidsoap
 >    ojson = process.read("ffprobe -v quiet -print_format json -show_streams #{process.quote(filename)}")
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -207,7 +207,7 @@
 >
 >    output_format = json.parse(default=[("streams", [[("samplerate", "0")]])], ojson)
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^^ source.liquidsoap
 #                   ^ source.liquidsoap
 #                    ^^^^ source.liquidsoap variable.liquidsoap
@@ -239,7 +239,7 @@
 >
 >    output_streams = list.assoc(default=[], "streams", output_format)
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^^ source.liquidsoap
 #                    ^ source.liquidsoap
 #                     ^^^^ source.liquidsoap variable.liquidsoap
@@ -261,7 +261,7 @@
 >
 >    params = ["channel_layout", "sample_rate",
 #^^^^ source.liquidsoap
-#    ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -312,10 +312,10 @@
 #^^^^^^^^ source.liquidsoap
 #        ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #           ^^ source.liquidsoap
-#             ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#             ^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #               ^ source.liquidsoap
-#                ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                ^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^ source.liquidsoap
 #                     ^ source.liquidsoap variable.liquidsoap
@@ -350,7 +350,7 @@
 >
 >    output_streams = list.map(m, output_streams)
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^^ source.liquidsoap
 #                    ^ source.liquidsoap
 #                     ^^^^ source.liquidsoap variable.liquidsoap
@@ -419,7 +419,7 @@
 >
 >    output_streams = list.map((fun (stream) -> list.sort(cmp, stream)), output_streams)
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^^ source.liquidsoap
 #                    ^ source.liquidsoap
 #                     ^^^^ source.liquidsoap variable.liquidsoap
@@ -496,7 +496,7 @@
 >
 >    output_streams = list.sort(cmd_l, output_streams)
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^^ source.liquidsoap
 #                    ^ source.liquidsoap
 #                     ^^^^ source.liquidsoap variable.liquidsoap
@@ -511,7 +511,7 @@
 >
 >    expected = [
 #^^^^ source.liquidsoap
-#    ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^^^ source.liquidsoap
 >      [("channel_layout", "stereo"), ("codec_name", "aac"), ("sample_fmt", "fltp"), ("sample_rate", "44100")],

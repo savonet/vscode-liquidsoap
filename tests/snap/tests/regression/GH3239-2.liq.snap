@@ -1,5 +1,5 @@
 >tmp = file.temp("foo", "mp3")
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^ source.liquidsoap variable.liquidsoap
@@ -29,7 +29,7 @@
 #                             ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >a = sine(duration=2.)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -40,7 +40,7 @@
 #                   ^ source.liquidsoap meta.function-call.liquidsoap
 #                    ^ source.liquidsoap meta.function-call.liquidsoap
 >b = sine(duration=2.)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -103,7 +103,7 @@
 #^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >s = sequence([a, b])
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -117,7 +117,7 @@
 #                   ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = cross(fn, s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

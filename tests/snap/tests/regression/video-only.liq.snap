@@ -1,12 +1,12 @@
 >a = sine()
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
 #        ^ source.liquidsoap meta.function-call.liquidsoap
 #         ^ source.liquidsoap meta.function-call.liquidsoap
 >v = blank()
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -14,7 +14,7 @@
 #          ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = source(
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -48,7 +48,7 @@
 #^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = source.on_track(s, fun (_) -> test.pass())
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -73,7 +73,7 @@
 #                                             ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >tmp = file.temp("foo", "flv")
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^ source.liquidsoap variable.liquidsoap

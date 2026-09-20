@@ -44,7 +44,7 @@
 #                                        ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >fname = argv(default="@ffmpeg[format='mp4',@audio[codec='aac',channels=2],@video[codec='libx264']].mp4",1)
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -58,7 +58,7 @@
 #                                                                                                        ^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #                                                                                                         ^ source.liquidsoap meta.function-call.liquidsoap
 >out = "#{fname}+test_videos_size.avi"
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -91,7 +91,7 @@
 #^^^ source.liquidsoap keyword.control.liquidsoap
 >
 >s = (single(fname) : source(video=canvas(width=47, height=52)))
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^^ source.liquidsoap
 #     ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -117,7 +117,7 @@
 #                                                             ^ source.liquidsoap meta.type-annotation.liquidsoap
 #                                                              ^^ source.liquidsoap
 >s = once(s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -125,7 +125,7 @@
 #         ^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
 #          ^ source.liquidsoap meta.function-call.liquidsoap
 >s = source({audio=source.tracks(blank()).audio, video=source.tracks(s).video})
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -185,7 +185,7 @@
 #                     ^^^^ source.liquidsoap keyword.control.liquidsoap
 >    j = process.read("ffprobe -v quiet -print_format json -show_streams #{process.quote(filename)}")
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -209,7 +209,7 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^ source.liquidsoap
 #                     ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -252,7 +252,7 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^ source.liquidsoap
 #               ^^ source.liquidsoap
 #                 ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

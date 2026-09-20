@@ -30,7 +30,7 @@
 #                                   ^^ source.liquidsoap
 >  env = environment()
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -123,7 +123,7 @@
 #          ^^ source.liquidsoap
 >    ret = r/=/.split(x)
 #^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^ source.liquidsoap string.regexp.liquidsoap
@@ -136,7 +136,7 @@
 #                      ^ source.liquidsoap meta.function-call.liquidsoap
 >    arg = url.decode(list.nth(default="",ret,0))
 #^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap variable.liquidsoap
@@ -159,7 +159,7 @@
 #                                               ^ source.liquidsoap meta.function-call.liquidsoap
 >    val = url.decode(list.nth(default="",ret,1))
 #^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap variable.liquidsoap
@@ -191,7 +191,7 @@
 #  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >  l = r/&/.split(args)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^ source.liquidsoap string.regexp.liquidsoap
@@ -244,7 +244,7 @@
 #                  ^^ source.liquidsoap
 >  ret = r/(?<uri>[^\?]*)\?(?<args>.*)/.exec(uri).groups
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^ source.liquidsoap string.regexp.liquidsoap
@@ -259,7 +259,7 @@
 #                                                 ^^^^^^ source.liquidsoap variable.method.liquidsoap
 >  args = ret["args"]
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^ source.liquidsoap variable.liquidsoap
@@ -338,7 +338,7 @@
 #               ^^ source.liquidsoap
 >  cached_result = ref([])
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^^ source.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -380,7 +380,7 @@
 #    ^^^^ source.liquidsoap keyword.control.liquidsoap
 >      result = fn()
 #^^^^^^ source.liquidsoap
-#      ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

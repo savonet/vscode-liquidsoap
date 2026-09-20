@@ -8,7 +8,7 @@
 #             ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 >
 >port = random.int(min=8000, max=10000)
-#^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -26,7 +26,7 @@
 #                                     ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = input.srt(
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^ source.liquidsoap variable.liquidsoap
@@ -50,7 +50,7 @@
 #^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = source.on_track(s, fun (_) -> test.pass())
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -88,7 +88,7 @@
 #                             ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >enc = %ffmpeg(
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap meta.function-call.liquidsoap

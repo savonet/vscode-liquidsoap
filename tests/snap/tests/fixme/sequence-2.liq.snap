@@ -51,7 +51,7 @@
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >
 >flag = ref true
-#^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^ source.liquidsoap variable.liquidsoap
@@ -77,21 +77,21 @@
 #                                   ^ source.liquidsoap meta.function-call.liquidsoap
 #                                    ^ source.liquidsoap meta.function-call.liquidsoap
 >on = sine()
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
 #         ^ source.liquidsoap meta.function-call.liquidsoap
 #          ^ source.liquidsoap meta.function-call.liquidsoap
 >off = fail()
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
 #          ^ source.liquidsoap meta.function-call.liquidsoap
 #           ^ source.liquidsoap meta.function-call.liquidsoap
 >s = source.dynamic({ if !flag then [on] else [off] end })
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -119,7 +119,7 @@
 #                                                        ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >test = sequence([ s, fail() ])
-#^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

@@ -18,7 +18,7 @@
 #                    ^^ source.liquidsoap
 >  x = {
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap
@@ -60,7 +60,7 @@
 #               ^^^^^^^^^ source.liquidsoap variable.method.liquidsoap
 >  info = runtime.mem_usage()
 #^^ source.liquidsoap
-#  ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -70,7 +70,7 @@
 #                           ^ source.liquidsoap meta.function-call.liquidsoap
 >  x = x.{
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap variable.liquidsoap
@@ -136,7 +136,7 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^ source.liquidsoap
 #               ^^ source.liquidsoap
 #                 ^ source.liquidsoap
@@ -266,7 +266,7 @@
 >let runtime.cpu = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^ source.liquidsoap
 #                ^^^^^ source.liquidsoap
 >%ifdef process.time
@@ -295,7 +295,7 @@
 #                              ^^ source.liquidsoap
 >  t = ref(time())
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -308,10 +308,10 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #     ^^ source.liquidsoap
-#       ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#       ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #            ^ source.liquidsoap
-#             ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#             ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                   ^ source.liquidsoap
 #                    ^^^ source.liquidsoap
 #                       ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -321,7 +321,7 @@
 #                                    ^ source.liquidsoap meta.function-call.liquidsoap
 >  u = ref(user)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -330,7 +330,7 @@
 #              ^ source.liquidsoap meta.function-call.liquidsoap
 >  s = ref(system)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -347,7 +347,7 @@
 #         ^^ source.liquidsoap
 >    t' = time()
 #^^^^ source.liquidsoap
-#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -355,7 +355,7 @@
 #              ^ source.liquidsoap meta.function-call.liquidsoap
 >    delta = t' - t()
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^ source.liquidsoap variable.liquidsoap
@@ -370,10 +370,10 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #       ^^ source.liquidsoap
-#         ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#         ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #             ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #              ^ source.liquidsoap
-#               ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#               ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                     ^ source.liquidsoap
 #                      ^^^ source.liquidsoap
 #                         ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -383,7 +383,7 @@
 #                                      ^ source.liquidsoap meta.function-call.liquidsoap
 >    u' = user - u()
 #^^^^ source.liquidsoap
-#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^ source.liquidsoap variable.liquidsoap
@@ -395,7 +395,7 @@
 #                  ^ source.liquidsoap meta.function-call.liquidsoap
 >    s' = system - s()
 #^^^^ source.liquidsoap
-#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^^^^^ source.liquidsoap variable.liquidsoap

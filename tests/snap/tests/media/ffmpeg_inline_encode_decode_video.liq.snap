@@ -24,7 +24,7 @@
 #                                        ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >out_copy = "ffmpeg_inline_encode_decode_video_copy.mp4"
-#^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -54,7 +54,7 @@
 #^^^ source.liquidsoap keyword.control.liquidsoap
 >
 >out_encode = "ffmpeg_inline_encode_decode_video_encode.mp4"
-#^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -83,7 +83,7 @@
 #^^^ source.liquidsoap keyword.control.liquidsoap
 >
 >v = video.fill(color=0xff0000, blank())
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^ source.liquidsoap variable.liquidsoap
@@ -100,7 +100,7 @@
 #                                     ^ source.liquidsoap meta.function-call.liquidsoap meta.function-call.liquidsoap
 #                                      ^ source.liquidsoap meta.function-call.liquidsoap
 >a = sine(duration=10.)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -111,7 +111,7 @@
 #                    ^ source.liquidsoap meta.function-call.liquidsoap
 #                     ^ source.liquidsoap meta.function-call.liquidsoap
 >s = source.mux.video(video=v, a)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -129,7 +129,7 @@
 #                               ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >todo = ref(2)
-#^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -156,7 +156,7 @@
 #                ^^ source.liquidsoap
 >    j = process.read("ffprobe -v quiet -print_format json -show_streams #{process.quote(out)}")
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -180,7 +180,7 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^ source.liquidsoap
 #                     ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -223,7 +223,7 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #       ^^ source.liquidsoap
-#         ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#         ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^ source.liquidsoap
 #                ^^^ source.liquidsoap
 #                   ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -337,7 +337,7 @@
 #^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >s = ffmpeg.encode.video(
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -415,7 +415,7 @@
 #^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = ffmpeg.decode.video(s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap variable.liquidsoap

@@ -215,7 +215,7 @@
 #                                    ^ source.liquidsoap
 >  n = string.length(s)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -226,7 +226,7 @@
 #                     ^ source.liquidsoap meta.function-call.liquidsoap
 >  l = string.length(separator)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -237,7 +237,7 @@
 #                             ^ source.liquidsoap meta.function-call.liquidsoap
 >  i = string.index(substring=separator, s)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -383,7 +383,7 @@
 #                                                            ^ source.liquidsoap
 >  ans = ref(prefix == "" and substring == "" and suffix == "")
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -481,7 +481,7 @@
 #                  ^^^^ source.liquidsoap keyword.control.liquidsoap
 >    suflen = string.length(suffix)
 #^^^^ source.liquidsoap
-#    ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -547,7 +547,7 @@
 #                     ^^^^ source.liquidsoap keyword.control.liquidsoap
 >    sublen = string.length(substring)
 #^^^^ source.liquidsoap
-#    ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -650,7 +650,7 @@
 #                              ^ source.liquidsoap
 >  n = string.length(prefix)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -835,7 +835,7 @@
 >let string.binary = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^^^ source.liquidsoap
 >
@@ -872,7 +872,7 @@
 #                                               ^ source.liquidsoap
 >  ans = ref(0)
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -881,7 +881,7 @@
 #             ^ source.liquidsoap meta.function-call.liquidsoap
 >  n = string.length(s)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1026,7 +1026,7 @@
 #             ^^^^ source.liquidsoap keyword.control.liquidsoap
 >      c = string.hex_of_int(pad=2, (d mod 256))
 #^^^^^^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1120,7 +1120,7 @@
 #  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >  ret = d == 0 ? "\\x00" : f(d, "")
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap variable.liquidsoap
@@ -1148,7 +1148,7 @@
 #                                  ^ source.liquidsoap meta.function-call.liquidsoap
 >  ret = string.unescape(ret)
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1159,7 +1159,7 @@
 #                           ^ source.liquidsoap meta.function-call.liquidsoap
 >  len = string.length(ret)
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1181,7 +1181,7 @@
 #               ^^^^ source.liquidsoap keyword.control.liquidsoap
 >    ans = string.make(char_code=0, pad-len)
 #^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1414,7 +1414,7 @@
 #  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >  s = string.escape(special_char=special_char, encoding=encoding, s)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1474,7 +1474,7 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^ source.liquidsoap
 #                    ^ source.liquidsoap variable.liquidsoap
@@ -1505,7 +1505,7 @@
 >let string.data_uri = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                   ^ source.liquidsoap
 #                    ^^^^^ source.liquidsoap
 >
@@ -1552,7 +1552,7 @@
 #                                                           ^^ source.liquidsoap
 >  s = base64 ? ";base64,#{string.base64.encode(s)}" : ",#{s}"
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1616,7 +1616,7 @@
 #                             ^^ source.liquidsoap
 >  captured = r/^data:(?<mime>[\/\w]+)(?<base64>;base64)?,(?<data>.+)$/.exec(s).groups
 #^^ source.liquidsoap
-#  ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^^ source.liquidsoap string.regexp.liquidsoap
@@ -1668,7 +1668,7 @@
 #                                                                           ^^^^ source.liquidsoap keyword.control.liquidsoap
 >    mime = list.assoc("mime", captured)
 #^^^^ source.liquidsoap
-#    ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^ source.liquidsoap variable.liquidsoap
@@ -1684,7 +1684,7 @@
 #                                      ^ source.liquidsoap meta.function-call.liquidsoap
 >    data = list.assoc("data", captured)
 #^^^^ source.liquidsoap
-#    ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^ source.liquidsoap variable.liquidsoap
@@ -1700,7 +1700,7 @@
 #                                      ^ source.liquidsoap meta.function-call.liquidsoap
 >    data =
 #^^^^ source.liquidsoap
-#    ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 >      if list.assoc.mem("base64", captured) then
 #^^^^^^ source.liquidsoap
@@ -1765,7 +1765,7 @@
 >let string.getter = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^^^^^ source.liquidsoap
 >
@@ -1789,7 +1789,7 @@
 #                          ^ source.liquidsoap
 >  first = ref(true)
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1910,7 +1910,7 @@
 #                   ^^ source.liquidsoap
 >      chunk = getter.get(gen)
 #^^^^^^ source.liquidsoap
-#      ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1999,7 +1999,7 @@
 #                           ^^ source.liquidsoap
 >  len = list.length(l)
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^ source.liquidsoap variable.liquidsoap
@@ -2010,7 +2010,7 @@
 #                     ^ source.liquidsoap meta.function-call.liquidsoap
 >  pos = ref(0)
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2047,7 +2047,7 @@
 #                            ^^^^ source.liquidsoap keyword.control.liquidsoap
 >      gen = list.nth(l, pos())
 #^^^^^^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^ source.liquidsoap variable.liquidsoap
@@ -2063,7 +2063,7 @@
 #                             ^ source.liquidsoap meta.function-call.liquidsoap
 >      ret = getter.get(gen)
 #^^^^^^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -2143,7 +2143,7 @@
 >let string.char.ascii = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                     ^ source.liquidsoap
 #                      ^^^^^ source.liquidsoap
 >
@@ -2158,7 +2158,7 @@
 >let string.char.ascii = list.init(128, fun (c) -> c)
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                     ^ source.liquidsoap
 #                      ^^ source.liquidsoap
 #                        ^^^^ source.liquidsoap variable.liquidsoap
@@ -2189,7 +2189,7 @@
 >let string.char.ascii.control = list.init(32, fun (c) -> c)
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                             ^ source.liquidsoap
 #                              ^^ source.liquidsoap
 #                                ^^^^ source.liquidsoap variable.liquidsoap
@@ -2220,7 +2220,7 @@
 >let string.char.ascii.printable = list.init(96, fun (c) -> c+32)
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                               ^ source.liquidsoap
 #                                ^^ source.liquidsoap
 #                                  ^^^^ source.liquidsoap variable.liquidsoap
@@ -2253,7 +2253,7 @@
 >let string.char.ascii.alphabet = [
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                              ^ source.liquidsoap
 #                               ^^^^ source.liquidsoap
 >  # A-Z
@@ -2322,7 +2322,7 @@
 >let string.char.ascii.number = list.init(10, fun (c) -> c+48)
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                            ^ source.liquidsoap
 #                             ^^ source.liquidsoap
 #                               ^^^^ source.liquidsoap variable.liquidsoap
@@ -2441,7 +2441,7 @@
 #                                                           ^^ source.liquidsoap
 >  escaped =
 #^^ source.liquidsoap
-#  ^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 >    [
 #^^^^^^ source.liquidsoap

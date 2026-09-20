@@ -1,5 +1,5 @@
 >s1 = source.fail()
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -8,7 +8,7 @@
 #                ^ source.liquidsoap meta.function-call.liquidsoap
 #                 ^ source.liquidsoap meta.function-call.liquidsoap
 >s2 = blank(duration=1.)
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -49,7 +49,7 @@
 #^ source.liquidsoap meta.function-call.liquidsoap
 >
 >r = ref(0)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -57,7 +57,7 @@
 #        ^ source.liquidsoap meta.function-call.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #         ^ source.liquidsoap meta.function-call.liquidsoap
 >d = source.dynamic({ if !r==1 then s1
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap variable.liquidsoap

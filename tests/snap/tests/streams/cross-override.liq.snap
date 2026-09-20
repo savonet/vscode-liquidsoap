@@ -1,5 +1,5 @@
 >success = ref(false)
-#^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -8,7 +8,7 @@
 #                   ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >a = sine(duration=5.,440.)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -22,7 +22,7 @@
 #                        ^ source.liquidsoap meta.function-call.liquidsoap
 #                         ^ source.liquidsoap meta.function-call.liquidsoap
 >a = metadata.map(update=false, (fun (_) -> [("source", "a")]), a)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -57,7 +57,7 @@
 #                                                                ^^ source.liquidsoap
 >
 >b = sine(duration=5.,880.)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -71,7 +71,7 @@
 #                        ^ source.liquidsoap meta.function-call.liquidsoap
 #                         ^ source.liquidsoap meta.function-call.liquidsoap
 >b = metadata.map(update=false, (fun (_) -> [("source", "b"), ("liq_cross_duration","1.1")]), b)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -115,7 +115,7 @@
 #                                                                                              ^^ source.liquidsoap
 >
 >c = sine(duration=5.,440.)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -129,7 +129,7 @@
 #                        ^ source.liquidsoap meta.function-call.liquidsoap
 #                         ^ source.liquidsoap meta.function-call.liquidsoap
 >c = metadata.map(update=false, (fun (_) -> [("source", "c")]), c)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -164,7 +164,7 @@
 #                                                                ^^ source.liquidsoap
 >
 >s = sequence([a,b,c])
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -179,7 +179,7 @@
 #                    ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = crossfade(duration=5., s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -194,7 +194,7 @@
 #                            ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >track_count = ref(0)
-#^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

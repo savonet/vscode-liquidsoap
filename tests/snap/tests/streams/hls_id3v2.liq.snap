@@ -1,5 +1,5 @@
 >s = sine()
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -7,7 +7,7 @@
 #         ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = insert_metadata(s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -66,7 +66,7 @@
 #                      ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >s = mksafe(s)
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -75,7 +75,7 @@
 #            ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >tmp_dir = file.temp_dir("tmp")
-#^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^ source.liquidsoap variable.liquidsoap
@@ -262,7 +262,7 @@
 #^^ source.liquidsoap
 >
 >to_check = ref({
-#^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -319,16 +319,16 @@
 #  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #            ^ source.liquidsoap
-#             ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#             ^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                         ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                          ^ source.liquidsoap
-#                           ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                           ^^ source.liquidsoap variable.other.binding.liquidsoap
 #                             ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                              ^ source.liquidsoap
-#                               ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                               ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                                  ^ source.liquidsoap
 #                                   ^ source.liquidsoap
 #                                    ^^^ source.liquidsoap
@@ -406,7 +406,7 @@
 #                                                      ^^^^ source.liquidsoap keyword.control.liquidsoap
 >    aac = null.get(aac)
 #^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^ source.liquidsoap variable.liquidsoap
@@ -417,7 +417,7 @@
 #                      ^ source.liquidsoap meta.function-call.liquidsoap
 >    ts_with_meta = null.get(ts_with_meta)
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                ^^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^^ source.liquidsoap variable.liquidsoap
@@ -503,7 +503,7 @@
 #^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >aac = input.hls("#{tmp_dir}/aac.m3u8")
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^ source.liquidsoap variable.liquidsoap
@@ -519,7 +519,7 @@
 #                                     ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >aac = source.on_metadata(aac, fun (m) -> begin
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -596,7 +596,7 @@
 #                               ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >ts_with_meta = input.hls("#{tmp_dir}/ts_with_meta.m3u8")
-#^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^^^^ source.liquidsoap variable.liquidsoap
@@ -612,7 +612,7 @@
 #                                                       ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >ts_with_meta = source.on_metadata(ts_with_meta, fun (m) -> begin
-#^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -689,7 +689,7 @@
 #                                        ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >ts = input.hls("#{tmp_dir}/ts.m3u8")
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^ source.liquidsoap variable.liquidsoap
@@ -705,7 +705,7 @@
 #                                   ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >ts = source.on_metadata(ts, fun (m) -> begin
-#^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^ source.liquidsoap variable.other.binding.liquidsoap
 #  ^^ source.liquidsoap
 #    ^ source.liquidsoap
 #     ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -782,7 +782,7 @@
 #                              ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >mp4 = input.hls("#{tmp_dir}/mp4.m3u8")
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^ source.liquidsoap variable.liquidsoap
@@ -798,7 +798,7 @@
 #                                     ^ source.liquidsoap meta.function-call.liquidsoap
 >
 >mp4 = source.on_metadata(mp4, fun (m) -> begin
-#^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap

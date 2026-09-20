@@ -176,7 +176,7 @@
 #                                                                                                      ^ source.liquidsoap
 >  s = source.dynamic()
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -195,7 +195,7 @@
 #              ^ source.liquidsoap
 >    image = single(id=id, fallible=fallible, file)
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -214,7 +214,7 @@
 #                                                 ^ source.liquidsoap meta.function-call.liquidsoap
 >    image = video.crop(image)
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^ source.liquidsoap variable.liquidsoap
@@ -225,7 +225,7 @@
 #                            ^ source.liquidsoap meta.function-call.liquidsoap
 >    image = video.resize(id=id, x=x, y=y, width=width, height=height, image)
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^ source.liquidsoap variable.liquidsoap
@@ -273,7 +273,7 @@
 >
 >  current_file = ref(getter.get(file))
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^^ source.liquidsoap
 #                ^ source.liquidsoap
 #                 ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -296,7 +296,7 @@
 #                    ^ source.liquidsoap meta.function-call.liquidsoap
 >  s = source.on_frame(s, fun () -> begin
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -315,7 +315,7 @@
 #                                   ^^^^^ source.liquidsoap meta.function-call.liquidsoap keyword.control.liquidsoap
 >    new_file = getter.get(file)
 #^^^^ source.liquidsoap meta.function-call.liquidsoap
-#    ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap meta.function-call.liquidsoap
 #              ^ source.liquidsoap meta.function-call.liquidsoap
 #               ^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
@@ -477,7 +477,7 @@
 #                                                                                                                                                 ^ source.liquidsoap
 >  image = image(id=id, fallible=fallible, x=x, y=y, width=width, height=height, file)
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -518,9 +518,9 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #     ^^ source.liquidsoap
-#       ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#       ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^ source.liquidsoap
-#             ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#             ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^ source.liquidsoap
 #                      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -648,11 +648,11 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #     ^^ source.liquidsoap
-#       ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#       ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #             ^ source.liquidsoap
 #              ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                 ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                 ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                       ^ source.liquidsoap
 #                        ^^^ source.liquidsoap
 #                           ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -663,7 +663,7 @@
 #                                          ^ source.liquidsoap meta.function-call.liquidsoap
 >  video = track.video.add_image(width=width, height=height, x=x, y=y, file=file, video)
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^ source.liquidsoap variable.liquidsoap
@@ -743,7 +743,7 @@
 #                 ^ source.liquidsoap
 >  video = source.dynamic()
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -761,7 +761,7 @@
 #                  ^ source.liquidsoap
 >    filename = m["filename"]
 #^^^^ source.liquidsoap
-#    ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^ source.liquidsoap variable.liquidsoap
@@ -772,7 +772,7 @@
 #                           ^^ source.liquidsoap
 >    cover = if file.exists(filename) then file.cover(filename) else "".{mime=""} end
 #^^^^ source.liquidsoap
-#    ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^ source.liquidsoap keyword.control.liquidsoap
@@ -819,7 +819,7 @@
 #                           ^^^^ source.liquidsoap keyword.control.liquidsoap
 >      cover = null.get(cover)
 #^^^^^^ source.liquidsoap
-#      ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #           ^^ source.liquidsoap
 #             ^ source.liquidsoap
 #              ^^^^ source.liquidsoap variable.liquidsoap
@@ -830,7 +830,7 @@
 #                            ^ source.liquidsoap meta.function-call.liquidsoap
 >      ext =
 #^^^^^^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 >        if cover.mime == "image/png" then
 #^^^^^^^^ source.liquidsoap
@@ -865,7 +865,7 @@
 #        ^^^ source.liquidsoap keyword.control.liquidsoap
 >      f = file.temp("cover", ext)
 #^^^^^^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^ source.liquidsoap variable.liquidsoap
@@ -989,13 +989,13 @@
 >let output.youtube = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^^^ source.liquidsoap
 >let output.youtube.live = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                       ^ source.liquidsoap
 #                        ^^^^^ source.liquidsoap
 >
@@ -1305,7 +1305,7 @@
 #                                                      ^ source.liquidsoap
 >  id = string.id.default(default="output.youtube.live.hls", id)
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -1504,7 +1504,7 @@
 >
 >  tmpdir = file.temp_dir("hls","")
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^ source.liquidsoap variable.liquidsoap
@@ -1735,7 +1735,7 @@
 >
 >    available = s.is_ready
 #^^^^ source.liquidsoap
-#    ^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #             ^^ source.liquidsoap
 #               ^ source.liquidsoap
 #                ^ source.liquidsoap variable.liquidsoap
@@ -1748,7 +1748,7 @@
 #     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >    tref = ref(getter.get(text))
 #^^^^ source.liquidsoap
-#    ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1762,7 +1762,7 @@
 #                               ^ source.liquidsoap meta.function-call.liquidsoap
 >    text = null.defined(metadata) ? tref : text
 #^^^^ source.liquidsoap
-#    ^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^ source.liquidsoap variable.liquidsoap
@@ -1801,7 +1801,7 @@
 #                                ^^^^ source.liquidsoap keyword.control.liquidsoap
 >        m = m[null.get(metadata)]
 #^^^^^^^^ source.liquidsoap
-#        ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^ source.liquidsoap variable.liquidsoap
@@ -1841,7 +1841,7 @@
 #    ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >    s = null.defined(metadata) ? source.on_metadata(s, on_metadata) : s
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^ source.liquidsoap variable.liquidsoap
@@ -1873,7 +1873,7 @@
 #     ^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >    t = f(id=id, duration=duration, color=color, font=font, size=size, text)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -1907,7 +1907,7 @@
 #                                                                           ^ source.liquidsoap meta.function-call.liquidsoap
 >    t = video.info(video.crop(t))
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^ source.liquidsoap variable.liquidsoap
@@ -1928,7 +1928,7 @@
 #     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >    x = if speed == 0 then x else
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^ source.liquidsoap keyword.control.liquidsoap
@@ -1946,7 +1946,7 @@
 #                             ^^^^ source.liquidsoap keyword.control.liquidsoap
 >      fps = video.frame.rate()
 #^^^^^^ source.liquidsoap
-#      ^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^^ source.liquidsoap
 #           ^ source.liquidsoap
 #            ^^^^^ source.liquidsoap variable.liquidsoap
@@ -1958,7 +1958,7 @@
 #                             ^ source.liquidsoap meta.function-call.liquidsoap
 >      x = ref(getter.get(x))
 #^^^^^^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2058,7 +2058,7 @@
 #    ^^^ source.liquidsoap keyword.control.liquidsoap
 >    t = video.translate(x=x, y=y, t)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^ source.liquidsoap variable.liquidsoap
@@ -2084,7 +2084,7 @@
 #     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >    t = source.available(t, available)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -2106,13 +2106,13 @@
 #    ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
-#          ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#          ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^^^ source.liquidsoap
-#                  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                  ^ source.liquidsoap variable.other.binding.liquidsoap
 #                   ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                    ^ source.liquidsoap
 #                     ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                        ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                        ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                              ^ source.liquidsoap
 #                               ^ source.liquidsoap
 #                                ^^^ source.liquidsoap
@@ -2127,9 +2127,9 @@
 #    ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
-#          ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#          ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #               ^^^ source.liquidsoap
-#                  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                  ^ source.liquidsoap variable.other.binding.liquidsoap
 #                   ^ source.liquidsoap
 #                    ^ source.liquidsoap
 #                     ^^^ source.liquidsoap
@@ -2143,7 +2143,7 @@
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #       ^ source.liquidsoap
-#        ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^ source.liquidsoap variable.other.binding.liquidsoap
 #         ^ source.liquidsoap
 #          ^^ source.liquidsoap
 #            ^^^^^ source.liquidsoap variable.liquidsoap
@@ -2183,14 +2183,14 @@
 >let video.add_text = ()
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^^^ source.liquidsoap
 >
 >let video.text.available = ref([])
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                        ^ source.liquidsoap
 #                         ^^ source.liquidsoap
 #                           ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -2776,7 +2776,7 @@
 >let settings.video.text = settings.make(
 #^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #   ^ source.liquidsoap
-#    ^^^^^^^^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^^^^^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                       ^ source.liquidsoap
 #                        ^^ source.liquidsoap
 #                          ^^^^^^^^ source.liquidsoap variable.liquidsoap
@@ -2827,7 +2827,7 @@
 #  ^^^^^ source.liquidsoap meta.function-call.liquidsoap keyword.control.liquidsoap
 >    text = settings.video.text()
 #^^^^ source.liquidsoap meta.function-call.liquidsoap
-#    ^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^^^ source.liquidsoap meta.function-call.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap meta.function-call.liquidsoap
 #          ^ source.liquidsoap meta.function-call.liquidsoap
 #           ^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
@@ -3021,7 +3021,7 @@
 #                                                                                                                   ^ source.liquidsoap
 >  f = list.assoc(default=snd(list.hd(video.text.available())), settings.video.text(), video.text.available())
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^ source.liquidsoap variable.liquidsoap
@@ -3254,7 +3254,7 @@
 #                                ^^ source.liquidsoap
 >  add_text = add_text_builder(video.text)
 #^^ source.liquidsoap
-#  ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^^^^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -3378,7 +3378,7 @@
 #                                                                                     ^ source.liquidsoap
 >  subtitle = ref("")
 #^^ source.liquidsoap
-#  ^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #          ^^ source.liquidsoap
 #            ^ source.liquidsoap
 #             ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -3388,7 +3388,7 @@
 #                   ^ source.liquidsoap meta.function-call.liquidsoap
 >  t = video.text(size=size, color=color, subtitle)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^ source.liquidsoap variable.liquidsoap
@@ -3409,7 +3409,7 @@
 #                                                 ^ source.liquidsoap meta.function-call.liquidsoap
 >  t = video.bounding_box(t)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^ source.liquidsoap variable.liquidsoap
@@ -3420,7 +3420,7 @@
 #                          ^ source.liquidsoap meta.function-call.liquidsoap
 >  x = {(video.frame.width() - t.width())/2}
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap
@@ -3446,7 +3446,7 @@
 #                                          ^ source.liquidsoap
 >  y = {video.frame.height() - t.height() - offset}
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^ source.liquidsoap
@@ -3472,7 +3472,7 @@
 #                                                 ^ source.liquidsoap
 >  t = video.translate(x=x, y=y, t)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^ source.liquidsoap variable.liquidsoap
@@ -3540,7 +3540,7 @@
 #  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >  s = source.on_metadata(s, meta)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -3558,13 +3558,13 @@
 #  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #             ^^^ source.liquidsoap
-#                ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                ^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                  ^ source.liquidsoap
 #                   ^^^ source.liquidsoap keyword.operator.spread.liquidsoap
-#                      ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                      ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                            ^ source.liquidsoap
 #                             ^ source.liquidsoap
 #                              ^^^ source.liquidsoap
@@ -3579,9 +3579,9 @@
 #  ^^^ source.liquidsoap keyword.other.function.declaration.pattern.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
-#        ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #             ^^^ source.liquidsoap
-#                ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#                ^ source.liquidsoap variable.other.binding.liquidsoap
 #                 ^ source.liquidsoap
 #                  ^ source.liquidsoap
 #                   ^^^ source.liquidsoap
@@ -3595,7 +3595,7 @@
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap keyword.other.function.declaration.liquidsoap
 #     ^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^ source.liquidsoap
 #        ^^ source.liquidsoap
 #          ^^^^^ source.liquidsoap variable.liquidsoap
@@ -3702,7 +3702,7 @@
 #                                                                                ^ source.liquidsoap
 >  id = string.id.default(default="video.slideshow", id)
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -3722,7 +3722,7 @@
 #                                                      ^ source.liquidsoap meta.function-call.liquidsoap
 >  l = ref(l)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -3731,7 +3731,7 @@
 #           ^ source.liquidsoap meta.function-call.liquidsoap
 >  n = ref(-1)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -3741,7 +3741,7 @@
 #            ^ source.liquidsoap meta.function-call.liquidsoap
 >  s = source.dynamic()
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^^ source.liquidsoap variable.liquidsoap
@@ -3879,7 +3879,7 @@
 #                                            ^ source.liquidsoap meta.function-call.liquidsoap
 >    n' = n() + 1
 #^^^^ source.liquidsoap
-#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -3891,7 +3891,7 @@
 #               ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 >    n' = if n' >= list.length(l()) then if getter.get(cyclic) then 0 else list.length(l()) - 1 end else n' end
 #^^^^ source.liquidsoap
-#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^ source.liquidsoap keyword.control.liquidsoap
@@ -3979,7 +3979,7 @@
 #                                                ^ source.liquidsoap meta.function-call.liquidsoap
 >    n' = n() - 1
 #^^^^ source.liquidsoap
-#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -3991,7 +3991,7 @@
 #               ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 >    n' = if n' < 0 then if getter.get(cyclic) then list.length(l()) - 1 else 0 end else n' end
 #^^^^ source.liquidsoap
-#    ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^^ source.liquidsoap variable.other.binding.liquidsoap
 #      ^^ source.liquidsoap
 #        ^ source.liquidsoap
 #         ^^ source.liquidsoap keyword.control.liquidsoap
@@ -4288,7 +4288,7 @@
 #                                                                                                                           ^^ source.liquidsoap
 >  tracks = list.map(fun (s) -> source.tracks(s), sources)
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^ source.liquidsoap variable.liquidsoap
@@ -4314,7 +4314,7 @@
 #                                                        ^ source.liquidsoap meta.function-call.liquidsoap
 >  video_tracks = list.map(fun (t) -> t.video, tracks)
 #^^ source.liquidsoap
-#  ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^^ source.liquidsoap
 #                ^ source.liquidsoap
 #                 ^^^^ source.liquidsoap variable.liquidsoap
@@ -4337,7 +4337,7 @@
 #                                                    ^ source.liquidsoap meta.function-call.liquidsoap
 >  new_tracks = {
 #^^ source.liquidsoap
-#  ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 #              ^ source.liquidsoap
 #               ^ source.liquidsoap
@@ -4375,7 +4375,7 @@
 >
 >  new_tracks =
 #^^ source.liquidsoap
-#  ^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #            ^^ source.liquidsoap
 >    if list.length(tracks) != 0 and null.defined(list.hd(tracks)?.audio) then
 #^^^^ source.liquidsoap
@@ -4423,7 +4423,7 @@
 #                                    ^^ source.liquidsoap
 >        weight =
 #^^^^^^^^ source.liquidsoap
-#        ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #              ^^ source.liquidsoap
 >          try
 #^^^^^^^^^^ source.liquidsoap
@@ -4476,7 +4476,7 @@
 #      ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >      audio_tracks = list.mapi(mk_audio_track, tracks)
 #^^^^^^ source.liquidsoap
-#      ^^^^^^^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^^^^^^^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #                  ^^ source.liquidsoap
 #                    ^ source.liquidsoap
 #                     ^^^^ source.liquidsoap variable.liquidsoap
@@ -4623,7 +4623,7 @@
 #                                                                             ^ source.liquidsoap
 >  width = video.frame.width()
 #^^ source.liquidsoap
-#  ^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #       ^^ source.liquidsoap
 #         ^ source.liquidsoap
 #          ^^^^^ source.liquidsoap variable.liquidsoap
@@ -4635,7 +4635,7 @@
 #                            ^ source.liquidsoap meta.function-call.liquidsoap
 >  height = video.frame.height()
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^^ source.liquidsoap variable.liquidsoap
@@ -4647,7 +4647,7 @@
 #                              ^ source.liquidsoap meta.function-call.liquidsoap
 >  s = video.board(width=width*3, height=height)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^^^ source.liquidsoap variable.liquidsoap
@@ -4667,7 +4667,7 @@
 #                                              ^ source.liquidsoap meta.function-call.liquidsoap
 >  height = float(s.height())
 #^^ source.liquidsoap
-#  ^^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #        ^^ source.liquidsoap
 #          ^ source.liquidsoap
 #           ^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -4680,7 +4680,7 @@
 #                           ^ source.liquidsoap meta.function-call.liquidsoap
 >  tx = ref(width)
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -4689,7 +4689,7 @@
 #                ^ source.liquidsoap meta.function-call.liquidsoap
 >  ty = ref(0)
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -4698,7 +4698,7 @@
 #            ^ source.liquidsoap meta.function-call.liquidsoap
 >  s' = video.translate(x=tx, y=ty, s)
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^^ source.liquidsoap variable.liquidsoap
@@ -4723,7 +4723,7 @@
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >  x = ref(0)
 #^^ source.liquidsoap
-#  ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^ source.liquidsoap variable.other.binding.liquidsoap
 #   ^^ source.liquidsoap
 #     ^ source.liquidsoap
 #      ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -4732,7 +4732,7 @@
 #           ^ source.liquidsoap meta.function-call.liquidsoap
 >  dx = int_of_float(speed * frame.duration())
 #^^ source.liquidsoap
-#  ^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#  ^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -4769,7 +4769,7 @@
 #                 ^^ source.liquidsoap variable.liquidsoap
 >    y = int_of_float(((max - y()) / (max - min)) * height)
 #^^^^ source.liquidsoap
-#    ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#    ^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap

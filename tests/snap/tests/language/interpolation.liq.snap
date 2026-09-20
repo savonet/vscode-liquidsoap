@@ -2,7 +2,7 @@
 #^ source.liquidsoap comment.line.number-sign.liquidsoap
 # ^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >x = "Hello #{name}"
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -16,7 +16,7 @@
 #^ source.liquidsoap comment.line.number-sign.liquidsoap
 # ^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >y = "Result: #{1 + 2 * 3}"
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -38,7 +38,7 @@
 #^ source.liquidsoap comment.line.number-sign.liquidsoap
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >z = "Length: #{string.length(s)}"
-#^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^ source.liquidsoap variable.other.binding.liquidsoap
 # ^^ source.liquidsoap
 #   ^ source.liquidsoap
 #    ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -57,7 +57,7 @@
 #^ source.liquidsoap comment.line.number-sign.liquidsoap
 # ^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >multi = "#{a} and #{b} equals #{a + b}"
-#^^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #     ^^ source.liquidsoap
 #       ^ source.liquidsoap
 #        ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -82,7 +82,7 @@
 #^ source.liquidsoap comment.line.number-sign.liquidsoap
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >bad1 = "test: #{"inner"}"
-#^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -98,7 +98,7 @@
 #^ source.liquidsoap comment.line.number-sign.liquidsoap
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >bad2 = "Status: #{if active then "on" end}"
-#^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^ source.liquidsoap string.quoted.double.liquidsoap
@@ -122,7 +122,7 @@
 #^ source.liquidsoap comment.line.number-sign.liquidsoap
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.liquidsoap comment.line.number-sign.liquidsoap
 >bad3 = "outer #{x = 'inner #{y}'}"
-#^^^^ source.liquidsoap entity.name.function.binding.liquidsoap
+#^^^^ source.liquidsoap variable.other.binding.liquidsoap
 #    ^^ source.liquidsoap
 #      ^ source.liquidsoap
 #       ^ source.liquidsoap string.quoted.double.liquidsoap
