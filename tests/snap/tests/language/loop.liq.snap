@@ -34,13 +34,13 @@
 #         ^ source.liquidsoap meta.function-call.liquidsoap
 #          ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
 #           ^^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
-#                        ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#                          ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#                           ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
+#                        ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#                          ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                           ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
 #                            ^^^^^^^^^^^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
-#                                        ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#                                          ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#                                           ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
+#                                        ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#                                          ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                                           ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
 #                                            ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
 #                                             ^ source.liquidsoap meta.function-call.liquidsoap
 >    success := false
@@ -124,17 +124,17 @@
 #           ^ source.liquidsoap meta.function-call.liquidsoap
 >  for i = 0 to 10 do
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
 #     ^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.parameter.liquidsoap
 #       ^^^ source.liquidsoap
 #          ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #           ^ source.liquidsoap
-#            ^^ source.liquidsoap variable.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
 #              ^ source.liquidsoap
 #               ^^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #                 ^ source.liquidsoap
-#                  ^^ source.liquidsoap variable.liquidsoap
+#                  ^^ source.liquidsoap keyword.control.liquidsoap
 >    n := n() + i
 #^^^^ source.liquidsoap
 #    ^ source.liquidsoap variable.liquidsoap
@@ -150,7 +150,7 @@
 #               ^ source.liquidsoap variable.liquidsoap
 >  end
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
 >  t(n(), 55)
 #^^ source.liquidsoap
 #  ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -174,9 +174,9 @@
 #           ^ source.liquidsoap meta.function-call.liquidsoap
 >  for i = list.iterator([0,1,2,3,4,5,6,7,8,9,10]) do
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
 #     ^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.parameter.liquidsoap
 #       ^^^ source.liquidsoap
 #          ^^^^ source.liquidsoap variable.liquidsoap
 #              ^ source.liquidsoap meta.function-call.liquidsoap
@@ -207,7 +207,7 @@
 #                                               ^ source.liquidsoap meta.function-call.liquidsoap
 #                                                ^ source.liquidsoap meta.function-call.liquidsoap
 #                                                 ^ source.liquidsoap
-#                                                  ^^ source.liquidsoap variable.liquidsoap
+#                                                  ^^ source.liquidsoap keyword.control.liquidsoap
 >    n := n() + i
 #^^^^ source.liquidsoap
 #    ^ source.liquidsoap variable.liquidsoap
@@ -223,7 +223,7 @@
 #               ^ source.liquidsoap variable.liquidsoap
 >  end
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap variable.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
 >  t(n(), 55)
 #^^ source.liquidsoap
 #  ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -248,9 +248,9 @@
 #            ^ source.liquidsoap meta.function-call.liquidsoap
 >  for i = list.iterator(["a","b","c"]) do
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
 #     ^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.parameter.liquidsoap
 #       ^^^ source.liquidsoap
 #          ^^^^ source.liquidsoap variable.liquidsoap
 #              ^ source.liquidsoap meta.function-call.liquidsoap
@@ -271,7 +271,7 @@
 #                                    ^ source.liquidsoap meta.function-call.liquidsoap
 #                                     ^ source.liquidsoap meta.function-call.liquidsoap
 #                                      ^ source.liquidsoap
-#                                       ^^ source.liquidsoap variable.liquidsoap
+#                                       ^^ source.liquidsoap keyword.control.liquidsoap
 >    s := s() ^ i
 #^^^^ source.liquidsoap
 #    ^ source.liquidsoap variable.liquidsoap
@@ -287,7 +287,7 @@
 #               ^ source.liquidsoap variable.liquidsoap
 >  end
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap variable.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
 >  t(s(), "abc")
 #^^ source.liquidsoap
 #  ^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
@@ -328,7 +328,7 @@
 #                                                ^ source.liquidsoap
 #                                                 ^^^ source.liquidsoap keyword.control.liquidsoap
 >end
-#^^^ source.liquidsoap variable.liquidsoap
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 >test.check(f)
 #^^^^ source.liquidsoap variable.liquidsoap

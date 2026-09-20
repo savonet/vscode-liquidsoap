@@ -558,13 +558,13 @@
 #                                    ^ source.liquidsoap meta.function-call.liquidsoap
 >    for i = 0 to string.length(s)-sublen do
 #^^^^ source.liquidsoap
-#    ^^^ source.liquidsoap keyword.liquidsoap
+#    ^^^ source.liquidsoap keyword.control.liquidsoap
 #       ^ source.liquidsoap
-#        ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#        ^ source.liquidsoap variable.parameter.liquidsoap
 #         ^^^ source.liquidsoap
 #            ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #             ^ source.liquidsoap
-#              ^^ source.liquidsoap variable.liquidsoap
+#              ^^ source.liquidsoap keyword.control.liquidsoap
 #                ^ source.liquidsoap
 #                 ^^^^^^ source.liquidsoap variable.liquidsoap
 #                       ^ source.liquidsoap meta.function-call.liquidsoap
@@ -575,7 +575,7 @@
 #                                 ^ source.liquidsoap keyword.operator.arithmetic.liquidsoap
 #                                  ^^^^^^ source.liquidsoap variable.liquidsoap
 #                                        ^ source.liquidsoap
-#                                         ^^ source.liquidsoap variable.liquidsoap
+#                                         ^^ source.liquidsoap keyword.control.liquidsoap
 >      ans := ans() or (string.sub(s, start=i, length=sublen) == substring)
 #^^^^^^ source.liquidsoap
 #      ^^^ source.liquidsoap variable.liquidsoap
@@ -614,7 +614,7 @@
 #    ^^^ source.liquidsoap keyword.control.liquidsoap
 >  end
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
 >
 >  ans()
 #^^ source.liquidsoap
@@ -622,7 +622,7 @@
 #     ^ source.liquidsoap meta.function-call.liquidsoap
 #      ^ source.liquidsoap meta.function-call.liquidsoap
 >end
-#^^^ source.liquidsoap variable.liquidsoap
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 ># What remains of a string after a given prefix.
 #^ source.liquidsoap comment.line.number-sign.liquidsoap
@@ -892,19 +892,19 @@
 #                     ^ source.liquidsoap meta.function-call.liquidsoap
 >  for i = 0 to n-1 do
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
 #     ^ source.liquidsoap
-#      ^ source.liquidsoap entity.name.function.binding.liquidsoap
+#      ^ source.liquidsoap variable.parameter.liquidsoap
 #       ^^^ source.liquidsoap
 #          ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #           ^ source.liquidsoap
-#            ^^ source.liquidsoap variable.liquidsoap
+#            ^^ source.liquidsoap keyword.control.liquidsoap
 #              ^ source.liquidsoap
 #               ^ source.liquidsoap variable.liquidsoap
 #                ^ source.liquidsoap keyword.operator.arithmetic.liquidsoap
 #                 ^ source.liquidsoap constant.numeric.decimal.integer.liquidsoap
 #                  ^ source.liquidsoap
-#                   ^^ source.liquidsoap variable.liquidsoap
+#                   ^^ source.liquidsoap keyword.control.liquidsoap
 >    ans := lsl(ans(),8) + string.nth(s, if little_endian then n-1-i else i end)
 #^^^^ source.liquidsoap
 #    ^^^ source.liquidsoap variable.liquidsoap
@@ -949,14 +949,14 @@
 #                                                                              ^ source.liquidsoap meta.function-call.liquidsoap
 >  end
 #^^ source.liquidsoap
-#  ^^^ source.liquidsoap keyword.other.function.end.liquidsoap
+#  ^^^ source.liquidsoap keyword.control.liquidsoap
 >  ans()
 #^^ source.liquidsoap
 #  ^^^ source.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
 #     ^ source.liquidsoap meta.function-call.liquidsoap
 #      ^ source.liquidsoap meta.function-call.liquidsoap
 >end
-#^^^ source.liquidsoap variable.liquidsoap
+#^^^ source.liquidsoap keyword.other.function.end.liquidsoap
 >
 ># Encode a positive (unsigned) integer using native memory representation.
 #^ source.liquidsoap comment.line.number-sign.liquidsoap
@@ -1066,14 +1066,14 @@
 #                   ^ source.liquidsoap meta.function-call.liquidsoap keyword.other.liquidsoap punctuation.comma punctuation.separator.comma
 #                    ^ source.liquidsoap meta.function-call.liquidsoap
 #                     ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
-#                      ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#                        ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#                         ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
+#                      ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#                        ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                         ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
 #                          ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
 #                            ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
-#                             ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#                               ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#                                ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
+#                             ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#                               ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                                ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
 #                                 ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
 #                                  ^ source.liquidsoap meta.function-call.liquidsoap
 >      else
@@ -1095,12 +1095,12 @@
 #                     ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
 #                      ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
 #                        ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
-#                         ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#                           ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#                            ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#                             ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#                               ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#                                ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
+#                         ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#                           ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                            ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
+#                             ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#                               ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                                ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
 #                                 ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
 #                                  ^ source.liquidsoap meta.function-call.liquidsoap
 >      end
@@ -1207,12 +1207,12 @@
 >      "#{ret}#{ans}"
 #^^^^^^ source.liquidsoap
 #      ^ source.liquidsoap string.quoted.double.liquidsoap
-#       ^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#         ^^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#            ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#             ^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#               ^^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#                  ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
+#       ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#         ^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
+#             ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#               ^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
 #                   ^ source.liquidsoap string.quoted.double.liquidsoap
 >    else
 #^^^^ source.liquidsoap
@@ -1220,12 +1220,12 @@
 >      "#{ans}#{ret}"
 #^^^^^^ source.liquidsoap
 #      ^ source.liquidsoap string.quoted.double.liquidsoap
-#       ^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#         ^^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#            ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#             ^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#               ^^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#                  ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
+#       ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#         ^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#            ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
+#             ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#               ^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
 #                   ^ source.liquidsoap string.quoted.double.liquidsoap
 >    end
 #^^^^ source.liquidsoap
@@ -1437,9 +1437,9 @@
 #^^ source.liquidsoap
 #  ^ source.liquidsoap string.quoted.double.liquidsoap
 #   ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
-#     ^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#       ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#        ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
+#     ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#       ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#        ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
 #         ^^ source.liquidsoap string.quoted.double.liquidsoap constant.character.escape.liquidsoap
 #           ^ source.liquidsoap string.quoted.double.liquidsoap
 >end
@@ -1561,36 +1561,36 @@
 #              ^ source.liquidsoap
 #               ^ source.liquidsoap string.quoted.double.liquidsoap
 #                ^^^^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#                        ^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#                          ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#                                ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap keyword.other.liquidsoap
-#                                 ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.method.liquidsoap
-#                                       ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap meta.function-call.liquidsoap
-#                                        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
-#                                              ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap meta.function-call.liquidsoap
-#                                               ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
-#                                                ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap meta.function-call.liquidsoap
-#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
+#                        ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#                          ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                                ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap keyword.other.liquidsoap
+#                                 ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.method.liquidsoap
+#                                       ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
+#                                        ^^^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap entity.name.function.liquidsoap
+#                                              ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
+#                                               ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap variable.liquidsoap
+#                                                ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap meta.function-call.liquidsoap
+#                                                 ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
 #                                                  ^ source.liquidsoap string.quoted.double.liquidsoap
 #                                                   ^ source.liquidsoap
 #                                                    ^ source.liquidsoap keyword.control.liquidsoap
 #                                                     ^ source.liquidsoap
 #                                                      ^ source.liquidsoap string.quoted.double.liquidsoap
 #                                                       ^ source.liquidsoap string.quoted.double.liquidsoap
-#                                                        ^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
+#                                                        ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#                                                          ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                                                           ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
 #                                                            ^ source.liquidsoap string.quoted.double.liquidsoap
 >  "data:#{mime}#{s}"
 #^^ source.liquidsoap
 #  ^ source.liquidsoap string.quoted.double.liquidsoap
 #   ^^^^^ source.liquidsoap string.quoted.double.liquidsoap
-#        ^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#          ^^^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#              ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#               ^^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#                 ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap variable.liquidsoap
-#                  ^ source.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
+#        ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#          ^^^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#              ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
+#               ^^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#                 ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap variable.liquidsoap
+#                  ^ source.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
 #                   ^ source.liquidsoap string.quoted.double.liquidsoap
 >end
 #^^^ source.liquidsoap keyword.other.function.end.liquidsoap

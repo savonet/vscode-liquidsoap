@@ -5,7 +5,7 @@
   "publisher": "savonet",
   "repository": "https://github.com/savonet/vscode-liquidsoap.git",
   "homepage": "https://github.com/savonet/vscode-liquidsoap",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "engines": {
     "vscode": "^1.98.0"
   },
@@ -15,15 +15,19 @@
     "Programming Languages",
     "Formatters"
   ],
-  "main": "dist/extension.js",
+  "main": "./dist/extension.js",
   "scripts": {
-    "release": "pnpm build && vsce publish",
-    "build": "webpack --config webpack.config.js",
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "fetch:server": "node scripts/fetch-server.mjs",
+    "package": "pnpm fetch:server && pnpm build && vsce package",
+    "release": "pnpm fetch:server && pnpm build && vsce publish",
     "typecheck": "tsc --noEmit",
-    "update:snapshots": "vscode-tmgrammar-snap --updateSnapshot tests/snap/**/*.liq",
+    "test:grammar": "vscode-tmgrammar-snap \"tests/snap/**/*.liq\"",
+    "update:snapshots": "vscode-tmgrammar-snap --updateSnapshot \"tests/snap/**/*.liq\"",
     "test:fetch-stdlib": "node test-suite/fetch-stdlib.js",
     "test": "node test-suite/run-tests.js",
-    "test:full": "npm run test:fetch-stdlib && npm run test"
+    "test:full": "pnpm test:fetch-stdlib && pnpm test"
   },
   "contributes": {
     "languages": [
@@ -45,19 +49,35 @@
         "scopeName": "source.liquidsoap",
         "path": "./syntaxes/liquidsoap.tmLanguage.json"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Liquidsoap",
+      "properties": {
+        "liquidsoap.languageServer.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Check scripts with the Liquidsoap language server. When off, only formatting is available."
+        },
+        "liquidsoap.path": {
+          "type": "string",
+          "default": "",
+          "description": "The liquidsoap to take the standard library from. Defaults to the one on your PATH; set it to a dot to always use the standard library the extension ships with."
+        }
+      }
+    }
   },
   "devDependencies": {
+    "@types/node": "^26.6.1",
     "@types/vscode": "^1.98.0",
-    "esbuild": "^0.19.12",
-    "liquidsoap-prettier": "^1.5.5",
-    "prettier": "^3.5.3",
-    "ts-loader": "^9.5.2",
-    "typescript": "^5.8.2",
+    "@vscode/vsce": "^3.6.2",
+    "esbuild": "^0.25.12",
+    "liquidsoap-prettier": "^1.9.0",
+    "prettier": "^3.6.2",
+    "typescript": "^7.0.2",
+    "vscode-languageclient": "^10.1.1",
     "vscode-oniguruma": "^1.7.0",
     "vscode-textmate": "^9.0.0",
-    "vscode-tmgrammar-test": "^0.1.3",
-    "webpack": "^5.98.0",
-    "webpack-cli": "^5.1.4"
-  }
+    "vscode-tmgrammar-test": "^0.1.3"
+  },
+  "browser": "./dist/browser.js"
 }

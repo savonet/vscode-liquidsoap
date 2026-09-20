@@ -449,11 +449,11 @@
 #      ^ source.liquidsoap meta.function-call.liquidsoap
 #       ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
 #        ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
-#         ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
-#           ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap constant.numeric.decimal.integer.liquidsoap
-#            ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap keyword.operator.arithmetic.liquidsoap
-#             ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap constant.numeric.decimal.integer.liquidsoap
-#              ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap string.interpolation.liquidsoap
+#         ^^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.begin.liquidsoap
+#           ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap constant.numeric.decimal.integer.liquidsoap
+#            ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap keyword.operator.arithmetic.liquidsoap
+#             ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap meta.embedded.line.liquidsoap constant.numeric.decimal.integer.liquidsoap
+#              ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap meta.interpolation.liquidsoap punctuation.section.interpolation.end.liquidsoap
 #               ^ source.liquidsoap meta.function-call.liquidsoap string.quoted.double.liquidsoap
 #                ^ source.liquidsoap meta.function-call.liquidsoap
 >  echo(string(int_of_float(float_of_string(default=13.,"blah"))))

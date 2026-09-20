@@ -73,14 +73,6 @@
     "bindings": {
       "patterns": [
         {
-          "comment": "for loop",
-          "match": "\\b(for)[[:space:]]+(__*|_*[[:alpha:]][[[:alpha:]]0-9_']*)",
-          "captures": {
-            "1": { "name": "keyword.liquidsoap" },
-            "2": { "name": "entity.name.function.binding.liquidsoap" }
-          }
-        },
-        {
           "comment": "let expression binding",
           "match": "\\b(let)[[:space:]]+(eval[[:space:]]+|replaces[[:space:]]+|json\\.parse(?:\\[[^\\]]*\\])?[[:space:]]+|yaml\\.parse(?:\\[[^\\]]*\\])?[[:space:]]+)?(?<!eval|replaces|json\\.parse|yaml\\.parse)(__*|_*[[:alpha:]][[[:alpha:]]0-9_'.]*)[[:space:]]*(?!,|::|[[:space:]])",
           "captures": {
@@ -176,13 +168,16 @@
         },
         {
           "comment": "for",
-          "begin": "\\b(for)\\b",
+          "begin": "\\b(for)[[:space:]]+(__*|_*[[:alpha:]][[[:alpha:]]0-9_']*)",
           "end": "\\b(end)\\b",
-          "beginCaptures": { "1": { "name": "keyword.control.liquidsoap" } },
+          "beginCaptures": {
+            "1": { "name": "keyword.control.liquidsoap" },
+            "2": { "name": "variable.parameter.liquidsoap" }
+          },
           "endCaptures": { "1": { "name": "keyword.control.liquidsoap" } },
           "patterns": [
             {
-              "match": "\\b(to|do)\\b",
+              "match": "\\b(to|in|do)\\b",
               "name": "keyword.control.liquidsoap"
             },
             { "include": "$self" }
@@ -438,23 +433,13 @@
           "name": "constant.numeric.octal.integer.liquidsoap"
         },
         {
-          "match": "\\b([0-9]+w?)[0-9]+h[0-9]+\\b",
-          "name": "constant.time.predicate.liquidsoap"
+          "comment": "the null value; `null.m` is the module of the same name",
+          "match": "\\bnull\\b(?![[:space:]]*[.(])",
+          "name": "constant.language.null.liquidsoap"
         },
         {
-          "match": "\\b[0-9]+w([0-9]+h?)([0-9]+m?)([0-9]+s?)\\b",
-          "name": "constant.time.predicate.liquidsoap"
-        },
-        {
-          "match": "\\b([0-9]+w?)[0-9]+h([0-9]+m?)([0-9]+s?)\\b",
-          "name": "constant.time.predicate.liquidsoap"
-        },
-        {
-          "match": "\\b([0-9]+w?)([0-9]+h?)[0-9]+m([0-9]+s?)\\b",
-          "name": "constant.time.predicate.liquidsoap"
-        },
-        {
-          "match": "\\b([0-9]+w?)([0-9]+h?)([0-9]+m?)[0-9]+s\\b",
+          "comment": "a time, of which any of the four parts can be left out",
+          "match": "\\b(?=[0-9]+[whms])([0-9]+w)?([0-9]+h)?([0-9]+m)?([0-9]+s)?(?![0-9a-zA-Z_])",
           "name": "constant.time.predicate.liquidsoap"
         },
         {
