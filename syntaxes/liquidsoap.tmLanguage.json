@@ -291,6 +291,13 @@
     "types": {
       "patterns": [
         {
+          "begin": "(%typeof)\\(",
+          "end": "\\)(\\??)",
+          "beginCaptures": { "1": { "name": "keyword.other.liquidsoap" } },
+          "endCaptures": { "1": { "name": "keyword.other.liquidsoap" } },
+          "patterns": [{ "include": "#expressions" }]
+        },
+        {
           "match": "\\b(int|float|unit|bool|string|never|ref)(?:(\\?)|\\b)",
           "captures": {
             "1": { "name": "storage.type.ground.liquidsoap" },

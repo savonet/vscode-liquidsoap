@@ -675,6 +675,35 @@
         <key>patterns</key>
         <array>
           <dict>
+            <key>begin</key>
+            <string>(%typeof)\(</string>
+            <key>end</key>
+            <string>\)(\??)</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>keyword.other.liquidsoap</string>
+              </dict>
+            </dict>
+            <key>endCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>keyword.other.liquidsoap</string>
+              </dict>
+            </dict>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>#expressions</string>
+              </dict>
+            </array>
+          </dict>
+          <dict>
             <key>match</key>
             <string>\b(int|float|unit|bool)(?:(\?)|\b)</string>
             <key>captures</key>

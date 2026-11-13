@@ -376,6 +376,15 @@ contexts:
         - match: '\|\1\}'
           pop: true
   types:
+    - match: (%typeof)\(
+      captures:
+        1: keyword.other.liquidsoap
+      push:
+        - match: \)(\??)
+          captures:
+            1: keyword.other.liquidsoap
+          pop: true
+        - include: expressions
     - match: \b(int|float|unit|bool)(?:(\?)|\b)
       captures:
         1: storage.type.ground.liquidsoap
